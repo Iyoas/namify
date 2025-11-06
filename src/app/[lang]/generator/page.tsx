@@ -11,7 +11,7 @@ interface GeneratorPageProps {
         <p className="text-gray-600 mb-4">
           Taal: <strong>{lang}</strong>
         </p>
-        <p>Hier komt straks het formulier om namen te genereren.</p>
+        <p>Hier komt straks het formulier om feesten en feesten te genereren.</p>
       </main>
     )
   }

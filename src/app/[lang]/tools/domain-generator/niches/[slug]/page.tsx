@@ -1,15 +1,8 @@
-export default function Page({
-    params,
-  }: {
-    params: { lang: string; slug: string };
-  }) {
-    const { lang, slug } = params;
-  
+export default function Page(props: any) {
     return (
-      <div>
-        <h1>Programmatic niche page – {slug}</h1>
-        <p>Lang: {lang}</p>
-      </div>
+      <pre>
+        {JSON.stringify(props, null, 2)}
+      </pre>
     );
   }
   

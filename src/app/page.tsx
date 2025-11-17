@@ -1,9 +1,8 @@
 // src/app/[lang]/page.tsx
 import Link from "next/link";
-import { SUPPORTED_LANGS, DEFAULT_LANG, LANG_LABELS, type Lang } from "@/config/i18n";
+import { type Locale } from "@/config/i18n";
 
-
-export default function LangHomePage({ params }: { params: { lang: Lang } }) {
+export default function LangHomePage({ params }: { params: { lang: Locale } }) {
   const { lang } = params;
 
   return (

@@ -1,8 +1,11 @@
 // src/app/[lang]/tools/domain-generator/generator/page.tsx
 import type { Lang } from "@/config/i18n";
 
-// Export the DomainGeneratorForm component
-export function DomainGeneratorForm({ lang }: { lang: string }) {
+type DomainGeneratorFormProps = {
+  lang: Lang;
+};
+
+export function DomainGeneratorForm({ lang }: DomainGeneratorFormProps) {
   return <div>Domain Generator Form for language: {lang}</div>;
 }
 

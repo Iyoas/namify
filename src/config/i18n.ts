@@ -5,11 +5,11 @@
 // Lijst met ondersteunde talen
 export const SUPPORTED_LANGS = ["nl", "en", "es"] as const;
 export type Lang = (typeof SUPPORTED_LANGS)[number];
-
+export const defaultLocale: Lang = "en";
 // Alias: Locale = Lang (handig als je ergens Locale gebruikt)
 export type Locale = Lang;
 
-export const defaultLocale: Lang = "nl";
+
 
 // Handige helper om te checken of een string een geldige taal is
 export function isLocale(value: string): value is Lang {

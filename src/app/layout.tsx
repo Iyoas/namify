@@ -1,9 +1,10 @@
-// src/app/layout.tsx
 import "./globals.css";
 
-export const metadata = {
-  title: "Namify – AI bedrijfs- & domeinnaam generator",
-  description: "Genereer sterke bedrijfs- en domeinnamen met AI.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Namify",
+  description: "AI powered domain generator",
 };
 
 export default function RootLayout({
@@ -13,9 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="nl">
-      <body className="bg-slate-950 text-slate-50">
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -1,29 +1,17 @@
 // src/app/[lang]/layout.tsx
+import type { ReactNode } from "react";
+import LayoutProps from "next";
 
-import Link from "next/link";
-import React from "react";
-
-export default function LangLayout({
+export default async function LangLayout({
   children,
   params,
-}: {
-  children: React.ReactNode;
-  params: { lang: string };
-}) {
-  const { lang } = params;           // HIER haal je lang uit de URL
+}: LayoutProps<"/[lang]">) {
+  // In Next 16 typed routes is params hier een Promise
+  const { lang } = await params;
 
   return (
     <html lang={lang}>
-      <body>
-        <nav>
-          <Link href={`/${lang}`}>Namify</Link>
-          <Link href={`/${lang}/tools/domain-generator`}>Tool uitleg</Link>
-          <Link href={`/${lang}/tools/domain-generator/generator`}>Generator</Link>
-          <Link href={`/${lang}/tools/domain-generator/niches`}>Niches</Link>
-        </nav>
-
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

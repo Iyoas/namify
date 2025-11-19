@@ -1,0 +1,125 @@
+/* HowItWorks section */
+
+.section {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+  background: transparent;
+}
+
+.inner {
+  max-width: var(--container-content);
+  margin: 0 auto;
+  padding-left: var(--gutter-desktop);
+  padding-right: var(--gutter-desktop);
+}
+
+.header {
+  text-align: center;
+}
+
+.title {
+  font-size: var(--section-title-font-size-desktop);
+  line-height: 1.2;
+  color: var(--section-title-color);
+  font-weight: var(--section-title-font-weight);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.subtitle {
+  max-width: 640px;
+  margin: 12px auto 0;
+  font-size: var(--section-subtitle-font-size);
+  line-height: 1.75;
+  color: var(--section-subtitle-color);
+  font-weight: var(--section-subtitle-font-weight);
+}
+
+/* space between header and the cards grid */
+.grid {
+  margin-top: var(--section-title-content-gap);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 32px;
+  row-gap: 24px;
+}
+
+/* individual step cards */
+
+.card {
+  background: var(--bg-surface);
+  border-radius: 24px;
+  border: 1px solid #DFE1E7;
+  box-shadow: none;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px; /* 32px gap between icon and text */
+}
+
+.iconWrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: none;
+}
+
+/* lucide icons inside the wrapper */
+.iconWrapper svg {
+  width: 26px;
+  height: 26px;
+  color: var(--icon-stroke-color);
+  stroke: var(--icon-stroke-color);
+  stroke-width: var(--icon-stroke-width);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.4;
+  color: #020617; /* near-black title color */
+  font-weight: 600; /* semibold */
+}
+
+.cardText {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: #64748B;
+  font-weight:  var(--section-subtitle-font-weight);
+}
+
+/* Responsive: mobile */
+
+@media (max-width: 640px) {
+  .inner {
+    padding-left: var(--gutter-mobile);
+    padding-right: var(--gutter-mobile);
+  }
+
+  .title {
+    font-size: var(--section-title-font-size-mobile);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+  }
+
+  .card {
+    padding: 32px;
+    gap: 32px;
+  }
+}

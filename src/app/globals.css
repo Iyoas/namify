@@ -1,6 +1,87 @@
-/* src/app/globals.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+    --font-body: var(--font-body), system-ui, sans-serif;
+    --font-heading: var(--font-heading), system-ui, sans-serif;
+  
+  /* Background tokens */
+  --bg-surface: #ffffff;                  /* white cards and surfaces */
+  --bg-soft-accent: rgba(243, 232, 255, 0.35);  /* 35% F3E8FF */
+  --bg-page: #f8fafc;                     /* overall page background */
 
-/* eventueel jouw eigen extra styles hieronder */
+  /* Section spacing */
+  --section-padding-y: 80px;              /* top & bottom padding for sections */
+
+  /* Section titles */
+  --section-title-font-size-desktop: 48px;
+  --section-title-font-size-mobile: 46px;
+  --section-title-color: #334155;
+  --section-title-font-weight: 600;       /* semibold */
+
+  /* Section subtitles */
+  --section-subtitle-font-size: 16px;
+  --section-subtitle-color: #475569;
+  --section-subtitle-font-weight: 300;    /* regular */
+
+  /* Spacing between section title and its content */
+  --section-title-content-gap: 56px;
+
+  /* Spacing Scale (global spacing units) */
+  --space-1: 4px;    /* very small spacing */
+  --space-2: 8px;    /* small spacing */
+  --space-3: 12px;   /* small gap */
+  --space-4: 16px;   /* base spacing */
+  --space-5: 20px;   /* mobile gutter */
+  --space-6: 24px;   /* card padding */
+  --space-7: 32px;   /* large gap */
+  --space-8: 40px;   /* section minor offset */
+  --space-9: 48px;   /* cta -> partners spacing */
+  --space-10: 56px;  /* title -> content gap */
+  --space-11: 60px;  /* partners -> badges spacing */
+  --space-12: 80px;  /* section vertical padding */
+  --space-13: 120px; /* hero large spacing */
+
+  /* Border Radius Tokens */
+  --radius-sm: 12px;   /* small radius */
+  --radius-md: 16px;   /* medium radius */
+  --radius-lg: 24px;   /* large radius */
+
+  /* Shadow Tokens */
+  --shadow-soft: 0 4px 14px rgba(0,0,0,0.12);          /* soft card shadow */
+  --shadow-cta: 0 4px 14px rgba(0,0,0,0.21);           /* primary button shadow */
+  --shadow-badge: 0 6px 24px rgba(181,90,255,0.25);    /* badge glow shadow */
+
+  /* Gradient Tokens */
+  --gradient-primary: linear-gradient(to top right, #0013E0, #B55AFF); /* main brand gradient */
+
+  /* Extended Color Tokens */
+  --color-primary: #0013E0;         /* main brand blue */
+  --color-accent: #B55AFF;          /* main brand purple */
+  --color-accent-soft: rgba(181,90,255,0.35); /* soft purple overlay */
+
+  --color-heading: #334155;         /* dark heading color */
+  --color-body-text: #475569;       /* default paragraph text */
+  --color-muted-text: #94A3B8;      /* muted/secondary text */
+  --color-border: #E5E7EB;          /* light border color */
+
+  /* Icon Tokens */
+  /* default icon gradient: 180deg, white 100% -> white 50% */
+  --icon-gradient: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.5) 100%);
+  /* default icon stroke color: 50% white */
+  --icon-stroke-color: rgba(255,255,255,0.5);
+  /* default icon stroke width */
+  --icon-stroke-width: 1px;
+
+  /* Layout Tokens */
+  --container-max: 1280px;      /* maximum page width */
+  --container-content: 1120px;  /* content width inside sections */
+  --gutter-mobile: 20px;        /* horizontal padding on mobile */
+  --gutter-desktop: 32px;       /* horizontal padding on desktop */
+
+  /* Breakpoints */
+  --breakpoint-mobile: 640px;     /* mobile breakpoint */
+  --breakpoint-tablet: 1024px;    /* tablet breakpoint */
+  }
+  
+  .app-body {
+    margin: 0;
+    font-family: var(--font-body);
+  }

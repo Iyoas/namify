@@ -1,0 +1,184 @@
+/* Sectie: ideeën voor branchespecifieke namen */
+
+.section {
+    padding-top: var(--section-padding-y);
+    padding-bottom: var(--section-padding-y);
+    background: transparent;
+  }
+  
+  .inner {
+    max-width: var(--container-content);
+    margin: 0 auto;
+    padding-left: var(--gutter-desktop);
+    padding-right: var(--gutter-desktop);
+  }
+  
+  /* Header: titel links, introtekst rechts */
+  
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 64px;
+    margin-bottom: var(--section-title-content-gap);
+  }
+  
+  .headerTitle {
+    flex: 1.2;
+  }
+  
+  .title {
+    margin: 0;
+    font-size: var(--section-title-font-size-desktop);
+    line-height: 1.15;
+    color: var(--section-title-color);
+    font-weight: var(--section-title-font-weight);
+    letter-spacing: -0.02em;
+  }
+  
+  .intro {
+    flex: 1;
+    max-width: 420px;
+    margin: 8px 0 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--section-subtitle-color);
+    font-weight: var(--section-subtitle-font-weight);
+  }
+  
+  /* Grid met branchekaarten */
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 24px;
+    row-gap: 20px;
+  }
+  
+  /* Individuele kaarten */
+  
+  .card {
+    background: var(--bg-surface);
+    border-radius: 24px;
+    border: 1px solid #DFE1E7;
+    box-shadow: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Bovenste deel van de card: icon + titel */
+  
+  .cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .iconWrapper {
+    width: 52px;
+    height: 52px;
+    border-radius: 18px;
+    background: #F6F8FA; /* light square background */
+    border: 1px solid #ECEFF3; /* subtle border */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .iconWrapper svg {
+    width: 26px;
+    height: 26px;
+    color: var(--gradient-primary-solid);
+    stroke: var(--gradient-primary-solid);
+    fill: var(--gradient-primary-solid);
+    box-shadow: 2px 4px 8px rgba(54, 57, 74, 0.2); /* Figma icon shadow */
+  }
+  
+  .cardTitle {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.4;
+    color: #020617;
+    font-weight: 600;
+  }
+  
+  /* Subtekst onder de titel */
+  
+  .cardDescription {
+    margin: 0;
+    font-size: 14px;
+    line-height: 22px;
+    color: #64748B;
+    font-weight: 400;
+  }
+  
+  /* Onderste deel: CTA-button */
+  
+  .cardFooter {
+    margin-top: auto;
+    display: flex;
+    justify-content: center; /* center button inside card */
+  }
+  
+  .cardButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(#ffffff, #ffffff) padding-box,
+      var(--gradient-primary) border-box;
+    font-size: 15px;
+    font-weight: 600;
+    color: #4F46E5; /* text in main gradient purple family */
+    text-decoration: none;
+    width: 100%;
+  }
+  
+  .cardButton:hover {
+    text-decoration: none;
+  }
+  
+  .cardButtonIcon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Mobiele layout */
+  
+  @media (max-width: 640px) {
+    .inner {
+      padding-left: var(--gutter-mobile);
+      padding-right: var(--gutter-mobile);
+    }
+  
+    .header {
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+  
+    .title {
+      font-size: var(--section-title-font-size-mobile);
+    }
+  
+    .intro {
+      max-width: 100%;
+    }
+  
+    .grid {
+      grid-template-columns: 1fr;
+      row-gap: 20px;
+    }
+  
+    .card {
+      padding: 20px 20px 22px;
+    }
+  }
+  

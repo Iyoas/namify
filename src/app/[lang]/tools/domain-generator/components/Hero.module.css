@@ -1,0 +1,395 @@
+/* src/app/[lang]/tools/domain-generator/components/Hero.module.css */
+
+/* Achtergrond / layout */
+.hero {
+  position: relative;
+  background: rgba(243, 232, 255, 0.35);
+  padding: 0;
+  min-height: 100vh; /* hero volledige schermhoogte */
+  display: flex;
+  align-items: stretch;
+  overflow: hidden; /* voorkom horizontale scroll door badges / glow */
+}
+
+.heroInner {
+  flex: 1;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: clamp(3.5rem, 8vw, 6rem);
+  padding-top: 5rem;
+  padding-bottom: 4rem;
+  margin-right: clamp(3rem, 7vw, 5rem);
+}
+
+.left {
+  flex: 1;
+  min-width: 0;
+}
+
+.heroVisual {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  padding-right: 0;
+}
+
+/* Mobile stacking */
+@media (max-width: 1024px) {
+  .hero {
+    padding-top: 3.5rem;
+  }
+
+  .heroInner {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 46px;
+    padding-bottom: 46px;
+    margin-right: 0;
+    text-align: center;
+    align-items: center;
+  }
+}
+
+/* Typografie – headings op Urbanist, body op Inter */
+.title {
+  font-family: var(--font-heading);
+  font-size: 56px;
+  line-height: 64px;
+  font-weight: 700;
+  color: #334155;
+  margin: 0 0 1.1rem;
+}
+
+.titleAccent {
+  background: linear-gradient(to top right, #0013e0, #b55aff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  max-width: 34rem;
+  font-size: 18px;
+  line-height: 28px;
+  color: #475569;
+  margin: 0 0 2.4rem;
+}
+
+/* CTA knoppen */
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  align-items: center;
+  margin-top: 58px; /* afstand tussen intro-tekst en buttons */
+}
+
+@media (max-width: 640px) {
+  /* CTA's centreren op mobiel */
+  .ctaRow {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  /* Hero stackt onder elkaar op mobiel */
+  .hero {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .heroInner {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 0;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  /* Foto verbergen op mobiel */
+  .imageCard {
+    display: none;
+  }
+
+  .cardGlow {
+    display: none;
+  }
+
+  /* Rechterkolom alleen nog voor badges op mobiel, onder de content */
+  .heroVisual {
+    display: none; /* heroVisual wordt verborgen omdat badges nu in .left staan */
+  }
+
+  /* Badges onder elkaar, gecentreerd */
+  .badge {
+    position: relative;
+    margin: 0;
+    min-width: 100%;
+  }
+
+  .badges {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 60px;   /* GAP tussen partners en badges */
+    gap: 12px;          /* gap tussen badgeTop en badgeBottom */
+    width: 100%;
+  }
+
+  .badgeTop {
+    margin: 0;
+    top: auto;
+    right: auto;
+    transform: none;
+  }
+
+  .badgeBottom {
+    margin: 0;
+    top: auto;
+    left: auto;
+    bottom: auto;
+    transform: none;
+  }
+
+  .title {
+    font-size: 46px;
+    line-height: 52px;
+    text-align: left;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    line-height: 28px;
+    text-align: left;
+  }
+
+  .partners {
+    width: 100%;
+    text-align: left;
+    align-items: flex-start;
+    margin-top: 48px !important;
+  }
+
+  .partnerLogos img:nth-child(n+5) {
+    display: none;
+  }
+
+  .partnerLogos img {
+    width: 50px;
+    height: 24px;
+  }
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2.7rem;
+  border-radius: 16px;
+  background: linear-gradient(to top right, #0013e0, #b55aff);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid #3b16c1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.21);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.primaryButton:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.primaryIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.primaryIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.secondaryButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border-radius: 12px !important;
+  background: transparent;
+  border: 2px solid #B55AFF;
+  text-decoration: none;
+  box-shadow: none;
+}
+  
+.secondaryButtonInner {
+  padding: 0.95rem 2.7rem;
+  border-radius: 10px; /* 12px outer – 2px border */
+  background: transparent; /* of #f3e8ff */
+  color: #B55AFF;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+}
+
+.secondaryButton:hover .secondaryButtonInner {
+  background: #ffffff;
+}
+
+/* Partners */
+.partners {
+  margin-top: 110px; /* afstand tussen buttons en partners */
+}
+
+.partnersLabel {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 24px; /* afstand tussen label en logo's */
+}
+
+.partnerLogos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2.2rem;
+  opacity: 0.55;
+}
+
+/* Rechterkant: kaart + badges */
+.imageCardWrapper {
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.imageCard {
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+  background: #0f172a;
+  width: 100%;
+  height: 100%;                /* <— kaart zelf ook 100% */
+}
+
+.heroImage {
+  display: block;
+  width: 100%;
+  height: 100%;                /* <— afbeelding rekt mee */
+  object-fit: cover;           /* <— netjes bijsnijden, geen vervorming */
+  border-radius: 0;
+}
+
+/* Glow onder de kaart */
+.cardGlow {
+  position: absolute;
+  inset: 40% -80px -80px;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle at 50% 0,
+    rgba(196, 181, 253, 0.9),
+    transparent 70%
+  );
+  filter: blur(40px);
+  z-index: -1;
+}
+
+/* Badges */
+.badge {
+  position: absolute;
+  min-width: 215px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+}
+
+.badgeTop {
+    top: 250px;
+    right: 25%;
+    transform: rotate(-6deg);
+    z-index:100000;
+    box-shadow: 0 4px 104px -20px rgba(59, 22, 193, 0.25);
+  }
+  
+  .badgeBottom {
+    top: 400px;
+    right: 25%;
+    transform: rotate(4deg);
+    z-index:100000;
+    box-shadow: 0 4px 104px -20px rgba(59, 22, 193, 0.25);
+  }
+  
+.badgeInner {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* afstand tussen icoon en tekst */
+  width: 100%;
+  height: 100%;
+  padding: 0 24px;
+  border-radius: 16px;
+  background: #ffffff;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.badgeIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px; /* voorkom uitrekken in flex-layout */
+  border-radius: 50%;
+  background: linear-gradient(to top right, #0013e0, #b55aff);
+  color: #ffffff;
+}
+
+.badgeIcon {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 640px) {
+  .badge {
+    position: static;
+    margin: 0;
+    width: 100%;
+  }
+
+  .badgeTop {
+    top: auto;
+    right: auto;
+    transform: none;
+    min-width: 20px;
+  }
+
+  .badgeBottom {
+    top: auto;
+    right: auto;
+    bottom: auto;
+    transform: none;
+    min-width: 215px;
+  }
+}

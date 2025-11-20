@@ -38,8 +38,8 @@
 
 .title {
   margin: 0;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: var(--section-subtitle-font-size);
+  line-height: var(--section-subtitle-line-height);
   color: var(--section-subtitle-color);
   font-weight: var(--section-subtitle-font-weight);
 }

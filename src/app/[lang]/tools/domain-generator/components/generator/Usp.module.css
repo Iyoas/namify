@@ -1,0 +1,121 @@
+/* Volledige USP-sectie */
+.section {
+    width: 100%;
+    /* flinke verticale ruimte zoals in het design */
+    padding: 96px 0 88px;
+    background: #ffffff;
+  }
+  
+  /* Binnencontainer om de content te centreren */
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* zorgt voor dezelfde “lucht” links/rechts als in het voorbeeld */
+    padding: 0 32px;
+  }
+  
+  /* Header / titelblok */
+  .header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  
+  /* Sectietitel – 2 regels, grote display heading zoals links */
+  .title {
+    font-size: var(--section-title-font-size-desktop);
+    line-height: 1.2;
+    color: var(--section-title-color);
+    font-weight: var(--section-title-font-weight);
+    letter-spacing: -0.02em;
+    margin: 0;
+
+  }
+  
+  
+  /* Grid met USP-kaarten */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+    align-items: stretch;
+  }
+  
+  /* Individuele USP-kaart */
+  .card {
+    background: #F8FAFC;
+    border-radius: 24px;
+    /* top/bottom iets royaler voor dezelfde “blok”-look */
+    padding: 40px 32px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Vierkantje achter het icoon */
+  .iconWrapper {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px; /* zoals jij aangaf */
+    background: var(--gradient-primary);
+    margin-bottom: 32px;
+  }
+  
+  /* Icoon zelf (SVG via next/image) */
+  .icon {
+    display: block;
+    width: 25px;
+    height: 25px;
+  }
+  
+  /* Titel in de kaart */
+  .cardTitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: #334155;
+    letter-spacing: -0.01em;
+    margin: 0;
+    margin-bottom: 8px;
+  }
+  
+  /* Bodytekst in de kaart */
+  .cardText {
+    margin: 0;
+    color: #646464;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 300;
+  }
+  
+  /* Responsive: op kleinere schermen minder kolommen + extra padding */
+  @media (max-width: 1024px) {
+    .inner {
+      padding: 0 32px;
+    }
+  
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .inner {
+      padding: 0 20px;
+    }
+  
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .header {
+      margin-bottom: 24px;
+    }
+    .title {
+        font-size: 46px;
+        line-height: 52px;
+        text-align: left;
+      }
+  }

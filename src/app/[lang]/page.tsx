@@ -5,6 +5,7 @@ import HowItWorks from "@/app/[lang]/tools/domain-generator/components/HowItWork
 import HowWeUseTool from "@/app/[lang]/tools/domain-generator/components/HowWeUseTool";
 import IndustryGenerators from "@/app/[lang]/tools/domain-generator/components/IndustryGenerators";
 import Faq from "@/app/[lang]/tools/domain-generator/components/Faq";
+import Contact from "@/app/[lang]/tools/domain-generator/components/Contact";
 type Props = {
   params: { lang: Lang };
 };
@@ -17,6 +18,7 @@ export default function DomainGeneratorLanding({ params }: Props) {
       <HowWeUseTool />
       <IndustryGenerators />
       <Faq />
+      <Contact />
     </main>
   );
 }

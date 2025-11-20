@@ -8,21 +8,25 @@ const uspItems = [
     title: "AI-gegenereerde namen",
     description:
       "Genereer razendsnel sterke merk- en domeinnaam ideeën met behulp van geavanceerde taalmodellen (LLM).",
+    icon: "/icons/ai-search.svg",
   },
   {
     title: "Slim zoeken naar domeinnamen",
     description:
       "Laat de generator automatisch varianten en combinaties zoeken die passen bij jouw niche, doelgroep en extensies.",
+    icon: "/icons/star.svg",
   },
   {
     title: "Merk- en gebruikersnaamchecks",
     description:
       "Voorkom dubbele namen. Controleer direct of jouw ideeën nog vrij zijn als merk- of gebruikersnaam.",
+    icon: "/icons/tm.svg",
   },
   {
     title: "Gratis logo bij je domein",
     description:
       "Ontvang een eenvoudig startlogo dat aansluit bij je naam, zodat je direct een eerste merkuitstraling hebt.",
+    icon: "/icons/price-card.svg",
   },
 ] as const;
 
@@ -42,7 +46,7 @@ export default function Usp() {
             <article key={usp.title} className={styles.card}>
               <div className={styles.iconWrapper}>
                 <Image
-                  src="/icons/star.svg"
+                  src={usp.icon}
                   alt="Ster icoon"
                   width={32}
                   height={32}

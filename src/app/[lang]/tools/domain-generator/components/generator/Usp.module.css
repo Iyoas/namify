@@ -2,7 +2,7 @@
 .section {
     width: 100%;
     /* flinke verticale ruimte zoals in het design */
-    padding: 96px 0 88px;
+    padding: var(--section-padding-y) 0;
     background: #ffffff;
   }
   

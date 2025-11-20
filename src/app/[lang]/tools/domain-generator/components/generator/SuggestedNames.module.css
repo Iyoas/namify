@@ -1,7 +1,8 @@
 .section {
   width: 100%;
-  padding: 96px 0 96px;
+  padding: var(--section-padding-y) 0;
   background: #ffffff;
+  overflow-x: hidden;
 }
 
 .inner {
@@ -31,6 +32,8 @@
   font-weight: var(--section-title-font-weight);
   letter-spacing: -0.02em;
   margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .sectionSubtitle {
@@ -130,8 +133,8 @@
   font-size: 16px;
   line-height: 1.2;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2),
-    inset 0 4px 13px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12),
+    inset 0 2px 8px rgba(255, 255, 255, 0.08);
 }
 
 .loadMoreText {
@@ -139,7 +142,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-weight: 500;
+  font-weight: 400;
   display: inline-block;
 }
 

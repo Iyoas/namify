@@ -1,13 +1,30 @@
+"use client";
+
+import { useState } from "react";
 import { ChevronDown, Megaphone, Sparkles, Wand2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import styles from "./HeroSection.module.css";
 
-export function HeroSection() {
+type HeroSectionProps = {
+  lang: string;
+};
+
+export function HeroSection({ lang }: HeroSectionProps) {
   const samplePrompts = [
     "A brand that rejuvenates and heals",
     "A skincare clinic with a modern aesthetic",
     "A skincare brand for radiant skin",
     "A natural brand of skincare solutions",
   ];
+
+  const [prompt, setPrompt] = useState("");
+  const router = useRouter();
+
+  function handleGenerateClick() {
+    if (!prompt.trim()) return;
+    const searchParams = new URLSearchParams({ q: prompt });
+    router.push(`/${lang}/tools/domain-generator/results?` + searchParams.toString());
+  }
 
   return (
     <section className={styles.hero}>
@@ -35,6 +52,8 @@ export function HeroSection() {
               <textarea
                 className={styles.textarea}
                 placeholder="Beschrijf uw project of bedrijfsidee."
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
               />
             </div>
 
@@ -59,7 +78,12 @@ export function HeroSection() {
               </div>
 
               <div className={styles.generateRow}>
-                <button type="button" className={styles.generateButton}>
+                <button
+                  type="button"
+                  className={styles.generateButton}
+                  onClick={handleGenerateClick}
+                  disabled={!prompt.trim()}
+                >
                   <Sparkles className={styles.generateIcon} />
                   <span>Genereer namen</span>
                 </button>

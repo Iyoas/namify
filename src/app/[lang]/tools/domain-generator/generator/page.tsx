@@ -17,7 +17,7 @@ export default function DomainGeneratorPage({
 
   return (
     <section>
-      <HeroSection />
+      <HeroSection lang={lang} />
       <Usp />
       <SuggestedNames />
       <AiExplainerSection />

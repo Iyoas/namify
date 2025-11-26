@@ -4,13 +4,21 @@ import { useState } from "react";
 import { Heart, Plus, Star, ShoppingCart, Check } from "lucide-react";
 import styles from "./DomainSelect.module.css";
 
+import type { DomainAvailabilityStatus } from "@/lib/domainr";
+
+type DomainSelectProps = {
+  names: string[];
+  availability: Record<string, Record<string, DomainAvailabilityStatus>>;
+  tlds: string[];
+};
+
 type Category = {
   id: string;
   label: string;
   isActive?: boolean;
 };
 
-type ExtensionStatus = "available" | "unavailable";
+type ExtensionStatus = "available" | "unavailable" | "unknown";
 
 type Extension = {
   id: string;
@@ -92,8 +100,58 @@ const SUGGESTIONS: DomainSuggestion[] = [
   },
 ];
 
-export default function DomainSelect() {
+export default function DomainSelect({
+  names,
+  availability,
+  tlds,
+}: DomainSelectProps) {
   const [activeCategoryId, setActiveCategoryId] = useState<string>("business");
+
+  const suggestions: DomainSuggestion[] =
+    names && names.length > 0
+      ? names.map((name, index) => {
+          const base = SUGGESTIONS[index % SUGGESTIONS.length];
+
+          // Dezelfde normalisatie als in domainr.ts: lowercase + non-alfanumeriek verwijderen
+          const cleanKey = name
+            .toLowerCase()
+            .replace(/[^a-z0-9]/gi, "");
+
+          const nameAvailability = availability?.[cleanKey] ?? {};
+
+          const extensions: Extension[] = base.extensions.map((ext) => {
+            // Zorg dat we zowel ".nl" als "nl" kunnen matchen, afhankelijk van hoe het in availability staat
+            const tldKeyWithDot = ext.tld.startsWith(".") ? ext.tld : `.${ext.tld}`;
+            const tldKeyWithoutDot = ext.tld.startsWith(".")
+              ? ext.tld.slice(1)
+              : ext.tld;
+
+            const statusFromApi =
+              (nameAvailability?.[tldKeyWithDot] as DomainAvailabilityStatus | undefined) ??
+              (nameAvailability?.[tldKeyWithoutDot] as DomainAvailabilityStatus | undefined) ??
+              undefined;
+
+            const mappedStatus: ExtensionStatus =
+              statusFromApi === "available"
+                ? "available"
+                : statusFromApi === "unavailable"
+                ? "unavailable"
+                : "unknown";
+
+            return {
+              ...ext,
+              status: mappedStatus,
+            };
+          });
+
+          return {
+            ...base,
+            id: String(index + 1),
+            name,
+            extensions,
+          };
+        })
+      : SUGGESTIONS;
 
   return (
     <section className={styles.section}>
@@ -159,7 +217,7 @@ export default function DomainSelect() {
 
         {/* Lijst met domeinsuggesties */}
         <div className={styles.list}>
-          {SUGGESTIONS.map((suggestion) => (
+          {suggestions.map((suggestion) => (
             <article key={suggestion.id} className={styles.row}>
               {/* Linker kant: naam + prijs */}
               <div className={styles.rowLeft}>

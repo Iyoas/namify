@@ -1,0 +1,154 @@
+.section {
+  background: #ffffff;
+  padding: var(--section-padding-y) 20px;
+}
+
+.inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  color: #0f172a;
+  font-family: var(--font-body);
+}
+
+/* Header / titel */
+
+.header {
+  margin-bottom: 40px;
+}
+
+.title {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #334155; /* lichte blauwe titel zoals in het design */
+}
+
+/* Intro paragrafen */
+
+.intro {
+  margin-bottom: 28px;
+}
+
+.intro p {
+  margin: 0 0 12px;
+  font-size: 16px;
+  line-height: 26px;
+  color: #646464;
+}
+
+/* Bullet list met kenmerken */
+
+.featureList {
+  margin: 0 0 40px;
+  padding-left: 24px;
+  list-style: disc;
+}
+
+.featureList li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 26px;
+  color: #334155;
+}
+
+.featureList li::marker {
+  color: #334155; /* blauwe bullets */
+}
+
+/* Tekst met domein-extensie badges */
+
+.extensionsBlock {
+  margin-bottom: 32px;
+}
+
+.extensionsBlock p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
+  color: #646464;
+}
+
+.extensionBadgesInline {
+  display: inline-flex;
+  gap: 8px;
+  vertical-align: baseline;
+}
+
+.extensionBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 8px;
+  border-radius: 8px;
+  background: rgba(181, 90, 255, 0.1); /* 10% van B55AFF */
+  color: #b55aff; /* tekst 100% B55AFF */
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* Voorbeeld-domeinen onderaan */
+
+.examplesBlock {
+  margin-top: 32px;
+}
+
+.examplesIntro {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 26px;
+  color: #646464;
+}
+
+.examplesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.exampleBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(181, 90, 255, 0.1); /* 10% van B55AFF */
+  color: #b55aff; /* tekst 100% B55AFF */
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 26px;
+    line-height: 1.4;
+  }
+
+  .intro p,
+  .extensionsBlock p,
+  .examplesIntro,
+  .featureList li {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    max-width: 100%;
+  }
+
+  .examplesList {
+    gap: 10px;
+  }
+
+  .exampleBadge {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}

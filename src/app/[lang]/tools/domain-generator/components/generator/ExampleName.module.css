@@ -1,0 +1,232 @@
+.section {
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--section-padding-y) 100px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Volledige kaart */
+.card {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+  max-width: 1246px;
+  padding: 28px 32px;
+  border-radius: 24px;
+  background: #f8fafc;
+}
+
+/* Linkerkant */
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1 1 auto;
+}
+
+/* Exact match badge */
+.matchRow {
+  margin-bottom: 4px;
+}
+
+.matchBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  border-radius: 8px;
+  background: rgba(27, 158, 51, 0.10);
+  color: #1B9E33;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Domeinnaam + SAVE badge */
+.nameRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.domainName {
+  font-size: 28px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #020617;
+  margin: 0;
+}
+
+.discountBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: #a855f7;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Benefits onder elkaar */
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.benefitBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px;
+  border-radius: 8px;
+  background: rgba(181, 90, 255, 0.12);
+  color: #8b5cf6;
+  font-size: 14px;
+  align-self: flex-start;
+  width: fit-content;
+}
+
+/* Icoon in benefit */
+.benefitIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #8b5cf6;
+}
+
+/* Rechterkant */
+.right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 20px;
+  min-width: 260px;
+}
+
+/* Prijsblok */
+.priceBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.originalPrice {
+  font-size: 14px;
+  color: #cbd5f5;
+  text-decoration: line-through;
+}
+
+.currentPrice {
+  font-size: 24px;
+  font-weight: 700;
+  color: #020617;
+}
+
+.billingCycle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+/* Knoppen rechts */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+/* Secundaire knop (outline) */
+.secondaryButton {
+  margin-left: auto;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1px solid #b55aff;
+  background: transparent;
+  color: #3b16c1;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Primaire gradient knop */
+.primaryButton {
+  padding: 12px 28px;
+  border-radius: 8px;
+  border: none;
+  background-image: var(--gradient-primary);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Hover states (subtiel) */
+.secondaryButton:hover {
+  border-color: #a855f7;
+}
+
+.primaryButton:hover {
+  opacity: 0.95;
+}
+
+/* Responsive gedrag */
+@media (max-width: 900px) {
+  .section {
+    padding: 32px 24px;
+    justify-content: flex-start;
+  }
+
+  .card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 24px;
+  }
+
+  .right {
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  .priceBlock {
+    align-items: baseline;
+  }
+
+  .actions {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 28px 20px;
+    justify-content: flex-start;
+  }
+
+  .card {
+    padding: 20px 18px;
+    gap: 24px;
+  }
+
+  .domainName {
+    font-size: 24px;
+  }
+
+  .currentPrice {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,268 @@
+.section {
+  padding: var(--section-padding-y) 20px;
+  background: #ffffff;
+}
+
+.inner {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  column-gap: 64px;
+  align-items: flex-start;
+  background: #f8fafc;
+  border-radius: 32px;
+  padding: 48px 56px;
+  box-sizing: border-box;
+}
+
+/* Linker kolom */
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.leftHeader {
+  margin: 0;
+}
+
+.leftTitle {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.35;
+  font-weight: 400;
+  color: #334155;
+}
+
+.leftIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 16px;
+  line-height: 26px;
+  color: #475569;
+}
+
+/* Genummerde benefits links */
+
+.benefitList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #475569;
+}
+
+.benefitList li {
+  margin: 0;
+}
+
+.benefitListItemPrimary span {
+  font-weight: 500;
+  color: #7c3aed;
+}
+
+/* Highlight card onderaan links */
+
+.highlightCard {
+  margin-top: 24px;
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: #f1f5f9;
+  box-sizing: border-box;
+}
+
+.highlightIntro {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #475569;
+}
+
+.highlightList {
+  margin: 0 0 16px;
+  padding-left: 18px;
+  list-style: disc;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.highlightList li {
+  margin-bottom: 6px;
+  color: #7c3aed;
+}
+
+.highlightFooter {
+  margin: 0;
+  font-size: 15px;
+  line-height: 24px;
+  color: #64748b;
+}
+
+/* Rechter kolom */
+
+.rightColumn {
+  border-left: 1px solid #e2e8f0;
+  padding-left: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.rightBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rightTitle {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: #334155;
+}
+
+.rightBlock p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 24px;
+  color: #475569;
+}
+
+.bulletList {
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+  font-size: 15px;
+  line-height: 24px;
+  color: #475569;
+}
+
+.bulletList li {
+  margin-bottom: 6px;
+}
+
+.bulletList strong {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+/* CTA onderaan rechts */
+
+.ctaBlock {
+  border-top: 1px solid #e2e8f0;
+  padding: 24px;
+  margin-top: 8px;
+}
+
+.ctaTitle {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #334155;
+}
+
+.ctaForm {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    border-radius: 24px;
+    background: white;
+    box-sizing: border-box;
+  }
+  
+  .ctaInput {
+    flex: 1;
+    border: none;
+    background: transparent;
+    height: 44px;
+    padding: 0;
+    font-size: 16px;
+    color: #0f172a;
+    outline: none;
+  }
+
+
+
+.ctaInput::placeholder {
+  color: #94a3b8;
+}
+
+.ctaButton {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-image: var(--gradient-primary);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.ctaIcon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .inner {
+    padding: 32px 28px;
+    column-gap: 40px;
+  }
+
+  .rightColumn {
+    padding-left: 32px;
+  }
+
+  .leftTitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 40px;
+  }
+
+  .rightColumn {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 16px;
+    padding-top: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding: 24px 20px;
+    border-radius: 24px;
+  }
+
+  .leftTitle {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .rightTitle {
+    font-size: 20px;
+  }
+
+  .highlightCard {
+    margin-top: 20px;
+  }
+}

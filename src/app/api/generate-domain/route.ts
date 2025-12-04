@@ -17,7 +17,37 @@ const client = new OpenAI({
 const TARGET_COUNT = 8;
 const MAX_ROUNDS = 3;
 const NAMES_PER_ROUND = 16;
-const DEFAULT_TLDS = [".com", ".nl", ".io", ".ai", ".shop"];
+// Superset van alle TLD's die in de UI-filters (All, Popular, Technology, etc.) worden gebruikt.
+// Zo hebben we in één keer availability voor alle categorieën, en hoeven we bij filteren geen extra API-calls meer te doen.
+const DEFAULT_TLDS = [
+  ".com",
+  ".nl",
+  ".io",
+  ".ai",
+  ".co",
+  ".shop",
+  ".net",
+  ".biz",
+  ".pro",
+  ".edu",
+  ".academy",
+  ".school",
+  ".org",
+  ".info",
+  ".global",
+  ".world",
+  ".tech",
+  ".cloud",
+  ".dev",
+  ".social",
+  ".me",
+  ".fun",
+  ".chat",
+  ".media",
+  ".live",
+  ".consulting",
+  ".show",
+];
 
 /**
  * Helper om de taal-specifieke hint op te bouwen.
@@ -39,9 +69,13 @@ function buildLanguageHint(lang: string | undefined): string {
 async function generateNamesWithGPT(
   prompt: string,
   lang: string | undefined,
-  excludeNames: string[] = []
+  excludeNames: string[] = [],
+  style?: string
 ): Promise<string[]> {
   const languageHint = buildLanguageHint(lang);
+  const styleHint = style
+    ? `\nToon en stijl van de namen: zorg dat de namen duidelijk de volgende toon hebben: "${style}". Pas creativiteit, woordkeuze en vibe hierop aan.`
+    : "";
 
   const excludeBlock =
     excludeNames.length > 0
@@ -67,6 +101,7 @@ Gebruik de volgende beschrijving van het bedrijf of project:
 "${prompt}"
 
 ${languageHint}
+${styleHint}
 
 Regels voor de namen:
 - Genereer precies ${NAMES_PER_ROUND} unieke merk- en domeinnaamsuggesties
@@ -120,7 +155,11 @@ function normalizeNameKey(name: string): string {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { prompt, lang } = body as { prompt?: string; lang?: string };
+    const { prompt, lang, style } = body as {
+      prompt?: string;
+      lang?: string;
+      style?: string;
+    };
 
     if (!prompt || prompt.trim().length === 0) {
       return NextResponse.json(
@@ -151,7 +190,8 @@ export async function POST(req: NextRequest) {
       const newNames = await generateNamesWithGPT(
         prompt,
         lang,
-        acceptedNames
+        acceptedNames,
+        style
       );
 
       // Haal namen weg die we al hebben geaccepteerd

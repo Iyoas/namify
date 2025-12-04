@@ -1,10 +1,10 @@
 // src/app/[lang]/tools/domain-generator/results/page.tsx
 import type { Lang } from "@/config/i18n";
-import { Stepper } from "../components/stepper/Stepper";
+import Stepper from "../components/stepper/Stepper";
 
 type ResultsPageProps = {
-  params: { lang: Lang };
-  // searchParams is nu een Promise in Next 16
+  // In Next 16 zijn zowel params als searchParams Promises
+  params: Promise<{ lang: Lang }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
@@ -12,7 +12,8 @@ export default async function ResultsPage({
   params,
   searchParams,
 }: ResultsPageProps) {
-  // Promise unwrappen
+  // Beide Promises unwrappen (Next 16)
+  const resolvedParams = await params;
   const sp = await searchParams;
 
   const rawQ = sp?.q;
@@ -25,7 +26,7 @@ export default async function ResultsPage({
 
   return (
     <main>
-      <Stepper lang={params.lang} initialPrompt={initialPrompt} />
+      <Stepper lang={resolvedParams.lang} initialPrompt={initialPrompt} />
     </main>
   );
 }

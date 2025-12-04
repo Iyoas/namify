@@ -1,13 +1,83 @@
 "use client";
 
 import styles from "./SuggestedNames.module.css";
-import { Heart as HeartOutline, ArrowRight } from "lucide-react";
-import { FaHeart as HeartFilled } from "react-icons/fa";
+import { ArrowRight } from "lucide-react";
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
+import React from "react";
+import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Dit component toont de sectie met gegenereerde/suggested names
 export default function SuggestedNames() {
+  const router = useRouter();
+  const params = useParams();
+  const langParam = (params as { lang?: string | string[] })?.lang;
+  const lang =
+    typeof langParam === "string"
+      ? langParam
+      : Array.isArray(langParam)
+      ? langParam[0]
+      : "nl";
+
   // Temporary demo data – deze kun je later vervangen door echte AI output
-  const names = Array.from({ length: 15 }, () => "Butter Tint");
+  const names = [
+    "LumiAura",
+    "Skinova",
+    "VelvetGlow",
+    "PureMira",
+    "Softéon",
+    "Nuvique",
+    "Elysia Skin",
+    "GlowCraft",
+    "Serenique",
+    "MiraLuxe",
+    "AuraBelle",
+    "Velori",
+    "SilkaTone",
+    "Novaskin",
+    "Bloomora"
+  ];
+
+  const [likedNames, setLikedNames] = React.useState<string[]>([]);
+
+  // Load liked names from localStorage on mount
+  React.useEffect(() => {
+    try {
+      const stored = localStorage.getItem("likedNames");
+      if (stored) {
+        const parsed = JSON.parse(stored) as string[];
+        setLikedNames(parsed);
+      }
+    } catch (err) {
+      console.error("Error reading likedNames from localStorage:", err);
+    }
+  }, []);
+
+  function toggleLike(name: string) {
+    setLikedNames((prev) => {
+      const next = prev.includes(name)
+        ? prev.filter((n) => n !== name)
+        : [...prev, name];
+
+      try {
+        localStorage.setItem("likedNames", JSON.stringify(next));
+      } catch (err) {
+        console.error("Error saving likedNames to localStorage:", err);
+      }
+
+      return next;
+    });
+  }
+
+  function handleArrowClick(name: string) {
+    // We sturen de gekozen naam als base naar de results page,
+    // zodat DomainSelect / Stepper de /api/name-variations route kan gebruiken.
+    const base = name.trim();
+
+    router.push(
+      `/${lang}/tools/domain-generator/results?base=${encodeURIComponent(base)}`
+    );
+  }
 
   return (
     <section className={styles.section}>
@@ -19,7 +89,8 @@ export default function SuggestedNames() {
           </h2>
           <h3 className={styles.subtitle}>voor huidverzorgingsmerken in 2025</h3>
           <p className={styles.sectionSubtitle}>
-            From Minimal To Luxurious Creative Skincare Brand Names That Stand Out In 2025.
+            From Minimal To Luxurious Creative Skincare Brand Names That Stand
+            Out In 2025.
           </p>
         </header>
 
@@ -30,17 +101,25 @@ export default function SuggestedNames() {
               key={i}
               className={i === 0 ? styles.cardActive : styles.card}
             >
-              <button className={styles.favButton}>
-                {i === 0 ? (
-                  <HeartFilled size={18} />
+              <button
+                className={styles.favButton}
+                onClick={() => toggleLike(name)}
+                aria-label="like naam"
+              >
+                {likedNames.includes(name) ? (
+                  <IoIosHeart size={24} color="#FF4C4C" />
                 ) : (
-                  <HeartOutline size={18} strokeWidth={1.5} />
+                  <IoIosHeartEmpty size={24} color="#000000" />
                 )}
               </button>
 
               <span className={styles.name}>{name}</span>
 
-              <button className={styles.arrowButton}>
+              <button
+                className={styles.arrowButton}
+                onClick={() => handleArrowClick(name)}
+                aria-label="Bekijk variaties voor deze naam"
+              >
                 <ArrowRight size={18} strokeWidth={2} />
               </button>
             </div>

@@ -1,0 +1,185 @@
+.section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 96px 24px 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  background-color: #ffffff;
+}
+
+/* Heading */
+
+.header {
+  max-width: 640px;
+  text-align: center;
+}
+
+.title {
+  font-size: var(--section-title-font-size-desktop);
+  line-height: 1.2;
+  color: var(--section-title-color);
+  font-weight: var(--section-title-font-weight);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.subtitle {
+  max-width: 640px;
+  margin: 12px auto 0;
+  font-size: var(--section-subtitle-font-size);
+  line-height: 1.75;
+  color: var(--section-subtitle-color);
+  font-weight: var(--section-subtitle-font-weight);
+}
+
+/* Grid */
+
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Cards */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px;
+  border-radius: 24px;
+  background-color: #ffffff;
+  border: 1px solid #dfe1e7;
+  box-shadow: none;
+}
+
+.cardTopRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 600;
+  background: black;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Favorite / heart */
+
+.favButton {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  border: none;
+  background-color: white;
+  color: rgb(255, 76, 76);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.heartIcon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* CTA button */
+
+.cardCtaWrapper {
+  margin-top: 0;
+}
+
+.cardCtaButton {
+  width: 100%;
+  border-radius: 14px;
+  padding: 12px 16px;
+  border: 1.5px solid rgb(99, 102, 241);
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.15s ease,
+    background-color 0.15s ease, color 0.15s ease;
+}
+
+.cardCtaButton:hover {
+  background-color: rgba(124, 58, 237, 0.03);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.25);
+  transform: translateY(-1px);
+}
+
+.cardCtaLabel {
+  letter-spacing: 0.02em;
+  font-size: 14px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cardCtaArrow {
+  font-size: 13px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Small screen tweaks */
+
+@media (max-width: 640px) {
+  .section {
+    padding-top: 72px;
+    padding-bottom: 80px;
+    gap: 36px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .card {
+    height: 128px;
+    padding: 18px 20px;
+  }
+
+  .cardCtaButton {
+    font-size: 12px;
+  }
+}

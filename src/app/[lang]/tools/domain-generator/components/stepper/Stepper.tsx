@@ -1,88 +1,106 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import DomainSelect from "./DomainSelect";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import type { DomainAvailabilityStatus } from "@/lib/domainr";
-
-type StepperProps = {
-  lang: string;
-  initialPrompt: string;
-};
+import DomainSelect from "./DomainSelect";
 
 type GenerateDomainResponse = {
   names: string[];
-  count: number;
   availability: Record<string, Record<string, DomainAvailabilityStatus>>;
   tlds: string[];
+  count: number;
 };
 
-export function Stepper({ lang, initialPrompt }: StepperProps) {
+type StepperProps = {
+  lang: string;
+  initialPrompt?: string;
+};
+
+export default function Stepper({ lang, initialPrompt }: StepperProps) {
+  const searchParams = useSearchParams();
+  const baseFromQuery = searchParams.get("base");
+  const baseNameFromUrl = baseFromQuery ? baseFromQuery.trim() : undefined;
   const prompt = initialPrompt ?? "";
+
   const [data, setData] = useState<GenerateDomainResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Geen API-call doen als er geen prompt is
-    if (!prompt.trim()) return;
+    // Bepaal modus:
+    // - Hero prompt → generate-domain
+    // - base=... in URL → name-variations
+    const isVariationMode = !!baseNameFromUrl;
+
+    if (!prompt.trim() && !isVariationMode) {
+      // Niets te doen: geen prompt en geen baseName
+      return;
+    }
 
     let cancelled = false;
-
     async function fetchNames() {
-      setIsLoading(true);
-      setError(null);
-
       try {
-        const cacheKey = `namify:results:${lang}:${prompt}`;
+        setIsLoading(true);
+        setError(null);
 
-        // Probeer eerst resultaten uit sessionStorage te lezen (bijv. na een refresh)
-        if (typeof window !== "undefined") {
-          const cached = window.sessionStorage.getItem(cacheKey);
-          if (cached) {
-            try {
-              const parsed = JSON.parse(cached) as GenerateDomainResponse;
-              if (!cancelled) {
-                setData(parsed);
-                setIsLoading(false);
-                return;
-              }
-            } catch (e) {
-              console.warn("[Stepper] Kon cache niet parsen:", e);
-            }
+        let json: GenerateDomainResponse;
+
+        if (isVariationMode && baseNameFromUrl) {
+          // Variatie-modus: /api/name-variations
+          const res = await fetch("/api/name-variations", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              baseName: baseNameFromUrl,
+              lang,
+            }),
+          });
+
+          if (!res.ok) {
+            const payload = await res.json().catch(() => ({}));
+            throw new Error(
+              payload.error ||
+                "Er ging iets mis bij het genereren van variaties."
+            );
           }
+
+          json = (await res.json()) as GenerateDomainResponse;
+        } else {
+          // Standaard modus: /api/generate-domain
+          const res = await fetch("/api/generate-domain", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              prompt,
+              lang,
+            }),
+          });
+
+          if (!res.ok) {
+            const payload = await res.json().catch(() => ({}));
+            throw new Error(
+              payload.error ||
+                "Er ging iets mis bij het genereren van domeinnamen."
+            );
+          }
+
+          json = (await res.json()) as GenerateDomainResponse;
         }
-
-        const res = await fetch("/api/generate-domain", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt, lang }),
-        });
-
-        if (!res.ok) {
-          const payload = await res.json().catch(() => ({}));
-          throw new Error(
-            payload.error || "Er ging iets mis bij het genereren van namen."
-          );
-        }
-
-        const json = (await res.json()) as GenerateDomainResponse;
 
         if (!cancelled) {
           setData(json);
-
-          // Sla resultaten op in sessionStorage voor deze prompt + taal
-          if (typeof window !== "undefined") {
-            try {
-              window.sessionStorage.setItem(cacheKey, JSON.stringify(json));
-            } catch (e) {
-              console.warn("[Stepper] Kon resultaten niet cachen:", e);
-            }
-          }
         }
       } catch (err: any) {
-        console.error(err);
         if (!cancelled) {
-          setError(err.message || "Onbekende fout.");
+          console.error("[Stepper] Fout bij laden van namen:", err);
+          setError(
+            err?.message || "Er ging iets mis bij het laden van de namen."
+          );
         }
       } finally {
         if (!cancelled) {
@@ -96,33 +114,29 @@ export function Stepper({ lang, initialPrompt }: StepperProps) {
     return () => {
       cancelled = true;
     };
-  }, [lang, prompt]);
+  }, [prompt, baseNameFromUrl, lang]);
 
   return (
-    <section>
-      {isLoading && <p>Bezig met genereren...</p>}
-
-      {error && (
-        <p style={{ color: "red" }}>{error}</p>
+    <section className="w-full">
+      {isLoading && (
+        <p className="text-sm text-muted-foreground mb-4">
+          Bezig met genereren...
+        </p>
       )}
 
-      {!isLoading &&
-        !error &&
-        data &&
-        data.names.length > 0 && (
-          <DomainSelect
-            names={data.names}
-            availability={data.availability}
-            tlds={data.tlds}
-          />
-        )}
+      {error && (
+        <p className="text-sm text-red-500 mb-4">
+          {error}
+        </p>
+      )}
 
-      {!isLoading &&
-        !error &&
-        data &&
-        data.names.length === 0 && (
-          <p>Geen namen gevonden, probeer een andere beschrijving.</p>
-        )}
+      {data && data.names.length > 0 && (
+        <DomainSelect
+          names={data.names}
+          availability={data.availability}
+          tlds={data.tlds}
+        />
+      )}
     </section>
   );
 }

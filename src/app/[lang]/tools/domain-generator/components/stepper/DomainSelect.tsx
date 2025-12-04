@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Heart, Plus, Star, ShoppingCart, Check } from "lucide-react";
+import { IoMdHeartEmpty, IoIosHeart } from "react-icons/io";
 import styles from "./DomainSelect.module.css";
 
 import type { DomainAvailabilityStatus } from "@/lib/domainr";
@@ -44,6 +46,27 @@ const CATEGORIES: Category[] = [
   { id: "professional", label: "Professional" },
   { id: "entertainment", label: "Entertainment" },
 ];
+
+// Each category exposes exactly 6 TLDs
+const CATEGORY_TLDS: Record<string, string[]> = {
+  all: [ ".nl", ".com",".io", ".ai", ".co", ".shop"],
+
+  popular: [".com", ".io", ".ai", ".co", ".net", ".nl"],
+
+  business: [".com", ".nl", ".co", ".biz", ".pro", ".io"],
+
+  education: [".edu", ".academy", ".school", ".nl", ".org", ".info"],
+
+  international: [".com", ".io", ".global", ".world", ".co", ".net"],
+
+  technology: [".io", ".ai", ".tech", ".cloud", ".dev", ".com"],
+
+  social: [".social", ".me", ".nl", ".fun", ".chat", ".co"],
+
+  professional: [".pro", ".consulting", ".com", ".nl", ".io", ".co"],
+
+  entertainment: [".fun", ".show", ".media", ".nl", ".io", ".live"],
+};
 
 const SUGGESTIONS: DomainSuggestion[] = [
   {
@@ -105,52 +128,150 @@ export default function DomainSelect({
   availability,
   tlds,
 }: DomainSelectProps) {
-  const [activeCategoryId, setActiveCategoryId] = useState<string>("business");
+  const searchParams = useSearchParams();
+
+  const baseNameFromUrl = searchParams.get("base");
+
+
+  const [availabilityMap, setAvailabilityMap] =
+    useState<typeof availability>(availability);
+
+  const [activeCategoryId, setActiveCategoryId] = useState<string>("all");
+
+  const [likedNames, setLikedNames] = useState<string[]>([]);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("likedNames");
+      if (stored) {
+        const parsed = JSON.parse(stored) as string[];
+        setLikedNames(parsed);
+      }
+    } catch (err) {
+      console.error("Error reading likedNames from localStorage:", err);
+    }
+  }, []);
+
+
+  function toggleLike(name: string) {
+    setLikedNames((prev) => {
+      const next = prev.includes(name)
+        ? prev.filter((n) => n !== name)
+        : [...prev, name];
+
+      try {
+        localStorage.setItem("likedNames", JSON.stringify(next));
+      } catch (err) {
+        console.error("Error saving likedNames to localStorage:", err);
+      }
+
+      return next;
+    });
+  }
+
+  function handleCategoryClick(categoryId: string) {
+    setActiveCategoryId(categoryId);
+  }
+
+  const [extraNames, setExtraNames] = useState<string[]>([]);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  async function handleLoadMore() {
+    setIsLoadingMore(true);
+
+    try {
+      const promptFromUrl = searchParams.get("q") ?? "";
+      const styleFromUrl = searchParams.get("style") ?? undefined;
+      const langFromUrl = searchParams.get("lang") ?? undefined;
+
+      const res = await fetch("/api/generate-domain", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: promptFromUrl,
+          lang: langFromUrl,
+          style: styleFromUrl,
+        }),
+      });
+
+      const data = await res.json();
+      const newNames: string[] = data.names || [];
+      const newAvailability =
+        (data.availability as typeof availability | undefined) ?? {};
+
+      setExtraNames((prev) => [...prev, ...newNames]);
+      setAvailabilityMap((prev) => ({
+        ...prev,
+        ...newAvailability,
+      }));
+    } catch (err) {
+      console.error("Error loading more names", err);
+    } finally {
+      setIsLoadingMore(false);
+    }
+  }
+
+  const mergedNames = [...names, ...extraNames];
 
   const suggestions: DomainSuggestion[] =
-    names && names.length > 0
-      ? names.map((name, index) => {
-          const base = SUGGESTIONS[index % SUGGESTIONS.length];
+    mergedNames && mergedNames.length > 0
+      ? mergedNames
+          .map((name, index) => {
+            const base = SUGGESTIONS[index % SUGGESTIONS.length];
 
-          // Dezelfde normalisatie als in domainr.ts: lowercase + non-alfanumeriek verwijderen
-          const cleanKey = name
-            .toLowerCase()
-            .replace(/[^a-z0-9]/gi, "");
+            // Dezelfde normalisatie als in domainr.ts: lowercase + non-alfanumeriek verwijderen
+            const cleanKey = name
+              .toLowerCase()
+              .replace(/[^a-z0-9]/gi, "");
 
-          const nameAvailability = availability?.[cleanKey] ?? {};
+            const nameAvailability = availabilityMap?.[cleanKey] ?? {};
 
-          const extensions: Extension[] = base.extensions.map((ext) => {
-            // Zorg dat we zowel ".nl" als "nl" kunnen matchen, afhankelijk van hoe het in availability staat
-            const tldKeyWithDot = ext.tld.startsWith(".") ? ext.tld : `.${ext.tld}`;
-            const tldKeyWithoutDot = ext.tld.startsWith(".")
-              ? ext.tld.slice(1)
-              : ext.tld;
+            const allowedTlds =
+              CATEGORY_TLDS[activeCategoryId] ?? CATEGORY_TLDS["all"];
 
-            const statusFromApi =
-              (nameAvailability?.[tldKeyWithDot] as DomainAvailabilityStatus | undefined) ??
-              (nameAvailability?.[tldKeyWithoutDot] as DomainAvailabilityStatus | undefined) ??
-              undefined;
+            const extensions: Extension[] = allowedTlds.map((tld) => {
+              // Normaliseer TLD met punt
+              const tldKeyWithDot = tld.startsWith(".") ? tld : `.${tld}`;
+              const tldKeyWithoutDot = tldKeyWithDot.slice(1);
 
-            const mappedStatus: ExtensionStatus =
-              statusFromApi === "available"
-                ? "available"
-                : statusFromApi === "unavailable"
-                ? "unavailable"
-                : "unknown";
+              const statusFromApi =
+                (nameAvailability?.[tldKeyWithDot] as
+                  | DomainAvailabilityStatus
+                  | undefined) ??
+                (nameAvailability?.[tldKeyWithoutDot] as
+                  | DomainAvailabilityStatus
+                  | undefined) ??
+                undefined;
+
+              const mappedStatus: ExtensionStatus =
+                statusFromApi === "available"
+                  ? "available"
+                  : statusFromApi === "unavailable"
+                  ? "unavailable"
+                  : "unknown";
+
+              return {
+                id: `${cleanKey}-${tldKeyWithDot}`,
+                tld: tldKeyWithDot,
+                status: mappedStatus,
+              };
+            });
 
             return {
-              ...ext,
-              status: mappedStatus,
+              ...base,
+              id: String(index + 1),
+              name,
+              extensions,
             };
-          });
+          })
+          .filter((suggestion) => {
+            // Only filter in `all` category
+            if (activeCategoryId !== "all") return true;
 
-          return {
-            ...base,
-            id: String(index + 1),
-            name,
-            extensions,
-          };
-        })
+            return suggestion.extensions.some(
+              (ext) => ext.status === "available"
+            );
+          })
       : SUGGESTIONS;
 
   return (
@@ -159,7 +280,9 @@ export default function DomainSelect({
         {/* Titel + subtitel */}
         <header className={styles.header}>
           <h1 className={styles.title}>
-            We hebben 8 naamideeën voor je gevonden
+            {baseNameFromUrl
+              ? `Variaties op ${baseNameFromUrl}`
+              : "We hebben 8 naamideeën voor je gevonden"}
           </h1>
           <p className={styles.subtitle}>
             Gebaseerd op je input hebben we creatieve suggesties gemaakt 🎉
@@ -176,7 +299,7 @@ export default function DomainSelect({
               <button type="button" className={styles.metaButton}>
                 <Heart className={styles.metaIcon} />
                 <span>your Favourites</span>
-                <span className={styles.metaBadge}>10</span>
+                <span className={styles.metaBadge}>{likedNames.length}</span>
               </button>
 
               <button type="button" className={styles.metaButton}>
@@ -194,7 +317,7 @@ export default function DomainSelect({
                 <button
                   key={category.id}
                   type="button"
-                  onClick={() => setActiveCategoryId(category.id)}
+                  onClick={() => handleCategoryClick(category.id)}
                   className={[
                     styles.categoryPill,
                     category.id === activeCategoryId ? styles.categoryPillActive : "",
@@ -217,21 +340,43 @@ export default function DomainSelect({
 
         {/* Lijst met domeinsuggesties */}
         <div className={styles.list}>
-          {suggestions.map((suggestion) => (
-            <article key={suggestion.id} className={styles.row}>
+          {suggestions.map((suggestion, index) => (
+            <article
+              key={suggestion.id}
+              className={styles.row}
+              style={
+                baseNameFromUrl && index === 0
+                  ? { borderWidth: 1.5, borderStyle: "solid" }
+                  : undefined
+              }
+            >
               {/* Linker kant: naam + prijs */}
               <div className={styles.rowLeft}>
                 <button
                   type="button"
                   className={styles.favouriteIconButton}
                   aria-label="Zet in favourieten"
+                  onClick={() => toggleLike(suggestion.name)}
                 >
-                  <Heart className={styles.favouriteIcon} />
+                  {likedNames.includes(suggestion.name) ? (
+                    <IoIosHeart className={styles.favouriteIconSelected} />
+                  ) : (
+                    <IoMdHeartEmpty className={styles.favouriteIcon} />
+                  )}
                 </button>
 
                 <div className={styles.rowText}>
                   <div className={styles.nameLine}>
-                    <span className={styles.domainName}>{suggestion.name}</span>
+                    <span
+                      className={styles.domainName}
+                      style={
+                        baseNameFromUrl && index === 0
+                          ? { fontWeight: 700 }
+                          : undefined
+                      }
+                    >
+                      {suggestion.name}
+                    </span>
                     <span className={styles.estimatedLabel}>
                       Geschatte prijs{" "}
                       <span className={styles.estimatedPrice}>
@@ -273,9 +418,16 @@ export default function DomainSelect({
 
         {/* Bottom CTA’s */}
         <footer className={styles.footer}>
-          <button type="button" className={styles.secondaryCta}>
+          <button
+            type="button"
+            onClick={handleLoadMore}
+            disabled={isLoadingMore}
+            className={styles.secondaryCta}
+          >
             <Plus className={styles.secondaryCtaIcon} />
-            <span>Genereer meer namen</span>
+            <span>
+              {isLoadingMore ? "Even wachten..." : "Genereer 8 nieuwe namen"}
+            </span>
           </button>
 
           <button type="button" className={styles.primaryCta}>

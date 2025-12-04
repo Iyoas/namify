@@ -1,4 +1,3 @@
-
 .section {
   padding: 110px 230px;
   background: #f3f1fa;
@@ -191,8 +190,15 @@
 }
 
 .favouriteIcon {
-  width: 16px;
-  height: 16px;
+    width: 24px;
+    height: 24px;
+    color: black; /* unselected = black */
+}
+
+.favouriteIconSelected {
+  width: 24px;
+  height: 24px;
+    color: #FF4C4C; /* selected = red */
 }
 
 .rowText {
@@ -395,8 +401,3 @@
     cursor: pointer;
   }
   
-  .favouriteIcon {
-    width: 18px;
-    height: 18px;
-    color: #94a3b8;
-  }

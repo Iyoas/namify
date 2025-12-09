@@ -1,7 +1,7 @@
 .section {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 96px 24px 112px;
+  padding: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -164,11 +164,25 @@
 /* Small screen tweaks */
 
 @media (max-width: 640px) {
-  .section {
-    padding-top: 72px;
-    padding-bottom: 80px;
-    gap: 36px;
-  }
+    .section {
+        padding: 80px 20px;
+        padding-bottom: 80px;
+        gap: 36px;
+      }
+    
+      .title {
+        font-size: 32px;
+      }
+    
+      .card {
+        height: 128px;
+        padding: 18px 20px;
+        gap: 20px;
+      }
+    
+      .cardCtaButton {
+        font-size: 12px;
+      }
 
   .title {
     font-size: 32px;

@@ -3,7 +3,94 @@
   background: #f3f1fa;
 }
 
-/* Centered content */
+/* Stepper bovenaan */
+.stepper {
+  max-width: 880px;
+  margin: 0 auto 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Eén stap in de stepper */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* De cirkels van de stepper */
+.stepCircle,
+.stepCircleActive {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Actieve/completed cirkel – paarse gradient zoals in het design */
+.stepCircleActive {
+  background-color: #8387F4;
+  color: #ffffff;
+}
+
+/* Neutrale cirkel voor komende stappen */
+.stepCircle {
+  background-color: #ffffff;
+  border: 2px solid #d4d4f7;
+  color: transparent; /* hide the inner circle marker */
+}
+
+/* De lijn tussen stappen */
+.stepLine {
+  flex: 1;
+  height: 2px;
+  border-radius: 999px;
+  background-color: #8387F4;
+  opacity: 1;
+}
+
+/* Labels onder de cirkels */
+.stepLabel {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #4b5563;
+  text-align: center;
+}
+
+/* Mobiel: stack de stappen onder elkaar */
+@media (max-width: 768px) {
+  .stepper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .step {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stepLabel {
+    text-align: left;
+    font-size: 11px;
+  }
+
+  .stepLine {
+    width: 32px;
+    flex: 0 0 auto;
+  }
+}
+
 .inner {
   max-width: 1120px;
   margin: 0 auto;
@@ -246,16 +333,38 @@
   align-items: center;
   gap: 6px;
   white-space: nowrap;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.12s ease;
 }
 
+/* Beschikbare TLD → klikbaar en duidelijk interactief */
 .extensionTagAvailable {
-  background: rgba(27, 158, 51, 0.10);
+  background: rgba(27, 158, 51, 0.1);
   color: #1B9E33;
+  cursor: pointer;
 }
 
+.extensionTagAvailable:hover {
+  background: rgba(27, 158, 51, 0.16);
+  box-shadow: 0 0 0 1px rgba(27, 158, 51, 0.35),
+    0 4px 10px rgba(15, 118, 110, 0.18);
+  transform: translateY(-1px);
+}
+
+.extensionTagAvailable:active {
+  transform: translateY(0);
+  box-shadow: 0 0 0 1px rgba(27, 158, 51, 0.5),
+    0 2px 4px rgba(15, 118, 110, 0.14);
+}
+
+/* Niet-beschikbaar → blijft visueel rustig en niet-klikbaar */
 .extensionTagUnavailable {
   background: rgba(255, 76, 76, 0.10);
-  color: #FF4C4C;
+  color: rgba(255, 76, 76, 0.8); /* 80% opacity */
+  cursor: default;
+  opacity: 0.8; /* makes whole pill less prominent */
 }
 
 .extensionStatusIcon {
@@ -400,4 +509,3 @@
     justify-content: center;
     cursor: pointer;
   }
-  

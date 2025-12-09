@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { IoMdHeart } from "react-icons/io";
 import styles from "./Names.module.css";
-import Link from "next/link";
-import { useParams } from "next/navigation";
 
 type FavoriteName = {
   id: number;
@@ -12,15 +11,17 @@ type FavoriteName = {
   note?: string;
 };
 
-export default function FavoriteNamesSection() {
-  const params = useParams();
-  const langParam = (params as { lang?: string | string[] })?.lang;
-  const lang =
-    typeof langParam === "string"
-      ? langParam
-      : Array.isArray(langParam)
-      ? langParam[0]
-      : "nl";
+type FavoriteNamesSectionProps = {
+  // Optioneel: als je de taal al weet in de parent, kun je die meegeven.
+  // Als je niets meegeeft, halen we de taal uit de URL (/nl/..., /en/..., etc.).
+  lang?: string;
+};
+
+export default function FavoriteNamesSection({ lang }: FavoriteNamesSectionProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const pathLang = pathname.split("/")[1] || "nl";
+  const activeLang = lang ?? pathLang;
 
   const [favorites, setFavorites] = React.useState<FavoriteName[]>([]);
 
@@ -49,6 +50,14 @@ export default function FavoriteNamesSection() {
 
       return next;
     });
+  }
+
+  function goToVariations(label: string) {
+    router.push(
+      `/${activeLang}/tools/domain-generator/results?base=${encodeURIComponent(
+        label
+      )}`
+    );
   }
 
   return (
@@ -87,17 +96,14 @@ export default function FavoriteNamesSection() {
 
             {/* CTA onderin */}
             <div className={styles.cardCtaWrapper}>
-              <Link
-                href={`/${lang}/tools/domain-generator/generator?base=${encodeURIComponent(
-                  item.label
-                )}`}
+              <button
+                type="button"
                 className={styles.cardCtaButton}
+                onClick={() => goToVariations(item.label)}
               >
-                <span className={styles.cardCtaLabel}>variaties bekijken</span>
-                <span className={styles.cardCtaArrow} aria-hidden>
-                  →
-                </span>
-              </Link>
+                <span className={styles.cardCtaLabel}>Variaties</span>
+                <span className={styles.cardCtaArrow} aria-hidden>→</span>
+              </button>
             </div>
           </article>
         ))}

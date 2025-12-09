@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Heart, Plus, Star, ShoppingCart, Check } from "lucide-react";
 import { IoMdHeartEmpty, IoIosHeart } from "react-icons/io";
+import { FaRegCircle, FaCircle } from "react-icons/fa";
 import styles from "./DomainSelect.module.css";
 
 import type { DomainAvailabilityStatus } from "@/lib/domainr";
@@ -173,6 +174,20 @@ export default function DomainSelect({
     setActiveCategoryId(categoryId);
   }
 
+  function handleTldClick(name: string, ext: Extension) {
+    // Alleen klikken als de extensie beschikbaar is
+    if (ext.status !== "available") return;
+
+    const domain = `${name}${ext.tld}`;
+    // Voor nu standaard naar GoDaddy – later kun je dit makkelijk vervangen
+    const registrarUrl = `https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(
+      domain
+    )}`;
+
+    // Open in een nieuw tabblad zodat de gebruiker je site niet verlaat
+    window.open(registrarUrl, "_blank", "noopener,noreferrer");
+  }
+
   const [extraNames, setExtraNames] = useState<string[]>([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
@@ -276,6 +291,38 @@ export default function DomainSelect({
 
   return (
     <section className={styles.section}>
+      {/* Stepper Header */}
+      <div className={styles.stepper}>
+        <div className={styles.step}>
+          <div className={styles.stepCircleActive}>
+            <FaCircle className={styles.stepIconActive} />
+          </div>
+          <span className={styles.stepLabel}>Naam ideeën</span>
+        </div>
+
+        <div className={styles.stepLine} />
+
+        <div className={styles.step}>
+          <div className={styles.stepCircle}>
+            <FaRegCircle className={styles.stepIconCurrent} />
+          </div>
+          <span className={styles.stepLabel}>Domein selectie</span>
+        </div>
+
+        <div className={styles.stepLine} />
+
+        <div className={styles.step}>
+          <div className={styles.stepCircle}>○</div>
+          <span className={styles.stepLabel}>Meer extensies</span>
+        </div>
+
+        <div className={styles.stepLine} />
+
+        <div className={styles.step}>
+          <div className={styles.stepCircle}>○</div>
+          <span className={styles.stepLabel}>Registratie</span>
+        </div>
+      </div>
       <div className={styles.inner}>
         {/* Titel + subtitel */}
         <header className={styles.header}>
@@ -400,6 +447,13 @@ export default function DomainSelect({
                     ]
                       .filter(Boolean)
                       .join(" ")}
+                    onClick={() => handleTldClick(suggestion.name, ext)}
+                    role={ext.status === "available" ? "button" : undefined}
+                    style={
+                      ext.status === "available"
+                        ? { cursor: "pointer" }
+                        : undefined
+                    }
                   >
                     <span className={styles.extensionStatusIcon}>
                       {ext.status === "available" ? (

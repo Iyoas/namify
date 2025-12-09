@@ -1,0 +1,93 @@
+{
+  "hero": {
+    "badgeAiChecker": "AI Checker",
+    "badgeSingleDomain": "Single Domein",
+    "title": "Genereer Jouw Bedrijfs- en Domeinnaam Met AI",
+    "subtitle": "Jij hebt een idee. Wij zorgen voor de naam en het domein. Lanceer je website vandaag nog!",
+    "textareaPlaceholder": "Beschrijf uw project of bedrijfsidee.",
+    "generateButton": "Genereer namen",
+    "creativeLabel": "Creatief",
+    "extensionLabel": "Extensie",
+    "enhancePrompt": "Prompt verbeteren"
+  },
+
+  "whyChoose": {
+    "title": "Waarom kiezen voor Namify?",
+    "items": [
+      {
+        "title": "AI-gegenereerde namen",
+        "description": "Krijg krachtige merk- en bedrijfsnamen op basis van jouw input en stijlvoorkeuren."
+      },
+      {
+        "title": "Directe domeincontrole",
+        "description": "Bekijk in real-time of jouw gewenste domeinnaam beschikbaar is in meerdere extensies."
+      },
+      {
+        "title": "Merkregistratiechecks",
+        "description": "Controleer of jouw bedrijfsnaam veilig te gebruiken is zonder merkinbreuk."
+      },
+      {
+        "title": "Gratis logo’s",
+        "description": "Ontvang gratis logovoorbeelden die perfect passen bij jouw nieuwe merknaam."
+      }
+    ]
+  },
+
+  "ideasSection": {
+    "title": "Meer dan 100 ideeën voor jouw niche",
+    "subtitle": "Van AI-ondersteunde brainstorms tot unieke merkconcepten — volledig gepersonaliseerd.",
+    "loadMore": "Meer namen weergeven"
+  },
+
+  "aiExplainer": {
+    "heading": "Hoe Namify’s AI jouw ideale merknaam creëert",
+    "text": "Onze geavanceerde AI combineert taalmodellen, sectorinzichten en merkpsychologie om namen te genereren die creatief, onderscheidend en commercieel aantrekkelijk zijn.",
+    "features": [
+      {
+        "title": "AI-gestuurde Naamgeneratie",
+        "description": "Onze modellen analyseren jouw input en creëren unieke, stijlvolle naamideeën."
+      },
+      {
+        "title": "Sector-gestuurde inspiratie",
+        "description": "Van tech tot beauty — elke sector heeft unieke patronen die door onze AI worden meegenomen."
+      },
+      {
+        "title": "Domeinbeschikbaarheidschecks",
+        "description": "Wij controleren automatisch tientallen TLD’s zodat jij direct kunt registreren."
+      },
+      {
+        "title": "Gratis Branding",
+        "description": "Ontvang slogans, logo-inspiratie en merkbeschrijvingen gratis."
+      }
+    ]
+  },
+
+  "seoSection": {
+    "title": "Ontdek de kracht van een naam die jouw merkvisie definieert",
+    "p1": "Een sterke merknaam is essentieel om jouw bedrijf te laten groeien. Namify helpt je met creatieve, unieke en domein-veilige namen die passen bij jouw visie.",
+    "list": [
+      "5 Essentiële Criteria Voor Een Sterke Merknaam",
+      "Waarom Creativiteit Cruciaal Is Voor Merkgroei",
+      "Hoe Domeinextensies Jouw Online Succes Beïnvloeden",
+      "De Psychologie Achter Commerciële Merknamen"
+    ],
+    "cta": "Ontvang jouw perfecte merknaam"
+  },
+
+  "qualities": {
+    "title": "Kwaliteiten van een goede domeinnaam",
+    "text": "Een ijzersterke domeinnaam moet kort, uniek, memorabel en gemakkelijk te spellen zijn. Namify helpt je niet alleen bij het genereren van deze namen, maar controleert ook direct de beschikbaarheid.",
+    "bullets": [
+      "Korte en krachtige domeinnamen werken beter voor branding",
+      "Een unieke domeinnaam voorkomt verwarring en versterkt je merk",
+      "De juiste TLD kan jouw bedrijf professioneel positioneren"
+    ]
+  },
+
+  "footerCta": {
+    "label": "Domeinnaam.nl",
+    "status": "Beschikbaar",
+    "price": "vanaf €7,99/jaar",
+    "button": "Registreer nu"
+  }
+}

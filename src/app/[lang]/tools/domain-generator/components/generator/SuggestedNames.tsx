@@ -4,39 +4,21 @@ import styles from "./SuggestedNames.module.css";
 import { ArrowRight } from "lucide-react";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import React from "react";
-import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import type { Lang } from "@/config/i18n";
+import type { GeneratorGeneralMessages } from "@/i18n/generator-general";
+
+type SuggestedNamesProps = {
+  lang: Lang;
+  messages: GeneratorGeneralMessages;
+};
 
 // Dit component toont de sectie met gegenereerde/suggested names
-export default function SuggestedNames() {
+export default function SuggestedNames({ lang, messages }: SuggestedNamesProps) {
   const router = useRouter();
-  const params = useParams();
-  const langParam = (params as { lang?: string | string[] })?.lang;
-  const lang =
-    typeof langParam === "string"
-      ? langParam
-      : Array.isArray(langParam)
-      ? langParam[0]
-      : "nl";
 
   // Temporary demo data – deze kun je later vervangen door echte AI output
-  const names = [
-    "Brightwave",
-    "Northline",
-    "AtlasHub",
-    "Launchlane",
-    "Cinder & Co",
-    "Kindrel",
-    "Beaconly",
-    "Evercraft",
-    "Moonbase",
-    "Nova & Pine",
-    "Fablefox",
-    "Driftworks",
-    "Coastline",
-    "Groove Labs",
-    "Ironfield"
-  ];
+  const names = messages.examples.suggestions;
 
   const [likedNames, setLikedNames] = React.useState<string[]>([]);
 
@@ -85,11 +67,11 @@ export default function SuggestedNames() {
         {/* Titel */}
         <header className={styles.header}>
           <h2 className={`section-title ${styles.title}`}>
-            More than 100 fresh ideas
+            {messages.suggestedNames.title}
           </h2>
-          <h3 className={styles.subtitle}>for your next business launch</h3>
+          <h3 className={styles.subtitle}>{messages.suggestedNames.subtitle}</h3>
           <p className={styles.sectionSubtitle}>
-            From bold to minimal, discover memorable brand name ideas that stand out.
+            {messages.suggestedNames.description}
           </p>
         </header>
 
@@ -103,7 +85,7 @@ export default function SuggestedNames() {
               <button
                 className={styles.favButton}
                 onClick={() => toggleLike(name)}
-                aria-label="like naam"
+                aria-label={`${messages.suggestedNames.ariaLike}: ${name}`}
               >
                 {likedNames.includes(name) ? (
                   <IoIosHeart size={24} color="#FF4C4C" />
@@ -117,7 +99,7 @@ export default function SuggestedNames() {
               <button
                 className={styles.arrowButton}
                 onClick={() => handleArrowClick(name)}
-                aria-label="Bekijk variaties voor deze naam"
+                aria-label={`${messages.suggestedNames.ariaViewVariations}: ${name}`}
               >
                 <ArrowRight size={18} strokeWidth={2} />
               </button>
@@ -128,7 +110,7 @@ export default function SuggestedNames() {
         {/* Load more */}
         <div className={styles.loadMoreWrapper}>
           <button className={styles.loadMore}>
-            <span className={styles.loadMoreText}>show more names</span>
+            <span className={styles.loadMoreText}>{messages.suggestedNames.loadMore}</span>
           </button>
         </div>
       </div>

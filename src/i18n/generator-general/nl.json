@@ -1,0 +1,203 @@
+{
+  "generatorGeneral": {
+    "hero": {
+      "titlePrefix": "Genereer een",
+      "titleHighlight": "bedrijfsnaam",
+      "titleSuffix": "en domein",
+      "titleEnd": "met AI",
+      "subtitle": "Jij hebt het idee. Wij doen naamsuggesties en checken domeinen zodat je snel kunt lanceren.",
+      "placeholder": "Beschrijf je project, bedrijf of app-idee...",
+      "styleOptions": ["Uniek", "Creatief", "Professioneel", "Tech"],
+      "ctaEnhance": "Verbeter prompt",
+      "ctaGenerate": "Genereer namen"
+    },
+    "whyChoose": {
+      "title": "Waarom kiezen voor Namitor",
+      "cards": {
+        "ai": {
+          "title": "AI-gegenereerde namen",
+          "desc": "Genereer snel sterke merk- en domeinnaam-ideeën met geavanceerde taalmodellen."
+        },
+        "smartSearch": {
+          "title": "Slimme domeinzoeker",
+          "desc": "Laat de generator varianten en combinaties voorstellen die passen bij jouw niche, doelgroep en extensies."
+        },
+        "brandChecks": {
+          "title": "Merk- en handle-checks",
+          "desc": "Voorkom dubbelen. Check snel of je ideeën vrij zijn als merknaam of social handle."
+        },
+        "logo": {
+          "title": "Gratis logo bij je domein",
+          "desc": "Krijg een eenvoudig startlogo dat bij je naam past, zodat je direct een visuele identiteit hebt."
+        }
+      }
+    },
+    "suggestedNames": {
+      "title": "Meer dan 100 frisse ideeën",
+      "subtitle": "voor je volgende lancering",
+      "description": "Van gedurfd tot minimalistisch: ontdek gedenkwaardige merknamen die opvallen.",
+      "loadMore": "toon meer namen",
+      "ariaLike": "Vind deze naam leuk",
+      "ariaViewVariations": "Bekijk variaties voor deze naam"
+    },
+    "sections": {
+      "aiExplainer": {
+        "eyebrow": "AI toegelicht",
+        "title": "De AI van Namitor helpt unieke bedrijfsnamen te creëren",
+        "description": "Namitor helpt je doordachte, relevante bedrijfsnamen te genereren op basis van jouw input. Geen willekeurige suggesties, maar AI die focust op helderheid, memorabiliteit en merkfit. Zo ontdek je namen die in de praktijk werken en klaar zijn voor online gebruik.",
+        "imageAlt": "Illustratie die de AI van Namitor uitlicht",
+        "features": [
+          {
+            "id": "nameGeneration",
+            "title": "AI-gedreven naamgeneratie",
+            "description": "Ontvang frisse, relevante naamideeën die passen bij jouw beschrijving en intentie. Ontdek uiteenlopende stijlen, van gedurfd en modern tot strak en minimalistisch, en vind snel opties die onderscheidend, makkelijk uit te spreken en schaalbaar zijn."
+          },
+          {
+            "id": "extensionsPreview",
+            "title": "Directe preview van extensies",
+            "description": "Evalueer domeinmogelijkheden direct naast elke naamsuggestie. Vergelijk razendsnel populaire extensies zoals .com, .io, .ai en meer, zodat je sneller beslissingen neemt zonder tools te wisselen."
+          },
+          {
+            "id": "shortlist",
+            "title": "Favorieten bewaren",
+            "description": "Bewaar de naamideeën die eruit springen en bouw een gerichte shortlist op. Bekijk en vergelijk je favorieten, open ze voor variaties en verfijn tot je een naam vindt die echt bij je project of bedrijf past."
+          }
+        ]
+      },
+      "domainTips": {
+        "title": "Wat maakt een sterke domeinnaam",
+        "intro": [
+          "Om op te vallen heb je een naam nodig die blijft hangen en een domein dat makkelijk is. Een van de beste manieren is een betekenisvol webadres kiezen dat mensen direct kunnen onthouden, typen en vertrouwen.",
+          "Dit zijn een paar kenmerken van een goede domeinnaam en waarom ze belangrijk zijn:"
+        ],
+        "featureList": [
+          "Houd het kort, betekenisvol en memorabel zodat het makkelijk uit te spreken en te delen is.",
+          "Maak het uniek, pakkend en relevant voor wat je doet om duidelijke verwachtingen te scheppen.",
+          "Vermijd rare spellingen en ingewikkelde woorden om typefouten en verwarring te verminderen."
+        ],
+        "extensionsIntro": "Het kan een uitdaging zijn om een domein te vinden dat aan al deze eisen voldoet. Overweeg nieuwere extensies zoals",
+        "extensionsOutro": "enzovoort. Deze domeinextensies zijn kort, herkenbaar, betekenisvol en voldoen aan de punten hierboven.",
+        "examplesIntro": "Zo kun je deze naimgenerator gebruiken om sterke ideeën te bedenken:"
+      },
+      "longForm": {
+        "left": {
+          "title": "Ontdek de kracht van een naam die jouw visie bepaalt",
+          "intro": "De juiste naam vinden is meer dan mooie woorden combineren — het gaat om een identiteit bouwen die raakt bij je publiek. Een goede naam weerspiegelt je doel, je waarden en het gevoel dat mensen mogen ervaren bij elk contactmoment met je product, dienst of merk.",
+          "benefits": [
+            "Voordelen van deze ideegenerator voor een nieuwe naam voor je volgende venture",
+            "Namitor biedt pakkende bedrijfsnaam-ideeën",
+            "Ontsteek een merkidentiteit die bij klanten blijft hangen",
+            "Combineer creativiteit en helderheid voor directe geloofwaardigheid",
+            "Vang het verhaal achter je product of dienst",
+            "Vertaal branche-inzichten naar een merkkloppend hart",
+            "Nieuw leven voor klassieke inspiratie voor moderne makers"
+          ],
+          "highlightIntro": "Sterke namen doen meer dan beschrijven — ze roepen emotie op, bouwen vertrouwen en wekken nieuwsgierigheid. Of je merk nu nieuw is of groeit,",
+          "highlightList": [
+            "Eenvoud die bewust aanvoelt",
+            "Woorden die tastbaar en memorabel zijn",
+            "Authentieke betekenis die je roots weerspiegelt",
+            "Makkelijke herinnering over culturen en talen heen",
+            "Emotionele resonantie die klanten vertrouwen en nieuwsgierigheid geeft"
+          ],
+          "highlightFooter": "Laat deze ideegenerator je helpen woorden te vinden die bij je merk passen, vertrouwen uitstralen en aanzetten tot actie."
+        },
+        "right": {
+          "blocks": [
+            {
+              "title": "Voordelen van deze ideegenerator voor een nieuwe naam voor je bedrijf",
+              "paragraphs": [
+                "Voor een goede naam heb je iets pakkends, unieks en memorabels nodig. Deze generator is gebouwd om opties te geven die jouw publiek aanspreken.",
+                "Dit maakt deze bedrijfsnaimgenerator handig:"
+              ],
+              "bullets": [
+                {
+                  "label": "Beschikbaarheid",
+                  "description": "Namen verschijnen met domeinextensies die je kunt registreren."
+                },
+                {
+                  "label": "Relevantie",
+                  "description": "Suggesties blijven afgestemd op je doelgroep, aanbod en stijl."
+                },
+                {
+                  "label": "Blijft hangen",
+                  "description": "Beschikbaarheid plus relevantie helpen je een naam te kiezen die blijft hangen."
+                }
+              ]
+            },
+            {
+              "title": "Namify biedt pakkende bedrijfsnaam-ideeën",
+              "paragraphs": [
+                "Voor een naam heb je iets pakkends en unieks nodig. Deze generator is gemaakt om namen aan te reiken die je doelgroep aantrekken.",
+                "Dit maakt deze bedrijfsnaimgenerator nuttig:"
+              ],
+              "bullets": [
+                {
+                  "label": "Beschikbaarheid",
+                  "description": "De namen die je hier vindt, kun je registreren op populaire extensies."
+                },
+                {
+                  "label": "Relevantie",
+                  "description": "De voorgestelde naamideeën sluiten aan op je merk en wat je doet."
+                },
+                {
+                  "label": "Blijft hangen",
+                  "description": "Beschikbaarheid en relevantie samen helpen je iets pakkends en unieks te kiezen."
+                }
+              ]
+            }
+          ],
+          "cta": {
+            "title": "Vind jouw perfecte bedrijfsnaam",
+            "placeholder": "beschrijf je bedrijf"
+          }
+        }
+      }
+    },
+    "examples": {
+      "prompts": [
+        "Een productiviteitsapp die teams helpt hun week te plannen",
+        "Een online shop voor duurzame woonartikelen",
+        "Een cybersecurity-consultancy voor startups",
+        "Een communityplatform voor remote workers"
+      ],
+      "suggestions": [
+        "Brightwave",
+        "Northline",
+        "AtlasHub",
+        "Launchlane",
+        "Cinder & Co",
+        "Kindrel",
+        "Beaconly",
+        "Evercraft",
+        "Moonbase",
+        "Nova & Pine",
+        "Fablefox",
+        "Driftworks",
+        "Coastline",
+        "Groove Labs",
+        "Ironfield"
+      ],
+      "extensions": [".store", ".online", ".shop", ".tech", ".cloud"],
+      "domainPatterns": [
+        "www.[merknaam].online",
+        "www.[merknaam + branche].store",
+        "www.[merknaam + regio].site"
+      ],
+      "exampleName": {
+        "matchBadge": "Exacte match",
+        "name": "Domainain.ai",
+        "discountBadge": "BESPAAR 20%",
+        "benefits": [
+          ".ai-domeinen zijn perfect voor AI-tools en machine-learningprojecten",
+          "Dit domein is ideaal voor AI-gerelateerde projecten en startups"
+        ],
+        "originalPrice": "US$79.99",
+        "currentPrice": "US $79.99",
+        "billingCycle": "/1E JR",
+        "secondaryCta": "Maak 'm van jou",
+        "primaryCta": "Bouw je eigen"
+      }
+    }
+  }
+}

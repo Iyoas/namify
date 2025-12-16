@@ -1,12 +1,12 @@
 // src/app/[lang]/tools/domain-generator/register-domain/page.tsx
 import type { Lang } from "@/config/i18n";
 
-export default function RegisterDomainPage({
+export default async function RegisterDomainPage({
   params,
 }: {
-  params: { lang: Lang };
+  params: Promise<{ lang: Lang }>;
 }) {
-  const { lang } = params;
+  const { lang } = await params;
 
   return (
     <section>

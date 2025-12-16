@@ -4,12 +4,12 @@ import type { Lang } from "@/config/i18n";
 
 const EXAMPLE_NICHES = ["skin-care", "makelaar", "coach", "webshop"];
 
-export default function NichesPage({
+export default async function NichesPage({
   params,
 }: {
-  params: { lang: Lang };
+  params: Promise<{ lang: Lang }>;
 }) {
-  const { lang } = params;
+  const { lang } = await params;
 
   return (
     <section>

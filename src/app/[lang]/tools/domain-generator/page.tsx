@@ -3,13 +3,15 @@
 import Link from "next/link";
 
 type DomainGeneratorPageProps = {
-  params: {
+  params: Promise<{
     lang: string;
-  };
+  }>;
 };
 
-export default function DomainGeneratorPage({ params }: DomainGeneratorPageProps) {
-  const { lang } = params;
+export default async function DomainGeneratorPage({
+  params,
+}: DomainGeneratorPageProps) {
+  const { lang } = await params;
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-10 space-y-8">

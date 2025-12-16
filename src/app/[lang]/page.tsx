@@ -7,13 +7,15 @@ import IndustryGenerators from "@/app/[lang]/tools/domain-generator/components/I
 import Faq from "@/app/[lang]/tools/domain-generator/components/Faq";
 import Contact from "@/app/[lang]/tools/domain-generator/components/Contact";
 type Props = {
-  params: { lang: Lang };
+  params: Promise<{ lang: Lang }>;
 };
 
-export default function DomainGeneratorLanding({ params }: Props) {
+export default async function DomainGeneratorLanding({ params }: Props) {
+  const { lang } = await params;
+
   return (
     <main>
-      <Hero lang={params.lang} />
+      <Hero lang={lang} />
       <HowItWorks />
       <HowWeUseTool />
       <IndustryGenerators />

@@ -2,60 +2,61 @@
 
 import Image from "next/image";
 import styles from "./Usp.module.css";
+import type { GeneratorGeneralMessages } from "@/i18n/generator-general";
 
 const uspItems = [
   {
-    title: "AI-generated names",
-    description:
-      "Generate strong brand and domain name ideas fast with advanced language models.",
+    key: "ai",
     icon: "/icons/ai-search.svg",
   },
   {
-    title: "Smart domain search",
-    description:
-      "Let the generator suggest variants and combinations that fit your niche, audience, and extensions.",
+    key: "smartSearch",
     icon: "/icons/star.svg",
   },
   {
-    title: "Brand and handle checks",
-    description:
-      "Avoid duplicates. Quickly check if your ideas are free as brand names or social handles.",
+    key: "brandChecks",
     icon: "/icons/tm.svg",
   },
   {
-    title: "Free logo with your domain",
-    description:
-      "Get a simple starter logo that matches your name so you have an instant visual identity.",
+    key: "logo",
     icon: "/icons/price-card.svg",
   },
 ] as const;
 
-export default function Usp() {
+type UspProps = {
+  messages: GeneratorGeneralMessages;
+};
+
+export default function Usp({ messages }: UspProps) {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
         <header className={styles.header}>
           <h2 className={`title ${styles.title}`}>
-            Why choose Namitor{" "}
+            {messages.whyChoose.title}{" "}
           </h2>
         </header>
 
         <div className={styles.grid}>
-          {uspItems.map((usp) => (
-            <article key={usp.title} className={styles.card}>
-              <div className={styles.iconWrapper}>
-                <Image
-                  src={usp.icon}
-                  alt="Icon"
-                  width={32}
-                  height={32}
-                  className={styles.icon}
-                />
-              </div>
-              <h3 className={styles.cardTitle}>{usp.title}</h3>
-              <p className={styles.cardText}>{usp.description}</p>
-            </article>
-          ))}
+          {uspItems.map((usp) => {
+            const content = messages.whyChoose.cards[usp.key];
+
+            return (
+              <article key={usp.key} className={styles.card}>
+                <div className={styles.iconWrapper}>
+                  <Image
+                    src={usp.icon}
+                    alt="Icon"
+                    width={32}
+                    height={32}
+                    className={styles.icon}
+                  />
+                </div>
+                <h3 className={styles.cardTitle}>{content.title}</h3>
+                <p className={styles.cardText}>{content.desc}</p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

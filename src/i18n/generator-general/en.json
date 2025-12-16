@@ -1,0 +1,203 @@
+{
+  "generatorGeneral": {
+    "hero": {
+      "titlePrefix": "Generate a",
+      "titleHighlight": "business",
+      "titleSuffix": "name and domain",
+      "titleEnd": "with AI",
+      "subtitle": "You bring the idea. We suggest names and check domains so you can launch fast.",
+      "placeholder": "Describe your project, business, or app idea...",
+      "styleOptions": ["Unique", "Creative", "Professional", "Tech"],
+      "ctaEnhance": "Enhance prompt",
+      "ctaGenerate": "Generate names"
+    },
+    "whyChoose": {
+      "title": "Why choose Namitor",
+      "cards": {
+        "ai": {
+          "title": "AI-generated names",
+          "desc": "Generate strong brand and domain name ideas fast with advanced language models."
+        },
+        "smartSearch": {
+          "title": "Smart domain search",
+          "desc": "Let the generator suggest variants and combinations that fit your niche, audience, and extensions."
+        },
+        "brandChecks": {
+          "title": "Brand and handle checks",
+          "desc": "Avoid duplicates. Quickly check if your ideas are free as brand names or social handles."
+        },
+        "logo": {
+          "title": "Free logo with your domain",
+          "desc": "Get a simple starter logo that matches your name so you have an instant visual identity."
+        }
+      }
+    },
+    "suggestedNames": {
+      "title": "More than 100 fresh ideas",
+      "subtitle": "for your next business launch",
+      "description": "From bold to minimal, discover memorable brand name ideas that stand out.",
+      "loadMore": "show more names",
+      "ariaLike": "Like this name",
+      "ariaViewVariations": "View variations for this name"
+    },
+    "sections": {
+      "aiExplainer": {
+        "eyebrow": "AI Explained",
+        "title": "Namitor’s AI helps craft unique business name ideas",
+        "description": "Namitor helps you generate thoughtful, relevant business name ideas based on your input. Instead of random suggestions, the AI focuses on clarity, memorability, and brand fit, helping you explore names that actually work in the real world and are suitable for online use.",
+        "imageAlt": "Illustration highlighting Namitor AI",
+        "features": [
+          {
+            "id": "nameGeneration",
+            "title": "AI Powered Name Generation",
+            "description": "Get fresh, relevant name ideas tailored to your description and intent. Explore a wide range of naming styles, from bold and modern to clean and minimal, and quickly uncover options that feel distinctive, easy to pronounce, and ready to grow with your brand."
+          },
+          {
+            "id": "extensionsPreview",
+            "title": "Instant Domain Extensions Preview",
+            "description": "Evaluate domain possibilities directly alongside each name suggestion. Instantly compare popular extensions such as .com, .io, .ai, and more, so you can make faster decisions without switching tools or repeating searches."
+          },
+          {
+            "id": "shortlist",
+            "title": "Shortlist Your Favorites",
+            "description": "Save the name ideas that stand out and build a focused shortlist as you explore. Revisit and compare your favorites, open them to view variations, and refine your options until you find a name that truly fits your project or business."
+          }
+        ]
+      },
+      "domainTips": {
+        "title": "What makes a strong domain name",
+        "intro": [
+          "To stand out you need a memorable name and an easy domain. One of the best ways to do that is by choosing a meaningful web address that people can recall, type, and trust at a glance.",
+          "Here are a few hallmarks of a good domain and why they matter:"
+        ],
+        "featureList": [
+          "Keep it short, meaningful, and memorable so it is easy to say and share.",
+          "Make it unique, catchy, and relevant to what you do to set clear expectations.",
+          "Avoid odd spellings and complicated wording to reduce typos and confusion."
+        ],
+        "extensionsIntro": "Finding a domain that meets all these needs can be a challenge. Consider newer extensions such as",
+        "extensionsOutro": "etc. These domain extensions are short, recognizable, meaningful, and tick the boxes above.",
+        "examplesIntro": "Here are a few ways you can use this name generator to come up with some great name ideas:"
+      },
+      "longForm": {
+        "left": {
+          "title": "Discover the power of a name that defines your vision",
+          "intro": "Finding the right name is more than combining nice words — it is about building an identity that connects with your audience. A good name reflects your purpose, your values, and the feeling you want people to have every time they interact with your product, service, or brand.",
+          "benefits": [
+            "Benefits of using this idea generator to find a new name for your next venture",
+            "Namitor offers catchy business name ideas",
+            "Spark a brand identity that sticks in customers' minds",
+            "Blend creativity and clarity for instant credibility",
+            "Capture the story behind your product or service",
+            "Turn industry insights into a brand pulse",
+            "Revive classic inspiration for modern builders"
+          ],
+          "highlightIntro": "Great names do more than describe — they evoke emotion, build trust, and invite curiosity. Whether your brand is new or growing,",
+          "highlightList": [
+            "Simplicity that feels intentional",
+            "Words that feel tangible and memorable",
+            "Authentic meaning that reflects your roots",
+            "Easy recall across cultures and languages",
+            "Emotional resonance that makes customers feel confident and curious"
+          ],
+          "highlightFooter": "Let this idea generator help you uncover words that fit your brand, signal trust, and inspire action."
+        },
+        "right": {
+          "blocks": [
+            {
+              "title": "Benefits of using this idea generator to find a new name for your business",
+              "paragraphs": [
+                "When it comes to choosing a name you need something catchy, unique, and memorable. This name generator is designed to offer options that attract your audience.",
+                "Here's what makes this business name generator helpful:"
+              ],
+              "bullets": [
+                {
+                  "label": "Availability",
+                  "description": "Names surface with domain extensions you can register."
+                },
+                {
+                  "label": "Relevance",
+                  "description": "Suggestions stay aligned with your audience, offer, and style."
+                },
+                {
+                  "label": "Memorable",
+                  "description": "Availability plus relevance help you land on a name that sticks."
+                }
+              ]
+            },
+            {
+              "title": "Namify offers catchy business name ideas",
+              "paragraphs": [
+                "When it comes to choosing a name you need to pick one that is catchy and unique. This name generator is designed to offer names that will attract your audience.",
+                "Here's what makes this business name generator useful:"
+              ],
+              "bullets": [
+                {
+                  "label": "Availability",
+                  "description": "The names you find here can be registered on popular domain extensions."
+                },
+                {
+                  "label": "Relevance",
+                  "description": "The suggested name ideas will be relevant to your brand and what you do."
+                },
+                {
+                  "label": "Memorable",
+                  "description": "Availability and relevance together help you choose something catchy and unique."
+                }
+              ]
+            }
+          ],
+          "cta": {
+            "title": "Get your perfect business name",
+            "placeholder": "describe your business"
+          }
+        }
+      }
+    },
+    "examples": {
+      "prompts": [
+        "A productivity app that helps teams plan their week",
+        "An online store for sustainable home goods",
+        "A cybersecurity consulting agency for startups",
+        "A community platform for remote workers"
+      ],
+      "suggestions": [
+        "Brightwave",
+        "Northline",
+        "AtlasHub",
+        "Launchlane",
+        "Cinder & Co",
+        "Kindrel",
+        "Beaconly",
+        "Evercraft",
+        "Moonbase",
+        "Nova & Pine",
+        "Fablefox",
+        "Driftworks",
+        "Coastline",
+        "Groove Labs",
+        "Ironfield"
+      ],
+      "extensions": [".store", ".online", ".shop", ".tech", ".cloud"],
+      "domainPatterns": [
+        "www.[brand name].online",
+        "www.[brand name + industry].store",
+        "www.[brand name + geo].site"
+      ],
+      "exampleName": {
+        "matchBadge": "Exact match",
+        "name": "Domainain.ai",
+        "discountBadge": "SAVE 20%",
+        "benefits": [
+          ".ai domains are perfect for AI tools and machine-learning projects",
+          "This domain is ideal for AI-focused projects and startups"
+        ],
+        "originalPrice": "US$79.99",
+        "currentPrice": "US $79.99",
+        "billingCycle": "/1ST YR",
+        "secondaryCta": "Make it yours",
+        "primaryCta": "Build your own"
+      }
+    }
+  }
+}

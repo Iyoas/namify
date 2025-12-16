@@ -2,8 +2,12 @@
 import Link from "next/link";
 import { type Locale } from "@/config/i18n";
 
-export default function LangHomePage({ params }: { params: { lang: Locale } }) {
-  const { lang } = params;
+export default async function LangHomePage({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
+  const { lang } = await params;
 
   return (
     <section>

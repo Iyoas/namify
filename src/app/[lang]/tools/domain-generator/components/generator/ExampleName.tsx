@@ -2,16 +2,19 @@
 
 import { CheckCircle2 } from "lucide-react";
 import styles from "./ExampleName.module.css";
+import type { GeneratorGeneralMessages } from "@/i18n/generator-general";
 
 /**
  * Statische voorbeeldkaart voor een gegenereerde domeinnaam.
  * Later kun je deze eenvoudig dynamisch maken door props toe te voegen.
  */
-export default function ExampleName() {
-  const benefits = [
-    ".ai-domeinen zijn perfect voor AI-tools en machine‑learningprojecten",
-    "Dit domein is ideaal voor AI-gerelateerde projecten en startups",
-  ];
+export default function ExampleName({
+  messages,
+}: {
+  messages: GeneratorGeneralMessages;
+}) {
+  const example = messages.examples.exampleName;
+  const benefits = example.benefits;
 
   return (
     <section className={styles.section}>
@@ -19,12 +22,12 @@ export default function ExampleName() {
         {/* Linkerkant: label, domeinnaam en benefits */}
         <div className={styles.left}>
           <div className={styles.matchRow}>
-            <span className={styles.matchBadge}>Exact match</span>
+            <span className={styles.matchBadge}>{example.matchBadge}</span>
           </div>
 
           <div className={styles.nameRow}>
-            <h3 className={styles.domainName}>Domainain.ai</h3>
-            <span className={styles.discountBadge}>SAVE 20%</span>
+            <h3 className={styles.domainName}>{example.name}</h3>
+            <span className={styles.discountBadge}>{example.discountBadge}</span>
           </div>
 
           <div className={styles.benefits}>
@@ -40,18 +43,19 @@ export default function ExampleName() {
         {/* Rechterkant: prijs en CTA's */}
         <div className={styles.right}>
           <div className={styles.priceBlock}>
-            <span className={styles.originalPrice}>US$79.99</span>
+            <span className={styles.originalPrice}>{example.originalPrice}</span>
             <span className={styles.currentPrice}>
-              US $79.99<span className={styles.billingCycle}>/1ST YR</span>
+              {example.currentPrice}
+              <span className={styles.billingCycle}>{example.billingCycle}</span>
             </span>
           </div>
 
           <div className={styles.actions}>
             <button type="button" className={styles.secondaryButton}>
-              Make it yours
+              {example.secondaryCta}
             </button>
             <button type="button" className={styles.primaryButton}>
-              Build your own
+              {example.primaryCta}
             </button>
           </div>
         </div>

@@ -5,32 +5,30 @@ import { ChevronDown, Megaphone, Sparkles, Wand2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import styles from "./HeroSection.module.css";
 import { Box, Skeleton } from "@mui/material";
+import type { Lang } from "@/config/i18n";
+import type { GeneratorGeneralMessages } from "@/i18n/generator-general";
 
 type HeroSectionProps = {
-  lang: string;
+  lang: Lang;
+  messages: GeneratorGeneralMessages;
 };
-
-const STYLE_OPTIONS = ["Unique", "Creative", "Professional", "Tech"] as const;
-type StyleOption = (typeof STYLE_OPTIONS)[number];
 
 const EXTENSION_OPTIONS = [".com", ".nl", ".ai", ".io", ".co", ".be", ".eu"] as const;
 type ExtensionOption = (typeof EXTENSION_OPTIONS)[number];
 
-export function HeroSection({ lang }: HeroSectionProps) {
-  const [selectedStyle, setSelectedStyle] = useState<StyleOption>("Unique");
+export function HeroSection({ lang, messages }: HeroSectionProps) {
+  const styleOptions = messages.hero.styleOptions;
+  const samplePrompts = messages.examples.prompts;
+
+  const [selectedStyle, setSelectedStyle] = useState<string>(
+    () => styleOptions[0] ?? ""
+  );
   const [isStyleOpen, setIsStyleOpen] = useState(false);
   const styleSelectRef = useRef<HTMLDivElement | null>(null);
 
   const extensionSelectRef = useRef<HTMLDivElement | null>(null);
   const [selectedExtension, setSelectedExtension] = useState<ExtensionOption>(".com");
   const [isExtensionOpen, setIsExtensionOpen] = useState(false);
-
-  const samplePrompts = [
-    "A productivity app that helps teams plan their week",
-    "An online store for sustainable home goods",
-    "A cybersecurity consulting agency for startups",
-    "A community platform for remote workers",
-  ];
 
   const [prompt, setPrompt] = useState("");
   const [isEnhancing, setIsEnhancing] = useState(false);
@@ -123,14 +121,17 @@ export function HeroSection({ lang }: HeroSectionProps) {
       <div className={styles.inner}>
         {/* Heading */}
         <h1 className={styles.title}>
-          Generate a{" "}
-          <span className={styles.highlight}>business</span> name and domain
-          <br className={styles.titleBreak} /> with AI
+          {messages.hero.titlePrefix}{" "}
+          <span className={styles.highlight}>{messages.hero.titleHighlight}</span>{" "}
+          {messages.hero.titleSuffix}
+          <br className={styles.titleBreak} />
+          {" "}
+          {messages.hero.titleEnd}
         </h1>
 
         {/* Subheading */}
         <p className={styles.subtitle}>
-          You bring the idea. We suggest names and check domains so you can launch fast.
+          {messages.hero.subtitle}
         </p>
 
         {/* Description area with filters + generate button */}
@@ -163,7 +164,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
               ) : (
                 <textarea
                   className={styles.textarea}
-                  placeholder="Describe your project, business, or app idea..."
+                  placeholder={messages.hero.placeholder}
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                 />
@@ -187,7 +188,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
 
                   {isStyleOpen && (
                     <ul className={styles.dropdown} role="listbox">
-                      {STYLE_OPTIONS.map((option) => (
+                      {styleOptions.map((option) => (
                         <li key={option}>
                           <button
                             type="button"
@@ -256,7 +257,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
                   }}
                 >
                   <Wand2 className={styles.optionIcon} />
-                  <span>Enhance prompt</span>
+                  <span>{messages.hero.ctaEnhance}</span>
                 </button>
               </div>
 
@@ -268,7 +269,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
                   disabled={!prompt.trim()}
                 >
                   <Sparkles className={styles.generateIcon} />
-                  <span>Generate names</span>
+                  <span>{messages.hero.ctaGenerate}</span>
                 </button>
               </div>
             </div>
@@ -284,7 +285,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
               className={styles.sampleChip}
               onClick={() => setPrompt(sample)}
             >
-              "{sample}"
+              {sample}
             </button>
           ))}
         </div>

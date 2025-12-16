@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation";
 import type { DomainAvailabilityStatus } from "@/lib/domainr";
 import DomainSelect from "./DomainSelect";
 
+const FALLBACK_TLDS = [".com", ".nl", ".io", ".ai", ".co", ".shop"];
+
 type GenerateDomainResponse = {
   names: string[];
   availability: Record<string, Record<string, DomainAvailabilityStatus>>;
@@ -43,6 +45,7 @@ export default function Stepper({ lang, initialPrompt }: StepperProps) {
       try {
         setIsLoading(true);
         setError(null);
+        setData(null);
 
         let json: GenerateDomainResponse;
 
@@ -118,23 +121,21 @@ export default function Stepper({ lang, initialPrompt }: StepperProps) {
 
   return (
     <section className="w-full">
-      {isLoading && (
-        <p className="text-sm text-muted-foreground mb-4">
-          Bezig met genereren...
-        </p>
-      )}
-
       {error && (
         <p className="text-sm text-red-500 mb-4">
           {error}
         </p>
       )}
 
-      {data && data.names.length > 0 && (
+      {(isLoading || (data && data.names.length > 0)) && (
         <DomainSelect
-          names={data.names}
-          availability={data.availability}
-          tlds={data.tlds}
+          loading={!data && isLoading}
+          names={
+            data?.names ??
+            Array.from({ length: 8 }).map((_, i) => `__loading_${i}`)
+          }
+          availability={data?.availability ?? {}}
+          tlds={data?.tlds?.length ? data.tlds : FALLBACK_TLDS}
         />
       )}
     </section>

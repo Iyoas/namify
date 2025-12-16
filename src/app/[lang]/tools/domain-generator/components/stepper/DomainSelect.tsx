@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Skeleton } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import { Heart, Plus, Star, ShoppingCart, Check } from "lucide-react";
 import { IoMdHeartEmpty, IoIosHeart } from "react-icons/io";
@@ -13,6 +14,7 @@ type DomainSelectProps = {
   names: string[];
   availability: Record<string, Record<string, DomainAvailabilityStatus>>;
   tlds: string[];
+  loading?: boolean;
 };
 
 type Category = {
@@ -128,6 +130,7 @@ export default function DomainSelect({
   names,
   availability,
   tlds,
+  loading = false,
 }: DomainSelectProps) {
   const searchParams = useSearchParams();
 
@@ -136,6 +139,10 @@ export default function DomainSelect({
 
   const [availabilityMap, setAvailabilityMap] =
     useState<typeof availability>(availability);
+
+  useEffect(() => {
+    setAvailabilityMap(availability);
+  }, [availability]);
 
   const [activeCategoryId, setActiveCategoryId] = useState<string>("all");
 
@@ -279,47 +286,38 @@ export default function DomainSelect({
               extensions,
             };
           })
-          .filter((suggestion) => {
-            // Only filter in `all` category
-            if (activeCategoryId !== "all") return true;
-
-            return suggestion.extensions.some(
-              (ext) => ext.status === "available"
-            );
-          })
       : SUGGESTIONS;
+
+  const visibleCount = loading ? null : suggestions.length;
 
   return (
     <section className={styles.section}>
       {/* Stepper Header */}
+     {/* Stepper Header */}
       <div className={styles.stepper}>
+        {/* Stap 1 – afgerond */}
         <div className={styles.step}>
-          <div className={styles.stepCircleActive}>
-            <FaCircle className={styles.stepIconActive} />
+          <div className={styles.stepCircleDone}>
+            <Check className={styles.stepCheckIcon} />
           </div>
           <span className={styles.stepLabel}>Naam ideeën</span>
         </div>
 
         <div className={styles.stepLine} />
 
+        {/* Stap 2 – huidige stap */}
         <div className={styles.step}>
-          <div className={styles.stepCircle}>
-            <FaRegCircle className={styles.stepIconCurrent} />
+          <div className={styles.stepCircleCurrent}>
+            <span className={styles.stepDot} />
           </div>
           <span className={styles.stepLabel}>Domein selectie</span>
         </div>
 
         <div className={styles.stepLine} />
 
+        {/* Stap 3 – aankomend */}
         <div className={styles.step}>
-          <div className={styles.stepCircle}>○</div>
-          <span className={styles.stepLabel}>Meer extensies</span>
-        </div>
-
-        <div className={styles.stepLine} />
-
-        <div className={styles.step}>
-          <div className={styles.stepCircle}>○</div>
+          <div className={styles.stepCircleUpcoming} />
           <span className={styles.stepLabel}>Registratie</span>
         </div>
       </div>
@@ -327,12 +325,26 @@ export default function DomainSelect({
         {/* Titel + subtitel */}
         <header className={styles.header}>
           <h1 className={styles.title}>
-            {baseNameFromUrl
-              ? `Variaties op ${baseNameFromUrl}`
-              : "We hebben 8 naamideeën voor je gevonden"}
+            {baseNameFromUrl ? (
+              `Variaties op ${baseNameFromUrl}`
+            ) : (
+              <>
+                We hebben{" "}
+                {loading ? (
+                  <Skeleton
+                    variant="text"
+                    width={36}
+                    sx={{ display: "inline-block", verticalAlign: "baseline" }}
+                  />
+                ) : (
+                  String(visibleCount ?? 0)
+                )}{" "}
+                naamideeën voor je gevonden
+              </>
+            )}
           </h1>
           <p className={styles.subtitle}>
-            Gebaseerd op je input hebben we creatieve suggesties gemaakt 🎉
+            Op basis van je input hebben we creatieve suggesties gemaakt 🎉
           </p>
         </header>
 
@@ -347,12 +359,6 @@ export default function DomainSelect({
                 <Heart className={styles.metaIcon} />
                 <span>your Favourites</span>
                 <span className={styles.metaBadge}>{likedNames.length}</span>
-              </button>
-
-              <button type="button" className={styles.metaButton}>
-                <ShoppingCart className={styles.metaIcon} />
-                <span>your basket</span>
-                <span className={styles.metaBadge}>10</span>
               </button>
             </div>
           </div>
@@ -422,7 +428,11 @@ export default function DomainSelect({
                           : undefined
                       }
                     >
-                      {suggestion.name}
+                      {loading ? (
+                        <Skeleton variant="text" width={140} sx={{ fontSize: "1rem" }} />
+                      ) : (
+                        suggestion.name
+                      )}
                     </span>
                     <span className={styles.estimatedLabel}>
                       Geschatte prijs{" "}
@@ -436,35 +446,51 @@ export default function DomainSelect({
 
               {/* Rechter kant: extensies */}
               <div className={styles.rowRight}>
-                {suggestion.extensions.map((ext) => (
-                  <div
-                    key={ext.id}
-                    className={[
-                      styles.extensionTag,
-                      ext.status === "available"
-                        ? styles.extensionTagAvailable
-                        : styles.extensionTagUnavailable,
-                    ]
-                      .filter(Boolean)
-                      .join(" ")}
-                    onClick={() => handleTldClick(suggestion.name, ext)}
-                    role={ext.status === "available" ? "button" : undefined}
-                    style={
-                      ext.status === "available"
-                        ? { cursor: "pointer" }
-                        : undefined
-                    }
-                  >
-                    <span className={styles.extensionStatusIcon}>
-                      {ext.status === "available" ? (
-                        <Check className={styles.extensionCheckIcon} />
-                      ) : (
-                        "×"
-                      )}
-                    </span>
-                    <span className={styles.extensionTld}>{ext.tld}</span>
-                  </div>
-                ))}
+                {loading ? (
+                  Array.from({ length: 6 }).map((_, i) => (
+                    <div
+                      key={`skeleton-${suggestion.name}-${i}`}
+                      className={styles.extensionTag}
+                      aria-hidden="true"
+                    >
+                      <Skeleton variant="rounded" width={64} height={28} />
+                    </div>
+                  ))
+                ) : (
+                  suggestion.extensions.map((ext) => (
+                    <div
+                      key={ext.id}
+                      className={[
+                        styles.extensionTag,
+                        ext.status === "available"
+                          ? styles.extensionTagAvailable
+                          : ext.status === "unavailable"
+                          ? styles.extensionTagUnavailable
+                          : styles.extensionTagUnknown,
+                      ]
+                        .filter(Boolean)
+                        .join(" ")}
+                      onClick={() => handleTldClick(suggestion.name, ext)}
+                      role={ext.status === "available" ? "button" : undefined}
+                      style={
+                        ext.status === "available"
+                          ? { cursor: "pointer" }
+                          : undefined
+                      }
+                    >
+                      <span className={styles.extensionStatusIcon}>
+                        {ext.status === "available" ? (
+                          <Check className={styles.extensionCheckIcon} />
+                        ) : ext.status === "unavailable" ? (
+                          "×"
+                        ) : (
+                          "·"
+                        )}
+                      </span>
+                      <span className={styles.extensionTld}>{ext.tld}</span>
+                    </div>
+                  ))
+                )}
               </div>
             </article>
           ))}

@@ -5,27 +5,27 @@ import styles from "./Usp.module.css";
 
 const uspItems = [
   {
-    title: "AI-gegenereerde namen",
+    title: "AI-generated names",
     description:
-      "Genereer razendsnel sterke merk- en domeinnaam ideeën met behulp van geavanceerde taalmodellen (LLM).",
+      "Generate strong brand and domain name ideas fast with advanced language models.",
     icon: "/icons/ai-search.svg",
   },
   {
-    title: "Slim zoeken naar domeinnamen",
+    title: "Smart domain search",
     description:
-      "Laat de generator automatisch varianten en combinaties zoeken die passen bij jouw niche, doelgroep en extensies.",
+      "Let the generator suggest variants and combinations that fit your niche, audience, and extensions.",
     icon: "/icons/star.svg",
   },
   {
-    title: "Merk- en gebruikersnaamchecks",
+    title: "Brand and handle checks",
     description:
-      "Voorkom dubbele namen. Controleer direct of jouw ideeën nog vrij zijn als merk- of gebruikersnaam.",
+      "Avoid duplicates. Quickly check if your ideas are free as brand names or social handles.",
     icon: "/icons/tm.svg",
   },
   {
-    title: "Gratis logo bij je domein",
+    title: "Free logo with your domain",
     description:
-      "Ontvang een eenvoudig startlogo dat aansluit bij je naam, zodat je direct een eerste merkuitstraling hebt.",
+      "Get a simple starter logo that matches your name so you have an instant visual identity.",
     icon: "/icons/price-card.svg",
   },
 ] as const;
@@ -36,8 +36,7 @@ export default function Usp() {
       <div className={styles.inner}>
         <header className={styles.header}>
           <h2 className={`title ${styles.title}`}>
-            Waarom Kiezen Voor Namitor{" "}
-           
+            Why choose Namitor{" "}
           </h2>
         </header>
 
@@ -47,7 +46,7 @@ export default function Usp() {
               <div className={styles.iconWrapper}>
                 <Image
                   src={usp.icon}
-                  alt="Ster icoon"
+                  alt="Icon"
                   width={32}
                   height={32}
                   className={styles.icon}

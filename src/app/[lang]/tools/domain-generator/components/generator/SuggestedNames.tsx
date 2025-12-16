@@ -21,21 +21,21 @@ export default function SuggestedNames() {
 
   // Temporary demo data – deze kun je later vervangen door echte AI output
   const names = [
-    "LumiAura",
-    "Skinova",
-    "VelvetGlow",
-    "PureMira",
-    "Softéon",
-    "Nuvique",
-    "Elysia Skin",
-    "GlowCraft",
-    "Serenique",
-    "MiraLuxe",
-    "AuraBelle",
-    "Velori",
-    "SilkaTone",
-    "Novaskin",
-    "Bloomora"
+    "Brightwave",
+    "Northline",
+    "AtlasHub",
+    "Launchlane",
+    "Cinder & Co",
+    "Kindrel",
+    "Beaconly",
+    "Evercraft",
+    "Moonbase",
+    "Nova & Pine",
+    "Fablefox",
+    "Driftworks",
+    "Coastline",
+    "Groove Labs",
+    "Ironfield"
   ];
 
   const [likedNames, setLikedNames] = React.useState<string[]>([]);
@@ -85,12 +85,11 @@ export default function SuggestedNames() {
         {/* Titel */}
         <header className={styles.header}>
           <h2 className={`section-title ${styles.title}`}>
-            Meer dan 100 coole ideeën
+            More than 100 fresh ideas
           </h2>
-          <h3 className={styles.subtitle}>voor huidverzorgingsmerken in 2025</h3>
+          <h3 className={styles.subtitle}>for your next business launch</h3>
           <p className={styles.sectionSubtitle}>
-            From Minimal To Luxurious Creative Skincare Brand Names That Stand
-            Out In 2025.
+            From bold to minimal, discover memorable brand name ideas that stand out.
           </p>
         </header>
 
@@ -129,7 +128,7 @@ export default function SuggestedNames() {
         {/* Load more */}
         <div className={styles.loadMoreWrapper}>
           <button className={styles.loadMore}>
-            <span className={styles.loadMoreText}>meer namen weergeven</span>
+            <span className={styles.loadMoreText}>show more names</span>
           </button>
         </div>
       </div>

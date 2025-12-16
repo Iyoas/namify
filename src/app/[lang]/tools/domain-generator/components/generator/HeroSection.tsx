@@ -26,10 +26,10 @@ export function HeroSection({ lang }: HeroSectionProps) {
   const [isExtensionOpen, setIsExtensionOpen] = useState(false);
 
   const samplePrompts = [
-    "A brand that rejuvenates and heals",
-    "A skincare clinic with a modern aesthetic",
-    "A skincare brand for radiant skin",
-    "A natural brand of skincare solutions",
+    "A productivity app that helps teams plan their week",
+    "An online store for sustainable home goods",
+    "A cybersecurity consulting agency for startups",
+    "A community platform for remote workers",
   ];
 
   const [prompt, setPrompt] = useState("");
@@ -123,16 +123,14 @@ export function HeroSection({ lang }: HeroSectionProps) {
       <div className={styles.inner}>
         {/* Heading */}
         <h1 className={styles.title}>
-          Genereer{" "}
-          <span className={styles.highlight}>Skin Care-</span>
-          En
-          <br className={styles.titleBreak} /> Domeinnaam Met AI
+          Generate a{" "}
+          <span className={styles.highlight}>business</span> name and domain
+          <br className={styles.titleBreak} /> with AI
         </h1>
 
         {/* Subheading */}
         <p className={styles.subtitle}>
-          Jij Hebt Een Idee. Wij Zorgen Voor De Naam En Het Domein. Lanceer Je
-          Website Vandaag Nog!
+          You bring the idea. We suggest names and check domains so you can launch fast.
         </p>
 
         {/* Description area with filters + generate button */}
@@ -165,7 +163,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
               ) : (
                 <textarea
                   className={styles.textarea}
-                  placeholder="Beschrijf uw project of bedrijfsidee."
+                  placeholder="Describe your project, business, or app idea..."
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                 />
@@ -270,7 +268,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
                   disabled={!prompt.trim()}
                 >
                   <Sparkles className={styles.generateIcon} />
-                  <span>Genereer namen</span>
+                  <span>Generate names</span>
                 </button>
               </div>
             </div>

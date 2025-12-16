@@ -3,19 +3,19 @@ import styles from "./AiExplainerSection.module.css";
 
 const featureList = [
   {
-    title: "AI-Powered Name Generation",
+    title: "AI Powered Name Generation",
     description:
-      "Namitor takes brand naming to new heights, offering contextual and meaningful skin care business name ideas. Say goodbye to generic names and embrace a brand identity that reflects the essence of your skincare business.",
+      "Get fresh, relevant name ideas tailored to your description and intent. Explore a wide range of naming styles, from bold and modern to clean and minimal, and quickly uncover options that feel distinctive, easy to pronounce, and ready to grow with your brand.",
   },
   {
-    title: "Social Media Username Check",
+    title: "Instant Domain Extensions Preview",
     description:
-      "Namitor goes beyond just generating brand names; it evaluates social media username availability for your chosen brand effortlessly. It streamlines your online branding with consistent and accessible handles for your skincare business.",
+      "Evaluate domain possibilities directly alongside each name suggestion. Instantly compare popular extensions such as .com, .io, .ai, and more, so you can make faster decisions without switching tools or repeating searches.",
   },
   {
-    title: "Free Logo",
+    title: "Shortlist Your Favorites",
     description:
-      "Namitor gives you a free logo with every domain name purchase. Now, you can enhance the visual identity of your skin care business and make a lasting impression in the competitive skincare world.",
+      "Save the name ideas that stand out and build a focused shortlist as you explore. Revisit and compare your favorites, open them to view variations, and refine your options until you find a name that truly fits your project or business.",
   },
 ] as const;
 
@@ -37,14 +37,10 @@ export default function AiExplainerSection() {
         <div className={styles.content}>
           <p className={styles.eyebrow}>AI Explained</p>
           <h2 className={styles.title}>
-            Namitor&apos;s AI prowess helps craft unique skin care business name
-            ideas
+            Namitor’s AI helps craft unique business name ideas
           </h2>
           <p className={styles.description}>
-            Namitor helps you generate ingenious skin care business name ideas
-            that resonate. With this, you can elevate your brand with its
-            cutting-edge AI features, designed to make your skincare business
-            stand out in the digital landscape.
+            Namitor helps you generate thoughtful, relevant business name ideas based on your input. Instead of random suggestions, the AI focuses on clarity, memorability, and brand fit, helping you explore names that actually work in the real world and are suitable for online use.
           </p>
 
           <div className={styles.featureList}>

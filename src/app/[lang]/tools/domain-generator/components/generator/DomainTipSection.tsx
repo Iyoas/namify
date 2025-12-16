@@ -7,50 +7,48 @@ export default function DomainTipSection() {
         {/* Titel */}
         <header className={styles.header}>
           <h2 className={styles.title}>
-            Kwaliteiten van een goede domeinnaam voor uw huidverzorgingsbedrijf
+            What makes a strong domain name
           </h2>
         </header>
 
         {/* Introductietekst */}
         <div className={styles.intro}>
           <p>
-            Voor je huidverzorgingsbedrijf heb je een pakkende naam nodig om je
-            concurrenten te overtreffen. Een van de beste manieren om dit te
-            doen, is door een betekenisvolle domeinnaam te kiezen.
+            To stand out you need a memorable name and an easy domain. One of the best ways
+            to do that is by choosing a meaningful web address that people can recall,
+            type, and trust at a glance.
           </p>
 
-          <p>Hier zijn enkele kenmerken van een goede domeinnaam:</p>
+          <p>Here are a few hallmarks of a good domain and why they matter:</p>
         </div>
 
         {/* Bulletpoints met kenmerken */}
         <ul className={styles.featureList}>
           <li>
-            Een goede domeinnaam is kort, betekenisvol en memorabel.
+            Keep it short, meaningful, and memorable so it is easy to say and share.
           </li>
           <li>
-            Een goede domeinnaam is uniek, pakkend en relevant voor uw branche.
+            Make it unique, catchy, and relevant to what you do to set clear expectations.
           </li>
           <li>
-            Een goede domeinnaam bevat geen vreemde spellingen of grammaticale
-            fouten.
+            Avoid odd spellings and complicated wording to reduce typos and confusion.
           </li>
         </ul>
 
         {/* Tekst + domeinextensie badges */}
         <div className={styles.extensionsBlock}>
           <p>
-            Het vinden van een domeinnaam die aan al deze eisen voldoet, kan een
-            uitdaging zijn. Daarom is het verstandig om te kiezen voor een van
-            de nieuwe domeinextensies, zoals{" "}
+            Finding a domain that meets all these needs can be a challenge.
+            Consider newer extensions such as{" "}
             <span className={styles.extensionBadgesInline}>
               <span className={styles.extensionBadge}>.store</span>
               <span className={styles.extensionBadge}>.online</span>
               <span className={styles.extensionBadge}>.shop</span>
-              <span className={styles.extensionBadge}>.skin</span>
-              <span className={styles.extensionBadge}>.beauty</span>
+              <span className={styles.extensionBadge}>.tech</span>
+              <span className={styles.extensionBadge}>.cloud</span>
             </span>{" "}
-            etc. Deze domeinextensies zijn kort, herkenbaar, betekenisvol en
-            voldoen aan alle bovengenoemde voorwaarden.
+            etc. These domain extensions are short, recognizable, meaningful, and
+            tick the boxes above.
           </p>
         </div>
 

@@ -1,7 +1,14 @@
 import Image from "next/image";
 import styles from "./Contact.module.css";
+import type { DomainGeneratorIndexMessages } from "@/i18n/domain-generator-index";
 
-export default function Contact() {
+type ContactProps = {
+  messages: DomainGeneratorIndexMessages;
+};
+
+export default function Contact({ messages }: ContactProps) {
+  const contact = messages.contact;
+
   return (
     <section className={styles.section} aria-labelledby="contact-heading">
       <div className={styles.inner}>
@@ -10,7 +17,7 @@ export default function Contact() {
           <div className={styles.imageCard}>
             <Image
               src="/images/contact.png"
-              alt="Supportmedewerker die een klant helpt via de chat"
+              alt={contact.imageAlt}
               width={480}
               height={600}
               className={styles.image}
@@ -22,40 +29,37 @@ export default function Contact() {
         <div className={styles.content}>
           <header className={styles.header}>
             <h2 id="contact-heading" className={styles.title}>
-              Neem contact op
+              {contact.title}
             </h2>
-            <p className={styles.subtitle}>
-              Heb je vragen of wil je samenwerken? Ons team reageert meestal
-              binnen 24 uur.
-            </p>
+            <p className={styles.subtitle}>{contact.subtitle}</p>
           </header>
 
           <form className={styles.form}>
             <div className={styles.fieldRow}>
               <div className={styles.field}>
                 <label htmlFor="fullName" className={styles.label}>
-                  Volledige naam
+                  {contact.form.fullNameLabel}
                 </label>
                 <input
                   id="fullName"
                   name="fullName"
                   type="text"
                   autoComplete="name"
-                  placeholder="Jan Janssen"
+                  placeholder={contact.form.fullNamePlaceholder}
                   className={styles.input}
                 />
               </div>
 
               <div className={styles.field}>
                 <label htmlFor="email" className={styles.label}>
-                  E-mailadres
+                  {contact.form.emailLabel}
                 </label>
                 <input
                   id="email"
                   name="email"
                   type="email"
                   autoComplete="email"
-                  placeholder="jan@email.com"
+                  placeholder={contact.form.emailPlaceholder}
                   className={styles.input}
                 />
               </div>
@@ -63,20 +67,20 @@ export default function Contact() {
 
             <div className={styles.field}>
               <label htmlFor="message" className={styles.label}>
-                Bericht
+                {contact.form.messageLabel}
               </label>
               <textarea
                 id="message"
                 name="message"
                 rows={4}
-                placeholder="Vertel kort waar we je mee kunnen helpen..."
+                placeholder={contact.form.messagePlaceholder}
                 className={styles.textarea}
               />
             </div>
 
             <div className={styles.actions}>
               <button type="submit" className={styles.submitButton}>
-                Bericht verzenden
+                {contact.form.submit}
               </button>
             </div>
           </form>
@@ -93,12 +97,12 @@ export default function Contact() {
                 />
               </div>
               <div className={styles.detailText}>
-                <p className={styles.detailLabel}>Email</p>
+                <p className={styles.detailLabel}>{contact.details.emailLabel}</p>
                 <a
-                  href="mailto:info-namitor@gmail.com"
+                  href={`mailto:${contact.details.emailValue}`}
                   className={styles.detailValue}
                 >
-                  info-namitor@gmail.com
+                  {contact.details.emailValue}
                 </a>
               </div>
             </div>
@@ -114,10 +118,8 @@ export default function Contact() {
                 />
               </div>
               <div className={styles.detailText}>
-                <p className={styles.detailLabel}>Location</p>
-                <p className={styles.detailValue}>
-                  Based in Rotterdam, The Netherlands
-                </p>
+                <p className={styles.detailLabel}>{contact.details.locationLabel}</p>
+                <p className={styles.detailValue}>{contact.details.locationValue}</p>
               </div>
             </div>
           </div>

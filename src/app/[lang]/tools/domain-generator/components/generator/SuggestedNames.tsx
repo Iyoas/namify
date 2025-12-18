@@ -6,7 +6,7 @@ import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import React from "react";
 import { useRouter } from "next/navigation";
 import type { Lang } from "@/config/i18n";
-import type { GeneratorGeneralMessages } from "@/i18n/generator-general";
+import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 
 type SuggestedNamesProps = {
   lang: Lang;

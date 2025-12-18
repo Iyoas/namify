@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./AiExplainerSection.module.css";
-import type { GeneratorGeneralMessages } from "@/i18n/generator-general";
+import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 
 type AiExplainerSectionProps = {
   messages: GeneratorGeneralMessages;

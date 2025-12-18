@@ -1,6 +1,6 @@
 // src/app/[lang]/tools/domain-generator/generator/page.tsx
 import type { Lang } from "@/config/i18n";
-import { getGeneratorGeneralMessages } from "@/i18n/generator-general";
+import { getGeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 import Usp from "../components/generator/Usp";
 import SuggestedNames from "../components/generator/SuggestedNames";
 import AiExplainerSection from "../components/generator/AiExplainerSection";

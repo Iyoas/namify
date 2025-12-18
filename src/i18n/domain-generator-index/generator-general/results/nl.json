@@ -1,0 +1,42 @@
+{
+  "generatorGeneralResults": {
+    "domainSelect": {
+      "stepper": {
+        "nameIdeas": "Naamideeën",
+        "domainSelection": "Domeinselectie",
+        "registration": "Registratie"
+      },
+      "header": {
+        "variationsPrefix": "Variaties op",
+        "foundPrefix": "We hebben",
+        "foundSuffix": "naamideeën voor je gevonden"
+      },
+      "subtitle": "Op basis van je input hebben we creatieve suggesties gemaakt 🎉",
+      "filters": {
+        "moreOptions": "Meer opties",
+        "favourites": "Je favorieten",
+        "favouritesAria": "Bekijk je favorieten"
+      },
+      "aria": {
+        "addToFavourites": "Zet in favorieten"
+      },
+      "priceLabel": "Geschatte prijs",
+      "footer": {
+        "loadingMore": "Even wachten...",
+        "generateMore": "Genereer 8 nieuwe namen",
+        "next": "Volgende"
+      },
+      "categories": {
+        "all": "Alle",
+        "popular": "Populair",
+        "business": "Zakelijk",
+        "education": "Onderwijs",
+        "international": "Internationaal",
+        "technology": "Technologie",
+        "social": "Sociaal",
+        "professional": "Professioneel",
+        "entertainment": "Entertainment"
+      }
+    }
+  }
+}

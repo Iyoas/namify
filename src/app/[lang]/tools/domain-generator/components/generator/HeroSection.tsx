@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import styles from "./HeroSection.module.css";
 import { Box, Skeleton } from "@mui/material";
 import type { Lang } from "@/config/i18n";
-import type { GeneratorGeneralMessages } from "@/i18n/generator-general";
+import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 
 type HeroSectionProps = {
   lang: Lang;

@@ -1,5 +1,5 @@
 import styles from "./DomainTipSection.module.css";
-import type { GeneratorGeneralMessages } from "@/i18n/generator-general";
+import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 
 type DomainTipSectionProps = {
   messages: GeneratorGeneralMessages;

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import styles from "./IndustryGenerators.module.css";
 import { JSX } from "react";
+import type { DomainGeneratorIndexMessages } from "@/i18n/domain-generator-index";
 
 function EcommerceIcon() {
   return (
@@ -37,68 +38,45 @@ function StudioIcon() {
 }
 
 type IndustryCard = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   icon: JSX.Element;
 };
 
-const INDUSTRY_CARDS: IndustryCard[] = [
-  {
-    id: 1,
-    title: "E-commerce",
-    description: "Ontdek originele webshopnamen.",
-    icon: <EcommerceIcon />,
-  },
-  {
-    id: 2,
-    title: "Start-up",
-    description: "Ontdek originele namen voor startups.",
-    icon: <StartupIcon />,
-  },
-  {
-    id: 3,
-    title: "Marketing",
-    description: "Ontdek namen die je merk laten opvallen.",
-    icon: <MarketingIcon />,
-  },
-  {
-    id: 4,
-    title: "Creatieve studio’s",
-    description: "Ontdek originele namen voor creatieve studio’s.",
-    icon: <StudioIcon />,
-  },
-  {
-    id: 5,
-    title: "SaaS & apps",
-    description: "Ontdek namen voor innovatieve software en apps.",
-    icon: <AppsIcon />,
-  },
-  {
-    id: 6,
-    title: "Restaurants",
-    description: "Ontdek smaakvolle namen voor horecaconcepten.",
-    icon: <RestaurantsIcon />,
-  },
-];
+const ICON_BY_ID: Record<string, JSX.Element> = {
+  ecommerce: <EcommerceIcon />,
+  startup: <StartupIcon />,
+  marketing: <MarketingIcon />,
+  creativeStudios: <StudioIcon />,
+  saasApps: <AppsIcon />,
+  restaurants: <RestaurantsIcon />,
+};
 
-export default function IndustryGenerators() {
+type IndustryGeneratorsProps = {
+  messages: DomainGeneratorIndexMessages;
+};
+
+export default function IndustryGenerators({ messages }: IndustryGeneratorsProps) {
+  const cards: IndustryCard[] =
+    messages.industryGenerators.cards.map((card) => ({
+      ...card,
+      icon: ICON_BY_ID[card.id] ?? <EcommerceIcon />,
+    })) ?? [];
+
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
         <header className={styles.header}>
           <div className={styles.headerTitle}>
-            <h2 className={styles.title}>ideeën voor branche specifieke namen</h2>
+            <h2 className={styles.title}>{messages.industryGenerators.title}</h2>
           </div>
 
-          <p className={styles.intro}>
-            Ontdek unieke naamideeën die perfect aansluiten bij de identiteit, waarden en doelgroep
-            van jouw branche – van frisse startups tot gevestigde merken.
-          </p>
+          <p className={styles.intro}>{messages.industryGenerators.intro}</p>
         </header>
 
         <div className={styles.grid}>
-          {INDUSTRY_CARDS.map((industry) => (
+          {cards.map((industry) => (
             <article key={industry.id} className={styles.card}>
               <div className={styles.cardHeader}>
                 <div className={styles.iconWrapper}>{industry.icon}</div>
@@ -109,7 +87,7 @@ export default function IndustryGenerators() {
 
               <div className={styles.cardFooter}>
                 <Link href="#" className={styles.cardButton}>
-                  <span>Genereer namen</span>
+                  <span>{messages.industryGenerators.cardCta}</span>
                   <ArrowRightIcon aria-hidden="true" className={styles.cardButtonIcon} />
                 </Link>
               </div>

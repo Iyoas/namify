@@ -3,6 +3,7 @@
 import { Share2, Sparkles, Lightbulb, Lock } from "lucide-react";
 import styles from "./HowItWorks.module.css";
 import { JSX } from "react";
+import type { DomainGeneratorIndexMessages } from "@/i18n/domain-generator-index";
 
 type Step = {
   id: number;
@@ -11,79 +12,58 @@ type Step = {
   icon: JSX.Element;
 };
 
-const STEPS: Step[] = [
-  {
-    id: 1,
-    title: "Deel je idee",
-    description:
-      "Kies hoe je jouw idee wilt delen: met een korte beschrijving, een businessplan of een link. De AI haalt zelf de juiste info eruit.",
-    icon: (
-      <Share2
-        aria-hidden="true"
-        stroke="none"
-        fill="currentColor"
-        className="filledIcon"
-      />
-    ),
-  },
-  {
-    id: 2,
-    title: "Kies de toon van je naam",
-    description:
-      "Kies de stijl die bij je past: kort en krachtig, creatief en uniek, zakelijk of speels. Jij bepaalt de richting, de AI denkt mee.",
-    icon: (
-      <Sparkles
-        aria-hidden="true"
-        stroke="none"
-        fill="currentColor"
-        className="filledIcon"
-      />
-    ),
-  },
-  {
-    id: 3,
-    title: "Ontvang slimme AI-voorstellen",
-    description:
-      "Op basis van je input krijg je direct creatieve naamideeën met beschikbare domeinen (.nl, .com). Je kunt filteren, sorteren en zoveel nieuwe ideeën genereren als je wilt.",
-    icon: (
-      <Lightbulb
-        aria-hidden="true"
-        stroke="none"
-        fill="currentColor"
-        className="filledIcon"
-      />
-    ),
-  },
-  {
-    id: 4,
-    title: "Registreer met één klik",
-    description:
-      "Heb je de juiste naam gevonden? Klik op ‘registreer’. Alles wordt geregeld en binnen enkele minuten staat de domeinnaam op jouw naam. Daarna kun je direct verder bouwen.",
-    icon: (
-      <Lock
-        aria-hidden="true"
-        stroke="none"
-        fill="currentColor"
-        className="filledIcon"
-      />
-    ),
-  },
+const STEP_ICONS: JSX.Element[] = [
+  <Share2
+    aria-hidden="true"
+    stroke="none"
+    fill="currentColor"
+    className="filledIcon"
+    key="share"
+  />,
+  <Sparkles
+    aria-hidden="true"
+    stroke="none"
+    fill="currentColor"
+    className="filledIcon"
+    key="sparkles"
+  />,
+  <Lightbulb
+    aria-hidden="true"
+    stroke="none"
+    fill="currentColor"
+    className="filledIcon"
+    key="lightbulb"
+  />,
+  <Lock
+    aria-hidden="true"
+    stroke="none"
+    fill="currentColor"
+    className="filledIcon"
+    key="lock"
+  />,
 ];
 
-export default function HowItWorks() {
+type HowItWorksProps = {
+  messages: DomainGeneratorIndexMessages;
+};
+
+export default function HowItWorks({ messages }: HowItWorksProps) {
+  const steps: Step[] =
+    messages.howItWorks.steps.map((step, index) => ({
+      ...step,
+      icon: STEP_ICONS[index] ?? STEP_ICONS[STEP_ICONS.length - 1],
+    })) ?? [];
+
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
         <header className={styles.header}>
-          <h2 className={styles.title}>Hoe werkt het stap voor stap?</h2>
-          <p className={styles.subtitle}>
-            Ontdek hoe je in 3 eenvoudige stappen met AI de perfecte domeinnaam
-            vindt die bij jouw idee past.
-          </p>
+          <h2 className={styles.title}>{messages.howItWorks.title}</h2>
+          <p className={styles.subtitle}>{messages.howItWorks.subtitle}</p>
         </header>
 
         <div className={styles.grid}>
-          {STEPS.map((step) => (
+          {steps.map((step) => (
             <article key={step.id} className={styles.card}>
               <div className={styles.iconWrapper}>{step.icon}</div>
 

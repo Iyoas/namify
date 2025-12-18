@@ -3,27 +3,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { Sparkles, Zap, Cpu } from "lucide-react";
 import styles from "./Hero.module.css";
+import type { Lang } from "@/config/i18n";
+import type { DomainGeneratorIndexMessages } from "@/i18n/domain-generator-index";
 
 type HeroProps = {
-  lang: string;
+  lang: Lang;
+  messages: DomainGeneratorIndexMessages;
 };
 
-export default function Hero({ lang }: HeroProps) {
+export default function Hero({ lang, messages }: HeroProps) {
+  const hero = messages.hero;
+
   return (
     <section className={styles.hero}>
       {/* Linkerkant: copy + CTA's */}
       <div className={styles.heroInner}>
         <div className={styles.left}>
           <h1 className={styles.title}>
-            Genereer Jouw Bedrijfs-
+            {hero.titleLine1}
             <br />
-            En Domeinnaam <span className={styles.titleAccent}>Met AI</span>
+            {hero.titleLine2}{" "}
+            <span className={styles.titleAccent}>{hero.titleAccent}</span>
           </h1>
 
-          <p className={styles.subtitle}>
-            Jij hebt een idee. Wij zorgen voor de naam en het domein. Lanceer je
-            website vandaag nog!
-          </p>
+          <p className={styles.subtitle}>{hero.subtitle}</p>
 
           <div className={styles.ctaRow}>
             <Link
@@ -33,16 +36,18 @@ export default function Hero({ lang }: HeroProps) {
               <span className={styles.primaryIconWrapper}>
                 <Sparkles className={styles.primaryIcon} />
               </span>
-              <span>Genereer namen</span>
+              <span>{hero.primaryCta}</span>
             </Link>
 
             <a href="#hoe-werkt-het" className={styles.secondaryButton}>
-              <span className={styles.secondaryButtonInner}>Hoe werkt het?</span>
+              <span className={styles.secondaryButtonInner}>
+                {hero.secondaryCta}
+              </span>
             </a>
           </div>
 
           <div className={styles.partners}>
-            <p className={styles.partnersLabel}>Onze partners</p>
+            <p className={styles.partnersLabel}>{hero.partnersLabel}</p>
             <div className={styles.partnerLogos}>
               <Image
                 src="/images/namecheap-logo.png"
@@ -78,13 +83,13 @@ export default function Hero({ lang }: HeroProps) {
           </div>
 
           {/* Badges verplaatst voor mobiel display */}
-        <div className={styles.badges}>
+          <div className={styles.badges}>
           <div className={`${styles.badge} ${styles.badgeTop}`}>
             <div className={styles.badgeInner}>
               <span className={styles.badgeIconWrapper}>
                 <Zap className={styles.badgeIcon} />
               </span>
-              <span>Nieuw in 2025</span>
+              <span>{hero.badgeTop}</span>
             </div>
           </div>
 
@@ -93,7 +98,7 @@ export default function Hero({ lang }: HeroProps) {
               <span className={styles.badgeIconWrapper}>
                 <Cpu className={styles.badgeIcon} />
               </span>
-              <span>Powered by GPT-5 Turbo</span>
+              <span>{hero.badgeBottom}</span>
             </div>
           </div>
           </div>
@@ -106,7 +111,7 @@ export default function Hero({ lang }: HeroProps) {
           <div className={styles.imageCard}>
             <Image
               src="/images/hero.png"
-              alt="Ondernemer die werkt aan zijn merknaam"
+              alt={hero.imageAlt}
               width={720}
               height={880}
               className={styles.heroImage}

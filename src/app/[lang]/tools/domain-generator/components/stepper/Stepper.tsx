@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { DomainAvailabilityStatus } from "@/lib/domainr";
+import type { Lang } from "@/config/i18n";
+import type { GeneratorGeneralResultsMessages } from "@/i18n/domain-generator-index/generator-general";
 import DomainSelect from "./DomainSelect";
 
 const FALLBACK_TLDS = [".com", ".nl", ".io", ".ai", ".co", ".shop"];
@@ -15,11 +17,16 @@ type GenerateDomainResponse = {
 };
 
 type StepperProps = {
-  lang: string;
+  lang: Lang;
   initialPrompt?: string;
+  messages: GeneratorGeneralResultsMessages;
 };
 
-export default function Stepper({ lang, initialPrompt }: StepperProps) {
+export default function Stepper({
+  lang,
+  initialPrompt,
+  messages,
+}: StepperProps) {
   const searchParams = useSearchParams();
   const baseFromQuery = searchParams.get("base");
   const baseNameFromUrl = baseFromQuery ? baseFromQuery.trim() : undefined;
@@ -136,6 +143,7 @@ export default function Stepper({ lang, initialPrompt }: StepperProps) {
           }
           availability={data?.availability ?? {}}
           tlds={data?.tlds?.length ? data.tlds : FALLBACK_TLDS}
+          messages={messages}
         />
       )}
     </section>

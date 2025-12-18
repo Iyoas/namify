@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Skeleton } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import { Heart, Plus, Star, ShoppingCart, Check } from "lucide-react";
@@ -9,17 +9,20 @@ import { FaRegCircle, FaCircle } from "react-icons/fa";
 import styles from "./DomainSelect.module.css";
 
 import type { DomainAvailabilityStatus } from "@/lib/domainr";
+import type { GeneratorGeneralResultsMessages } from "@/i18n/domain-generator-index/generator-general";
 
 type DomainSelectProps = {
   names: string[];
   availability: Record<string, Record<string, DomainAvailabilityStatus>>;
   tlds: string[];
   loading?: boolean;
+  messages: GeneratorGeneralResultsMessages;
 };
 
+type CategoryId = keyof GeneratorGeneralResultsMessages["domainSelect"]["categories"];
+
 type Category = {
-  id: string;
-  label: string;
+  id: CategoryId;
   isActive?: boolean;
 };
 
@@ -38,21 +41,21 @@ type DomainSuggestion = {
   extensions: Extension[];
 };
 
-const CATEGORIES: Category[] = [
-  { id: "all", label: "All", isActive: true },
-  { id: "popular", label: "Popular" },
-  { id: "business", label: "Business", isActive: true }, // actieve pill in design
-  { id: "education", label: "Education" },
-  { id: "international", label: "International" },
-  { id: "technology", label: "Technology" },
-  { id: "social", label: "Social" },
-  { id: "professional", label: "Professional" },
-  { id: "entertainment", label: "Entertainment" },
+const CATEGORY_CONFIG: Category[] = [
+  { id: "all", isActive: true },
+  { id: "popular" },
+  { id: "business", isActive: true }, // actieve pill in design
+  { id: "education" },
+  { id: "international" },
+  { id: "technology" },
+  { id: "social" },
+  { id: "professional" },
+  { id: "entertainment" },
 ];
 
 // Each category exposes exactly 6 TLDs
-const CATEGORY_TLDS: Record<string, string[]> = {
-  all: [ ".nl", ".com",".io", ".ai", ".co", ".shop"],
+const CATEGORY_TLDS: Record<CategoryId, string[]> = {
+  all: [".nl", ".com", ".io", ".ai", ".co", ".shop"],
 
   popular: [".com", ".io", ".ai", ".co", ".net", ".nl"],
 
@@ -131,11 +134,20 @@ export default function DomainSelect({
   availability,
   tlds,
   loading = false,
+  messages,
 }: DomainSelectProps) {
   const searchParams = useSearchParams();
 
   const baseNameFromUrl = searchParams.get("base");
 
+  const categories = useMemo(
+    () =>
+      CATEGORY_CONFIG.map((category) => ({
+        ...category,
+        label: messages.domainSelect.categories[category.id],
+      })),
+    [messages]
+  );
 
   const [availabilityMap, setAvailabilityMap] =
     useState<typeof availability>(availability);
@@ -144,7 +156,7 @@ export default function DomainSelect({
     setAvailabilityMap(availability);
   }, [availability]);
 
-  const [activeCategoryId, setActiveCategoryId] = useState<string>("all");
+  const [activeCategoryId, setActiveCategoryId] = useState<CategoryId>("all");
 
   const [likedNames, setLikedNames] = useState<string[]>([]);
 
@@ -177,7 +189,7 @@ export default function DomainSelect({
     });
   }
 
-  function handleCategoryClick(categoryId: string) {
+  function handleCategoryClick(categoryId: CategoryId) {
     setActiveCategoryId(categoryId);
   }
 
@@ -268,9 +280,7 @@ export default function DomainSelect({
               const mappedStatus: ExtensionStatus =
                 statusFromApi === "available"
                   ? "available"
-                  : statusFromApi === "unavailable"
-                  ? "unavailable"
-                  : "unknown";
+                  : "unavailable";
 
               return {
                 id: `${cleanKey}-${tldKeyWithDot}`,
@@ -300,7 +310,9 @@ export default function DomainSelect({
           <div className={styles.stepCircleDone}>
             <Check className={styles.stepCheckIcon} />
           </div>
-          <span className={styles.stepLabel}>Naam ideeën</span>
+          <span className={styles.stepLabel}>
+            {messages.domainSelect.stepper.nameIdeas}
+          </span>
         </div>
 
         <div className={styles.stepLine} />
@@ -310,7 +322,9 @@ export default function DomainSelect({
           <div className={styles.stepCircleCurrent}>
             <span className={styles.stepDot} />
           </div>
-          <span className={styles.stepLabel}>Domein selectie</span>
+          <span className={styles.stepLabel}>
+            {messages.domainSelect.stepper.domainSelection}
+          </span>
         </div>
 
         <div className={styles.stepLine} />
@@ -318,7 +332,9 @@ export default function DomainSelect({
         {/* Stap 3 – aankomend */}
         <div className={styles.step}>
           <div className={styles.stepCircleUpcoming} />
-          <span className={styles.stepLabel}>Registratie</span>
+          <span className={styles.stepLabel}>
+            {messages.domainSelect.stepper.registration}
+          </span>
         </div>
       </div>
       <div className={styles.inner}>
@@ -326,10 +342,10 @@ export default function DomainSelect({
         <header className={styles.header}>
           <h1 className={styles.title}>
             {baseNameFromUrl ? (
-              `Variaties op ${baseNameFromUrl}`
+              `${messages.domainSelect.header.variationsPrefix} ${baseNameFromUrl}`
             ) : (
               <>
-                We hebben{" "}
+                {messages.domainSelect.header.foundPrefix}{" "}
                 {loading ? (
                   <Skeleton
                     variant="text"
@@ -339,12 +355,12 @@ export default function DomainSelect({
                 ) : (
                   String(visibleCount ?? 0)
                 )}{" "}
-                naamideeën voor je gevonden
+                {messages.domainSelect.header.foundSuffix}
               </>
             )}
           </h1>
           <p className={styles.subtitle}>
-            Op basis van je input hebben we creatieve suggesties gemaakt 🎉
+            {messages.domainSelect.subtitle}
           </p>
         </header>
 
@@ -352,12 +368,18 @@ export default function DomainSelect({
         <div className={styles.filtersSection}>
           {/* Bovenste rij: label + meta-pills */}
           <div className={styles.filtersRow}>
-            <span className={styles.filtersLabel}>More options</span>
+            <span className={styles.filtersLabel}>
+              {messages.domainSelect.filters.moreOptions}
+            </span>
 
             <div className={styles.filtersRight}>
-              <button type="button" className={styles.metaButton}>
+              <button
+                type="button"
+                className={styles.metaButton}
+                aria-label={messages.domainSelect.filters.favouritesAria}
+              >
                 <Heart className={styles.metaIcon} />
-                <span>your Favourites</span>
+                <span>{messages.domainSelect.filters.favourites}</span>
                 <span className={styles.metaBadge}>{likedNames.length}</span>
               </button>
             </div>
@@ -366,7 +388,7 @@ export default function DomainSelect({
           {/* Tweede rij: categorie-pills */}
           <div className={styles.categoriesRow}>
             <div className={styles.categories}>
-              {CATEGORIES.map((category) => (
+              {categories.map((category) => (
                 <button
                   key={category.id}
                   type="button"
@@ -378,10 +400,10 @@ export default function DomainSelect({
                     .filter(Boolean)
                     .join(" ")}
                 >
-                  {category.label === "Popular" && (
+                  {category.id === "popular" && (
                     <Star className={styles.categoryIcon} />
                   )}
-                  {category.label === "Business" && (
+                  {category.id === "business" && (
                     <span className={styles.categoryDot} />
                   )}
                   {category.label}
@@ -408,7 +430,7 @@ export default function DomainSelect({
                 <button
                   type="button"
                   className={styles.favouriteIconButton}
-                  aria-label="Zet in favourieten"
+                  aria-label={messages.domainSelect.aria.addToFavourites}
                   onClick={() => toggleLike(suggestion.name)}
                 >
                   {likedNames.includes(suggestion.name) ? (
@@ -435,7 +457,7 @@ export default function DomainSelect({
                       )}
                     </span>
                     <span className={styles.estimatedLabel}>
-                      Geschatte prijs{" "}
+                      {messages.domainSelect.priceLabel}{" "}
                       <span className={styles.estimatedPrice}>
                         {suggestion.estimatedPrice}
                       </span>
@@ -460,13 +482,11 @@ export default function DomainSelect({
                   suggestion.extensions.map((ext) => (
                     <div
                       key={ext.id}
-                      className={[
-                        styles.extensionTag,
-                        ext.status === "available"
-                          ? styles.extensionTagAvailable
-                          : ext.status === "unavailable"
-                          ? styles.extensionTagUnavailable
-                          : styles.extensionTagUnknown,
+                  className={[
+                    styles.extensionTag,
+                    ext.status === "available"
+                      ? styles.extensionTagAvailable
+                      : styles.extensionTagUnavailable,
                       ]
                         .filter(Boolean)
                         .join(" ")}
@@ -481,10 +501,8 @@ export default function DomainSelect({
                       <span className={styles.extensionStatusIcon}>
                         {ext.status === "available" ? (
                           <Check className={styles.extensionCheckIcon} />
-                        ) : ext.status === "unavailable" ? (
-                          "×"
                         ) : (
-                          "·"
+                          "×"
                         )}
                       </span>
                       <span className={styles.extensionTld}>{ext.tld}</span>
@@ -506,12 +524,14 @@ export default function DomainSelect({
           >
             <Plus className={styles.secondaryCtaIcon} />
             <span>
-              {isLoadingMore ? "Even wachten..." : "Genereer 8 nieuwe namen"}
+              {isLoadingMore
+                ? messages.domainSelect.footer.loadingMore
+                : messages.domainSelect.footer.generateMore}
             </span>
           </button>
 
           <button type="button" className={styles.primaryCta}>
-            Next
+            {messages.domainSelect.footer.next}
           </button>
         </footer>
       </div>

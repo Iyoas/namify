@@ -1,5 +1,6 @@
 // src/app/[lang]/tools/domain-generator/results/page.tsx
 import type { Lang } from "@/config/i18n";
+import { getGeneratorGeneralResultsMessages } from "@/i18n/domain-generator-index/generator-general";
 import Stepper from "../components/stepper/Stepper";
 
 type ResultsPageProps = {
@@ -15,6 +16,7 @@ export default async function ResultsPage({
   // Beide Promises unwrappen (Next 16)
   const resolvedParams = await params;
   const sp = await searchParams;
+  const messages = getGeneratorGeneralResultsMessages(resolvedParams.lang);
 
   const rawQ = sp?.q;
   const initialPrompt =
@@ -26,7 +28,11 @@ export default async function ResultsPage({
 
   return (
     <main>
-      <Stepper lang={resolvedParams.lang} initialPrompt={initialPrompt} />
+      <Stepper
+        lang={resolvedParams.lang}
+        initialPrompt={initialPrompt}
+        messages={messages}
+      />
     </main>
   );
 }

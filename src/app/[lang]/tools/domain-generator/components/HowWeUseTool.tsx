@@ -4,29 +4,32 @@
 
 import Image from "next/image";
 import styles from "./HowWeUseTool.module.css";
+import type { DomainGeneratorIndexMessages } from "@/i18n/domain-generator-index";
 
-export default function HowWeUseTool() {
+type HowWeUseToolProps = {
+  messages: DomainGeneratorIndexMessages;
+};
+
+export default function HowWeUseTool({ messages }: HowWeUseToolProps) {
+  const howWeUseTool = messages.howWeUseTool;
+
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.textBlock}>
           <h2 className={styles.title}>
-            Over ons gereedschap <br /> en hoe we het gebruiken
+            {howWeUseTool.titleLine1} <br /> {howWeUseTool.titleLine2}
           </h2>
 
           <p className={styles.description}>
-            Onze AI‑technologie is ontworpen om complexe informatie op een eenvoudige en begrijpelijke manier te verwerken. 
-            Door geavanceerde taalmodellen te combineren met slimme algoritmes, kunnen we patronen herkennen, ideeën uitbreiden 
-            en waardevolle inzichten genereren. Dit stelt ons in staat om snel nauwkeurige suggesties te leveren die passen bij 
-            jouw stijl, industrie en doelen. Met zorgvuldige training en voortdurend leren wordt ons systeem elke dag beter in het 
-            begrijpen van wat gebruikers écht nodig hebben. Zo helpen we je om efficiënter te werken en betere resultaten te behalen.
+            {howWeUseTool.description}
           </p>
         </div>
 
         <div className={styles.imageWrapper}>
           <Image
             src="/images/ai.png"
-            alt="AI gereedschap visual"
+            alt={howWeUseTool.imageAlt}
             width={800}
             height={800}
             className={styles.image}

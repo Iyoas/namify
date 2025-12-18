@@ -4,6 +4,8 @@ import React from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { IoMdHeart } from "react-icons/io";
 import styles from "./Names.module.css";
+import type { Lang } from "@/config/i18n";
+import type { LikedNamesMessages } from "@/i18n/domain-generator-index";
 
 type FavoriteName = {
   id: number;
@@ -14,10 +16,14 @@ type FavoriteName = {
 type FavoriteNamesSectionProps = {
   // Optioneel: als je de taal al weet in de parent, kun je die meegeven.
   // Als je niets meegeeft, halen we de taal uit de URL (/nl/..., /en/..., etc.).
-  lang?: string;
+  lang?: Lang;
+  messages: LikedNamesMessages;
 };
 
-export default function FavoriteNamesSection({ lang }: FavoriteNamesSectionProps) {
+export default function FavoriteNamesSection({
+  lang,
+  messages,
+}: FavoriteNamesSectionProps) {
   const router = useRouter();
   const pathname = usePathname();
   const pathLang = pathname.split("/")[1] || "nl";
@@ -64,13 +70,8 @@ export default function FavoriteNamesSection({ lang }: FavoriteNamesSectionProps
     <section className={styles.section}>
       {/* Heading */}
       <header className={styles.header}>
-        <h2 className={styles.title}>
-          je favoriete namen
-        </h2>
-        <p className={styles.subtitle}>
-          Waarom mijn fav: Poëtisch en mysterieus; roept nachtelijke
-          transformatie op. Perfect voor rituelen en een dreamy merkverhaal.
-        </p>
+        <h2 className={styles.title}>{messages.title}</h2>
+        <p className={styles.subtitle}>{messages.subtitle}</p>
       </header>
 
       {/* Grid met favoriete namen */}
@@ -89,7 +90,7 @@ export default function FavoriteNamesSection({ lang }: FavoriteNamesSectionProps
               <IoMdHeart
                 className={styles.favButton}
                 role="button"
-                aria-label="Verwijder uit favorieten"
+                aria-label={messages.actions.remove}
                 onClick={() => removeFavorite(item.label)}
               />
             </div>
@@ -101,7 +102,9 @@ export default function FavoriteNamesSection({ lang }: FavoriteNamesSectionProps
                 className={styles.cardCtaButton}
                 onClick={() => goToVariations(item.label)}
               >
-                <span className={styles.cardCtaLabel}>Variaties</span>
+                <span className={styles.cardCtaLabel}>
+                  {messages.actions.viewVariations}
+                </span>
                 <span className={styles.cardCtaArrow} aria-hidden>→</span>
               </button>
             </div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import styles from "./Usp.module.css";
-import type { GeneratorGeneralMessages } from "@/i18n/generator-general";
+import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 
 const uspItems = [
   {

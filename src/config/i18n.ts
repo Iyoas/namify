@@ -25,12 +25,17 @@ export const LANG_LABELS: Record<Lang, string> = {
 // ---- Vertalingen voor de domain-generator page ----
 
 // Let op: zorg dat tsconfig.json "resolveJsonModule": true heeft
-import nlDomainGenerator from "@/i18n/generator-general/nl.json";
-import enDomainGenerator from "@/i18n/generator-general/en.json";
+import nlDomainGenerator from "@/i18n/domain-generator-index/generator-general/nl.json";
+import enDomainGenerator from "@/i18n/domain-generator-index/generator-general/en.json";
+import nlDomainGeneratorResults from "@/i18n/domain-generator-index/generator-general/results/nl.json";
+import enDomainGeneratorResults from "@/i18n/domain-generator-index/generator-general/results/en.json";
 
-const domainGeneratorMessages: Record<Lang, typeof enDomainGenerator> = {
-  nl: nlDomainGenerator,
-  en: enDomainGenerator,
+type DomainGeneratorMessageBundle = typeof enDomainGenerator &
+  typeof enDomainGeneratorResults;
+
+const domainGeneratorMessages: Record<Lang, DomainGeneratorMessageBundle> = {
+  nl: { ...nlDomainGenerator, ...nlDomainGeneratorResults },
+  en: { ...enDomainGenerator, ...enDomainGeneratorResults },
 };
 
 export function getDomainGeneratorMessages(locale: Lang) {

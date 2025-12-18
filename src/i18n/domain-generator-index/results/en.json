@@ -1,0 +1,42 @@
+{
+  "generatorGeneralResults": {
+    "domainSelect": {
+      "stepper": {
+        "nameIdeas": "Name ideas",
+        "domainSelection": "Domain selection",
+        "registration": "Registration"
+      },
+      "header": {
+        "variationsPrefix": "Variations on",
+        "foundPrefix": "We found",
+        "foundSuffix": "name ideas for you"
+      },
+      "subtitle": "Based on your input we crafted creative suggestions 🎉",
+      "filters": {
+        "moreOptions": "More options",
+        "favourites": "Your favorites",
+        "favouritesAria": "View your favorites"
+      },
+      "aria": {
+        "addToFavourites": "Add to favorites"
+      },
+      "priceLabel": "Estimated price",
+      "footer": {
+        "loadingMore": "Please wait...",
+        "generateMore": "Generate 8 new names",
+        "next": "Next"
+      },
+      "categories": {
+        "all": "All",
+        "popular": "Popular",
+        "business": "Business",
+        "education": "Education",
+        "international": "International",
+        "technology": "Technology",
+        "social": "Social",
+        "professional": "Professional",
+        "entertainment": "Entertainment"
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 
 import { Search } from "lucide-react";
 import styles from "./LongFormContent.module.css";
-import type { GeneratorGeneralMessages } from "@/i18n/generator-general";
+import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 
 export default function LongFormContent({
   messages,

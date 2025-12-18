@@ -32,16 +32,31 @@ export default function FavoriteNamesSection({
   const [favorites, setFavorites] = React.useState<FavoriteName[]>([]);
 
   React.useEffect(() => {
-    const stored = localStorage.getItem("likedNames");
-    if (stored) {
-      // stored is an array of strings, convert them to FavoriteName objects
-      const arr = JSON.parse(stored) as string[];
-      const mapped = arr.map((name, index) => ({
-        id: index + 1,
-        label: name,
-      }));
-      setFavorites(mapped);
+    function syncFavorites() {
+      try {
+        const stored = localStorage.getItem("likedNames");
+        if (!stored) {
+          setFavorites([]);
+          return;
+        }
+        const arr = JSON.parse(stored) as string[];
+        const mapped = arr.map((name, index) => ({
+          id: index + 1,
+          label: name,
+        }));
+        setFavorites(mapped);
+      } catch (err) {
+        console.error("Error reading likedNames from localStorage:", err);
+      }
     }
+
+    syncFavorites();
+    window.addEventListener("storage", syncFavorites);
+    window.addEventListener("likedNamesUpdated", syncFavorites as EventListener);
+    return () => {
+      window.removeEventListener("storage", syncFavorites);
+      window.removeEventListener("likedNamesUpdated", syncFavorites as EventListener);
+    };
   }, []);
 
   function removeFavorite(label: string) {
@@ -50,6 +65,7 @@ export default function FavoriteNamesSection({
 
       try {
         localStorage.setItem("likedNames", JSON.stringify(next.map((f) => f.label)));
+        window.dispatchEvent(new Event("likedNamesUpdated"));
       } catch (err) {
         console.error("Error updating likedNames in localStorage:", err);
       }

@@ -181,7 +181,9 @@ export default function DomainSelect({
 
       try {
         localStorage.setItem("likedNames", JSON.stringify(next));
-        window.dispatchEvent(new Event("likedNamesUpdated"));
+        setTimeout(() => {
+          window.dispatchEvent(new Event("likedNamesUpdated"));
+        }, 0);
       } catch (err) {
         console.error("Error saving likedNames to localStorage:", err);
       }

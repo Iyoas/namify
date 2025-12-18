@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { IoHeartOutline } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import styles from "./Header.module.css";
+import { getHeaderMessages } from "@/i18n/components/header";
+import type { Lang } from "@/config/i18n";
 
 type LangParams = { lang?: string };
 
@@ -30,6 +32,7 @@ export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [likedCount, setLikedCount] = useState(0);
+  const messages = getHeaderMessages((lang || "en") as Lang);
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -69,11 +72,18 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { href: homeHref, label: "Home" },
-    { href: `${homeHref}/tools/domain-generator/generator`, label: "Business name generator" },
-    { href: `${homeHref}#how-it-works`, label: "Hoe werkt het?" },
-    { href: `${homeHref}#about`, label: "Over ons" },
-    { href: `${homeHref}#contact`, label: "Contact" },
+    { href: homeHref, label: messages.navMobile.home },
+    {
+      href: `${homeHref}/tools/domain-generator/generator`,
+      label: messages.navMobile.businessNameGenerator,
+    },
+    {
+      href: `${homeHref}/tools/domain-generator/liked-names`,
+      label: messages.navMobile.favorites,
+    },
+    { href: `${homeHref}#how-it-works`, label: messages.navMobile.howItWorks },
+    { href: `${homeHref}#about`, label: messages.navMobile.about },
+    { href: `${homeHref}#contact`, label: messages.navMobile.contact },
   ];
 
   return (
@@ -89,7 +99,7 @@ export default function Header() {
         <button
           type="button"
           className={styles.mobileMenuButton}
-          aria-label="Open menu"
+          aria-label={messages.actions.openMenuAria}
           onClick={() => setIsMenuOpen(true)}
         >
           <RxHamburgerMenu className={styles.mobileMenuIcon} />
@@ -111,19 +121,19 @@ export default function Header() {
             href={`${homeHref}/tools/domain-generator/generator`}
             className={styles.navLink}
           >
-            Generator
+            {messages.navDesktop.generator}
           </Link>
 
           <Link href={`${homeHref}#how-it-works`} className={styles.navLink}>
-            Hoe werkt het?
+            {messages.navDesktop.howItWorks}
           </Link>
 
           <Link href={`${homeHref}#about`} className={styles.navLink}>
-            Over ons
+            {messages.navDesktop.about}
           </Link>
 
           <Link href={`${homeHref}#faq`} className={styles.navLink}>
-            Veelgestelde vragen
+            {messages.navDesktop.faq}
           </Link>
         </nav>
 
@@ -132,7 +142,7 @@ export default function Header() {
             <Link
               href={`${homeHref}/tools/domain-generator/liked-names`}
               className={styles.iconButton}
-              aria-label="Favorites"
+              aria-label={messages.actions.favoritesAria}
             >
               <span className={styles.badge} aria-hidden="true">
                 {likedCount}
@@ -159,7 +169,7 @@ export default function Header() {
           <button
             type="button"
             className={styles.mobileMenuClose}
-            aria-label="Close menu"
+            aria-label={messages.actions.closeMenuAria}
             onClick={() => setIsMenuOpen(false)}
           >
             ×

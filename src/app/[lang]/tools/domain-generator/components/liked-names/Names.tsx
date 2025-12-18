@@ -65,7 +65,9 @@ export default function FavoriteNamesSection({
 
       try {
         localStorage.setItem("likedNames", JSON.stringify(next.map((f) => f.label)));
-        window.dispatchEvent(new Event("likedNamesUpdated"));
+        setTimeout(() => {
+          window.dispatchEvent(new Event("likedNamesUpdated"));
+        }, 0);
       } catch (err) {
         console.error("Error updating likedNames in localStorage:", err);
       }

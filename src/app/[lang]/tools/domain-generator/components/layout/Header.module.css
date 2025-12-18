@@ -113,7 +113,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 18px rgba(181, 90, 255, 0.35);
+  box-shadow: none;
 }
 
 .icon {
@@ -127,4 +127,109 @@
   height: 22px;
   display: block;
   color: #000000;
+}
+
+/* Visibility helpers */
+.desktopOnly {
+  display: flex;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+/* Mobile-only elements (defined in TSX) */
+.mobileMenuButton {
+  display: none;
+}
+
+.mobileMenuIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.mobileSignupButton {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding: 14px 20px;
+    gap: 12px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    justify-content: initial;
+  }
+
+  /* Hide desktop-only blocks on mobile */
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: flex;
+  }
+
+  /* Hamburger */
+  .mobileMenuButton {
+    display: inline-flex;
+    border-radius: 12px;
+    border: none;
+    background: #F3F3F3;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    cursor: pointer;
+    box-shadow: none;
+  }
+
+  .mobileMenuButton:active {
+    transform: translateY(1px);
+  }
+
+  .mobileMenuButton:focus-visible {
+    outline: 2px solid rgba(139, 92, 246, 0.9);
+    outline-offset: 3px;
+  }
+
+  .mobileMenuIcon {
+    color: #0f172a;
+  }
+
+  /* Logo */
+  .logoLink {
+    justify-self: start;
+  }
+
+  .logo {
+    width: 110px;
+    height: 24px;
+  }
+
+  /* Ensure nav never takes space on mobile */
+  .nav {
+    display: none;
+  }
+
+  /* Actions right */
+  .actions {
+    justify-self: end;
+    gap: 0;
+  }
+
+  .mobileSignupButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border-radius: 14px;
+    border: 0.5px solid #3B16C1;
+    background: linear-gradient(to top right, #0013e0, #b55aff);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18), inset 0 4px 13px rgba(255, 255, 255, 0.15);
+  }
 }

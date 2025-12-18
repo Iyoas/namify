@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { IoHeartOutline } from "react-icons/io5";
+import { RxHamburgerMenu } from "react-icons/rx";
 import styles from "./Header.module.css";
 
 type LangParams = { lang?: string };
@@ -29,6 +30,14 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
+        <button
+          type="button"
+          className={styles.mobileMenuButton}
+          aria-label="Open menu"
+        >
+          <RxHamburgerMenu className={styles.mobileMenuIcon} />
+        </button>
+
         <Link href={homeHref} className={styles.logoLink} aria-label="Go to home">
           <Image
             src="/images/logo2.png"
@@ -40,7 +49,7 @@ export default function Header() {
           />
         </Link>
 
-        <nav className={styles.nav} aria-label="Primary navigation">
+        <nav className={`${styles.nav} ${styles.desktopOnly}`} aria-label="Primary navigation">
           <Link
             href={`${homeHref}/tools/domain-generator/generator`}
             className={styles.navLink}
@@ -62,21 +71,20 @@ export default function Header() {
         </nav>
 
         <div className={styles.actions} aria-label="Header actions">
-          <Link
-            href={`${homeHref}/tools/domain-generator/liked-names`}
-            className={styles.iconButton}
-            aria-label="Favorites"
-          >
-            <span className={styles.badge} aria-hidden="true">
-              5
-            </span>
-            <span className={styles.icon}>
-              <IoHeartOutline className={styles.iconSvg} />
-            </span>
-          </Link>
-
-          {/* Sign up button intentionally omitted as requested */}
-          {/* Cart intentionally omitted as requested */}
+          <div>
+            <Link
+              href={`${homeHref}/tools/domain-generator/liked-names`}
+              className={styles.iconButton}
+              aria-label="Favorites"
+            >
+              <span className={styles.badge} aria-hidden="true">
+                5
+              </span>
+              <span className={styles.icon}>
+                <IoHeartOutline className={styles.iconSvg} />
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </header>

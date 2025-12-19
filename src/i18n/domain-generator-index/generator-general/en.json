@@ -6,10 +6,14 @@
       "titleSuffix": "name and domain",
       "titleEnd": "with AI",
       "subtitle": "You bring the idea. We suggest names and check domains so you can launch fast.",
+      "singleTitle": "Check a single domain instantly",
+      "singleSubtitle": "Enter a domain name and we’ll verify availability in seconds.",
       "placeholder": "Describe your project, business, or app idea...",
+      "singlePlaceholder": "Enter a domain (e.g. yourbrand.com)",
       "styleOptions": ["Unique", "Creative", "Professional", "Tech"],
       "ctaEnhance": "Enhance prompt",
-      "ctaGenerate": "Generate names"
+      "ctaGenerate": "Generate names",
+      "ctaSingle": "Check domain"
     },
     "whyChoose": {
       "title": "Why choose Namitor",

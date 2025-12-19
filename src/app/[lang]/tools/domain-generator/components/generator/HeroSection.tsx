@@ -139,7 +139,12 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
             </button>
             <button
               type="button"
-              className={styles.modeOption}
+              className={[
+                styles.modeOption,
+                mode === "single" ? styles.modeOptionActive : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
               onClick={() => setMode("single")}
               aria-pressed={mode === "single"}
             >
@@ -149,17 +154,25 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
 
           {/* Heading */}
           <h1 className={styles.title}>
-            {messages.hero.titlePrefix}{" "}
-            <span className={styles.highlight}>{messages.hero.titleHighlight}</span>{" "}
-            {messages.hero.titleSuffix}
-            <br className={styles.titleBreak} />
-            {" "}
-            {messages.hero.titleEnd}
+            {mode === "single" ? (
+              messages.hero.singleTitle
+            ) : (
+              <>
+                {messages.hero.titlePrefix}{" "}
+                <span className={styles.highlight}>
+                  {messages.hero.titleHighlight}
+                </span>{" "}
+                {messages.hero.titleSuffix}
+                <br className={styles.titleBreak} /> {messages.hero.titleEnd}
+              </>
+            )}
           </h1>
 
           {/* Subheading */}
           <p className={styles.subtitle}>
-            {messages.hero.subtitle}
+            {mode === "single"
+              ? messages.hero.singleSubtitle
+              : messages.hero.subtitle}
           </p>
         </div>
 
@@ -193,7 +206,11 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
               ) : (
                 <textarea
                   className={styles.textarea}
-                  placeholder={messages.hero.placeholder}
+                  placeholder={
+                    mode === "single"
+                      ? messages.hero.singlePlaceholder
+                      : messages.hero.placeholder
+                  }
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                 />
@@ -201,94 +218,96 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
             </div>
 
             <div className={styles.bottomRow}>
-              <div className={styles.optionsRow}>
-                <div className={styles.styleSelect} ref={styleSelectRef}>
+              {mode === "ai" && (
+                <div className={styles.optionsRow}>
+                  <div className={styles.styleSelect} ref={styleSelectRef}>
+                    <button
+                      type="button"
+                      className={styles.optionButton}
+                      onClick={() => setIsStyleOpen((open) => !open)}
+                      aria-haspopup="listbox"
+                      aria-expanded={isStyleOpen}
+                    >
+                      <Megaphone className={styles.optionIcon} />
+                      <span>{selectedStyle}</span>
+                      <ChevronDown className={styles.optionChevron} />
+                    </button>
+
+                    {isStyleOpen && (
+                      <ul className={styles.dropdown} role="listbox">
+                        {styleOptions.map((option) => (
+                          <li key={option}>
+                            <button
+                              type="button"
+                              className={
+                                option === selectedStyle
+                                  ? `${styles.dropdownItem} ${styles.dropdownItemActive}`
+                                  : styles.dropdownItem
+                              }
+                              onClick={() => {
+                                setSelectedStyle(option);
+                                setIsStyleOpen(false);
+                              }}
+                            >
+                              {option}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  <div className={styles.styleSelect} ref={extensionSelectRef}>
+                    <button
+                      type="button"
+                      className={styles.optionButton}
+                      onClick={() => setIsExtensionOpen((open) => !open)}
+                      aria-haspopup="listbox"
+                      aria-expanded={isExtensionOpen}
+                    >
+                      <span>{selectedExtension}</span>
+                      <ChevronDown className={styles.optionChevron} />
+                    </button>
+
+                    {isExtensionOpen && (
+                      <ul className={styles.dropdown} role="listbox">
+                        {EXTENSION_OPTIONS.map((ext) => (
+                          <li key={ext}>
+                            <button
+                              type="button"
+                              className={
+                                ext === selectedExtension
+                                  ? `${styles.dropdownItem} ${styles.dropdownItemActive}`
+                                  : styles.dropdownItem
+                              }
+                              onClick={() => {
+                                setSelectedExtension(ext);
+                                setIsExtensionOpen(false);
+                              }}
+                            >
+                              {ext}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
                   <button
                     type="button"
                     className={styles.optionButton}
-                    onClick={() => setIsStyleOpen((open) => !open)}
-                    aria-haspopup="listbox"
-                    aria-expanded={isStyleOpen}
+                    onClick={handleEnhancePrompt}
+                    disabled={!hasPrompt || isEnhancing}
+                    style={{
+                      opacity: hasPrompt ? 1 : 0.5,
+                      boxShadow: hasPrompt ? undefined : "none",
+                    }}
                   >
-                    <Megaphone className={styles.optionIcon} />
-                    <span>{selectedStyle}</span>
-                    <ChevronDown className={styles.optionChevron} />
+                    <Wand2 className={styles.optionIcon} />
+                    <span>{messages.hero.ctaEnhance}</span>
                   </button>
-
-                  {isStyleOpen && (
-                    <ul className={styles.dropdown} role="listbox">
-                      {styleOptions.map((option) => (
-                        <li key={option}>
-                          <button
-                            type="button"
-                            className={
-                              option === selectedStyle
-                                ? `${styles.dropdownItem} ${styles.dropdownItemActive}`
-                                : styles.dropdownItem
-                            }
-                            onClick={() => {
-                              setSelectedStyle(option);
-                              setIsStyleOpen(false);
-                            }}
-                          >
-                            {option}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
                 </div>
-
-                <div className={styles.styleSelect} ref={extensionSelectRef}>
-                  <button
-                    type="button"
-                    className={styles.optionButton}
-                    onClick={() => setIsExtensionOpen((open) => !open)}
-                    aria-haspopup="listbox"
-                    aria-expanded={isExtensionOpen}
-                  >
-                    <span>{selectedExtension}</span>
-                    <ChevronDown className={styles.optionChevron} />
-                  </button>
-
-                  {isExtensionOpen && (
-                    <ul className={styles.dropdown} role="listbox">
-                      {EXTENSION_OPTIONS.map((ext) => (
-                        <li key={ext}>
-                          <button
-                            type="button"
-                            className={
-                              ext === selectedExtension
-                                ? `${styles.dropdownItem} ${styles.dropdownItemActive}`
-                                : styles.dropdownItem
-                            }
-                            onClick={() => {
-                              setSelectedExtension(ext);
-                              setIsExtensionOpen(false);
-                            }}
-                          >
-                            {ext}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-
-                <button
-                  type="button"
-                  className={styles.optionButton}
-                  onClick={handleEnhancePrompt}
-                  disabled={!hasPrompt || isEnhancing}
-                  style={{
-                    opacity: hasPrompt ? 1 : 0.5,
-                    boxShadow: hasPrompt ? undefined : "none",
-                  }}
-                >
-                  <Wand2 className={styles.optionIcon} />
-                  <span>{messages.hero.ctaEnhance}</span>
-                </button>
-              </div>
+              )}
 
               <div className={styles.generateRow}>
                 <button
@@ -298,7 +317,11 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                   disabled={!prompt.trim()}
                 >
                   <Sparkles className={styles.generateIcon} />
-                  <span>{messages.hero.ctaGenerate}</span>
+                  <span>
+                    {mode === "single"
+                      ? messages.hero.ctaSingle
+                      : messages.hero.ctaGenerate}
+                  </span>
                 </button>
               </div>
             </div>
@@ -306,18 +329,20 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
         </div>
 
         {/* Example prompts */}
-        <div className={styles.samples}>
-          {samplePrompts.map((sample) => (
-            <button
-              key={sample}
-              type="button"
-              className={styles.sampleChip}
-              onClick={() => setPrompt(sample)}
-            >
-              {sample}
-            </button>
-          ))}
-        </div>
+        {mode === "ai" && (
+          <div className={styles.samples}>
+            {samplePrompts.map((sample) => (
+              <button
+                key={sample}
+                type="button"
+                className={styles.sampleChip}
+                onClick={() => setPrompt(sample)}
+              >
+                {sample}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

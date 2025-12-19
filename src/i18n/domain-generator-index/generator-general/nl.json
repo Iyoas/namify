@@ -6,10 +6,14 @@
       "titleSuffix": "en domein",
       "titleEnd": "met AI",
       "subtitle": "Jij hebt het idee. Wij doen naamsuggesties en checken domeinen zodat je snel kunt lanceren.",
+      "singleTitle": "Controleer één domein direct",
+      "singleSubtitle": "Vul een domeinnaam in en we checken meteen of hij beschikbaar is.",
       "placeholder": "Beschrijf je project, bedrijf of app-idee...",
+      "singlePlaceholder": "Vul een domein in (bijv. jouwmerk.nl)",
       "styleOptions": ["Uniek", "Creatief", "Professioneel", "Tech"],
       "ctaEnhance": "Verbeter prompt",
-      "ctaGenerate": "Genereer namen"
+      "ctaGenerate": "Genereer namen",
+      "ctaSingle": "Controleer domein"
     },
     "whyChoose": {
       "title": "Waarom kiezen voor Namitor",

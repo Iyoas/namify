@@ -2,12 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
 // Zorg dat je OPENAI_API_KEY in .env.local staat
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+function createOpenAIClient() {
+  return new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+}
 
 export async function POST(req: NextRequest) {
   try {
+    const client = createOpenAIClient();
     const body = await req.json().catch(() => null);
 
     if (!body || typeof body.prompt !== "string") {

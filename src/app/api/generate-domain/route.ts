@@ -10,9 +10,11 @@ import {
 // OPENAI_API_KEY="sk-...."
 // En nooit de key hardcoden in dit bestand.
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+function createOpenAIClient() {
+  return new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+}
 
 const TARGET_COUNT = 8;
 const MAX_ROUNDS = 3;
@@ -70,8 +72,10 @@ async function generateNamesWithGPT(
   prompt: string,
   lang: string | undefined,
   excludeNames: string[] = [],
-  style?: string
+  style?: string,
+  client?: OpenAI
 ): Promise<string[]> {
+  const openaiClient = client ?? createOpenAIClient();
   const languageHint = buildLanguageHint(lang);
   const styleHint = style
     ? `\nToon en stijl van de namen: zorg dat de namen duidelijk de volgende toon hebben: "${style}". Pas creativiteit, woordkeuze en vibe hierop aan.`
@@ -85,7 +89,7 @@ ${excludeNames.join(", ")}
 `
       : "";
 
-  const completion = await client.chat.completions.create({
+  const completion = await openaiClient.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [
       {
@@ -154,6 +158,7 @@ function normalizeNameKey(name: string): string {
 
 export async function POST(req: NextRequest) {
   try {
+    const openaiClient = createOpenAIClient();
     const body = await req.json();
     const { prompt, lang, style } = body as {
       prompt?: string;
@@ -191,7 +196,8 @@ export async function POST(req: NextRequest) {
         prompt,
         lang,
         acceptedNames,
-        style
+        style,
+        openaiClient
       );
 
       // Haal namen weg die we al hebben geaccepteerd

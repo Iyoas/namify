@@ -6,16 +6,20 @@
 // never leaks to the client. This module is used by the /api/generate-domain
 // route to enrich GPT-generated names with real TLD availability info.
 
-const DOMAINR_API_TOKEN = process.env.DOMAINR_API_TOKEN;
-const DOMAINR_BASE_URL =
-  process.env.DOMAINR_BASE_URL ||
-  "https://api.fastly.com/domain-management/v1/tools/status";
+function getDomainrConfig() {
+  const token = process.env.DOMAINR_API_TOKEN;
+  const baseUrl =
+    process.env.DOMAINR_BASE_URL ||
+    "https://api.fastly.com/domain-management/v1/tools/status";
 
-if (!DOMAINR_API_TOKEN) {
-  // In development it's handig om dit te zien; in productie kun je dit weghalen.
-  console.warn(
-    "[domainr] DOMAINR_API_TOKEN is not set. Availability checks will fail."
-  );
+  if (!token) {
+    // In development it's handig om dit te zien; in productie kun je dit weghalen.
+    console.warn(
+      "[domainr] DOMAINR_API_TOKEN is not set. Availability checks will fail."
+    );
+  }
+
+  return { token, baseUrl };
 }
 
 /**
@@ -138,7 +142,9 @@ export function buildDomainsFromNames(names: string[], tlds: string[]): string[]
 export async function checkDomainAvailability(
   domains: string[]
 ): Promise<DomainCheckResult[]> {
-  if (!DOMAINR_API_TOKEN) {
+  const { token, baseUrl } = getDomainrConfig();
+
+  if (!token) {
     throw new Error(
       "DOMAINR_API_TOKEN is not configured. Set it in your .env.local file."
     );
@@ -148,60 +154,68 @@ export async function checkDomainAvailability(
     return [];
   }
 
-  // BATCHED PARALLEL EXECUTION
-  const BATCH_SIZE = 20;
-  const allResults: DomainCheckResult[] = [];
+  // PARALLEL EXECUTION (worker pool)
+  // Higher concurrency makes checks noticeably faster, especially for many domains.
+  // You can tune via env without code changes.
+  const requestedConcurrency =
+    Number.parseInt(process.env.DOMAINR_CONCURRENCY || "25", 10) || 25;
 
-  for (let i = 0; i < domains.length; i += BATCH_SIZE) {
-    const batch = domains.slice(i, i + BATCH_SIZE);
+  // Safety cap to avoid accidental overload / throttling
+  const CONCURRENCY = Math.min(50, Math.max(1, requestedConcurrency));
 
-    const promises = batch.map(async (domain) => {
-      try {
-        const url = new URL(DOMAINR_BASE_URL);
-        url.searchParams.set("domain", domain);
-        url.searchParams.set("scope", "estimate");
+  const allResults: DomainCheckResult[] = new Array(domains.length);
 
-        const response = await fetch(url.toString(), {
-          method: "GET",
-          headers: {
-            "Fastly-Key": DOMAINR_API_TOKEN,
-            Accept: "application/json",
-          },
-        });
+  const checkOne = async (domain: string): Promise<DomainCheckResult> => {
+    try {
+      const url = new URL(baseUrl);
+      url.searchParams.set("domain", domain);
+      url.searchParams.set("scope", "estimate");
 
-        if (!response.ok) {
-          const text = await response.text().catch(() => "");
-          console.error(
-            "[domainr] Request failed for",
-            domain,
-            "status:",
-            response.status,
-            text
-          );
-          return { domain, status: "unknown" as DomainAvailabilityStatus };
-        }
+      const response = await fetch(url.toString(), {
+        method: "GET",
+        headers: {
+          "Fastly-Key": token,
+          Accept: "application/json",
+        },
+      });
 
-        const json = (await response.json()) as any;
-        const rawStatus =
-          typeof json?.status === "string" ? json.status : undefined;
-
-        const normalized = normalizeStatusFromStatusString(rawStatus);
-
-        return {
+      if (!response.ok) {
+        const text = await response.text().catch(() => "");
+        console.error(
+          "[domainr] Request failed for",
           domain,
-          status: normalized,
-          raw: json,
-        };
-      } catch (err) {
-        console.error("[domainr] Error checking", domain, err);
+          "status:",
+          response.status,
+          text
+        );
         return { domain, status: "unknown" as DomainAvailabilityStatus };
       }
-    });
 
-    const results = await Promise.all(promises);
-    allResults.push(...results);
-  }
+      const json = (await response.json()) as any;
+      const rawStatus = typeof json?.status === "string" ? json.status : undefined;
+      const normalized = normalizeStatusFromStatusString(rawStatus);
 
+      return {
+        domain,
+        status: normalized,
+        raw: json,
+      };
+    } catch (err) {
+      console.error("[domainr] Error checking", domain, err);
+      return { domain, status: "unknown" as DomainAvailabilityStatus };
+    }
+  };
+
+  let cursor = 0;
+  const workers = new Array(Math.min(CONCURRENCY, domains.length)).fill(0).map(async () => {
+    while (true) {
+      const idx = cursor++;
+      if (idx >= domains.length) return;
+      allResults[idx] = await checkOne(domains[idx]);
+    }
+  });
+
+  await Promise.all(workers);
   return allResults;
 }
 

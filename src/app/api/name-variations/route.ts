@@ -10,9 +10,11 @@ import {
 // OPENAI_API_KEY="sk-...."
 // En nooit de key hardcoden in dit bestand.
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+function createOpenAIClient() {
+  return new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+}
 
 const DEFAULT_VARIATION_COUNT = 5;
 
@@ -70,13 +72,15 @@ async function generateVariationsForBaseName(
   lang: string | undefined,
   style?: string,
   maxVariations: number = DEFAULT_VARIATION_COUNT,
+  client?: OpenAI,
 ): Promise<string[]> {
+  const openaiClient = client ?? createOpenAIClient();
   const languageHint = buildLanguageHint(lang);
   const styleHint = style
     ? `De namen moeten duidelijk de volgende toon/stijl hebben: "${style}".`
     : "";
 
-  const completion = await client.chat.completions.create({
+  const completion = await openaiClient.chat.completions.create({
     model: "gpt-4o-mini",
     response_format: { type: "json_object" },
     messages: [
@@ -154,6 +158,7 @@ type NameVariationsResponse = {
 
 export async function POST(req: NextRequest) {
   try {
+    const openaiClient = createOpenAIClient();
     const body = await req.json();
     const { baseName, lang, style, maxVariations } = body as {
       baseName?: string;
@@ -180,6 +185,7 @@ export async function POST(req: NextRequest) {
       lang,
       style,
       maxCount,
+      openaiClient
     );
 
     let finalVariations = [...variations];
@@ -191,7 +197,8 @@ export async function POST(req: NextRequest) {
         baseName,
         lang,
         style,
-        needed
+        needed,
+        openaiClient
       );
 
       // Prevent duplicates

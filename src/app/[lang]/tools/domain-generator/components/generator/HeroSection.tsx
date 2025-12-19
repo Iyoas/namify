@@ -491,10 +491,12 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                 {Array.from({ length: 3 }).map((_, index) => (
                   <div key={`loading-${index}`} className={styles.singleCard}>
                     <div className={styles.singleLeft}>
-                      <span className={styles.singleDot} />
-                      <span className={styles.singleDomain}>
-                        {messages.hero.singleChecking}
-                      </span>
+                      <Skeleton variant="circular" width={24} height={24} />
+                      <Skeleton variant="text" width={120} height={24} />
+                    </div>
+                    <div className={styles.singleRight}>
+                      <Skeleton variant="text" width={64} height={22} />
+                      <Skeleton variant="rounded" width={110} height={42} />
                     </div>
                   </div>
                 ))}

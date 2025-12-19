@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Megaphone, Sparkles, Wand2 } from "lucide-react";
+import { BsStars } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import styles from "./HeroSection.module.css";
 import { Box, Skeleton } from "@mui/material";
@@ -34,6 +35,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const [isEnhancing, setIsEnhancing] = useState(false);
   const hasPrompt = prompt.trim().length > 0;
   const router = useRouter();
+  const [mode, setMode] = useState<"ai" | "single">("ai");
 
   useEffect(() => {
     if (!isStyleOpen) return;
@@ -119,20 +121,47 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
-        {/* Heading */}
-        <h1 className={styles.title}>
-          {messages.hero.titlePrefix}{" "}
-          <span className={styles.highlight}>{messages.hero.titleHighlight}</span>{" "}
-          {messages.hero.titleSuffix}
-          <br className={styles.titleBreak} />
-          {" "}
-          {messages.hero.titleEnd}
-        </h1>
+        <div className={styles.headingStack}>
+          <div className={styles.modeSwitch} role="tablist" aria-label="Mode">
+            <button
+              type="button"
+              className={[
+                styles.modeOption,
+                mode === "ai" ? styles.modeOptionActive : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+              onClick={() => setMode("ai")}
+              aria-pressed={mode === "ai"}
+            >
+              <BsStars className={styles.modeIcon} aria-hidden="true" />
+              AI Checker
+            </button>
+            <button
+              type="button"
+              className={styles.modeOption}
+              onClick={() => setMode("single")}
+              aria-pressed={mode === "single"}
+            >
+              Single Domain
+            </button>
+          </div>
 
-        {/* Subheading */}
-        <p className={styles.subtitle}>
-          {messages.hero.subtitle}
-        </p>
+          {/* Heading */}
+          <h1 className={styles.title}>
+            {messages.hero.titlePrefix}{" "}
+            <span className={styles.highlight}>{messages.hero.titleHighlight}</span>{" "}
+            {messages.hero.titleSuffix}
+            <br className={styles.titleBreak} />
+            {" "}
+            {messages.hero.titleEnd}
+          </h1>
+
+          {/* Subheading */}
+          <p className={styles.subtitle}>
+            {messages.hero.subtitle}
+          </p>
+        </div>
 
         {/* Description area with filters + generate button */}
         <div className={styles.descriptionWrapper}>

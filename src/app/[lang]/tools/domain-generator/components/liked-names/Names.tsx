@@ -3,6 +3,7 @@
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { IoMdHeart } from "react-icons/io";
+import { Check } from "lucide-react";
 import styles from "./Names.module.css";
 import type { Lang } from "@/config/i18n";
 import type { LikedNamesMessages } from "@/i18n/domain-generator-index";
@@ -115,6 +116,16 @@ export default function FavoriteNamesSection({
 
             {/* CTA onderin */}
             <div className={styles.cardCtaWrapper}>
+              <button
+                type="button"
+                className={`${styles.cardCtaButton} ${styles.cardCtaPrimary}`}
+                onClick={() => goToVariations(item.label)}
+              >
+                <span className={styles.cardCtaLabel}>
+                  {messages.actions.checkAvailability}
+                </span>
+                <Check className={styles.cardCtaIcon} aria-hidden="true" />
+              </button>
               <button
                 type="button"
                 className={styles.cardCtaButton}

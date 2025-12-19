@@ -1,5 +1,17 @@
-import type { ReactNode } from "react";
 
-export default function LangLayout({ children }: { children: ReactNode }) {
-  return <>{children}</>;
+
+import React from "react";
+import Header from "./tools/domain-generator/components/layout/Header";
+
+export default function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      <Header />
+      <main>{children}</main>
+    </>
+  );
 }

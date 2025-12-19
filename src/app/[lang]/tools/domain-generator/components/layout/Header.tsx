@@ -33,6 +33,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [likedCount, setLikedCount] = useState(0);
   const messages = getHeaderMessages((lang || "en") as Lang);
+  const hideOnDesktop = pathname?.includes("/tools/domain-generator/results");
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -87,7 +88,14 @@ export default function Header() {
   ];
 
   return (
-    <header className={styles.header}>
+    <header
+      className={[
+        styles.header,
+        hideOnDesktop ? styles.headerHideDesktop : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
       {isMenuOpen && (
         <div
           className={styles.mobileMenuOverlay}

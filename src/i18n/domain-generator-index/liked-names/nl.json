@@ -3,6 +3,7 @@
     "title": "je favoriete namen",
     "subtitle": "Waarom mijn fav: Poëtisch en mysterieus; roept nachtelijke transformatie op. Perfect voor rituelen en een dreamy merkverhaal.",
     "actions": {
+      "checkAvailability": "Check domein",
       "viewVariations": "Variaties",
       "remove": "Verwijder uit favorieten"
     }

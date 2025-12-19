@@ -119,6 +119,9 @@
 
 .cardCtaWrapper {
   margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .cardCtaButton {
@@ -159,6 +162,28 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.cardCtaPrimary {
+  border: none;
+  background: var(--gradient-primary);
+}
+
+.cardCtaPrimary:hover {
+  background: var(--gradient-primary);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.25);
+}
+
+.cardCtaPrimary .cardCtaLabel {
+  background: none;
+  -webkit-text-fill-color: #ffffff;
+  color: #ffffff;
+}
+
+.cardCtaIcon {
+  width: 16px;
+  height: 16px;
+  color: #ffffff;
 }
 
 /* Small screen tweaks */

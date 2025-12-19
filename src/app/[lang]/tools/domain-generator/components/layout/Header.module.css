@@ -4,6 +4,12 @@
   overflow-x: hidden;
 }
 
+@media (min-width: 641px) {
+  .headerHideDesktop {
+    display: none;
+  }
+}
+
 .inner {
   width: 100%;
   max-width: 100%;

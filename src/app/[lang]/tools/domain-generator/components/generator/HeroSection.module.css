@@ -417,10 +417,9 @@
   }
 
   .descriptionBoxSingle {
-    min-height: 80px;
-    max-height: 80px;
-    grid-template-columns: 1fr auto;
-    column-gap: 12px;
+    min-height: 140px;
+    max-height: 200px;
+    display: block;
   }
 
   /* Reserve space so textarea/placeholder never sits behind the absolute CTA */
@@ -442,17 +441,10 @@
   }
 
   .descriptionBoxSingle .descriptionTop {
-    padding: 0;
+    padding: 0 0 88px;
   }
 
   .descriptionBoxSingle .bottomRow {
-    position: static;
-    width: auto;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .descriptionBoxSingle .generateRow {
     position: static;
   }
 

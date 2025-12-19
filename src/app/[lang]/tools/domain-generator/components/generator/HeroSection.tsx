@@ -267,6 +267,14 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
     );
   }
 
+  function handleArrowClick(name: string) {
+    const base = name.split(".")[0]?.trim() ?? "";
+    if (!base) return;
+    router.push(
+      `/${lang}/tools/domain-generator/results?base=${encodeURIComponent(base)}`
+    );
+  }
+
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
@@ -326,7 +334,14 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
         </div>
 
         {/* Description area with filters + generate button */}
-        <div className={styles.descriptionWrapper}>
+        <div
+          className={[
+            styles.descriptionWrapper,
+            mode === "single" ? styles.descriptionWrapperSingle : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
           
 
           <div
@@ -552,6 +567,20 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                     </div>
                   );
                 })}
+                <div className={styles.singleVariations}>
+                  <button
+                    type="button"
+                    className={styles.singleVariationsButton}
+                    onClick={() => handleArrowClick(singleResults[0]?.domain ?? "")}
+                  >
+                    <span className={styles.singleVariationsLabel}>
+                      {messages.hero.singleVariations}
+                    </span>
+                    <span className={styles.singleVariationsArrow} aria-hidden>
+                      →
+                    </span>
+                  </button>
+                </div>
               </div>
             )}
           </div>

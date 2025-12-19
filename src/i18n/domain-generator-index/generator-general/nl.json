@@ -18,7 +18,8 @@
       "singleUnavailable": "Niet beschikbaar",
       "singlePrice": "€234,99",
       "singleChecking": "Controleren...",
-      "singleError": "Vul een geldig domein of naam in."
+      "singleError": "Vul een geldig domein of naam in.",
+      "singleVariations": "Variaties"
     },
     "whyChoose": {
       "title": "Waarom kiezen voor Namitor",

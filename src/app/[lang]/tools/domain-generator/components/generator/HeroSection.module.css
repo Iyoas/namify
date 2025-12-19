@@ -270,6 +270,9 @@
 
 .singleResults {
   margin-top: 24px;
+  max-width: 1040px; /* same as descriptionWrapper */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .singleList,
@@ -277,6 +280,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 100%;
 }
 
 .singleCard {
@@ -286,7 +290,8 @@
   padding: 16px 18px;
   border-radius: 18px;
   background: #ffffff;
-  box-shadow: 0 10px 30px rgba(166, 127, 255, 0.16);
+  box-shadow: none;
+  border: 1px solid rgba(99, 102, 241, 0.3); /* #6366F1 @ 30% */
 }
 
 .singleLeft {
@@ -311,8 +316,18 @@
   color: #111827;
 }
 
+.singleHeartButton {
+  border: none;
+  background: transparent;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .singleDomain {
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .singleRight {
@@ -344,6 +359,18 @@
   color: #6b7280;
   cursor: not-allowed;
   box-shadow: none;
+}
+
+@media (min-width: 641px) {
+  .singleCard {
+    height: 50px;
+  }
+
+  .singleCta {
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 14px;
+  }
 }
 
 .singleError {

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Megaphone, Sparkles, Wand2 } from "lucide-react";
 import { BsStars } from "react-icons/bs";
-import { IoMdHeartEmpty } from "react-icons/io";
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import styles from "./HeroSection.module.css";
 import { Box, Skeleton } from "@mui/material";
@@ -79,6 +79,8 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const [singleResults, setSingleResults] = useState<SingleResult[]>([]);
   const [singleLoading, setSingleLoading] = useState(false);
   const [singleError, setSingleError] = useState<string | null>(null);
+  const [likedNames, setLikedNames] = useState<string[]>([]);
+  const [likedDomains, setLikedDomains] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     if (!isStyleOpen) return;
@@ -116,6 +118,72 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
       document.removeEventListener("mousedown", handleClickOutsideExt);
     };
   }, [isExtensionOpen]);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("likedNames");
+      if (stored) {
+        const parsed = JSON.parse(stored) as string[];
+        setLikedNames(parsed);
+      }
+    } catch (err) {
+      console.error("Error reading likedNames from localStorage:", err);
+    }
+  }, []);
+
+  function toggleLike(name: string) {
+    setLikedNames((prev) => {
+      const next = prev.includes(name)
+        ? prev.filter((n) => n !== name)
+        : [...prev, name];
+
+      try {
+        localStorage.setItem("likedNames", JSON.stringify(next));
+        setTimeout(() => {
+          window.dispatchEvent(new Event("likedNamesUpdated"));
+        }, 0);
+      } catch (err) {
+        console.error("Error saving likedNames to localStorage:", err);
+      }
+
+      return next;
+    });
+  }
+
+  function toggleDomainLike(domain: string, baseName: string) {
+    setLikedDomains((prev) => {
+      const next = new Set(prev);
+      if (next.has(domain)) {
+        next.delete(domain);
+      } else {
+        next.add(domain);
+      }
+
+      setLikedNames((current) => {
+        const hasAnyForBase = Array.from(next).some(
+          (d) => d.split(".")[0] === baseName
+        );
+        const updated = hasAnyForBase
+          ? current.includes(baseName)
+            ? current
+            : [...current, baseName]
+          : current.filter((n) => n !== baseName);
+
+        try {
+          localStorage.setItem("likedNames", JSON.stringify(updated));
+          setTimeout(() => {
+            window.dispatchEvent(new Event("likedNamesUpdated"));
+          }, 0);
+        } catch (err) {
+          console.error("Error saving likedNames to localStorage:", err);
+        }
+
+        return updated;
+      });
+
+      return next;
+    });
+  }
 
   async function handleEnhancePrompt() {
     if (!prompt.trim() || isEnhancing) return;
@@ -441,10 +509,23 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
               <div className={styles.singleList}>
                 {singleResults.map((result) => {
                   const isAvailable = result.status === "available";
+                  const nameKey = result.domain.split(".")[0] ?? result.domain;
+                  const isLiked = likedDomains.has(result.domain);
                   return (
                     <div key={result.domain} className={styles.singleCard}>
                       <div className={styles.singleLeft}>
-                        <IoMdHeartEmpty className={styles.singleHeart} aria-hidden="true" />
+                        <button
+                          type="button"
+                          className={styles.singleHeartButton}
+                          aria-label={`${messages.suggestedNames.ariaLike}: ${result.domain}`}
+                          onClick={() => toggleDomainLike(result.domain, nameKey)}
+                        >
+                          {isLiked ? (
+                            <IoIosHeart size={24} color="#FF4C4C" />
+                          ) : (
+                            <IoIosHeartEmpty size={24} color="#000000" />
+                          )}
+                        </button>
                         <span className={styles.singleDomain}>{result.domain}</span>
                       </div>
                       <div className={styles.singleRight}>

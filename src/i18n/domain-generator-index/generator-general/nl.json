@@ -13,7 +13,12 @@
       "styleOptions": ["Uniek", "Creatief", "Professioneel", "Tech"],
       "ctaEnhance": "Verbeter prompt",
       "ctaGenerate": "Genereer namen",
-      "ctaSingle": "Controleer domein"
+      "ctaSingle": "Controleer domein",
+      "singleClaim": "Claim now!",
+      "singleUnavailable": "Niet beschikbaar",
+      "singlePrice": "€234,99",
+      "singleChecking": "Controleren...",
+      "singleError": "Vul een geldig domein of naam in."
     },
     "whyChoose": {
       "title": "Waarom kiezen voor Namitor",

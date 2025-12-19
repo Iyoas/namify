@@ -130,6 +130,15 @@
     border: none;
   }
 
+.descriptionBoxSingle {
+  min-height: 80px;
+  max-height: 80px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 20px;
+}
+
 .descriptionTop {
   flex: 1;
   display: flex;
@@ -142,6 +151,22 @@
   width: 100%;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+.descriptionBoxSingle .descriptionTop {
+  padding: 0;
+  align-items: center;
+}
+
+.descriptionBoxSingle .bottomRow {
+  width: auto;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
+}
+
+.descriptionBoxSingle .generateRow {
+  margin: 0;
 }
 
 .optionsRow {
@@ -243,6 +268,90 @@
   gap: 16px;
 }
 
+.singleResults {
+  margin-top: 24px;
+}
+
+.singleList,
+.singleLoading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.singleCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(166, 127, 255, 0.16);
+}
+
+.singleLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.singleDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #cbd5f5;
+  display: inline-block;
+}
+
+.singleHeart {
+  width: 18px;
+  height: 18px;
+  color: #111827;
+}
+
+.singleDomain {
+  font-size: 16px;
+}
+
+.singleRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.singlePrice {
+  font-weight: 600;
+  color: #111827;
+  font-size: 14px;
+}
+
+.singleCta {
+  border: none;
+  border-radius: 14px;
+  padding: 10px 16px;
+  background: linear-gradient(to top right, #0013e0, #b55aff);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(59, 22, 193, 0.2);
+}
+
+.singleCtaDisabled {
+  background: #e5e7eb;
+  color: #6b7280;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.singleError {
+  margin: 12px 0 0;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
 .sampleChip {
   border: none;
   padding: 8px;
@@ -307,6 +416,13 @@
     max-height: 200px;
   }
 
+  .descriptionBoxSingle {
+    min-height: 80px;
+    max-height: 80px;
+    grid-template-columns: 1fr auto;
+    column-gap: 12px;
+  }
+
   /* Reserve space so textarea/placeholder never sits behind the absolute CTA */
   .descriptionTop {
     padding-bottom: 88px;
@@ -323,6 +439,21 @@
     bottom: 24px;
     justify-content: flex-start;
     width: auto;
+  }
+
+  .descriptionBoxSingle .descriptionTop {
+    padding: 0;
+  }
+
+  .descriptionBoxSingle .bottomRow {
+    position: static;
+    width: auto;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .descriptionBoxSingle .generateRow {
+    position: static;
   }
 
   .generateButton {
@@ -361,6 +492,17 @@
 
   .samples {
     margin-top: 24px;
+  }
+
+  .singleCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .singleRight {
+    width: 100%;
+    justify-content: space-between;
   }
 }
 

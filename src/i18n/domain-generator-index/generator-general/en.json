@@ -13,7 +13,12 @@
       "styleOptions": ["Unique", "Creative", "Professional", "Tech"],
       "ctaEnhance": "Enhance prompt",
       "ctaGenerate": "Generate names",
-      "ctaSingle": "Check domain"
+      "ctaSingle": "Check domain",
+      "singleClaim": "Claim now!",
+      "singleUnavailable": "Unavailable",
+      "singlePrice": "€234,99",
+      "singleChecking": "Checking...",
+      "singleError": "Enter a valid domain or name."
     },
     "whyChoose": {
       "title": "Why choose Namitor",

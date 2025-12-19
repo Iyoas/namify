@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Megaphone, Sparkles, Wand2 } from "lucide-react";
 import { BsStars } from "react-icons/bs";
+import { IoMdHeartEmpty } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import styles from "./HeroSection.module.css";
 import { Box, Skeleton } from "@mui/material";
@@ -16,6 +17,45 @@ type HeroSectionProps = {
 
 const EXTENSION_OPTIONS = [".com", ".nl", ".ai", ".io", ".co", ".be", ".eu"] as const;
 type ExtensionOption = (typeof EXTENSION_OPTIONS)[number];
+const SINGLE_TLDS = [".com", ".io", ".ai", ".net", ".co"] as const;
+
+type SingleResult = {
+  domain: string;
+  tld: string;
+  status: "available" | "unavailable" | "unknown";
+};
+
+function normalizeName(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]/gi, "");
+}
+
+function buildSingleTlds(input: string) {
+  const trimmed = input.trim().toLowerCase();
+  if (!trimmed) return null;
+
+  const parts = trimmed.split(".").filter(Boolean);
+  const hasDot = parts.length > 1;
+  const tldCandidate = hasDot ? parts[parts.length - 1] : "";
+  const isPlausibleTld = /^[a-z]{2,15}$/.test(tldCandidate);
+
+  if (hasDot && isPlausibleTld) {
+    const base = normalizeName(parts.slice(0, -1).join(""));
+    if (!base) return null;
+    const primaryTld = `.${tldCandidate}`;
+    const extraTlds = SINGLE_TLDS.filter((tld) => tld !== primaryTld);
+    return {
+      base,
+      tlds: [primaryTld, ...extraTlds].slice(0, 5),
+    };
+  }
+
+  const base = normalizeName(trimmed);
+  if (!base) return null;
+  return {
+    base,
+    tlds: [...SINGLE_TLDS],
+  };
+}
 
 export function HeroSection({ lang, messages }: HeroSectionProps) {
   const styleOptions = messages.hero.styleOptions;
@@ -36,6 +76,9 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const hasPrompt = prompt.trim().length > 0;
   const router = useRouter();
   const [mode, setMode] = useState<"ai" | "single">("ai");
+  const [singleResults, setSingleResults] = useState<SingleResult[]>([]);
+  const [singleLoading, setSingleLoading] = useState(false);
+  const [singleError, setSingleError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isStyleOpen) return;
@@ -105,8 +148,46 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
     }
   }
 
-  function handleGenerateClick() {
+  async function handleGenerateClick() {
     if (!prompt.trim()) return;
+
+    if (mode === "single") {
+      const parsed = buildSingleTlds(prompt);
+      if (!parsed) {
+        setSingleError(messages.hero.singleError);
+        setSingleResults([]);
+        return;
+      }
+
+      setSingleLoading(true);
+      setSingleError(null);
+
+      try {
+        const res = await fetch("/api/check-domain", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: parsed.base,
+            tlds: parsed.tlds,
+          }),
+        });
+
+        if (!res.ok) {
+          throw new Error("check-domain failed");
+        }
+
+        const data = (await res.json()) as { results?: SingleResult[] };
+        setSingleResults(Array.isArray(data.results) ? data.results : []);
+      } catch (error) {
+        console.error("[check-domain] Error:", error);
+        setSingleError(messages.hero.singleError);
+      } finally {
+        setSingleLoading(false);
+      }
+
+      return;
+    }
+
     const searchParams = new URLSearchParams({
       q: prompt,
       style: selectedStyle,
@@ -180,7 +261,14 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
         <div className={styles.descriptionWrapper}>
           
 
-          <div className={styles.descriptionBox}>
+          <div
+            className={[
+              styles.descriptionBox,
+              mode === "single" ? styles.descriptionBoxSingle : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
             <div className={styles.descriptionTop}>
               {isEnhancing ? (
                 <Box
@@ -327,6 +415,64 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
             </div>
           </div>
         </div>
+
+        {mode === "single" && (
+          <div className={styles.singleResults}>
+            {singleLoading && (
+              <div className={styles.singleLoading}>
+                {Array.from({ length: 3 }).map((_, index) => (
+                  <div key={`loading-${index}`} className={styles.singleCard}>
+                    <div className={styles.singleLeft}>
+                      <span className={styles.singleDot} />
+                      <span className={styles.singleDomain}>
+                        {messages.hero.singleChecking}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {!singleLoading && singleError && (
+              <p className={styles.singleError}>{singleError}</p>
+            )}
+
+            {!singleLoading && !singleError && singleResults.length > 0 && (
+              <div className={styles.singleList}>
+                {singleResults.map((result) => {
+                  const isAvailable = result.status === "available";
+                  return (
+                    <div key={result.domain} className={styles.singleCard}>
+                      <div className={styles.singleLeft}>
+                        <IoMdHeartEmpty className={styles.singleHeart} aria-hidden="true" />
+                        <span className={styles.singleDomain}>{result.domain}</span>
+                      </div>
+                      <div className={styles.singleRight}>
+                        <span className={styles.singlePrice}>
+                          {messages.hero.singlePrice}
+                        </span>
+                        <button
+                          type="button"
+                          className={[
+                            styles.singleCta,
+                            !isAvailable ? styles.singleCtaDisabled : "",
+                          ]
+                            .filter(Boolean)
+                            .join(" ")}
+                          disabled={!isAvailable}
+                        >
+                          {isAvailable
+                            ? messages.hero.singleClaim
+                            : messages.hero.singleUnavailable}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Example prompts */}
         {mode === "ai" && (

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { Skeleton } from "@mui/material";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Heart, Plus, Star, ShoppingCart, Check } from "lucide-react";
 import { IoMdHeartEmpty, IoIosHeart } from "react-icons/io";
 import { FaRegCircle, FaCircle } from "react-icons/fa";
@@ -137,8 +137,10 @@ export default function DomainSelect({
   messages,
 }: DomainSelectProps) {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const baseNameFromUrl = searchParams.get("base");
+  const langFromUrl = searchParams.get("lang") ?? "nl";
 
   const categories = useMemo(
     () =>
@@ -380,6 +382,9 @@ export default function DomainSelect({
                 type="button"
                 className={styles.metaButton}
                 aria-label={messages.domainSelect.filters.favouritesAria}
+                onClick={() =>
+                  router.push(`/${langFromUrl}/tools/domain-generator/liked-names`)
+                }
               >
                 <Heart className={styles.metaIcon} />
                 <span>{messages.domainSelect.filters.favourites}</span>

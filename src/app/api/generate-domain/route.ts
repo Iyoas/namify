@@ -73,13 +73,21 @@ async function generateNamesWithGPT(
   lang: string | undefined,
   excludeNames: string[] = [],
   style?: string,
-  client?: OpenAI
+  client?: OpenAI,
+  preferredTld?: string
 ): Promise<string[]> {
   const openaiClient = client ?? createOpenAIClient();
   const languageHint = buildLanguageHint(lang);
   const styleHint = style
     ? `\nToon en stijl van de namen: zorg dat de namen duidelijk de volgende toon hebben: "${style}". Pas creativiteit, woordkeuze en vibe hierop aan.`
     : "";
+  const normalizedPreferredTld = preferredTld?.startsWith(".")
+    ? preferredTld
+    : preferredTld
+    ? `.${preferredTld}`
+    : undefined;
+  const isComPreferred = normalizedPreferredTld === ".com";
+  const namesPerPrompt = isComPreferred ? 8 : NAMES_PER_ROUND;
 
   const excludeBlock =
     excludeNames.length > 0
@@ -88,6 +96,21 @@ Vermijd deze namen (of varianten hierop), ze zijn al voorgesteld of gebruikt:
 ${excludeNames.join(", ")}
 `
       : "";
+  const comStrategy = isComPreferred
+    ? `
+
+Wanneer .com geselecteerd is, optimaliseer de namen expliciet voor .com beschikbaarheid:
+- Leid eerst het business type af uit de beschrijving (bijv. SaaS, AI tool, ecommerce brand, agency, consumer product) en pas de stijl daarop aan.
+- Genereer precies 8 namen met deze verdeling:
+  - 2 korte inventieve of semi-inventieve namen (6–10 tekens, goed uitspreekbaar)
+  - 2 namen met subtiele suffixen alleen als dat past (zoals: ly, ify)
+  - 2 hoogwaardige twee-woord combinaties (bijv. concept + studio/labs/works/hub, alleen als het natuurlijk klinkt)
+  - 2 creatieve blends of fonetische variaties die brandable aanvoelen
+- Geef voorkeur aan unieke lettercombinaties en niet-woordenboekachtige constructies.
+- Vermijd generieke prefixes (my, the, best) en namen die op bestaande merken lijken.
+- Focus op namen die realistisch als .com beschikbaar zouden kunnen zijn.
+`
+    : "";
 
   const completion = await openaiClient.chat.completions.create({
     model: "gpt-4o-mini",
@@ -108,7 +131,7 @@ ${languageHint}
 ${styleHint}
 
 Regels voor de namen:
-- Genereer precies ${NAMES_PER_ROUND} unieke merk- en domeinnaamsuggesties
+- Genereer precies ${namesPerPrompt} unieke merk- en domeinnaamsuggesties
 - Korte, brandable namen (idealiter 1–2, max 3 lettergrepen)
 - Modern, premium en internationaal klinkend
 - Geen letterlijke beschrijvende zinnen
@@ -118,6 +141,7 @@ Regels voor de namen:
 - Vermijd simpele Nederlandse samenstellingen als "FeestKalender" of "PartyPlannerPro"
 - Maak nieuwe, creatieve combinaties of licht gemodificeerde woorden (zoals: Nexora, Lumiva, Zyntra, Avalyo)
 ${excludeBlock}
+${comStrategy}
 
 Geef ALLEEN geldige JSON terug in precies dit formaat:
 
@@ -160,10 +184,11 @@ export async function POST(req: NextRequest) {
   try {
     const openaiClient = createOpenAIClient();
     const body = await req.json();
-    const { prompt, lang, style } = body as {
+    const { prompt, lang, style, preferredTld } = body as {
       prompt?: string;
       lang?: string;
       style?: string;
+      preferredTld?: string;
     };
 
     if (!prompt || prompt.trim().length === 0) {
@@ -197,7 +222,8 @@ export async function POST(req: NextRequest) {
         lang,
         acceptedNames,
         style,
-        openaiClient
+        openaiClient,
+        preferredTld
       );
 
       // Haal namen weg die we al hebben geaccepteerd

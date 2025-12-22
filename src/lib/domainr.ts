@@ -6,6 +6,8 @@
 // never leaks to the client. This module is used by the /api/generate-domain
 // route to enrich GPT-generated names with real TLD availability info.
 
+import { checkDomainAvailabilityWithGoDaddy } from "./godaddy";
+
 function getDomainrConfig() {
   const token = process.env.DOMAINR_API_TOKEN;
   const baseUrl =
@@ -139,15 +141,13 @@ export function buildDomainsFromNames(names: string[], tlds: string[]): string[]
  *     - Fastly-Key: jouw API token
  *     - Accept: application/json
  */
-export async function checkDomainAvailability(
+async function checkDomainAvailabilityWithDomainr(
   domains: string[]
 ): Promise<DomainCheckResult[]> {
   const { token, baseUrl } = getDomainrConfig();
 
   if (!token) {
-    throw new Error(
-      "DOMAINR_API_TOKEN is not configured. Set it in your .env.local file."
-    );
+    throw new Error("DOMAINR_API_TOKEN is not configured.");
   }
 
   if (!domains.length) {
@@ -217,6 +217,20 @@ export async function checkDomainAvailability(
 
   await Promise.all(workers);
   return allResults;
+}
+
+export async function checkDomainAvailability(
+  domains: string[]
+): Promise<DomainCheckResult[]> {
+  try {
+    return await checkDomainAvailabilityWithGoDaddy(domains);
+  } catch (err) {
+    console.warn(
+      "[availability] GoDaddy failed, falling back to Domainr",
+      err
+    );
+    return await checkDomainAvailabilityWithDomainr(domains);
+  }
 }
 
 /**

@@ -268,24 +268,40 @@ export default function DomainSelect({
             const allowedTlds =
               CATEGORY_TLDS[activeCategoryId] ?? CATEGORY_TLDS["all"];
 
-            const extensions: Extension[] = allowedTlds.map((tld) => {
-              // Normaliseer TLD met punt
+            const resolveStatus = (tld: string) => {
               const tldKeyWithDot = tld.startsWith(".") ? tld : `.${tld}`;
               const tldKeyWithoutDot = tldKeyWithDot.slice(1);
-
-              const statusFromApi =
+              return (
                 (nameAvailability?.[tldKeyWithDot] as
                   | DomainAvailabilityStatus
                   | undefined) ??
                 (nameAvailability?.[tldKeyWithoutDot] as
                   | DomainAvailabilityStatus
                   | undefined) ??
-                undefined;
+                undefined
+              );
+            };
+
+            if (activeCategoryId === "all") {
+              const hasVisibleAvailable = allowedTlds.some(
+                (tld) => resolveStatus(tld) === "available"
+              );
+              if (!hasVisibleAvailable) {
+                return null;
+              }
+            }
+
+            const extensions: Extension[] = allowedTlds.map((tld) => {
+              // Normaliseer TLD met punt
+              const tldKeyWithDot = tld.startsWith(".") ? tld : `.${tld}`;
+              const statusFromApi = resolveStatus(tld);
 
               const mappedStatus: ExtensionStatus =
                 statusFromApi === "available"
                   ? "available"
-                  : "unavailable";
+                  : statusFromApi === "unavailable"
+                  ? "unavailable"
+                  : "unknown";
 
               return {
                 id: `${cleanKey}-${tldKeyWithDot}`,
@@ -301,6 +317,7 @@ export default function DomainSelect({
               extensions,
             };
           })
+          .filter(Boolean) as DomainSuggestion[]
       : SUGGESTIONS;
 
   const visibleCount = loading ? null : suggestions.length;

@@ -3,9 +3,15 @@
 import { useState, useEffect, useMemo } from "react";
 import { Skeleton } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Heart, Plus, Star, ShoppingCart, Check } from "lucide-react";
+import { Heart, Plus, ShoppingCart, Check } from "lucide-react";
 import { IoMdHeartEmpty, IoIosHeart } from "react-icons/io";
-import { FaRegCircle, FaCircle } from "react-icons/fa";
+import { IoPersonOutline, IoMusicalNotesOutline } from "react-icons/io5";
+import { FaRegStar } from "react-icons/fa";
+import { LuBriefcaseBusiness } from "react-icons/lu";
+import { RiGraduationCapLine } from "react-icons/ri";
+import { TbWorld } from "react-icons/tb";
+import { GrPersonalComputer } from "react-icons/gr";
+import { CiSettings } from "react-icons/ci";
 import styles from "./DomainSelect.module.css";
 
 import type { DomainAvailabilityStatus } from "@/lib/domainr";
@@ -24,6 +30,7 @@ type CategoryId = keyof GeneratorGeneralResultsMessages["domainSelect"]["categor
 type Category = {
   id: CategoryId;
   isActive?: boolean;
+  icon?: React.ReactNode;
 };
 
 type ExtensionStatus = "available" | "unavailable" | "unknown";
@@ -43,14 +50,14 @@ type DomainSuggestion = {
 
 const CATEGORY_CONFIG: Category[] = [
   { id: "all", isActive: true },
-  { id: "popular" },
-  { id: "business", isActive: true }, // actieve pill in design
-  { id: "education" },
-  { id: "international" },
-  { id: "technology" },
-  { id: "social" },
-  { id: "professional" },
-  { id: "entertainment" },
+  { id: "popular", icon: <FaRegStar /> },
+  { id: "business", isActive: true, icon: <LuBriefcaseBusiness /> }, // actieve pill in design
+  { id: "education", icon: <RiGraduationCapLine /> },
+  { id: "international", icon: <TbWorld /> },
+  { id: "technology", icon: <GrPersonalComputer /> },
+  { id: "social", icon: <IoPersonOutline /> },
+  { id: "professional", icon: <CiSettings /> },
+  { id: "entertainment", icon: <IoMusicalNotesOutline /> },
 ];
 
 // Each category exposes exactly 6 TLDs
@@ -214,6 +221,11 @@ export default function DomainSelect({
 
   const [extraNames, setExtraNames] = useState<string[]>([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [visibleLimit, setVisibleLimit] = useState(8);
+
+  useEffect(() => {
+    setVisibleLimit(8);
+  }, [activeCategoryId, names.length]);
 
   async function handleLoadMore() {
     setIsLoadingMore(true);
@@ -239,6 +251,7 @@ export default function DomainSelect({
         (data.availability as typeof availability | undefined) ?? {};
 
       setExtraNames((prev) => [...prev, ...newNames]);
+      setVisibleLimit((prev) => prev + 8);
       setAvailabilityMap((prev) => ({
         ...prev,
         ...newAvailability,
@@ -283,6 +296,20 @@ export default function DomainSelect({
             };
 
             if (activeCategoryId === "all") {
+              if (loading) {
+                // Keep skeletons visible while loading
+                return {
+                  ...base,
+                  id: String(index + 1),
+                  name,
+                  extensions: allowedTlds.map((tld) => ({
+                    id: `${cleanKey}-${tld}`,
+                    tld: tld.startsWith(".") ? tld : `.${tld}`,
+                    status: "unknown",
+                  })),
+                };
+              }
+
               const hasVisibleAvailable = allowedTlds.some(
                 (tld) => resolveStatus(tld) === "available"
               );
@@ -320,7 +347,8 @@ export default function DomainSelect({
           .filter(Boolean) as DomainSuggestion[]
       : SUGGESTIONS;
 
-  const visibleCount = loading ? null : suggestions.length;
+  const displaySuggestions = suggestions.slice(0, visibleLimit);
+  const visibleCount = loading ? null : displaySuggestions.length;
 
   return (
     <section className={styles.section}>
@@ -425,11 +453,8 @@ export default function DomainSelect({
                     .filter(Boolean)
                     .join(" ")}
                 >
-                  {category.id === "popular" && (
-                    <Star className={styles.categoryIcon} />
-                  )}
-                  {category.id === "business" && (
-                    <span className={styles.categoryDot} />
+                  {category.icon && (
+                    <span className={styles.categoryIcon}>{category.icon}</span>
                   )}
                   {category.label}
                 </button>
@@ -440,7 +465,7 @@ export default function DomainSelect({
 
         {/* Lijst met domeinsuggesties */}
         <div className={styles.list}>
-          {suggestions.map((suggestion, index) => (
+          {displaySuggestions.map((suggestion, index) => (
             <article
               key={suggestion.id}
               className={styles.row}

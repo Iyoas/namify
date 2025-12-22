@@ -175,6 +175,10 @@
 .categoryIcon {
   width: 14px;
   height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .categoryDot {

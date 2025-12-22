@@ -79,7 +79,7 @@
   width: 46px;
   height: 46px;
   border-radius: 14px;
-  border: 1.5px solid #B55AFF;
+  border: 1.5px solid #3b16c1;
   background: #ffffff;
   color: #000000;
   display: inline-flex;
@@ -91,7 +91,7 @@
 }
 
 .iconButton:hover {
-  box-shadow: 0 0 0 3px rgba(181, 90, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(59, 22, 193, 0.2);
 }
 
 .iconButton:active {
@@ -111,7 +111,7 @@
   height: 20px;
   padding: 0 6px;
   border-radius: 999px;
-  background: #B55AFF;
+  background: var(--gradient-primary);
   color: #ffffff;
   font-size: 12px;
   line-height: 20px;

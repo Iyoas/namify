@@ -85,6 +85,14 @@ export default function FavoriteNamesSection({
     );
   }
 
+  function goToSingleCheck(label: string) {
+    router.push(
+      `/${activeLang}/tools/domain-generator/generator?mode=single&domain=${encodeURIComponent(
+        label
+      )}`
+    );
+  }
+
   return (
     <section className={styles.section}>
       {/* Heading */}
@@ -119,7 +127,7 @@ export default function FavoriteNamesSection({
               <button
                 type="button"
                 className={`${styles.cardCtaButton} ${styles.cardCtaPrimary}`}
-                onClick={() => goToVariations(item.label)}
+                onClick={() => goToSingleCheck(item.label)}
               >
                 <span className={styles.cardCtaLabel}>
                   {messages.actions.checkAvailability}

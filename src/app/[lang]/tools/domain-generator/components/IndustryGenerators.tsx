@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import styles from "./IndustryGenerators.module.css";
 import { JSX } from "react";
@@ -58,6 +59,9 @@ type IndustryGeneratorsProps = {
 };
 
 export default function IndustryGenerators({ messages }: IndustryGeneratorsProps) {
+  const params = useParams();
+  const lang = typeof params?.lang === "string" ? params.lang : "nl";
+  const generatorHref = `/${lang}/tools/domain-generator/generator`;
   const cards: IndustryCard[] =
     messages.industryGenerators.cards.map((card) => ({
       ...card,
@@ -86,7 +90,7 @@ export default function IndustryGenerators({ messages }: IndustryGeneratorsProps
               <p className={styles.cardDescription}>{industry.description}</p>
 
               <div className={styles.cardFooter}>
-                <Link href="#" className={styles.cardButton}>
+                <Link href={generatorHref} className={styles.cardButton}>
                   <span>{messages.industryGenerators.cardCta}</span>
                   <ArrowRightIcon aria-hidden="true" className={styles.cardButtonIcon} />
                 </Link>

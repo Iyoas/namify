@@ -98,7 +98,7 @@ const messages = {
         },
         {
           id: 2,
-          question: "Is Namify free to use?",
+          question: "Is Domifai free to use?",
           answer:
             "You can try the generator for free for a limited number of queries per day. For heavier use, extra filters, saving favorites, and export options, you can upgrade to a paid bundle. That way you only pay for what you need.",
         },
@@ -118,7 +118,7 @@ const messages = {
           id: 5,
           question: "Do you support languages other than Dutch?",
           answer:
-            "Yes, Namify is built with multilingual support in mind. We start with Dutch and English and will add more languages over time. That way you can easily generate names for international brands or projects.",
+            "Yes, Domifai is built with multilingual support in mind. We start with Dutch and English and will add more languages over time. That way you can easily generate names for international brands or projects.",
         },
         {
           id: 6,

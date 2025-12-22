@@ -52,12 +52,11 @@ export default function SuggestedNames({ lang, messages }: SuggestedNamesProps) 
   }
 
   function handleArrowClick(name: string) {
-    // We sturen de gekozen naam als base naar de results page,
-    // zodat DomainSelect / Stepper de /api/name-variations route kan gebruiken.
     const base = name.trim();
-
     router.push(
-      `/${lang}/tools/domain-generator/results?base=${encodeURIComponent(base)}`
+      `/${lang}/tools/domain-generator/generator?mode=single&domain=${encodeURIComponent(
+        base
+      )}`
     );
   }
 

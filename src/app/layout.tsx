@@ -14,7 +14,7 @@ const urbanist = Urbanist({
 });
 
 export const metadata: Metadata = {
-  title: "Namify",
+  title: "Domifai",
   description: "AI powered domain generator",
 };
 

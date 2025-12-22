@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Megaphone, Sparkles, Wand2 } from "lucide-react";
 import { BsStars } from "react-icons/bs";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
-import { useRouter } from "next/navigation";
+import { IoSearch } from "react-icons/io5";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./HeroSection.module.css";
 import { Box, Skeleton } from "@mui/material";
 import type { Lang } from "@/config/i18n";
@@ -75,12 +76,37 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const [isEnhancing, setIsEnhancing] = useState(false);
   const hasPrompt = prompt.trim().length > 0;
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [mode, setMode] = useState<"ai" | "single">("ai");
   const [singleResults, setSingleResults] = useState<SingleResult[]>([]);
   const [singleLoading, setSingleLoading] = useState(false);
   const [singleError, setSingleError] = useState<string | null>(null);
   const [likedNames, setLikedNames] = useState<string[]>([]);
   const [likedDomains, setLikedDomains] = useState<Set<string>>(new Set());
+  const pendingSingleCheckRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    const modeParam = searchParams.get("mode");
+    const domainParam = searchParams.get("domain");
+
+    if (modeParam === "single") {
+      setMode("single");
+      if (domainParam && domainParam.trim()) {
+        const cleaned = domainParam.trim();
+        setPrompt(cleaned);
+        pendingSingleCheckRef.current = cleaned;
+      }
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (mode !== "single") return;
+    if (!prompt.trim()) return;
+    if (!pendingSingleCheckRef.current) return;
+    if (pendingSingleCheckRef.current !== prompt.trim()) return;
+    pendingSingleCheckRef.current = null;
+    handleGenerateClick();
+  }, [mode, prompt]);
 
   useEffect(() => {
     if (!isStyleOpen) return;
@@ -487,7 +513,11 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                   onClick={handleGenerateClick}
                   disabled={!prompt.trim()}
                 >
-                  <Sparkles className={styles.generateIcon} />
+                  {mode === "single" ? (
+                    <IoSearch className={styles.generateIcon} />
+                  ) : (
+                    <Sparkles className={styles.generateIcon} />
+                  )}
                   <span>
                     {mode === "single"
                       ? messages.hero.ctaSingle

@@ -17,7 +17,7 @@ export function Nav({ lang }: Props) {
     <header className="flex items-center justify-between gap-4">
       {/* Logo → naar tools-overzicht van deze taal */}
       <Link href={`/${lang}`} className="font-semibold tracking-tight">
-        Namify
+        Domifai
       </Link>
 
       {/* Links voor deze taal, met gelokaliseerde slugs */}

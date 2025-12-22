@@ -39,13 +39,13 @@
 /* Mobile stacking */
 @media (max-width: 1024px) {
   .hero {
-    padding-top: 3.5rem;
+    padding-top: 0;
   }
 
   .heroInner {
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 46px;
+    padding-top: 64px;
     padding-bottom: 46px;
     margin-right: 0;
     text-align: center;
@@ -107,6 +107,7 @@
     margin-right: 0;
     text-align: left;
     align-items: flex-start;
+    padding-top: 64px;
   }
 
   /* Foto verbergen op mobiel */
@@ -195,7 +196,7 @@
   font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
-  border: 1px solid #3b16c1;
+  border: 1.5px solid #3b16c1;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.21);
   transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
 }
@@ -229,23 +230,28 @@
   padding: 2px;
   border-radius: 12px !important;
   background: transparent;
-  border: 2px solid #B55AFF;
+  border: 1px solid #3b16c1;
   text-decoration: none;
   box-shadow: none;
+  transition: transform 0.15s ease;
 }
   
 .secondaryButtonInner {
   padding: 0.95rem 2.7rem;
   border-radius: 10px; /* 12px outer – 2px border */
   background: transparent; /* of #f3e8ff */
-  color: #B55AFF;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
   font-weight: 600;
   font-size: 0.95rem;
   font-family: var(--font-body);
 }
 
-.secondaryButton:hover .secondaryButtonInner {
-  background: #ffffff;
+.secondaryButton:hover {
+  transform: scale(1.05);
 }
 
 /* Partners */

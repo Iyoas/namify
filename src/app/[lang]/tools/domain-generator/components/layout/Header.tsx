@@ -152,9 +152,11 @@ export default function Header() {
               className={styles.iconButton}
               aria-label={messages.actions.favoritesAria}
             >
-              <span className={styles.badge} aria-hidden="true">
-                {likedCount}
-              </span>
+              {likedCount > 0 && (
+                <span className={styles.badge} aria-hidden="true">
+                  {likedCount}
+                </span>
+              )}
               <span className={styles.icon}>
                 <IoHeartOutline className={styles.iconSvg} />
               </span>
@@ -173,7 +175,7 @@ export default function Header() {
         aria-hidden={!isMenuOpen}
       >
         <div className={styles.mobileMenuHeader}>
-          <span className={styles.mobileMenuLabel}>Namify</span>
+          <span className={styles.mobileMenuLabel}>Domifai</span>
           <button
             type="button"
             className={styles.mobileMenuClose}

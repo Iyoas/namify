@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 96px 16px 112px;
+  padding: 64px 16px 112px;
   background-color: rgba(243, 232, 255, 0.35);
   background-image: url("/images/hero-tld.png");
   background-repeat: no-repeat;
@@ -588,7 +588,7 @@
 
 @media (min-width: 768px) {
   .hero {
-    padding: 120px 32px 136px;
+    padding: 80px 32px 136px;
   }
 
   .title {

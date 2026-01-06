@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IoHeartOutline } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import styles from "./Header.module.css";
+import Logo from "./Logo";
 import { getHeaderMessages } from "@/i18n/components/header";
 import type { Lang } from "@/config/i18n";
 
@@ -113,16 +113,7 @@ export default function Header() {
           <RxHamburgerMenu className={styles.mobileMenuIcon} />
         </button>
 
-        <Link href={homeHref} className={styles.logoLink} aria-label="Go to home">
-          <Image
-            src="/images/logo2.png"
-            alt="Namitor"
-            width={140}
-            height={40}
-            priority
-            className={styles.logo}
-          />
-        </Link>
+        <Logo />
 
         <nav className={`${styles.nav} ${styles.desktopOnly}`} aria-label="Primary navigation">
           <Link

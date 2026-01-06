@@ -31,8 +31,8 @@
 
 .logo {
   display: block;
-  width: 125px;
-  height: 25px;
+  width: 160px;
+  height: 32px;
   object-fit: contain;
 }
 
@@ -79,8 +79,9 @@
   width: 46px;
   height: 46px;
   border-radius: 14px;
-  border: 1.5px solid #3b16c1;
-  background: #ffffff;
+  border: 2px solid transparent;
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    var(--gradient-primary) border-box;
   color: #000000;
   display: inline-flex;
   align-items: center;
@@ -217,8 +218,8 @@
   }
 
   .logo {
-    width: 110px;
-    height: 24px;
+    width: 140px;
+    height: 28px;
   }
 
   /* Ensure nav never takes space on mobile */

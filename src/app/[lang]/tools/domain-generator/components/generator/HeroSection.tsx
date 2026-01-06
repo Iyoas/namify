@@ -318,7 +318,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
               aria-pressed={mode === "ai"}
             >
               <BsStars className={styles.modeIcon} aria-hidden="true" />
-              AI Checker
+              {messages.hero.modeAiNameGenerator}
             </button>
             <button
               type="button"
@@ -331,7 +331,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
               onClick={() => setMode("single")}
               aria-pressed={mode === "single"}
             >
-              Single Domain
+              {messages.hero.modeDomainChecker}
             </button>
           </div>
 

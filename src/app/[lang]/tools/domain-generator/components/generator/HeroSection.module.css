@@ -618,6 +618,10 @@
     justify-content: center;
     margin-bottom: 20px;
   }
+
+  .modeOption {
+    font-size: 14px;
+  }
 }
 
 @media (min-width: 641px) {

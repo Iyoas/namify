@@ -80,7 +80,7 @@ const messages = {
       },
       details: {
         emailLabel: "Email",
-        emailValue: "info-namitor@gmail.com",
+        emailValue: "info-domifai@gmail.com",
         locationLabel: "Location",
         locationValue: "Based in Rotterdam, The Netherlands",
       },

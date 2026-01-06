@@ -120,19 +120,18 @@ export default function Header() {
             href={`${homeHref}/tools/domain-generator/generator`}
             className={styles.navLink}
           >
-            {messages.navDesktop.generator}
+            {messages.navDesktop.aiNameGenerator}
+          </Link>
+
+          <Link
+            href={`${homeHref}/tools/domain-generator/generator?mode=single`}
+            className={styles.navLink}
+          >
+            {messages.navDesktop.domainChecker}
           </Link>
 
           <Link href={`${homeHref}#how-it-works`} className={styles.navLink}>
             {messages.navDesktop.howItWorks}
-          </Link>
-
-          <Link href={`${homeHref}#about`} className={styles.navLink}>
-            {messages.navDesktop.about}
-          </Link>
-
-          <Link href={`${homeHref}#faq`} className={styles.navLink}>
-            {messages.navDesktop.faq}
           </Link>
         </nav>
 

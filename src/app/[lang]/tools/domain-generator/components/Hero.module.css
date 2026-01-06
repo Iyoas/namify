@@ -230,16 +230,29 @@
   padding: 2px;
   border-radius: 12px !important;
   background: transparent;
-  border: 1px solid #3b16c1;
+  border: none;
   text-decoration: none;
   box-shadow: none;
   transition: transform 0.15s ease;
 }
-  
+
+.secondaryButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: var(--gradient-primary);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
 .secondaryButtonInner {
   padding: 0.95rem 2.7rem;
   border-radius: 10px; /* 12px outer – 2px border */
-  background: transparent; /* of #f3e8ff */
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   background-clip: text;

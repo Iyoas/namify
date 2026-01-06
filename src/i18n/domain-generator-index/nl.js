@@ -10,7 +10,7 @@ const messages = {
       secondaryCta: "Hoe werkt het?",
       partnersLabel: "Onze partners",
       badgeTop: "Nieuw in 2025",
-      badgeBottom: "Powered by GPT-5 Turbo",
+      badgeBottom: "Powered by GPT-5 Mini",
       imageAlt: "Ondernemer die werkt aan zijn merknaam",
     },
     howItWorks: {

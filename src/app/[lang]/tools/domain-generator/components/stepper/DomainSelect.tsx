@@ -147,7 +147,7 @@ export default function DomainSelect({
   const router = useRouter();
 
   const baseNameFromUrl = searchParams.get("base");
-  const langFromUrl = searchParams.get("lang") ?? "nl";
+  const langFromUrl = searchParams.get("lang") ?? "en";
 
   const categories = useMemo(
     () =>

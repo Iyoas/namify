@@ -27,8 +27,8 @@ function SparkIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export default function Header() {
   const params = useParams<LangParams>();
-  const lang = params?.lang ?? "";
-  const homeHref = lang ? `/${lang}` : "/";
+  const lang = params?.lang ?? "en";
+  const homeHref = `/${lang}`;
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [likedCount, setLikedCount] = useState(0);

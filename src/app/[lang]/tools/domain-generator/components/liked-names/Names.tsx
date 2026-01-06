@@ -27,7 +27,7 @@ export default function FavoriteNamesSection({
 }: FavoriteNamesSectionProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const pathLang = pathname.split("/")[1] || "nl";
+  const pathLang = pathname.split("/")[1] || "en";
   const activeLang = lang ?? pathLang;
 
   const [favorites, setFavorites] = React.useState<FavoriteName[]>([]);

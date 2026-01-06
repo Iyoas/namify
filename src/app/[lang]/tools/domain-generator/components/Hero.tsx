@@ -33,9 +33,7 @@ export default function Hero({ lang, messages }: HeroProps) {
               href={`/${lang}/tools/domain-generator/generator`}
               className={styles.primaryButton}
             >
-              <span className={styles.primaryIconWrapper}>
-                <Sparkles className={styles.primaryIcon} />
-              </span>
+              <Sparkles className={styles.primaryIcon} />
               <span>{hero.primaryCta}</span>
             </Link>
 

@@ -6,7 +6,7 @@ export default function Logo() {
   return (
     <Link href="/" className={styles.logoLink} aria-label="Domifai">
       <Image
-        src="/images/logo.png"
+        src="/images/domifai-logo.png"
         alt="Domifai"
         width={32}
         height={32}

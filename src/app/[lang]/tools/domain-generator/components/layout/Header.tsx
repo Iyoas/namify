@@ -130,8 +130,11 @@ export default function Header() {
             {messages.navDesktop.domainChecker}
           </Link>
 
-          <Link href={`${homeHref}#how-it-works`} className={styles.navLink}>
-            {messages.navDesktop.howItWorks}
+          <Link
+            href={`${homeHref}/tools/domain-generator/privacy-policy`}
+            className={styles.navLink}
+          >
+            {messages.navDesktop.privacyPolicy}
           </Link>
         </nav>
 

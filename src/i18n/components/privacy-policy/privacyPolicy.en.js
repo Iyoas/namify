@@ -52,7 +52,7 @@ export const privacyPolicyEn = {
     contact: {
       title: "Contact",
       paragraphs: [
-        "For privacy questions or requests, you can contact us at contact@yourdomain.com.",
+        "For privacy questions or requests, you can contact us at contact@domifai.com.",
       ],
     },
   },

@@ -52,7 +52,7 @@ export const privacyPolicyNl = {
     contact: {
       title: "Contact",
       paragraphs: [
-        "Voor privacyvragen of verzoeken kunt u contact opnemen via contact@yourdomain.com.",
+        "Voor privacyvragen of verzoeken kunt u contact opnemen via contact@domifai.com.",
       ],
     },
   },

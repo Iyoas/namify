@@ -28,6 +28,37 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="nl">
       <body className={`${inter.variable} ${urbanist.variable} app-body`}>
         {children}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: `<!-- Begin TradeTracker SuperTag Code -->
+<script type="text/javascript">
+    var _TradeTrackerTagOptions = {
+        t: 'a',
+        s: '503919',
+        chk: 'a618d355af68a59e392db594efcf1315',
+        overrideOptions: {}
+    };
+
+    (function() {
+        var tt = document.createElement('script'),
+            s = document.getElementsByTagName('script')[0];
+        tt.setAttribute('type', 'text/javascript');
+        tt.setAttribute(
+            'src',
+            (document.location.protocol == 'https:' ? 'https' : 'http') +
+            '://tm.tradetracker.net/tag?t=' +
+            _TradeTrackerTagOptions.t +
+            '&s=' +
+            _TradeTrackerTagOptions.s +
+            '&chk=' +
+            _TradeTrackerTagOptions.chk
+        );
+        s.parentNode.insertBefore(tt, s);
+    })();
+</script>
+<!-- End TradeTracker SuperTag Code -->`,
+          }}
+        />
       </body>
     </html>
   );

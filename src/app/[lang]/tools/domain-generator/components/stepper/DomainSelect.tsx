@@ -421,20 +421,7 @@ export default function DomainSelect({
               {messages.domainSelect.filters.moreOptions}
             </span>
 
-            <div className={styles.filtersRight}>
-              <button
-                type="button"
-                className={styles.metaButton}
-                aria-label={messages.domainSelect.filters.favouritesAria}
-                onClick={() =>
-                  router.push(`/${lang}/tools/domain-generator/liked-names`)
-                }
-              >
-                <Heart className={styles.metaIcon} />
-                <span>{messages.domainSelect.filters.favourites}</span>
-                <span className={styles.metaBadge}>{likedNames.length}</span>
-              </button>
-            </div>
+            <div className={styles.filtersRight} />
           </div>
 
           {/* Tweede rij: categorie-pills */}

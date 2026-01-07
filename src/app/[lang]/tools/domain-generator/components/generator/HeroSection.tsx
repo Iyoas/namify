@@ -7,7 +7,6 @@ import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./HeroSection.module.css";
-import likedStyles from "../liked-names/Names.module.css";
 import { Box, Skeleton } from "@mui/material";
 import type { Lang } from "@/config/i18n";
 import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
@@ -607,14 +606,16 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                 <div className={styles.singleVariations}>
                   <button
                     type="button"
-                    className={likedStyles.cardCtaButton}
+                    className={styles.singleVariationsButton}
                     onClick={() => handleArrowClick(singleResults[0]?.domain ?? "")}
                   >
-                    <span className={likedStyles.cardCtaLabel}>
-                      {messages.hero.singleVariations}
-                    </span>
-                    <span className={likedStyles.cardCtaArrow} aria-hidden>
-                      →
+                    <span className={styles.singleVariationsInner}>
+                      <span className={styles.singleVariationsLabel}>
+                        {messages.hero.singleVariations}
+                      </span>
+                      <span className={styles.singleVariationsArrow} aria-hidden>
+                        →
+                      </span>
                     </span>
                   </button>
                 </div>

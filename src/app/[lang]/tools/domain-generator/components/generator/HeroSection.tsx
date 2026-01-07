@@ -582,9 +582,6 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                         <span className={styles.singleDomain}>{result.domain}</span>
                       </div>
                       <div className={styles.singleRight}>
-                        <span className={styles.singlePrice}>
-                          {messages.hero.singlePrice}
-                        </span>
                         <button
                           type="button"
                           className={[

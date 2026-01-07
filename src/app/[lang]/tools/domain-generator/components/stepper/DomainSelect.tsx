@@ -505,12 +505,6 @@ export default function DomainSelect({
                         suggestion.name
                       )}
                     </span>
-                    <span className={styles.estimatedLabel}>
-                      {messages.domainSelect.priceLabel}{" "}
-                      <span className={styles.estimatedPrice}>
-                        {suggestion.estimatedPrice}
-                      </span>
-                    </span>
                   </div>
                 </div>
               </div>

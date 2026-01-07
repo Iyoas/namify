@@ -91,7 +91,9 @@ export default function IndustryGenerators({ messages }: IndustryGeneratorsProps
 
               <div className={styles.cardFooter}>
                 <Link href={generatorHref} className={styles.cardButton}>
-                  <span>{messages.industryGenerators.cardCta}</span>
+                  <span className={styles.cardButtonLabel}>
+                    {messages.industryGenerators.cardCta}
+                  </span>
                   <ArrowRightIcon aria-hidden="true" className={styles.cardButtonIcon} />
                 </Link>
               </div>

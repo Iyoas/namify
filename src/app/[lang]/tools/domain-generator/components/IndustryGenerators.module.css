@@ -136,9 +136,17 @@
       var(--gradient-primary) border-box;
     font-size: 15px;
     font-weight: 600;
-    color: #4F46E5; /* text in main gradient purple family */
+    color: #4F46E5; /* fallback if gradient text isn't supported */
     text-decoration: none;
     width: 100%;
+  }
+
+  .cardButtonLabel {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
   
   .cardButton:hover {

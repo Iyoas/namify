@@ -7,10 +7,9 @@ export const headerEn = {
   navMobile: {
     home: "Home",
     businessNameGenerator: "Business name generator",
+    domainChecker: "Domain checker",
     favorites: "Favorite names",
     howItWorks: "How it works",
-    about: "About us",
-    contact: "Contact",
   },
   actions: {
     openMenuAria: "Open menu",

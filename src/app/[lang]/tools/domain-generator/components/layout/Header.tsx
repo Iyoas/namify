@@ -79,12 +79,14 @@ export default function Header() {
       label: messages.navMobile.businessNameGenerator,
     },
     {
+      href: `${homeHref}/tools/domain-generator/generator?mode=single`,
+      label: messages.navMobile.domainChecker,
+    },
+    {
       href: `${homeHref}/tools/domain-generator/liked-names`,
       label: messages.navMobile.favorites,
     },
     { href: `${homeHref}#how-it-works`, label: messages.navMobile.howItWorks },
-    { href: `${homeHref}#about`, label: messages.navMobile.about },
-    { href: `${homeHref}#contact`, label: messages.navMobile.contact },
   ];
 
   return (
@@ -168,7 +170,7 @@ export default function Header() {
         aria-hidden={!isMenuOpen}
       >
         <div className={styles.mobileMenuHeader}>
-          <span className={styles.mobileMenuLabel}>Domifai</span>
+          <Logo />
           <button
             type="button"
             className={styles.mobileMenuClose}

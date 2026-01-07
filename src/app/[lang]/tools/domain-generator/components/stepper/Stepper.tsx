@@ -136,6 +136,7 @@ export default function Stepper({
 
       {(isLoading || (data && data.names.length > 0)) && (
         <DomainSelect
+          lang={lang}
           loading={!data && isLoading}
           names={
             data?.names ??

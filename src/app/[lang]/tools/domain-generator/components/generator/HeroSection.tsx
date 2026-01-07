@@ -10,6 +10,7 @@ import styles from "./HeroSection.module.css";
 import { Box, Skeleton } from "@mui/material";
 import type { Lang } from "@/config/i18n";
 import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
+import { getRegistrarUrl } from "@/lib/registrar";
 
 type HeroSectionProps = {
   lang: Lang;
@@ -301,6 +302,11 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
     );
   }
 
+  function handleRegistrarClick(domain: string) {
+    const registrarUrl = getRegistrarUrl(domain, lang);
+    window.open(registrarUrl, "_blank", "noopener,noreferrer");
+  }
+
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
@@ -588,6 +594,9 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                             .filter(Boolean)
                             .join(" ")}
                           disabled={!isAvailable}
+                          onClick={() =>
+                            isAvailable ? handleRegistrarClick(result.domain) : null
+                          }
                         >
                           {isAvailable
                             ? messages.hero.singleClaim

@@ -16,8 +16,11 @@ import styles from "./DomainSelect.module.css";
 
 import type { DomainAvailabilityStatus } from "@/lib/domainr";
 import type { GeneratorGeneralResultsMessages } from "@/i18n/domain-generator-index/generator-general";
+import type { Lang } from "@/config/i18n";
+import { getRegistrarUrl } from "@/lib/registrar";
 
 type DomainSelectProps = {
+  lang: Lang;
   names: string[];
   availability: Record<string, Record<string, DomainAvailabilityStatus>>;
   tlds: string[];
@@ -137,6 +140,7 @@ const SUGGESTIONS: DomainSuggestion[] = [
 ];
 
 export default function DomainSelect({
+  lang,
   names,
   availability,
   tlds,
@@ -147,7 +151,6 @@ export default function DomainSelect({
   const router = useRouter();
 
   const baseNameFromUrl = searchParams.get("base");
-  const langFromUrl = searchParams.get("lang") ?? "en";
 
   const categories = useMemo(
     () =>
@@ -210,10 +213,7 @@ export default function DomainSelect({
     if (ext.status !== "available") return;
 
     const domain = `${name}${ext.tld}`;
-    // Voor nu standaard naar GoDaddy – later kun je dit makkelijk vervangen
-    const registrarUrl = `https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(
-      domain
-    )}`;
+    const registrarUrl = getRegistrarUrl(domain, lang);
 
     // Open in een nieuw tabblad zodat de gebruiker je site niet verlaat
     window.open(registrarUrl, "_blank", "noopener,noreferrer");
@@ -233,14 +233,13 @@ export default function DomainSelect({
     try {
       const promptFromUrl = searchParams.get("q") ?? "";
       const styleFromUrl = searchParams.get("style") ?? undefined;
-      const langFromUrl = searchParams.get("lang") ?? undefined;
 
       const res = await fetch("/api/generate-domain", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           prompt: promptFromUrl,
-          lang: langFromUrl,
+          lang,
           style: styleFromUrl,
         }),
       });
@@ -428,7 +427,7 @@ export default function DomainSelect({
                 className={styles.metaButton}
                 aria-label={messages.domainSelect.filters.favouritesAria}
                 onClick={() =>
-                  router.push(`/${langFromUrl}/tools/domain-generator/liked-names`)
+                  router.push(`/${lang}/tools/domain-generator/liked-names`)
                 }
               >
                 <Heart className={styles.metaIcon} />

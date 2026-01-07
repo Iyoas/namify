@@ -8,6 +8,7 @@ import { IoMdHeartEmpty, IoIosHeart } from "react-icons/io";
 import { IoPersonOutline, IoMusicalNotesOutline } from "react-icons/io5";
 import { FaRegStar } from "react-icons/fa";
 import { LuBriefcaseBusiness } from "react-icons/lu";
+import { LuExternalLink } from "react-icons/lu";
 import { RiGraduationCapLine } from "react-icons/ri";
 import { TbWorld } from "react-icons/tb";
 import { GrPersonalComputer } from "react-icons/gr";
@@ -530,7 +531,7 @@ export default function DomainSelect({
                     >
                       <span className={styles.extensionStatusIcon}>
                         {ext.status === "available" ? (
-                          <Check className={styles.extensionCheckIcon} />
+                          <LuExternalLink className={styles.extensionCheckIcon} />
                         ) : (
                           "×"
                         )}

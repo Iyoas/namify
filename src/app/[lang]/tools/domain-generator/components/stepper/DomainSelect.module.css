@@ -327,6 +327,7 @@
   background: rgba(27, 158, 51, 0.1);
   color: #1B9E33;
   cursor: pointer;
+  border-radius: 12px !important;
 }
 
 .extensionTagAvailable:hover {
@@ -347,7 +348,7 @@
   background: rgba(255, 76, 76, 0.10);
   color: rgba(255, 76, 76, 0.8); /* 80% opacity */
   cursor: default;
-  opacity: 0.8; /* makes whole pill less prominent */
+  opacity: 0.65; /* makes whole pill less prominent */
 }
 
 .extensionStatusIcon {
@@ -480,6 +481,8 @@
     -webkit-overflow-scrolling: touch;
     flex-wrap: nowrap;
     max-width: 100%;
+    height: 24px;
+    padding-block: 4px;
   }
 }
 

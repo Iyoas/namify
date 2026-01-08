@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="nl">
-      <body className={`${inter.variable} ${urbanist.variable} app-body`}>
+      <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-QDXQK0REKG"
           strategy="afterInteractive"
@@ -39,6 +39,8 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-QDXQK0REKG');`}
         </Script>
+      </head>
+      <body className={`${inter.variable} ${urbanist.variable} app-body`}>
         {children}
         <Analytics />
         <div

@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Urbanist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 
 const inter = Inter({
@@ -43,6 +44,7 @@ gtag('config', 'G-QDXQK0REKG');`}
       <body className={`${inter.variable} ${urbanist.variable} app-body`}>
         {children}
         <Analytics />
+        <SpeedInsights />
         <div
           dangerouslySetInnerHTML={{
             __html: `<!-- Begin TradeTracker SuperTag Code -->

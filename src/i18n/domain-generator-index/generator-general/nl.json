@@ -55,24 +55,24 @@
     "sections": {
       "aiExplainer": {
         "eyebrow": "",
-        "title": "De AI van Domifai helpt unieke bedrijfsnamen te creëren",
-        "description": "Domifai helpt je doordachte, relevante bedrijfsnamen te genereren op basis van jouw input. Geen willekeurige suggesties, maar AI die focust op helderheid, memorabiliteit en merkfit. Zo ontdek je namen die in de praktijk werken en klaar zijn voor online gebruik.",
+        "title": "Domifai helpt je sterke bedrijfs- en domeinnamen vinden",
+        "description": "Domifai genereert doordachte en relevante bedrijfsnamen op basis van jouw input. Geen willekeurige suggesties, maar naamideeën die logisch voelen, goed blijven hangen en passen bij wat je wilt bouwen. Zo werk je gericht toe naar een naam die ook online bruikbaar is.",
         "imageAlt": "Illustratie die de AI van Domifai uitlicht",
         "features": [
           {
             "id": "nameGeneration",
             "title": "AI-gedreven naamgeneratie",
-            "description": "Ontvang frisse, relevante naamideeën die passen bij jouw beschrijving en intentie. Ontdek uiteenlopende stijlen, van gedurfd en modern tot strak en minimalistisch, en vind snel opties die onderscheidend, makkelijk uit te spreken en schaalbaar zijn."
+            "description": "Genereer naamideeën die aansluiten bij jouw beschrijving, toon en doel. Ontdek varianten in verschillende stijlen — van modern en gedurfd tot eenvoudig en tijdloos — en vind namen die makkelijk uit te spreken zijn en mee kunnen groeien met je project."
           },
           {
             "id": "extensionsPreview",
-            "title": "Directe preview van extensies",
-            "description": "Evalueer domeinmogelijkheden direct naast elke naamsuggestie. Vergelijk razendsnel populaire extensies zoals .com, .io, .ai en meer, zodat je sneller beslissingen neemt zonder tools te wisselen."
+            "title": "Direct inzicht in domeinen",
+            "description": "Bekijk direct welke domeinextensies beschikbaar zijn bij elke naam. Vergelijk populaire opties zoals .com, .io en .ai zonder extra stappen, zodat je sneller keuzes maakt en door kunt."
           },
           {
             "id": "shortlist",
-            "title": "Favorieten bewaren",
-            "description": "Bewaar de naamideeën die eruit springen en bouw een gerichte shortlist op. Bekijk en vergelijk je favorieten, open ze voor variaties en verfijn tot je een naam vindt die echt bij je project of bedrijf past."
+            "title": "Favorieten bewaren en vergelijken",
+            "description": "Sla interessante namen op en bouw een overzichtelijke shortlist. Vergelijk je favorieten, bekijk variaties en verfijn stap voor stap tot je een naam vindt die echt past bij jouw bedrijf of idee."
           }
         ]
       },

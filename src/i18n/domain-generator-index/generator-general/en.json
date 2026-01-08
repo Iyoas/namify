@@ -55,24 +55,24 @@
     "sections": {
       "aiExplainer": {
         "eyebrow": "",
-        "title": "Domifai’s AI helps craft unique business name ideas",
-        "description": "Domifai helps you generate thoughtful, relevant business name ideas based on your input. Instead of random suggestions, the AI focuses on clarity, memorability, and brand fit, helping you explore names that actually work in the real world and are suitable for online use.",
+        "title": "Find a strong business and domain name with Domifai",
+        "description": "Domifai generates thoughtful, relevant business name ideas based on your input. No random suggestions—just names that make sense, are easy to remember, and fit what you’re building. That way you can narrow down to a name that also works online.",
         "imageAlt": "Illustration highlighting Domifai AI",
         "features": [
           {
             "id": "nameGeneration",
-            "title": "AI Powered Name Generation",
-            "description": "Get fresh, relevant name ideas tailored to your description and intent. Explore a wide range of naming styles, from bold and modern to clean and minimal, and quickly uncover options that feel distinctive, easy to pronounce, and ready to grow with your brand."
+            "title": "AI-driven name generation",
+            "description": "Generate name ideas that match your description, tone, and goal. Explore different styles—from modern and bold to simple and timeless—and find names that are easy to say and can grow with your project."
           },
           {
             "id": "extensionsPreview",
-            "title": "Instant Domain Extensions Preview",
-            "description": "Evaluate domain possibilities directly alongside each name suggestion. Instantly compare popular extensions such as .com, .io, .ai, and more, so you can make faster decisions without switching tools or repeating searches."
+            "title": "Instant domain insight",
+            "description": "See which domain extensions are available for each name. Compare popular options like .com, .io, and .ai without extra steps, so you can decide faster and move on."
           },
           {
             "id": "shortlist",
-            "title": "Shortlist Your Favorites",
-            "description": "Save the name ideas that stand out and build a focused shortlist as you explore. Revisit and compare your favorites, open them to view variations, and refine your options until you find a name that truly fits your project or business."
+            "title": "Save and compare",
+            "description": "Save the names that stand out and build a clear shortlist. Compare favorites, view variations, and refine step by step until you land on a name that truly fits your business or idea."
           }
         ]
       },

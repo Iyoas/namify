@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Urbanist } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="nl">
       <body className={`${inter.variable} ${urbanist.variable} app-body`}>
         {children}
+        <Analytics />
         <div
           dangerouslySetInnerHTML={{
             __html: `<!-- Begin TradeTracker SuperTag Code -->

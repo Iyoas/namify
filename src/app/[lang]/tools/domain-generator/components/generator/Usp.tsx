@@ -7,19 +7,19 @@ import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/gen
 const uspItems = [
   {
     key: "ai",
-    icon: "/icons/ai-search.svg",
-  },
-  {
-    key: "smartSearch",
     icon: "/icons/star.svg",
   },
   {
+    key: "smartSearch",
+    icon: "/icons/search.svg",
+  },
+  {
     key: "brandChecks",
-    icon: "/icons/tm.svg",
+    icon: "/icons/shuffle.svg",
   },
   {
     key: "logo",
-    icon: "/icons/price-card.svg",
+    icon: "/icons/heart.svg",
   },
 ] as const;
 

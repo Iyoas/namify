@@ -4,6 +4,7 @@ import styles from "./SuggestedNames.module.css";
 import { ArrowRight } from "lucide-react";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import React from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { Lang } from "@/config/i18n";
 import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
@@ -108,9 +109,12 @@ export default function SuggestedNames({ lang, messages }: SuggestedNamesProps) 
 
         {/* Load more */}
         <div className={styles.loadMoreWrapper}>
-          <button className={styles.loadMore}>
+          <Link
+            href={`/${lang}/tools/domain-generator/generator`}
+            className={styles.loadMore}
+          >
             <span className={styles.loadMoreText}>{messages.suggestedNames.loadMore}</span>
-          </button>
+          </Link>
         </div>
       </div>
     </section>

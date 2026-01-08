@@ -65,11 +65,11 @@
   }
   
   /* Icoon zelf (SVG via next/image) */
-  .icon {
-    display: block;
-    width: 25px;
-    height: 25px;
-  }
+.icon {
+  display: block;
+  width: 25px;
+  height: 25px;
+}
   
   /* Titel in de kaart */
   .cardTitle {

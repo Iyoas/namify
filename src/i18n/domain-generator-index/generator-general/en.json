@@ -28,19 +28,19 @@
       "cards": {
         "ai": {
           "title": "AI-generated names",
-          "desc": "Generate strong brand and domain name ideas fast with advanced language models."
+          "desc": "Generate relevant name ideas that match your input, audience, and direction."
         },
         "smartSearch": {
-          "title": "Smart domain search",
-          "desc": "Let the generator suggest variants and combinations that fit your niche, audience, and extensions."
+          "title": "Instant domain check",
+          "desc": "See which domains are available right away, without extra steps or separate tools."
         },
         "brandChecks": {
-          "title": "Brand and handle checks",
-          "desc": "Avoid duplicates. Quickly check if your ideas are free as brand names or social handles."
+          "title": "Smart name variations",
+          "desc": "Explore alternatives and variations to quickly land on a strong, available name."
         },
         "logo": {
-          "title": "Free logo with your domain",
-          "desc": "Get a simple starter logo that matches your name so you have an instant visual identity."
+          "title": "Save and compare",
+          "desc": "Save names, compare them later, and choose with confidence, no account needed."
         }
       }
     },
@@ -48,7 +48,7 @@
       "title": "More than 100 fresh ideas",
       "subtitle": "for your next business launch",
       "description": "From bold to minimal, discover memorable brand name ideas that stand out.",
-      "loadMore": "show more names",
+      "loadMore": "Generate your own name",
       "ariaLike": "Like this name",
       "ariaViewVariations": "View variations for this name"
     },

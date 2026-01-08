@@ -28,19 +28,19 @@
       "cards": {
         "ai": {
           "title": "AI-gegenereerde namen",
-          "desc": "Genereer snel sterke merk- en domeinnaam-ideeën met geavanceerde taalmodellen."
+          "desc": "Genereer relevante naamideeën die aansluiten bij jouw input, doelgroep en richting."
         },
         "smartSearch": {
-          "title": "Slimme domeinzoeker",
-          "desc": "Laat de generator varianten en combinaties voorstellen die passen bij jouw niche, doelgroep en extensies."
+          "title": "Directe domein check",
+          "desc": "Zie direct welke domeinen beschikbaar zijn, zonder extra stappen of losse tools."
         },
         "brandChecks": {
-          "title": "Merk- en handle-checks",
-          "desc": "Voorkom dubbelen. Check snel of je ideeën vrij zijn als merknaam of social handle."
+          "title": "Slimme naamvariaties",
+          "desc": "Ontdek alternatieven en variaties om sneller tot een sterke, beschikbare naam te komen."
         },
         "logo": {
-          "title": "Gratis logo bij je domein",
-          "desc": "Krijg een eenvoudig startlogo dat bij je naam past, zodat je direct een visuele identiteit hebt."
+          "title": "Bewaar en vergelijk",
+          "desc": "Sla namen op, vergelijk ze later en maak in alle rust de juiste keuze, zonder account."
         }
       }
     },
@@ -48,7 +48,7 @@
       "title": "Meer dan 100 frisse ideeën",
       "subtitle": "voor je volgende lancering",
       "description": "Van gedurfd tot minimalistisch: ontdek gedenkwaardige merknamen die opvallen.",
-      "loadMore": "toon meer namen",
+      "loadMore": "Genereer eigen naam",
       "ariaLike": "Vind deze naam leuk",
       "ariaViewVariations": "Bekijk variaties voor deze naam"
     },

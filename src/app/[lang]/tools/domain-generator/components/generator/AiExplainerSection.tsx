@@ -25,7 +25,9 @@ export default function AiExplainerSection({ messages }: AiExplainerSectionProps
         </div>
 
         <div className={styles.content}>
-          <p className={styles.eyebrow}>{aiExplainer.eyebrow}</p>
+          {aiExplainer.eyebrow ? (
+            <p className={styles.eyebrow}>{aiExplainer.eyebrow}</p>
+          ) : null}
           <h2 className={styles.title}>
             {aiExplainer.title}
           </h2>

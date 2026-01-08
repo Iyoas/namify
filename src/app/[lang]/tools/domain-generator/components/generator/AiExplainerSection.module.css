@@ -37,7 +37,7 @@
 
 .content {
   flex: 1;
-  padding: 56px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 24px;

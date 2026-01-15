@@ -1,6 +1,8 @@
 "use client";
 
 import { CheckCircle2 } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import type { Lang } from "@/config/i18n";
 import styles from "./ExampleName.module.css";
 import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 
@@ -15,6 +17,9 @@ export default function ExampleName({
 }) {
   const example = messages.examples.exampleName;
   const benefits = example.benefits;
+  const params = useParams<{ lang?: string }>();
+  const lang = (params?.lang ?? "en") as Lang;
+  const router = useRouter();
 
   return (
     <section className={styles.section}>
@@ -51,7 +56,20 @@ export default function ExampleName({
           </div>
 
           <div className={styles.actions}>
-            <button type="button" className={styles.secondaryButton}>
+            <button
+              type="button"
+              className={styles.secondaryButton}
+              onClick={() => {
+                const searchParams = new URLSearchParams({
+                  mode: "single",
+                  domain: example.name,
+                });
+                router.push(
+                  `/${lang}/tools/domain-generator/generator?` +
+                    searchParams.toString()
+                );
+              }}
+            >
               {example.secondaryCta}
             </button>
             <button

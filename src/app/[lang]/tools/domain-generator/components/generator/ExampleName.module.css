@@ -153,12 +153,32 @@
   margin-left: auto;
   padding: 10px 22px;
   border-radius: 8px;
-  border: 1px solid #b55aff;
+  border: 1px solid transparent;
   background: transparent;
-  color: #3b16c1;
+  color: transparent;
+  position: relative;
+  background-image: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  transition: opacity 120ms ease;
+}
+
+.secondaryButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  padding: 1px;
+  background: var(--gradient-primary);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 /* Primaire gradient knop */
@@ -175,7 +195,7 @@
 
 /* Hover states (subtiel) */
 .secondaryButton:hover {
-  border-color: #a855f7;
+  opacity: 0.9;
 }
 
 .primaryButton:hover {

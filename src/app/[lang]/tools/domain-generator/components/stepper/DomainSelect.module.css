@@ -108,7 +108,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 0px;
+  margin-bottom: 16px;
   flex-wrap: nowrap;
 }
 
@@ -441,6 +441,7 @@
   .filtersRow {
     align-items: flex-start;
     flex-direction: column;
+    margin-bottom: 0;
   }
 
   .footer {

@@ -54,7 +54,17 @@ export default function ExampleName({
             <button type="button" className={styles.secondaryButton}>
               {example.secondaryCta}
             </button>
-            <button type="button" className={styles.primaryButton}>
+            <button
+              type="button"
+              className={styles.primaryButton}
+              onClick={() => {
+                const promptField = document.getElementById("generator-prompt");
+                if (promptField instanceof HTMLTextAreaElement) {
+                  promptField.scrollIntoView({ behavior: "smooth", block: "center" });
+                  promptField.focus();
+                }
+              }}
+            >
               {example.primaryCta}
             </button>
           </div>

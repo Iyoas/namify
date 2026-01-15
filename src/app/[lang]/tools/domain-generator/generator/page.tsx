@@ -23,7 +23,7 @@ export default async function DomainGeneratorPage({
       <Usp messages={messages} />
       <SuggestedNames lang={lang} messages={messages} />
       <AiExplainerSection messages={messages} />
-      <LongFormContent messages={messages} />
+      <LongFormContent lang={lang} messages={messages} />
       <DomainTipSection messages={messages} />
       <ExampleName messages={messages} />
     </section>

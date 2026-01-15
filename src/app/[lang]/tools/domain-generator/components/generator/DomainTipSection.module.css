@@ -1,6 +1,6 @@
 .section {
   background: #ffffff;
-  padding: var(--section-padding-y) 20px;
+  padding: var(--section-padding-y) 100px;
 }
 
 .inner {
@@ -123,6 +123,10 @@
 /* Responsive */
 
 @media (max-width: 768px) {
+  .section {
+    padding: var(--section-padding-y) 24px;
+  }
+
   .title {
     font-size: 26px;
     line-height: 1.4;
@@ -139,6 +143,10 @@
 }
 
 @media (max-width: 640px) {
+  .section {
+    padding: var(--section-padding-y) 20px;
+  }
+
   .inner {
     max-width: 100%;
   }

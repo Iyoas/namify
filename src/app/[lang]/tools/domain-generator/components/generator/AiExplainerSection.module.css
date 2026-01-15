@@ -1,5 +1,5 @@
 .section {
-  padding: var(--section-padding-y) 20px;
+
   background: white;
 }
 
@@ -94,6 +94,10 @@
 }
 
 @media (max-width: 1024px) {
+  .section {
+    padding: var(--section-padding-y) 24px;
+  }
+
   .inner {
     flex-direction: column;
     gap: 32px;
@@ -110,6 +114,10 @@
 }
 
 @media (max-width: 640px) {
+  .section {
+    padding: var(--section-padding-y) 20px;
+  }
+
   .inner {
     flex-direction: column;
   }

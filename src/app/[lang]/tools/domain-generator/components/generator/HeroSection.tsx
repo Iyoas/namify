@@ -409,6 +409,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
               ) : (
                 <textarea
                   className={styles.textarea}
+                  id="generator-prompt"
                   placeholder={
                     mode === "single"
                       ? messages.hero.singlePlaceholder

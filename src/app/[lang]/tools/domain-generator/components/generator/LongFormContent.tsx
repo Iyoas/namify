@@ -1,16 +1,35 @@
 
+"use client";
+
+import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import styles from "./LongFormContent.module.css";
+import type { Lang } from "@/config/i18n";
 import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 
 export default function LongFormContent({
   messages,
+  lang,
 }: {
   messages: GeneratorGeneralMessages;
+  lang: Lang;
 }) {
   const longForm = messages.sections.longForm;
   const left = longForm.left;
   const right = longForm.right;
+  const router = useRouter();
+  const [prompt, setPrompt] = useState("");
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const trimmed = prompt.trim();
+    if (!trimmed) return;
+    const searchParams = new URLSearchParams({ q: trimmed });
+    router.push(
+      `/${lang}/tools/domain-generator/results?` + searchParams.toString()
+    );
+  }
 
   return (
     <section className={styles.section}>
@@ -81,13 +100,15 @@ export default function LongFormContent({
           <section className={styles.ctaBlock}>
             <h3 className={styles.ctaTitle}>{right.cta.title}</h3>
 
-            <form className={styles.ctaForm}>
+            <form className={styles.ctaForm} onSubmit={handleSubmit}>
               <input
                 type="text"
                 placeholder={right.cta.placeholder}
                 className={styles.ctaInput}
+                value={prompt}
+                onChange={(event) => setPrompt(event.target.value)}
               />
-              <button type="button" className={styles.ctaButton}>
+              <button type="submit" className={styles.ctaButton}>
                 <Search className={styles.ctaIcon} />
               </button>
             </form>

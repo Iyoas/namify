@@ -9,6 +9,7 @@ export const footerNl = {
     company: {
       title: "Bedrijf",
       howItWorks: "Hoe het werkt",
+      about: "Over ons",
       contact: "Contact",
     },
     resources: {

@@ -9,6 +9,7 @@ export const footerEn = {
     company: {
       title: "Company",
       howItWorks: "How it works",
+      about: "About us",
       contact: "Contact",
     },
     resources: {

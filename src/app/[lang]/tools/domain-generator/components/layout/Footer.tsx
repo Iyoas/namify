@@ -22,6 +22,10 @@ export default function Footer() {
   const homeHref = `/${lang}`;
   const queryString = searchParams.toString();
 
+  if (pathname?.includes("/tools/domain-generator/results")) {
+    return null;
+  }
+
   const buildLangHref = (targetLang: "en" | "nl") => {
     if (!pathname) return `/${targetLang}`;
     const segments = pathname.split("/");
@@ -58,6 +62,10 @@ export default function Footer() {
         {
           label: messages.columns.company.howItWorks,
           href: `${homeHref}#how-it-works`,
+        },
+        {
+          label: messages.columns.company.about,
+          href: `${homeHref}#about`,
         },
         {
           label: messages.columns.company.contact,

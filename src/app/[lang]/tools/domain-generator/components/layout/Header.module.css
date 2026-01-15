@@ -280,7 +280,7 @@
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
-    z-index: 999;
+    z-index: 9998;
     display: block;
   }
 
@@ -292,15 +292,16 @@
     width: min(78%, 320px);
     background: #ffffff;
     box-shadow: 6px 0 30px rgba(0, 0, 0, 0.12);
-    padding: 20px 16px 28px;
+    padding: 20px 16px calc(24px + env(safe-area-inset-bottom));
     display: flex;
     flex-direction: column;
     gap: 18px;
-    z-index: 1000;
+    z-index: 9999;
     transform: translateX(-110%);
     transition: transform 180ms ease-out;
     border-radius: 0 14px 14px 0;
     overflow-y: auto;
+    overflow-x: visible;
   }
 
   .mobileMenuSheetOpen {
@@ -345,7 +346,10 @@
     border-radius: 999px;
     background: #f1f5f9;
     width: fit-content;
-    margin-top: auto;
+    position: absolute;
+    left: 16px;
+    bottom: 84px;
+    margin-top: 0;
   }
 
   .mobileNavLink {

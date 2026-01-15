@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IoHeartOutline } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -30,10 +30,22 @@ export default function Header() {
   const lang = params?.lang ?? "en";
   const homeHref = `/${lang}`;
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [likedCount, setLikedCount] = useState(0);
   const messages = getHeaderMessages((lang || "en") as Lang);
   const hideOnDesktop = pathname?.includes("/tools/domain-generator/results");
+
+  const queryString = searchParams.toString();
+  const buildLangHref = (targetLang: "en" | "nl") => {
+    if (!pathname) return `/${targetLang}`;
+    const segments = pathname.split("/");
+    if (segments.length > 1) {
+      segments[1] = targetLang;
+    }
+    const basePath = segments.join("/") || `/${targetLang}`;
+    return queryString ? `${basePath}?${queryString}` : basePath;
+  };
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -141,6 +153,32 @@ export default function Header() {
         </nav>
 
         <div className={styles.actions} aria-label="Header actions">
+          <div className={styles.langSwitcher}>
+            <Link
+              href={buildLangHref("en")}
+              className={[
+                styles.langButton,
+                lang === "en" ? styles.langButtonActive : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+              aria-current={lang === "en" ? "true" : undefined}
+            >
+              EN
+            </Link>
+            <Link
+              href={buildLangHref("nl")}
+              className={[
+                styles.langButton,
+                lang === "nl" ? styles.langButtonActive : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+              aria-current={lang === "nl" ? "true" : undefined}
+            >
+              NL
+            </Link>
+          </div>
           <div>
             <Link
               href={`${homeHref}/tools/domain-generator/liked-names`}
@@ -198,6 +236,34 @@ export default function Header() {
             </Link>
           ))}
         </nav>
+        <div className={styles.mobileLangSwitcher}>
+          <Link
+            href={buildLangHref("en")}
+            className={[
+              styles.langButton,
+              lang === "en" ? styles.langButtonActive : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            aria-current={lang === "en" ? "true" : undefined}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            EN
+          </Link>
+          <Link
+            href={buildLangHref("nl")}
+            className={[
+              styles.langButton,
+              lang === "nl" ? styles.langButtonActive : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            aria-current={lang === "nl" ? "true" : undefined}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            NL
+          </Link>
+        </div>
       </aside>
     </header>
   );

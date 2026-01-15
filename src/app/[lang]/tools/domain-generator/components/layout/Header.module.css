@@ -74,6 +74,30 @@
   flex: 0 0 auto;
 }
 
+.langSwitcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  background: #f1f5f9;
+}
+
+.langButton {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #475569;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.langButtonActive {
+  background: var(--gradient-primary);
+  color: #ffffff;
+}
+
 .iconButton {
   position: relative;
   width: 46px;
@@ -233,6 +257,10 @@
     gap: 0;
   }
 
+  .langSwitcher {
+    display: none;
+  }
+
   .mobileSignupButton {
     display: inline-flex;
     align-items: center;
@@ -307,6 +335,17 @@
     flex-direction: column;
     gap: 8px;
     padding-top: 6px;
+  }
+
+  .mobileLangSwitcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 999px;
+    background: #f1f5f9;
+    width: fit-content;
+    margin-top: auto;
   }
 
   .mobileNavLink {

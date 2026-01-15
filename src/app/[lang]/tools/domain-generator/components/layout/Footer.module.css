@@ -29,6 +29,12 @@
   gap: 12px;
 }
 
+.topActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .socialButton {
   width: 40px;
   height: 40px;
@@ -44,6 +50,30 @@
 .socialIcon {
   width: 18px;
   height: 18px;
+}
+
+.langSwitcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.langButton {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #475569;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.langButtonActive {
+  background: var(--gradient-primary);
+  color: #ffffff;
 }
 
 .columns {
@@ -107,6 +137,11 @@
 
   .columns {
     grid-template-columns: 1fr;
+  }
+
+  .topActions {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .bottom {

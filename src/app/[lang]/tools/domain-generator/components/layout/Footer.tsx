@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { HiOutlineMail } from "react-icons/hi";
 import Logo from "./Logo";
 import styles from "./Footer.module.css";
@@ -14,10 +14,23 @@ type LangParams = { lang?: string };
 export default function Footer() {
   const params = useParams<LangParams>();
   const lang = (params?.lang ?? "en") as Lang;
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const messages = getFooterMessages(lang);
   const domainMessages = getDomainGeneratorIndexMessages(lang);
   const email = domainMessages.contact.details.emailValue;
   const homeHref = `/${lang}`;
+  const queryString = searchParams.toString();
+
+  const buildLangHref = (targetLang: "en" | "nl") => {
+    if (!pathname) return `/${targetLang}`;
+    const segments = pathname.split("/");
+    if (segments.length > 1) {
+      segments[1] = targetLang;
+    }
+    const basePath = segments.join("/") || `/${targetLang}`;
+    return queryString ? `${basePath}?${queryString}` : basePath;
+  };
 
   const columns = [
     {
@@ -84,19 +97,45 @@ export default function Footer() {
           <div className={styles.brand}>
             <Logo />
           </div>
-          <div className={styles.socials}>
-            {socials.map((social) => (
-              <a
-                key={social.key}
-                href={social.href}
-                className={styles.socialButton}
-                aria-label={social.label}
-                target="_blank"
-                rel="noreferrer"
+          <div className={styles.topActions}>
+            <div className={styles.socials}>
+              {socials.map((social) => (
+                <a
+                  key={social.key}
+                  href={social.href}
+                  className={styles.socialButton}
+                  aria-label={social.label}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+            <div className={styles.langSwitcher}>
+              <Link
+                href={buildLangHref("en")}
+                className={[
+                  styles.langButton,
+                  lang === "en" ? styles.langButtonActive : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+                aria-current={lang === "en" ? "true" : undefined}
               >
-                {social.icon}
-              </a>
-            ))}
+                EN
+              </Link>
+              <Link
+                href={buildLangHref("nl")}
+                className={[
+                  styles.langButton,
+                  lang === "nl" ? styles.langButtonActive : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+                aria-current={lang === "nl" ? "true" : undefined}
+              >
+                NL
+              </Link>
+            </div>
           </div>
         </div>
 

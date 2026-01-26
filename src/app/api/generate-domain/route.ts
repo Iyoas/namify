@@ -17,39 +17,11 @@ function createOpenAIClient() {
 }
 
 const TARGET_COUNT = 8;
-const MAX_ROUNDS = 5;
+const MAX_ROUNDS = 2;
 const NAMES_PER_ROUND = 8;
-// Superset van alle TLD's die in de UI-filters (All, Popular, Technology, etc.) worden gebruikt.
-// Zo hebben we in één keer availability voor alle categorieën, en hoeven we bij filteren geen extra API-calls meer te doen.
-const DEFAULT_TLDS = [
-  ".com",
-  ".nl",
-  ".io",
-  ".ai",
-  ".co",
-  ".shop",
-  ".net",
-  ".biz",
-  ".pro",
-  ".edu",
-  ".academy",
-  ".school",
-  ".org",
-  ".info",
-  ".global",
-  ".world",
-  ".tech",
-  ".cloud",
-  ".dev",
-  ".social",
-  ".me",
-  ".fun",
-  ".chat",
-  ".media",
-  ".live",
-  ".consulting",
-  ".show",
-];
+const TIME_BUDGET_MS = 4500;
+// Snelle subset van TLD's om de availability-checks te versnellen.
+const DEFAULT_TLDS = [".com", ".nl", ".io", ".ai", ".co", ".shop", ".net", ".org"];
 
 /**
  * Helper om de taal-specifieke hint op te bouwen.
@@ -290,8 +262,13 @@ export async function POST(req: NextRequest) {
     > = {};
 
     let round = 0;
+    const startTime = Date.now();
 
-    while (acceptedNames.length < TARGET_COUNT && round < MAX_ROUNDS) {
+    while (
+      acceptedNames.length < TARGET_COUNT &&
+      round < MAX_ROUNDS &&
+      Date.now() - startTime < TIME_BUDGET_MS
+    ) {
       round += 1;
 
       console.log(
@@ -318,6 +295,10 @@ export async function POST(req: NextRequest) {
           "[generate-domain] Geen nieuwe namen ontvangen in deze ronde."
         );
         continue;
+      }
+
+      if (Date.now() - startTime >= TIME_BUDGET_MS) {
+        break;
       }
 
       // 2) Check availability voor deze ronde

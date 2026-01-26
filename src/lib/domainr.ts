@@ -6,7 +6,7 @@
 // never leaks to the client. This module is used by the /api/generate-domain
 // route to enrich GPT-generated names with real TLD availability info.
 
-import { checkDomainAvailabilityWithGoDaddy } from "./godaddy";
+
 
 function getDomainrConfig() {
   const token = process.env.DOMAINR_API_TOKEN;
@@ -22,6 +22,38 @@ function getDomainrConfig() {
   }
 
   return { token, baseUrl };
+}
+
+// Simple in-memory cache to speed up repeated checks (best-effort; resets on server restart).
+// TTL is configurable via env; defaults to 10 minutes.
+const AVAILABILITY_CACHE_TTL_MS =
+  (Number.parseInt(process.env.AVAILABILITY_CACHE_TTL_MS || "600000", 10) || 600000);
+
+type CacheEntry = { status: DomainAvailabilityStatus; raw?: unknown; expiresAt: number };
+const availabilityCache = new Map<string, CacheEntry>();
+
+function getCached(domain: string): CacheEntry | null {
+  const entry = availabilityCache.get(domain);
+  if (!entry) return null;
+  if (Date.now() > entry.expiresAt) {
+    availabilityCache.delete(domain);
+    return null;
+  }
+  return entry;
+}
+
+function setCached(domain: string, status: DomainAvailabilityStatus, raw?: unknown) {
+  availabilityCache.set(domain, {
+    status,
+    raw,
+    expiresAt: Date.now() + AVAILABILITY_CACHE_TTL_MS,
+  });
+}
+
+function makeAbortSignal(timeoutMs: number): AbortSignal {
+  const controller = new AbortController();
+  setTimeout(() => controller.abort(), timeoutMs);
+  return controller.signal;
 }
 
 /**
@@ -167,6 +199,15 @@ async function checkDomainAvailabilityWithDomainr(
 
   const checkOne = async (domain: string): Promise<DomainCheckResult> => {
     try {
+      const requestTimeoutMs =
+        Number.parseInt(process.env.DOMAINR_FETCH_TIMEOUT_MS || "2500", 10) || 2500;
+
+      // Cache hit: return instantly.
+      const cached = getCached(domain);
+      if (cached) {
+        return { domain, status: cached.status, raw: cached.raw };
+      }
+
       const url = new URL(baseUrl);
       url.searchParams.set("domain", domain);
       url.searchParams.set("scope", "estimate");
@@ -177,6 +218,7 @@ async function checkDomainAvailabilityWithDomainr(
           "Fastly-Key": token,
           Accept: "application/json",
         },
+        signal: makeAbortSignal(requestTimeoutMs),
       });
 
       if (!response.ok) {
@@ -188,6 +230,7 @@ async function checkDomainAvailabilityWithDomainr(
           response.status,
           text
         );
+        setCached(domain, "unknown");
         return { domain, status: "unknown" as DomainAvailabilityStatus };
       }
 
@@ -195,6 +238,7 @@ async function checkDomainAvailabilityWithDomainr(
       const rawStatus = typeof json?.status === "string" ? json.status : undefined;
       const normalized = normalizeStatusFromStatusString(rawStatus);
 
+      setCached(domain, normalized, json);
       return {
         domain,
         status: normalized,
@@ -202,6 +246,7 @@ async function checkDomainAvailabilityWithDomainr(
       };
     } catch (err) {
       console.error("[domainr] Error checking", domain, err);
+      setCached(domain, "unknown");
       return { domain, status: "unknown" as DomainAvailabilityStatus };
     }
   };
@@ -222,15 +267,8 @@ async function checkDomainAvailabilityWithDomainr(
 export async function checkDomainAvailability(
   domains: string[]
 ): Promise<DomainCheckResult[]> {
-  try {
-    return await checkDomainAvailabilityWithGoDaddy(domains);
-  } catch (err) {
-    console.warn(
-      "[availability] GoDaddy failed, falling back to Domainr",
-      err
-    );
-    return await checkDomainAvailabilityWithDomainr(domains);
-  }
+  // Domainr/Fastly only
+  return await checkDomainAvailabilityWithDomainr(domains);
 }
 
 /**

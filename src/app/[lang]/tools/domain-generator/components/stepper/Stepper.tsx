@@ -30,6 +30,7 @@ export default function Stepper({
   const searchParams = useSearchParams();
   const baseFromQuery = searchParams.get("base");
   const baseNameFromUrl = baseFromQuery ? baseFromQuery.trim() : undefined;
+  const styleFromQuery = searchParams.get("style") ?? "Creative";
   const prompt = initialPrompt ?? "";
 
   const [data, setData] = useState<GenerateDomainResponse | null>(null);
@@ -88,6 +89,7 @@ export default function Stepper({
             body: JSON.stringify({
               prompt,
               lang,
+              style: styleFromQuery,
             }),
           });
 
@@ -124,7 +126,7 @@ export default function Stepper({
     return () => {
       cancelled = true;
     };
-  }, [prompt, baseNameFromUrl, lang]);
+  }, [prompt, baseNameFromUrl, lang, styleFromQuery]);
 
   return (
     <section className="w-full">

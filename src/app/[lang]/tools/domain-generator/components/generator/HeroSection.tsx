@@ -17,8 +17,14 @@ type HeroSectionProps = {
   messages: GeneratorGeneralMessages;
 };
 
-const EXTENSION_OPTIONS = [".com", ".nl", ".ai", ".io", ".co", ".be", ".eu"] as const;
-type ExtensionOption = (typeof EXTENSION_OPTIONS)[number];
+const COUNTRY_TLD_BY_LANG: Record<Lang, string> = {
+  en: ".com",
+  nl: ".nl",
+  es: ".es",
+};
+const FALLBACK_TLD = ".com";
+const BASE_TLDS = [".com", ".net", ".ai", ".io"] as const;
+type ExtensionOption = (typeof BASE_TLDS)[number] | string;
 const SINGLE_TLDS = [".com", ".io", ".ai", ".net", ".co"] as const;
 
 type SingleResult = {
@@ -64,13 +70,21 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const samplePrompts = messages.examples.prompts;
 
   const [selectedStyle, setSelectedStyle] = useState<string>(
-    () => styleOptions[0] ?? ""
+    () => styleOptions.find((option) => option === "Creative") ?? styleOptions[0] ?? "Creative"
   );
   const [isStyleOpen, setIsStyleOpen] = useState(false);
   const styleSelectRef = useRef<HTMLDivElement | null>(null);
 
   const extensionSelectRef = useRef<HTMLDivElement | null>(null);
-  const [selectedExtension, setSelectedExtension] = useState<ExtensionOption>(".com");
+  const defaultCountryTld =
+    COUNTRY_TLD_BY_LANG[lang] ?? FALLBACK_TLD;
+  const extensionOptions = [
+    defaultCountryTld,
+    ...BASE_TLDS.filter((tld) => tld !== defaultCountryTld),
+  ];
+  const [selectedExtension, setSelectedExtension] = useState<ExtensionOption>(
+    defaultCountryTld
+  );
   const [isExtensionOpen, setIsExtensionOpen] = useState(false);
 
   const [prompt, setPrompt] = useState("");
@@ -99,6 +113,10 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
       }
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    setSelectedExtension(defaultCountryTld);
+  }, [defaultCountryTld]);
 
   useEffect(() => {
     if (mode !== "single") return;
@@ -475,7 +493,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
 
                     {isExtensionOpen && (
                       <ul className={styles.dropdown} role="listbox">
-                        {EXTENSION_OPTIONS.map((ext) => (
+                        {extensionOptions.map((ext) => (
                           <li key={ext}>
                             <button
                               type="button"

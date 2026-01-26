@@ -4,6 +4,8 @@ import {
   checkAvailabilityForNames,
   type DomainAvailabilityStatus,
 } from "@/lib/domainr";
+import { ALL_TLDS_SUPERSET, getTldsForCategory } from "@/lib/tlds";
+import type { Lang } from "@/config/i18n";
 
 // IMPORTANT:
 // Zorg dat je in .env.local dit hebt staan:
@@ -18,36 +20,8 @@ function createOpenAIClient() {
 
 const DEFAULT_VARIATION_COUNT = 5;
 
-// Zelfde TLD-set als voor de hoofd-generator (pas aan als je daar iets anders hebt).
-const DEFAULT_TLDS = [
-  ".com",
-  ".nl",
-  ".io",
-  ".ai",
-  ".co",
-  ".shop",
-  ".net",
-  ".biz",
-  ".pro",
-  ".edu",
-  ".academy",
-  ".school",
-  ".org",
-  ".info",
-  ".global",
-  ".world",
-  ".tech",
-  ".cloud",
-  ".dev",
-  ".social",
-  ".me",
-  ".fun",
-  ".chat",
-  ".media",
-  ".live",
-  ".consulting",
-  ".show",
-];
+// Zelfde TLD-set als voor de hoofd-generator (superset voor alle filters).
+const DEFAULT_TLDS = ALL_TLDS_SUPERSET;
 
 /**
  * Helper om de taal-specifieke hint op te bouwen.
@@ -219,8 +193,15 @@ export async function POST(req: NextRequest) {
     const names = [baseName.trim(), ...finalVariations];
 
     // 3) Availability ophalen voor alle namen + TLDs
-    const tlds = DEFAULT_TLDS;
+    const langForTlds = (lang ?? "en") as Lang;
+    const tlds = getTldsForCategory("all", langForTlds);
+    const backgroundTlds = ALL_TLDS_SUPERSET.filter((tld) => !tlds.includes(tld));
     const availability = await checkAvailabilityForNames(names, tlds);
+    if (backgroundTlds.length > 0) {
+      void checkAvailabilityForNames(names, backgroundTlds).catch((err) => {
+        console.warn("[name-variations] Background TLD check failed:", err);
+      });
+    }
 
     console.log(
       "[name-variations][DEBUG] availability:",

@@ -12,7 +12,14 @@
       "modeDomainChecker": "Domein checker",
       "placeholder": "Beschrijf je project, bedrijf of app-idee...",
       "singlePlaceholder": "Vul een domein in (bijv. jouwmerk.nl)",
-      "styleOptions": ["Uniek", "Creatief", "Professioneel", "Tech"],
+      "styleOptions": [
+        "Casual",
+        "Creative",
+        "Funny",
+        "Professional",
+        "Unique",
+        "Tech"
+      ],
       "ctaEnhance": "Verbeter prompt",
       "ctaGenerate": "Genereer namen",
       "ctaSingle": "Controleer domein",

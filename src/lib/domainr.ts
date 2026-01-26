@@ -190,7 +190,7 @@ async function checkDomainAvailabilityWithDomainr(
   // Higher concurrency makes checks noticeably faster, especially for many domains.
   // You can tune via env without code changes.
   const requestedConcurrency =
-    Number.parseInt(process.env.DOMAINR_CONCURRENCY || "25", 10) || 25;
+    Number.parseInt(process.env.DOMAINR_CONCURRENCY || "40", 10) || 40;
 
   // Safety cap to avoid accidental overload / throttling
   const CONCURRENCY = Math.min(50, Math.max(1, requestedConcurrency));
@@ -200,7 +200,7 @@ async function checkDomainAvailabilityWithDomainr(
   const checkOne = async (domain: string): Promise<DomainCheckResult> => {
     try {
       const requestTimeoutMs =
-        Number.parseInt(process.env.DOMAINR_FETCH_TIMEOUT_MS || "2500", 10) || 2500;
+        Number.parseInt(process.env.DOMAINR_FETCH_TIMEOUT_MS || "1500", 10) || 1500;
 
       // Cache hit: return instantly.
       const cached = getCached(domain);

@@ -4,6 +4,8 @@ import {
   checkAvailabilityForNames,
   type DomainAvailabilityStatus,
 } from "@/lib/domainr";
+import { ALL_TLDS_SUPERSET, getTldsForCategory } from "@/lib/tlds";
+import type { Lang } from "@/config/i18n";
 
 // IMPORTANT:
 // Zorg dat je in .env.local dit hebt staan:
@@ -17,11 +19,21 @@ function createOpenAIClient() {
 }
 
 const TARGET_COUNT = 8;
+const GENERATION_COUNT = 12;
 const MAX_ROUNDS = 2;
 const NAMES_PER_ROUND = 8;
 const TIME_BUDGET_MS = 4500;
-// Snelle subset van TLD's om de availability-checks te versnellen.
-const DEFAULT_TLDS = [".com", ".nl", ".io", ".ai", ".co", ".shop", ".net", ".org"];
+// Superset van alle TLD's die in de filters voorkomen.
+const DEFAULT_TLDS = ALL_TLDS_SUPERSET;
+const TONE_OPTIONS = [
+  "Casual",
+  "Creative",
+  "Funny",
+  "Professional",
+  "Unique",
+  "Tech",
+] as const;
+type ToneOption = (typeof TONE_OPTIONS)[number];
 
 /**
  * Helper om de taal-specifieke hint op te bouwen.
@@ -34,6 +46,58 @@ function buildLanguageHint(lang: string | undefined): string {
     return "Genera nombres de marca internacionales que se pronuncien bien en español e inglés.";
   }
   return "Generate international, brandable names for a mostly English-speaking market.";
+}
+
+function normalizeTone(style?: string): ToneOption {
+  const trimmed = style?.trim();
+  if (!trimmed) return "Creative";
+  const match = TONE_OPTIONS.find(
+    (option) => option.toLowerCase() === trimmed.toLowerCase()
+  );
+  return match ?? "Creative";
+}
+
+function buildToneHint(style?: string): string {
+  const tone = normalizeTone(style);
+  switch (tone) {
+    case "Casual":
+      return [
+        "Friendly, warm, approachable names.",
+        "Simpler words, human feel.",
+        "Avoid corporate/abstract tone.",
+      ].join("\n");
+    case "Funny":
+      return [
+        "Light wordplay / witty tone.",
+        "Still brandable (no pure jokes).",
+        "Avoid overly formal names.",
+      ].join("\n");
+    case "Professional":
+      return [
+        "Serious, credible, business-ready names.",
+        "Avoid humor, slang, playful tone.",
+        "Sound trustworthy and established.",
+      ].join("\n");
+    case "Unique":
+      return [
+        "Prioritize distinctiveness and rarity.",
+        "More abstract/emotional is allowed.",
+        "Clarity is secondary to memorability.",
+      ].join("\n");
+    case "Tech":
+      return [
+        "Modern tech/startup vibe.",
+        "Prefer short, punchy, product-like names.",
+        'Allow technical roots (cloud, dev, data, stack, byte, node, labs, systems) but avoid cliches like "AI", "GPT", "bot" as suffixes.',
+      ].join("\n");
+    case "Creative":
+    default:
+      return [
+        "Inventive blends, playful word forms.",
+        "Slight distortion allowed, modern brand feel.",
+        "Balance clarity + originality.",
+      ].join("\n");
+  }
 }
 
 /**
@@ -84,10 +148,10 @@ type NameValidationResult = {
 function validateGeneratedNames(names: string[]): NameValidationResult {
   const cleaned = names.map((n) => (typeof n === "string" ? n.trim() : "")).filter(Boolean);
 
-  if (cleaned.length !== TARGET_COUNT) {
+  if (cleaned.length !== GENERATION_COUNT) {
     return {
       ok: false,
-      reason: `Expected exactly ${TARGET_COUNT} names, got ${cleaned.length}.`,
+      reason: `Expected exactly ${GENERATION_COUNT} names, got ${cleaned.length}.`,
       invalidNames: [],
     };
   }
@@ -129,10 +193,8 @@ async function generateNamesWithGPT(
 ): Promise<string[]> {
   const openaiClient = client ?? createOpenAIClient();
   const languageHint = buildLanguageHint(lang);
-  const styleHint = style
-    ? `\nToon en stijl van de namen: zorg dat de namen duidelijk de volgende toon hebben: "${style}". Pas creativiteit, woordkeuze en vibe hierop aan.`
-    : "";
-  const namesPerPrompt = TARGET_COUNT;
+  const toneHint = buildToneHint(style);
+  const namesPerPrompt = GENERATION_COUNT;
 
   const excludeBlock =
     excludeNames.length > 0
@@ -148,7 +210,9 @@ ${excludeNames.join(", ")}
         {
           role: "system",
           content:
-            "Je bent een professionele merknaam- en domeinnaamgenerator voor startups en online bedrijven.\n\nJe taak is om per aanvraag EXACT 8 naamvoorstellen te genereren, strikt verdeeld over de volgende categorieen:\n\nCATEGORIE A — Functioneel / Beschrijvend (4 namen)\n- Meestal EXACT 2 woorden (CamelCase toegestaan)\n- Maximaal 1 naam in de volledige output mag 3 woorden bevatten\n- Combineert functie, actie, doelgroep of context\n- Moet zonder uitleg duidelijk maken wat het product of de dienst doet\n- Geef voorkeur aan subtiele functionele combinaties (bijv. HarvestLink, PawSync, FreshSource)\n- Vermijd te letterlijke of generieke combinaties zoals OnlineShop, BioMarket, OrganicMarket\n- Gebruik maximaal 1 letterlijk kernwoord uit de input per Category A naam\n- Vermijd combinaties die twee input-keywords direct naast elkaar plakken (bijv. SustainableFashion, GroceryDelivery, MealPrep)\n- Gebruik liever een functioneel/merkwaardig tweede woord zoals Link, Hub, Flow, Sync, Source, Path, Wave, Port, Nest, Bridge, Forge\n- Vermijd generieke marketing-suffixen zoals Fit, Pro, Plus, Best, Easy, Smart in Category A\n\nCATEGORIE B — Semi-brandable (2 namen)\n- EXACT 1 woord\n- Bevat een herkenbare wortel (bijv. pet, paw, eco, nutri, food, walk)\n- Is geen letterlijke beschrijving van het product\n- Moet professioneel en geloofwaardig klinken als bedrijfsnaam\n\nCATEGORIE C — Creatief / Abstract (2 namen)\n- EXACT 1 woord\n- Vermijd herkenbare woorden of directe betekenissen\n- Focus op klank, ritme en merkgevoel\n- Modern, internationaal en goed uitspreekbaar\n\nALGEMENE REGELS (ZEER BELANGRIJK)\n- EXACT 8 namen genereren\n- Maximaal 1 naam mag 3 woorden bevatten; alle andere namen max 2 woorden\n- Geen herhaling van naamstructuren\n- Vermijd het letterlijk herhalen van de volledige prompt of twee kernwoorden uit de prompt in één naam\n- Geen cijfers, koppeltekens of speciale tekens\n- Vermijd cliches, buzzwoorden en generieke AI-suffixen\n- Namen moeten geschikt zijn als merk- en domeinnaam\n- Output ALLEEN geldige JSON, exact in dit formaat:\n\n{\n  \"names\": [\n    \"Naam 1\",\n    \"Naam 2\",\n    \"Naam 3\",\n    \"Naam 4\",\n    \"Naam 5\",\n    \"Naam 6\",\n    \"Naam 7\",\n    \"Naam 8\"\n  ]\n}\n",
+            "Je bent een professionele merknaam- en domeinnaamgenerator voor startups en online bedrijven.\n\nTOONREGELS: Volg deze toon strikt in woordkeuze, vibe en naamstructuur.\n" +
+            toneHint +
+            "\n\nJe taak is om per aanvraag EXACT 12 naamvoorstellen te genereren, strikt verdeeld over de volgende categorieen:\n\nCATEGORIE A — Functioneel / Beschrijvend (6 namen)\n- Meestal EXACT 2 woorden (CamelCase toegestaan)\n- Maximaal 1 naam in de volledige output mag 3 woorden bevatten\n- Combineert functie, actie, doelgroep of context\n- Moet zonder uitleg duidelijk maken wat het product of de dienst doet\n- Geef voorkeur aan subtiele functionele combinaties (bijv. HarvestLink, PawSync, FreshSource)\n- Vermijd te letterlijke of generieke combinaties zoals OnlineShop, BioMarket, OrganicMarket\n- Gebruik maximaal 1 letterlijk kernwoord uit de input per Category A naam\n- Vermijd combinaties die twee input-keywords direct naast elkaar plakken (bijv. SustainableFashion, GroceryDelivery, MealPrep)\n- Gebruik liever een functioneel/merkwaardig tweede woord zoals Link, Hub, Flow, Sync, Source, Path, Wave, Port, Nest, Bridge, Forge\n- Vermijd generieke marketing-suffixen zoals Fit, Pro, Plus, Best, Easy, Smart in Category A\n\nCATEGORIE B — Semi-brandable (3 namen)\n- EXACT 1 woord\n- Bevat een herkenbare wortel (bijv. pet, paw, eco, nutri, food, walk)\n- Is geen letterlijke beschrijving van het product\n- Moet professioneel en geloofwaardig klinken als bedrijfsnaam\n\nCATEGORIE C — Creatief / Abstract (3 namen)\n- EXACT 1 woord\n- Vermijd herkenbare woorden of directe betekenissen\n- Focus op klank, ritme en merkgevoel\n- Modern, internationaal en goed uitspreekbaar\n\nALGEMENE REGELS (ZEER BELANGRIJK)\n- EXACT 12 namen genereren\n- Maximaal 1 naam mag 3 woorden bevatten; alle andere namen max 2 woorden\n- Geen herhaling van naamstructuren\n- Vermijd het letterlijk herhalen van de volledige prompt of twee kernwoorden uit de prompt in één naam\n- Geen cijfers, koppeltekens of speciale tekens\n- Vermijd cliches, buzzwoorden en generieke AI-suffixen\n- Namen moeten geschikt zijn als merk- en domeinnaam\n- Output ALLEEN geldige JSON, exact in dit formaat:\n\n{\n  \"names\": [\n    \"Naam 1\",\n    \"Naam 2\",\n    \"Naam 3\",\n    \"Naam 4\",\n    \"Naam 5\",\n    \"Naam 6\",\n    \"Naam 7\",\n    \"Naam 8\",\n    \"Naam 9\",\n    \"Naam 10\",\n    \"Naam 11\",\n    \"Naam 12\"\n  ]\n}\n",
         },
         {
           role: "user",
@@ -158,7 +222,6 @@ ${excludeNames.join(", ")}
 "${prompt}"
 
 ${languageHint}
-${styleHint}
 
 Regels voor de namen:
 - Genereer precies ${namesPerPrompt} unieke naamvoorstellen
@@ -182,7 +245,11 @@ Geef ALLEEN geldige JSON terug in precies dit formaat:
     "Naam 5",
     "Naam 6",
     "Naam 7",
-    "Naam 8"
+    "Naam 8",
+    "Naam 9",
+    "Naam 10",
+    "Naam 11",
+    "Naam 12"
   ]
 }
 `,
@@ -244,6 +311,7 @@ export async function POST(req: NextRequest) {
       style?: string;
       preferredTld?: string;
     };
+    const normalizedStyle = normalizeTone(style);
 
     if (!prompt || prompt.trim().length === 0) {
       return NextResponse.json(
@@ -252,7 +320,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const tlds = DEFAULT_TLDS;
+    const langForTlds = (lang ?? "en") as Lang;
+    const tlds = getTldsForCategory("all", langForTlds);
+    const backgroundTlds = ALL_TLDS_SUPERSET.filter((tld) => !tlds.includes(tld));
 
     // Hier bewaren we alle 'goedgekeurde' namen + availability.
     const acceptedNames: string[] = [];
@@ -280,7 +350,7 @@ export async function POST(req: NextRequest) {
         prompt,
         lang,
         acceptedNames,
-        style,
+        normalizedStyle,
         openaiClient,
         preferredTld
       );
@@ -307,7 +377,7 @@ export async function POST(req: NextRequest) {
         tlds
       );
 
-      // 3) Per naam checken of er minstens 1 TLD 'available' is
+      // 3) Per naam checken; accepteer alleen als er minstens 1 beschikbare TLD is
       for (const name of roundNames) {
         if (acceptedNames.length >= TARGET_COUNT) break;
 
@@ -326,18 +396,13 @@ export async function POST(req: NextRequest) {
           continue;
         }
 
-        const availabilityForName = availabilityMap[key];
-
-        if (!availabilityForName) {
-          continue;
-        }
+        const availabilityForName = availabilityMap[key] ?? {};
 
         const hasAvailableTld = Object.values(availabilityForName).some(
           (status) => status === "available"
         );
 
         if (!hasAvailableTld) {
-          // Zoals Festivo: alles rood → overslaan
           continue;
         }
 
@@ -354,6 +419,12 @@ export async function POST(req: NextRequest) {
       "[generate-domain][DEBUG] acceptedAvailability:",
       JSON.stringify(acceptedAvailability, null, 2)
     );
+
+    if (backgroundTlds.length > 0 && acceptedNames.length > 0) {
+      void checkAvailabilityForNames(acceptedNames, backgroundTlds).catch((err) => {
+        console.warn("[generate-domain] Background TLD check failed:", err);
+      });
+    }
 
     return NextResponse.json(
       {

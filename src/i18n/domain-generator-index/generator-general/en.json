@@ -12,7 +12,14 @@
       "modeDomainChecker": "Domain Checker",
       "placeholder": "Describe your project, business, or app idea...",
       "singlePlaceholder": "Enter a domain (e.g. yourbrand.com)",
-      "styleOptions": ["Unique", "Creative", "Professional", "Tech"],
+      "styleOptions": [
+        "Casual",
+        "Creative",
+        "Funny",
+        "Professional",
+        "Unique",
+        "Tech"
+      ],
       "ctaEnhance": "Enhance prompt",
       "ctaGenerate": "Generate names",
       "ctaSingle": "Check domain",

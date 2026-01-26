@@ -19,6 +19,7 @@ import type { DomainAvailabilityStatus } from "@/lib/domainr";
 import type { GeneratorGeneralResultsMessages } from "@/i18n/domain-generator-index/generator-general";
 import type { Lang } from "@/config/i18n";
 import { getRegistrarUrl } from "@/lib/registrar";
+import { getTldsForCategory } from "@/lib/tlds";
 
 type DomainSelectProps = {
   lang: Lang;
@@ -63,27 +64,6 @@ const CATEGORY_CONFIG: Category[] = [
   { id: "professional", icon: <CiSettings /> },
   { id: "entertainment", icon: <IoMusicalNotesOutline /> },
 ];
-
-// Each category exposes exactly 6 TLDs
-const CATEGORY_TLDS: Record<CategoryId, string[]> = {
-  all: [".nl", ".com", ".io", ".ai", ".co", ".shop"],
-
-  popular: [".com", ".io", ".ai", ".co", ".net", ".nl"],
-
-  business: [".com", ".nl", ".co", ".biz", ".pro", ".io"],
-
-  education: [".edu", ".academy", ".school", ".nl", ".org", ".info"],
-
-  international: [".com", ".io", ".global", ".world", ".co", ".net"],
-
-  technology: [".io", ".ai", ".tech", ".cloud", ".dev", ".com"],
-
-  social: [".social", ".me", ".nl", ".fun", ".chat", ".co"],
-
-  professional: [".pro", ".consulting", ".com", ".nl", ".io", ".co"],
-
-  entertainment: [".fun", ".show", ".media", ".nl", ".io", ".live"],
-};
 
 const SUGGESTIONS: DomainSuggestion[] = [
   {
@@ -164,6 +144,7 @@ export default function DomainSelect({
 
   const [availabilityMap, setAvailabilityMap] =
     useState<typeof availability>(availability);
+  const [isFetchingTlds, setIsFetchingTlds] = useState(false);
 
   useEffect(() => {
     setAvailabilityMap(availability);
@@ -233,7 +214,7 @@ export default function DomainSelect({
 
     try {
       const promptFromUrl = searchParams.get("q") ?? "";
-      const styleFromUrl = searchParams.get("style") ?? undefined;
+      const styleFromUrl = searchParams.get("style") ?? "Creative";
 
       const res = await fetch("/api/generate-domain", {
         method: "POST",
@@ -264,6 +245,69 @@ export default function DomainSelect({
   }
 
   const mergedNames = [...names, ...extraNames];
+  const namesForChecks = mergedNames.slice(0, visibleLimit);
+
+  function mergeAvailability(
+    current: typeof availability,
+    incoming: typeof availability
+  ) {
+    const merged = { ...current };
+    Object.entries(incoming).forEach(([key, value]) => {
+      merged[key] = {
+        ...(merged[key] ?? {}),
+        ...(value ?? {}),
+      };
+    });
+    return merged;
+  }
+
+  useEffect(() => {
+    if (loading) return;
+    const allowedTlds = getTldsForCategory(activeCategoryId, lang);
+    const missingTlds = new Set<string>();
+
+    namesForChecks.forEach((name) => {
+      const key = name.toLowerCase().replace(/[^a-z0-9]/gi, "");
+      const availabilityForName = availabilityMap?.[key] ?? {};
+      allowedTlds.forEach((tld) => {
+        const tldKey = tld.startsWith(".") ? tld : `.${tld}`;
+        if (availabilityForName?.[tldKey] === undefined) {
+          missingTlds.add(tldKey);
+        }
+      });
+    });
+
+    if (!missingTlds.size || isFetchingTlds) {
+      return;
+    }
+
+    const tldsToFetch = Array.from(missingTlds);
+    setIsFetchingTlds(true);
+
+    fetch("/api/check-availability", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        names: namesForChecks,
+        tlds: tldsToFetch,
+      }),
+    })
+      .then(async (res) => {
+        if (!res.ok) return;
+        const data = (await res.json()) as {
+          availability?: typeof availability;
+        };
+        if (data.availability) {
+          setAvailabilityMap((prev) => mergeAvailability(prev, data.availability ?? {}));
+        }
+      })
+      .catch((err) => {
+        console.error("[DomainSelect] TLD availability fetch failed:", err);
+      })
+      .finally(() => {
+        setIsFetchingTlds(false);
+      });
+  }, [activeCategoryId, lang, namesForChecks, availabilityMap, isFetchingTlds, loading]);
 
   const suggestions: DomainSuggestion[] =
     mergedNames && mergedNames.length > 0
@@ -278,8 +322,7 @@ export default function DomainSelect({
 
             const nameAvailability = availabilityMap?.[cleanKey] ?? {};
 
-            const allowedTlds =
-              CATEGORY_TLDS[activeCategoryId] ?? CATEGORY_TLDS["all"];
+            const allowedTlds = getTldsForCategory(activeCategoryId, lang);
 
             const resolveStatus = (tld: string) => {
               const tldKeyWithDot = tld.startsWith(".") ? tld : `.${tld}`;
@@ -513,11 +556,11 @@ export default function DomainSelect({
                   suggestion.extensions.map((ext) => (
                     <div
                       key={ext.id}
-                  className={[
-                    styles.extensionTag,
-                    ext.status === "available"
-                      ? styles.extensionTagAvailable
-                      : styles.extensionTagUnavailable,
+                      className={[
+                        styles.extensionTag,
+                        ext.status === "available"
+                          ? styles.extensionTagAvailable
+                          : styles.extensionTagUnavailable,
                       ]
                         .filter(Boolean)
                         .join(" ")}

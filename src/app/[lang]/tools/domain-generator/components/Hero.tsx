@@ -108,7 +108,7 @@ export default function Hero({ lang, messages }: HeroProps) {
         <div className={styles.imageCardWrapper}>
           <div className={styles.imageCard}>
             <Image
-              src="/images/hero.png"
+              src="/images/hero-index.png"
               alt={hero.imageAlt}
               width={720}
               height={880}

@@ -14,7 +14,6 @@ export type TldCategoryId =
 const COUNTRY_TLD_BY_LANG: Partial<Record<Lang, string>> = {
   nl: ".nl",
   en: ".com",
-  es: ".es",
 };
 
 export function getCountryTld(lang: Lang): string {

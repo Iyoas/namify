@@ -20,7 +20,6 @@ type HeroSectionProps = {
 const COUNTRY_TLD_BY_LANG: Record<Lang, string> = {
   en: ".com",
   nl: ".nl",
-  es: ".es",
 };
 const FALLBACK_TLD = ".com";
 const BASE_TLDS = [".com", ".net", ".ai", ".io"] as const;

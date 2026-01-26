@@ -54,8 +54,8 @@ export default function Hero({ lang, messages }: HeroProps) {
                 height={34}
               />
               <Image
-                src="/images/godaddy-logo.png"
-                alt="GoDaddy"
+                src="/images/partner-logo-2.png"
+                alt="Partner logo"
                 width={60}
                 height={34}
               />

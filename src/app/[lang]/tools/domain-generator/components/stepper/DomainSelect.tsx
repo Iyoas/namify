@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { Skeleton } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Heart, Plus, ShoppingCart, Check } from "lucide-react";
@@ -19,7 +19,7 @@ import type { DomainAvailabilityStatus } from "@/lib/domainr";
 import type { GeneratorGeneralResultsMessages } from "@/i18n/domain-generator-index/generator-general";
 import type { Lang } from "@/config/i18n";
 import { getRegistrarUrl } from "@/lib/registrar";
-import { getTldsForCategory } from "@/lib/tlds";
+import { getTldsForCategory, ALL_TLDS_SUPERSET } from "@/lib/tlds";
 
 type DomainSelectProps = {
   lang: Lang;
@@ -145,6 +145,7 @@ export default function DomainSelect({
   const [availabilityMap, setAvailabilityMap] =
     useState<typeof availability>(availability);
   const [isFetchingTlds, setIsFetchingTlds] = useState(false);
+  const hasPrefetchedAllTldsRef = useRef(false);
 
   useEffect(() => {
     setAvailabilityMap(availability);
@@ -308,6 +309,56 @@ export default function DomainSelect({
         setIsFetchingTlds(false);
       });
   }, [activeCategoryId, lang, namesForChecks, availabilityMap, isFetchingTlds, loading]);
+
+  useEffect(() => {
+    if (loading) return;
+    if (hasPrefetchedAllTldsRef.current) return;
+
+    const missingTlds = new Set<string>();
+    namesForChecks.forEach((name) => {
+      const key = name.toLowerCase().replace(/[^a-z0-9]/gi, "");
+      const availabilityForName = availabilityMap?.[key] ?? {};
+      ALL_TLDS_SUPERSET.forEach((tld) => {
+        const tldKey = tld.startsWith(".") ? tld : `.${tld}`;
+        if (availabilityForName?.[tldKey] === undefined) {
+          missingTlds.add(tldKey);
+        }
+      });
+    });
+
+    if (!missingTlds.size) {
+      hasPrefetchedAllTldsRef.current = true;
+      return;
+    }
+
+    hasPrefetchedAllTldsRef.current = true;
+    const tldsToFetch = Array.from(missingTlds);
+    setIsFetchingTlds(true);
+
+    fetch("/api/check-availability", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        names: namesForChecks,
+        tlds: tldsToFetch,
+      }),
+    })
+      .then(async (res) => {
+        if (!res.ok) return;
+        const data = (await res.json()) as {
+          availability?: typeof availability;
+        };
+        if (data.availability) {
+          setAvailabilityMap((prev) => mergeAvailability(prev, data.availability ?? {}));
+        }
+      })
+      .catch((err) => {
+        console.error("[DomainSelect] Prefetch TLD availability failed:", err);
+      })
+      .finally(() => {
+        setIsFetchingTlds(false);
+      });
+  }, [loading, namesForChecks, availabilityMap]);
 
   const suggestions: DomainSuggestion[] =
     mergedNames && mergedNames.length > 0

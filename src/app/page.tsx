@@ -10,5 +10,5 @@ export default async function LangHomePage({
   const { lang } = await params;
 
   // Redirect meteen naar de huidige hoofdpage (domain generator index)
-  redirect(`/${lang}#how-it-works`);
+  redirect(`/${lang}`);
 }

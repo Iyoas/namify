@@ -2,7 +2,7 @@ export const headerNl = {
   navDesktop: {
     aiNameGenerator: "AI Naamgenerator",
     domainChecker: "Domeinchecker",
-    privacyPolicy: "Privacyverklaring",
+    privacyPolicy: "Hoe het werkt",
   },
   navMobile: {
     home: "Home",

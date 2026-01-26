@@ -55,7 +55,7 @@ export default function HowItWorks({ messages }: HowItWorksProps) {
     })) ?? [];
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="how-it-works">
       <div className={styles.inner}>
         <header className={styles.header}>
           <h2 className={styles.title}>{messages.howItWorks.title}</h2>

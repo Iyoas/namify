@@ -14,7 +14,7 @@ export default function HowWeUseTool({ messages }: HowWeUseToolProps) {
   const howWeUseTool = messages.howWeUseTool;
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="about-our-tool">
       <div className={styles.inner}>
         <div className={styles.textBlock}>
           <h2 className={styles.title}>

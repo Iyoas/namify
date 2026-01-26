@@ -16,7 +16,7 @@ export default function Contact({ messages }: ContactProps) {
         <div className={styles.imagePanel}>
           <div className={styles.imageCard}>
             <Image
-              src="/images/contact.png"
+              src="/images/contact2.png"
               alt={contact.imageAlt}
               width={480}
               height={600}

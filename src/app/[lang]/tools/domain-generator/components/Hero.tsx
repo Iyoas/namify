@@ -37,7 +37,7 @@ export default function Hero({ lang, messages }: HeroProps) {
               <span>{hero.primaryCta}</span>
             </Link>
 
-            <a href="#hoe-werkt-het" className={styles.secondaryButton}>
+            <a href="#how-it-works" className={styles.secondaryButton}>
               <span className={styles.secondaryButtonInner}>
                 {hero.secondaryCta}
               </span>

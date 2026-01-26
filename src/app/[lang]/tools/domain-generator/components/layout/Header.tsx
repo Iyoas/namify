@@ -145,7 +145,7 @@ export default function Header() {
           </Link>
 
           <Link
-            href={`${homeHref}/tools/domain-generator/privacy-policy`}
+            href={`${homeHref}#how-it-works`}
             className={styles.navLink}
           >
             {messages.navDesktop.privacyPolicy}

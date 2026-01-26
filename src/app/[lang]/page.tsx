@@ -20,7 +20,7 @@ export default async function DomainGeneratorLanding({ params }: Props) {
       <Hero lang={lang} messages={messages} />
       <HowItWorks messages={messages} />
       <HowWeUseTool messages={messages} />
-      <IndustryGenerators messages={messages} />
+      {/* <IndustryGenerators messages={messages} /> */}
       <Faq messages={messages} />
       <Contact messages={messages} />
     </main>

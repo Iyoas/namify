@@ -65,7 +65,7 @@ export default function Footer() {
         },
         {
           label: messages.columns.company.about,
-          href: `${homeHref}#about`,
+          href: `${homeHref}#about-our-tool`,
         },
         {
           label: messages.columns.company.contact,

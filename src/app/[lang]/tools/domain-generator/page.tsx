@@ -13,5 +13,5 @@ export default async function DomainGeneratorPage({
   const { lang } = await params;
 
   // Redirect direct naar de generator (huidige hoofdpage)
-  redirect(`/${lang}#how-it-works`);
+  redirect(`/${lang}`);
 }

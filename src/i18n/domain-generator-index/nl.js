@@ -14,7 +14,7 @@ const messages = {
       imageAlt: "Ondernemer die werkt aan zijn merknaam",
     },
     howItWorks: {
-      title: "Hoe werkt het stap voor stap?",
+      title: "Hoe werkt het?",
       subtitle:
         "Ontdek hoe je in 3 eenvoudige stappen met AI de perfecte domeinnaam vindt die bij jouw idee past.",
       steps: [
@@ -22,39 +22,38 @@ const messages = {
           id: 1,
           title: "Deel je idee",
           description:
-            "Kies hoe je jouw idee wilt delen: met een korte beschrijving, een businessplan of een link. De AI haalt zelf de juiste info eruit.",
+            "Beschrijf kort wat je wilt bouwen: een bedrijf, project of product. De AI gebruikt jouw input om relevante naamideeën te genereren die passen bij je doel en richting.",
         },
         {
           id: 2,
           title: "Kies de toon van je naam",
           description:
-            "Kies de stijl die bij je past: kort en krachtig, creatief en uniek, zakelijk of speels. Jij bepaalt de richting, de AI denkt mee.",
+            "Bepaal welke stijl bij je past, zoals creatief, professioneel of speels. De gekozen toon stuurt de naamgeneratie en helpt je gerichter zoeken.",
         },
         {
           id: 3,
           title: "Ontvang slimme AI-voorstellen",
           description:
-            "Op basis van je input krijg je direct creatieve naamideeën met beschikbare domeinen (.nl, .com). Je kunt filteren, sorteren en zoveel nieuwe ideeën genereren als je wilt.",
+            "Op basis van je input ontvang je direct naamvoorstellen met beschikbare domeinen. Bekijk variaties, genereer nieuwe opties en verfijn tot je de juiste naam vindt.",
         },
         {
           id: 4,
-          title: "Registreer met één klik",
+          title: "Ga verder met registreren",
           description:
-            "Heb je de juiste naam gevonden? Klik op ‘registreer’. Alles wordt geregeld en binnen enkele minuten staat de domeinnaam op jouw naam. Daarna kun je direct verder bouwen.",
+            "Een geschikte naam gevonden? Klik door naar een betrouwbare registrar om je domein te registreren en je project online te brengen.",
         },
       ],
     },
     howWeUseTool: {
-      titleLine1: "Over ons gereedschap",
-      titleLine2: "en hoe we het gebruiken",
+      titleLine1: "Over onze tool",
+      titleLine2: "en hoe het werkt",
       description:
-        "Onze AI‑technologie is ontworpen om complexe informatie op een eenvoudige en begrijpelijke manier te verwerken. Door geavanceerde taalmodellen te combineren met slimme algoritmes, kunnen we patronen herkennen, ideeën uitbreiden en waardevolle inzichten genereren. Dit stelt ons in staat om snel nauwkeurige suggesties te leveren die passen bij jouw stijl, industrie en doelen. Met zorgvuldige training en voortdurend leren wordt ons systeem elke dag beter in het begrijpen van wat gebruikers écht nodig hebben. Zo helpen we je om efficiënter te werken en betere resultaten te behalen.",
+        "Domifai helpt je om een sterke bedrijfsnaam te vinden zonder te gokken of eindeloos te zoeken. Je begint met een korte beschrijving van je idee. Op basis daarvan verkent het systeem verschillende naamrichtingen en genereert het merkwaardige, relevante suggesties.\n\nJe stuurt de resultaten door een toon te kiezen, ziet direct welke domeinen beschikbaar zijn en kunt namen opslaan of vergelijken. Voelt een naam goed, dan ga je eenvoudig door naar de domeinregistratie via een betrouwbare aanbieder.\n\nDomifai neemt geen beslissingen voor je, maar helpt je sneller en gerichter tot de juiste naam te komen.",
       imageAlt: "AI gereedschap visual",
     },
     industryGenerators: {
       title: "ideeën voor branche specifieke namen",
-      intro:
-        "Ontdek unieke naamideeën die perfect aansluiten bij de identiteit, waarden en doelgroep van jouw branche – van frisse startups tot gevestigde merken.",
+      intro: "Ontdek branche gerichte naamideeën die passen bij jouw merk en markt.",
       cards: [
         { id: "ecommerce", title: "E-commerce", description: "Ontdek originele webshopnamen." },
         { id: "startup", title: "Start-up", description: "Ontdek originele namen voor startups." },

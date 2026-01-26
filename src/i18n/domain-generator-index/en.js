@@ -14,7 +14,7 @@ const messages = {
       imageAlt: "Entrepreneur working on their brand name",
     },
     howItWorks: {
-      title: "How does it work step by step?",
+      title: "How does it work?",
       subtitle:
         "Discover how, in 3 simple steps, you can use AI to find the perfect domain that fits your idea.",
       steps: [
@@ -22,39 +22,38 @@ const messages = {
           id: 1,
           title: "Share your idea",
           description:
-            "Choose how you want to share your idea: a short description, a business plan, or a link. The AI extracts the right details for you.",
+            "Describe your idea in a few words: a business, project, or product. The AI uses your input to generate relevant name ideas that match your direction and goals.",
         },
         {
           id: 2,
           title: "Choose the tone of your name",
           description:
-            "Pick the style that fits you: short and punchy, creative and unique, professional or playful. You set the direction, the AI helps refine it.",
+            "Select the style that fits your brand, such as creative, professional, or playful. The chosen tone guides the name generation and keeps results focused.",
         },
         {
           id: 3,
           title: "Get smart AI suggestions",
           description:
-            "Based on your input you instantly get creative name ideas with available domains (.nl, .com). Filter, sort, and generate new rounds as often as you like.",
+            "Based on your input, you instantly receive name ideas with available domains. Explore variations, generate new options, and refine until the right name stands out.",
         },
         {
           id: 4,
-          title: "Register with one click",
+          title: "Continue to registration",
           description:
-            "Found the right name? Click “register”. Everything is handled so the domain is yours within minutes. Then you can start building right away.",
+            "Found a name you like? Continue to a trusted registrar to register your domain and move your project online.",
         },
       ],
     },
     howWeUseTool: {
       titleLine1: "About our tool",
-      titleLine2: "and how we use it",
+      titleLine2: "and how it works",
       description:
-        "Our AI technology is designed to process complex information in a simple and clear way. By combining advanced language models with smart algorithms, we recognize patterns, expand ideas, and generate valuable insights. This lets us quickly deliver accurate suggestions that fit your style, industry, and goals. With careful training and continuous learning, our system improves every day at understanding what users really need. That way, we help you work more efficiently and get better results.",
+        "Domifai is built to help you find a strong business name without guessing or endless searching. You start by describing your idea in a few words. Based on that input, the system explores different naming directions and generates brand ready name ideas.\n\nYou can guide the results by choosing a tone, instantly review available domain extensions, and save or compare names as you go. When a name feels right, you can continue directly to domain registration through a trusted provider.\n\nDomifai does not replace your judgment. It helps you move faster, stay focused, and make better naming decisions.",
       imageAlt: "AI tool visual",
     },
     industryGenerators: {
       title: "ideas for industry-specific names",
-      intro:
-        "Discover unique name ideas that match the identity, values, and audience of your sector — from fresh startups to established brands.",
+      intro: "Find industry focused name ideas that fit your brand and market.",
       cards: [
         { id: "ecommerce", title: "E-commerce", description: "Find original webshop names." },
         { id: "startup", title: "Start-up", description: "Find original names for startups." },

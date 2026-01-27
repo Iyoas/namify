@@ -82,6 +82,8 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const [prompt, setPrompt] = useState("");
   const [isEnhancing, setIsEnhancing] = useState(false);
   const hasPrompt = prompt.trim().length > 0;
+  const promptLength = prompt.length;
+  const promptLimit = 250;
   const router = useRouter();
   const searchParams = useSearchParams();
   const [mode, setMode] = useState<"ai" | "single">("ai");
@@ -445,6 +447,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                   }
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
+                  maxLength={promptLimit}
                 />
               )}
             </div>
@@ -542,6 +545,11 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
               )}
 
               <div className={styles.generateRow}>
+                {mode === "ai" && (
+                  <span className={styles.charCount}>
+                    {promptLength}/{promptLimit}
+                  </span>
+                )}
                 <button
                   type="button"
                   className={styles.generateButton}

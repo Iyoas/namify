@@ -48,8 +48,9 @@ export async function POST(req: NextRequest) {
       max_tokens: 256,
     });
 
-    const enhancedPrompt =
+    const enhancedPromptRaw =
       completion.choices[0]?.message?.content?.trim() || rawPrompt;
+    const enhancedPrompt = enhancedPromptRaw.slice(0, 250);
 
     return NextResponse.json(
       {

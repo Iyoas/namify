@@ -200,7 +200,7 @@ async function checkDomainAvailabilityWithDomainr(
   const checkOne = async (domain: string): Promise<DomainCheckResult> => {
     try {
       const requestTimeoutMs =
-        Number.parseInt(process.env.DOMAINR_FETCH_TIMEOUT_MS || "1500", 10) || 1500;
+        Number.parseInt(process.env.DOMAINR_FETCH_TIMEOUT_MS || "3000", 10) || 3000;
 
       // Cache hit: return instantly.
       const cached = getCached(domain);

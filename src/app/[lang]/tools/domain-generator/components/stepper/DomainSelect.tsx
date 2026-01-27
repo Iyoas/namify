@@ -204,11 +204,11 @@ export default function DomainSelect({
 
   const [extraNames, setExtraNames] = useState<string[]>([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [visibleLimit, setVisibleLimit] = useState(8);
+  const [visibleLimit, setVisibleLimit] = useState(9);
 
   useEffect(() => {
     setExtraNames([]);
-    setVisibleLimit(8);
+    setVisibleLimit(9);
     setActiveCategoryId("all");
   }, [names]);
 
@@ -220,28 +220,63 @@ export default function DomainSelect({
       const styleFromUrl = searchParams.get("style") ?? "Creative";
       const nameLangFromUrl = searchParams.get("nameLang") ?? "international";
 
-      const res = await fetch("/api/generate-domain", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          prompt: promptFromUrl,
-          lang,
-          style: styleFromUrl,
-          nameLang: nameLangFromUrl,
-        }),
-      });
+      const existingNames = new Set(
+        [...names, ...extraNames].map((name) => name.toLowerCase())
+      );
+      const collectedNames: string[] = [];
+      let collectedAvailability: typeof availability = {};
 
-      const data = await res.json();
-      const newNames: string[] = data.names || [];
-      const newAvailability =
-        (data.availability as typeof availability | undefined) ?? {};
+      for (let attempt = 0; attempt < 3 && collectedNames.length < 9; attempt += 1) {
+        const res = await fetch("/api/generate-domain", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prompt: promptFromUrl,
+            lang,
+            style: styleFromUrl,
+            nameLang: nameLangFromUrl,
+          }),
+        });
 
-      setExtraNames((prev) => [...prev, ...newNames]);
-      setVisibleLimit((prev) => prev + 8);
-      setAvailabilityMap((prev) => ({
-        ...prev,
-        ...newAvailability,
-      }));
+        if (!res.ok) {
+          break;
+        }
+
+        const data = await res.json();
+        const newNames: string[] = data.names || [];
+        const newAvailability =
+          (data.availability as typeof availability | undefined) ?? {};
+
+        const uniqueNames = newNames.filter((name) => {
+          const normalized = name.toLowerCase();
+          if (existingNames.has(normalized)) return false;
+          if (collectedNames.some((n) => n.toLowerCase() === normalized)) return false;
+          return true;
+        });
+
+        uniqueNames.forEach((name) => {
+          if (collectedNames.length < 9) {
+            collectedNames.push(name);
+          }
+        });
+
+        collectedAvailability = {
+          ...collectedAvailability,
+          ...newAvailability,
+        };
+      }
+
+      if (collectedNames.length > 0) {
+        setExtraNames((prev) => [...prev, ...collectedNames]);
+        setVisibleLimit((prev) => prev + collectedNames.length);
+      }
+
+      if (Object.keys(collectedAvailability).length > 0) {
+        setAvailabilityMap((prev) => ({
+          ...prev,
+          ...collectedAvailability,
+        }));
+      }
     } catch (err) {
       console.error("Error loading more names", err);
     } finally {
@@ -406,13 +441,6 @@ export default function DomainSelect({
                     status: "unknown",
                   })),
                 };
-              }
-
-              const hasVisibleAvailable = allowedTlds.some(
-                (tld) => resolveStatus(tld) === "available"
-              );
-              if (!hasVisibleAvailable) {
-                return null;
               }
             }
 

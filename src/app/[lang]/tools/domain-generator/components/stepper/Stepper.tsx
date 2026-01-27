@@ -144,7 +144,7 @@ export default function Stepper({
           loading={!data && isLoading}
           names={
             data?.names ??
-            Array.from({ length: 8 }).map((_, i) => `__loading_${i}`)
+            Array.from({ length: 9 }).map((_, i) => `__loading_${i}`)
           }
           availability={data?.availability ?? {}}
           tlds={data?.tlds?.length ? data.tlds : FALLBACK_TLDS}

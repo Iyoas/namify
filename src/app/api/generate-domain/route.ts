@@ -26,52 +26,80 @@ const TIME_BUDGET_MS = 4500;
 // Superset van alle TLD's die in de filters voorkomen.
 const DEFAULT_TLDS = ALL_TLDS_SUPERSET;
 const TONE_OPTIONS = [
-  "Casual",
   "Creative",
-  "Funny",
   "Professional",
   "Unique",
   "Tech",
 ] as const;
 type ToneOption = (typeof TONE_OPTIONS)[number];
 
+type NameLanguageOption = "international" | "en" | "nl";
+
+function normalizeNameLanguage(value?: string, uiLang?: string): NameLanguageOption {
+  const trimmed = value?.trim().toLowerCase();
+  if (trimmed === "en" || trimmed === "nl" || trimmed === "international") {
+    return trimmed;
+  }
+  return uiLang === "nl" ? "nl" : "international";
+}
+
 /**
- * Helper om de taal-specifieke hint op te bouwen.
+ * Helper om de naamtaal-hint op te bouwen.
  */
-function buildLanguageHint(lang: string | undefined): string {
-  if (lang === "nl") {
-    return "Richt je op internationale, brandable namen die goed uitspreekbaar zijn in het Nederlands én Engels. Vermijd letterlijke Nederlandse samenstellingen zoals 'FeestFabriek' of 'PartyPlannerPro'.";
+function buildNameLanguageHint(
+  nameLang?: string,
+  uiLang?: string,
+  style?: string
+): string {
+  const normalized = normalizeNameLanguage(nameLang, uiLang);
+  if (normalized === "nl") {
+    const tone = normalizeTone(style);
+    const toneHint =
+      tone === "Creative"
+        ? "Voor Creative toon: vermijd te letterlijke beschrijvende samenstellingen en uitleggerige namen; geef voorkeur aan klankgedreven of licht geabstraheerde namen met Nederlandse wortels die als merk kunnen werken."
+        : tone === "Professional"
+        ? "Voor Professional toon: kies heldere, betrouwbare namen met Nederlandse betekenis; vermijd speelse woordvervorming en overdreven creativiteit."
+        : tone === "Unique"
+        ? "Voor Unique toon: durf af te wijken van duidelijke betekenis; abstractie en onderscheid zijn belangrijker dan directe uitleg, zolang de naam Nederlands aanvoelt."
+        : tone === "Tech"
+        ? "Voor Tech toon: behoud een moderne, productachtige uitstraling; vermijd lange beschrijvende samenstellingen en kies liever compacte namen met een technische of functionele klank."
+        : "";
+    return `
+Genereer uitsluitend Nederlandse namen.
+Gebruik Nederlandse woorden, Nederlandse samenstellingen en Nederlandse betekenis.
+Vermijd Engelstalige kernwoorden zoals remote, platform, hub, sync, connect, cloud en community.
+Namen mogen maximaal 2 woorden bevatten; maximaal 1 naam mag 3 woorden bevatten.
+Focus op duidelijke Nederlandse semantiek zoals samenwerken, werken, delen, verbinden, netwerk en gemeenschap.
+Namen mogen modern klinken, maar moeten herkenbaar Nederlands zijn.
+Vermijd Engelse suffixen zoals ify, ly, hub, lab en labs.
+${toneHint ? `${toneHint}\n` : ""}
+`;
   }
-  if (lang === "es") {
-    return "Genera nombres de marca internacionales que se pronuncien bien en español e inglés.";
+  if (normalized === "en") {
+    return "Generate names that sound natural in English and are easy to pronounce.";
   }
-  return "Generate international, brandable names for a mostly English-speaking market.";
+  return "Generate international, brandable names that work across markets and are easy to pronounce.";
 }
 
 function normalizeTone(style?: string): ToneOption {
   const trimmed = style?.trim();
   if (!trimmed) return "Creative";
-  const match = TONE_OPTIONS.find(
-    (option) => option.toLowerCase() === trimmed.toLowerCase()
-  );
-  return match ?? "Creative";
+  const lower = trimmed.toLowerCase();
+  const aliasMap: Record<string, ToneOption> = {
+    creatief: "Creative",
+    creative: "Creative",
+    professioneel: "Professional",
+    professional: "Professional",
+    uniek: "Unique",
+    unique: "Unique",
+    tech: "Tech",
+  };
+  return aliasMap[lower] ?? "Creative";
 }
 
 function buildToneHint(style?: string): string {
   const tone = normalizeTone(style);
   switch (tone) {
-    case "Casual":
-      return [
-        "Friendly, warm, approachable names.",
-        "Simpler words, human feel.",
-        "Avoid corporate/abstract tone.",
-      ].join("\n");
-    case "Funny":
-      return [
-        "Light wordplay / witty tone.",
-        "Still brandable (no pure jokes).",
-        "Avoid overly formal names.",
-      ].join("\n");
     case "Professional":
       return [
         "Serious, credible, business-ready names.",
@@ -89,6 +117,7 @@ function buildToneHint(style?: string): string {
         "Modern tech/startup vibe.",
         "Prefer short, punchy, product-like names.",
         'Allow technical roots (cloud, dev, data, stack, byte, node, labs, systems) but avoid cliches like "AI", "GPT", "bot" as suffixes.',
+        "Optional: use short, product-like endings sparingly such as ify, ly, hub, node, lab or labs. Prefer variety and avoid repeating the same ending across names.",
       ].join("\n");
     case "Creative":
     default:
@@ -189,10 +218,11 @@ async function generateNamesWithGPT(
   excludeNames: string[] = [],
   style?: string,
   client?: OpenAI,
-  preferredTld?: string
+  preferredTld?: string,
+  nameLang?: string
 ): Promise<string[]> {
   const openaiClient = client ?? createOpenAIClient();
-  const languageHint = buildLanguageHint(lang);
+  const languageHint = buildNameLanguageHint(nameLang, lang, style);
   const toneHint = buildToneHint(style);
   const namesPerPrompt = GENERATION_COUNT;
 
@@ -305,11 +335,12 @@ export async function POST(req: NextRequest) {
   try {
     const openaiClient = createOpenAIClient();
     const body = await req.json();
-    const { prompt, lang, style, preferredTld } = body as {
+    const { prompt, lang, style, preferredTld, nameLang } = body as {
       prompt?: string;
       lang?: string;
       style?: string;
       preferredTld?: string;
+      nameLang?: string;
     };
     const normalizedStyle = normalizeTone(style);
 
@@ -352,7 +383,8 @@ export async function POST(req: NextRequest) {
         acceptedNames,
         normalizedStyle,
         openaiClient,
-        preferredTld
+        preferredTld,
+        nameLang
       );
 
       // Haal namen weg die we al hebben geaccepteerd

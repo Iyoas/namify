@@ -13,13 +13,17 @@
       "placeholder": "Beschrijf je project, bedrijf of app-idee...",
       "singlePlaceholder": "Vul een domein in (bijv. jouwmerk.nl)",
       "styleOptions": [
-        "Casual",
-        "Creative",
-        "Funny",
-        "Professional",
-        "Unique",
+        "Creatief",
+        "Professioneel",
+        "Uniek",
         "Tech"
       ],
+      "nameLanguageLabel": "Naamtaal",
+      "nameLanguageOptions": {
+        "international": "Internationaal",
+        "english": "Engels",
+        "dutch": "Nederlands"
+      },
       "ctaEnhance": "Verbeter prompt",
       "ctaGenerate": "Genereer namen",
       "ctaSingle": "Controleer domein",

@@ -207,8 +207,10 @@ export default function DomainSelect({
   const [visibleLimit, setVisibleLimit] = useState(8);
 
   useEffect(() => {
+    setExtraNames([]);
     setVisibleLimit(8);
-  }, [activeCategoryId, names.length]);
+    setActiveCategoryId("all");
+  }, [names]);
 
   async function handleLoadMore() {
     setIsLoadingMore(true);
@@ -216,6 +218,7 @@ export default function DomainSelect({
     try {
       const promptFromUrl = searchParams.get("q") ?? "";
       const styleFromUrl = searchParams.get("style") ?? "Creative";
+      const nameLangFromUrl = searchParams.get("nameLang") ?? "international";
 
       const res = await fetch("/api/generate-domain", {
         method: "POST",
@@ -224,6 +227,7 @@ export default function DomainSelect({
           prompt: promptFromUrl,
           lang,
           style: styleFromUrl,
+          nameLang: nameLangFromUrl,
         }),
       });
 

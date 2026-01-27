@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown, Megaphone, Sparkles, Wand2 } from "lucide-react";
 import { BsStars } from "react-icons/bs";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
@@ -17,14 +17,9 @@ type HeroSectionProps = {
   messages: GeneratorGeneralMessages;
 };
 
-const COUNTRY_TLD_BY_LANG: Record<Lang, string> = {
-  en: ".com",
-  nl: ".nl",
-};
-const FALLBACK_TLD = ".com";
-const BASE_TLDS = [".com", ".net", ".ai", ".io"] as const;
-type ExtensionOption = (typeof BASE_TLDS)[number] | string;
 const SINGLE_TLDS = [".com", ".io", ".ai", ".net", ".co"] as const;
+const NAME_LANGUAGE_VALUES = ["international", "en", "nl"] as const;
+type NameLanguageValue = (typeof NAME_LANGUAGE_VALUES)[number];
 
 type SingleResult = {
   domain: string;
@@ -68,23 +63,21 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const styleOptions = messages.hero.styleOptions;
   const samplePrompts = messages.examples.prompts;
 
-  const [selectedStyle, setSelectedStyle] = useState<string>(
-    () => styleOptions.find((option) => option === "Creative") ?? styleOptions[0] ?? "Creative"
-  );
+  const [selectedStyle, setSelectedStyle] = useState<string>(() => {
+    const preferred = ["Creative", "Creatief"];
+    return (
+      styleOptions.find((option) => preferred.includes(option)) ??
+      styleOptions[0] ??
+      "Creative"
+    );
+  });
   const [isStyleOpen, setIsStyleOpen] = useState(false);
   const styleSelectRef = useRef<HTMLDivElement | null>(null);
 
-  const extensionSelectRef = useRef<HTMLDivElement | null>(null);
-  const defaultCountryTld =
-    COUNTRY_TLD_BY_LANG[lang] ?? FALLBACK_TLD;
-  const extensionOptions = [
-    defaultCountryTld,
-    ...BASE_TLDS.filter((tld) => tld !== defaultCountryTld),
-  ];
-  const [selectedExtension, setSelectedExtension] = useState<ExtensionOption>(
-    defaultCountryTld
-  );
-  const [isExtensionOpen, setIsExtensionOpen] = useState(false);
+  const nameLanguageSelectRef = useRef<HTMLDivElement | null>(null);
+  const [selectedNameLanguage, setSelectedNameLanguage] =
+    useState<NameLanguageValue>("international");
+  const [isNameLanguageOpen, setIsNameLanguageOpen] = useState(false);
 
   const [prompt, setPrompt] = useState("");
   const [isEnhancing, setIsEnhancing] = useState(false);
@@ -114,10 +107,6 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   }, [searchParams]);
 
   useEffect(() => {
-    setSelectedExtension(defaultCountryTld);
-  }, [defaultCountryTld]);
-
-  useEffect(() => {
     if (mode !== "single") return;
     if (!prompt.trim()) return;
     if (!pendingSingleCheckRef.current) return;
@@ -145,23 +134,45 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   }, [isStyleOpen]);
 
   useEffect(() => {
-    function handleClickOutsideExt(event: MouseEvent) {
+    function handleClickOutsideLang(event: MouseEvent) {
       if (
-        extensionSelectRef.current &&
-        !extensionSelectRef.current.contains(event.target as Node)
+        nameLanguageSelectRef.current &&
+        !nameLanguageSelectRef.current.contains(event.target as Node)
       ) {
-        setIsExtensionOpen(false);
+        setIsNameLanguageOpen(false);
       }
     }
 
-    if (isExtensionOpen) {
-      document.addEventListener("mousedown", handleClickOutsideExt);
+    if (isNameLanguageOpen) {
+      document.addEventListener("mousedown", handleClickOutsideLang);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutsideExt);
+      document.removeEventListener("mousedown", handleClickOutsideLang);
     };
-  }, [isExtensionOpen]);
+  }, [isNameLanguageOpen]);
+
+  const nameLanguageOptions = useMemo(
+    () => [
+      {
+        value: "international",
+        label: messages.hero.nameLanguageOptions.international,
+      },
+      {
+        value: "en",
+        label: messages.hero.nameLanguageOptions.english,
+      },
+      {
+        value: "nl",
+        label: messages.hero.nameLanguageOptions.dutch,
+      },
+    ],
+    [messages]
+  );
+
+  const selectedNameLanguageLabel =
+    nameLanguageOptions.find((option) => option.value === selectedNameLanguage)
+      ?.label ?? messages.hero.nameLanguageOptions.international;
 
   useEffect(() => {
     try {
@@ -242,7 +253,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
           prompt,
           lang,
           style: selectedStyle,
-          extension: selectedExtension,
+          nameLang: selectedNameLanguage,
         }),
       });
 
@@ -303,7 +314,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
     const searchParams = new URLSearchParams({
       q: prompt,
       style: selectedStyle,
-      extension: selectedExtension,
+      nameLang: selectedNameLanguage,
     });
 
     router.push(
@@ -478,35 +489,35 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                     )}
                   </div>
 
-                  <div className={styles.styleSelect} ref={extensionSelectRef}>
+                  <div className={styles.styleSelect} ref={nameLanguageSelectRef}>
                     <button
                       type="button"
                       className={styles.optionButton}
-                      onClick={() => setIsExtensionOpen((open) => !open)}
+                      onClick={() => setIsNameLanguageOpen((open) => !open)}
                       aria-haspopup="listbox"
-                      aria-expanded={isExtensionOpen}
+                      aria-expanded={isNameLanguageOpen}
                     >
-                      <span>{selectedExtension}</span>
+                      <span>{selectedNameLanguageLabel}</span>
                       <ChevronDown className={styles.optionChevron} />
                     </button>
 
-                    {isExtensionOpen && (
+                    {isNameLanguageOpen && (
                       <ul className={styles.dropdown} role="listbox">
-                        {extensionOptions.map((ext) => (
-                          <li key={ext}>
+                        {nameLanguageOptions.map((option) => (
+                          <li key={option.value}>
                             <button
                               type="button"
                               className={
-                                ext === selectedExtension
+                                option.value === selectedNameLanguage
                                   ? `${styles.dropdownItem} ${styles.dropdownItemActive}`
                                   : styles.dropdownItem
                               }
                               onClick={() => {
-                                setSelectedExtension(ext);
-                                setIsExtensionOpen(false);
+                                setSelectedNameLanguage(option.value);
+                                setIsNameLanguageOpen(false);
                               }}
                             >
-                              {ext}
+                              {option.label}
                             </button>
                           </li>
                         ))}

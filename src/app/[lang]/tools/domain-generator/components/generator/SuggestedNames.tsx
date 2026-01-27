@@ -22,6 +22,7 @@ export default function SuggestedNames({ lang, messages }: SuggestedNamesProps) 
   const names = messages.examples.suggestions;
 
   const [likedNames, setLikedNames] = React.useState<string[]>([]);
+  const [selectedName, setSelectedName] = React.useState<string | null>(null);
 
   // Load liked names from localStorage on mount
   React.useEffect(() => {
@@ -80,7 +81,16 @@ export default function SuggestedNames({ lang, messages }: SuggestedNamesProps) 
           {names.map((name, i) => (
             <div
               key={i}
-              className={i === 0 ? styles.cardActive : styles.card}
+              className={name === selectedName ? styles.cardActive : styles.card}
+              onClick={() => setSelectedName(name)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setSelectedName(name);
+                }
+              }}
             >
               <button
                 className={styles.favButton}

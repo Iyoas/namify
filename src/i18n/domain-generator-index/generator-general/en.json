@@ -13,13 +13,17 @@
       "placeholder": "Describe your project, business, or app idea...",
       "singlePlaceholder": "Enter a domain (e.g. yourbrand.com)",
       "styleOptions": [
-        "Casual",
         "Creative",
-        "Funny",
         "Professional",
         "Unique",
         "Tech"
       ],
+      "nameLanguageLabel": "Name language",
+      "nameLanguageOptions": {
+        "international": "International",
+        "english": "English",
+        "dutch": "Dutch"
+      },
       "ctaEnhance": "Enhance prompt",
       "ctaGenerate": "Generate names",
       "ctaSingle": "Check domain",

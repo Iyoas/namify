@@ -31,6 +31,7 @@ export default function Stepper({
   const baseFromQuery = searchParams.get("base");
   const baseNameFromUrl = baseFromQuery ? baseFromQuery.trim() : undefined;
   const styleFromQuery = searchParams.get("style") ?? "Creative";
+  const nameLangFromQuery = searchParams.get("nameLang") ?? "international";
   const prompt = initialPrompt ?? "";
 
   const [data, setData] = useState<GenerateDomainResponse | null>(null);
@@ -90,6 +91,7 @@ export default function Stepper({
               prompt,
               lang,
               style: styleFromQuery,
+              nameLang: nameLangFromQuery,
             }),
           });
 

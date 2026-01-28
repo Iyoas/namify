@@ -270,12 +270,14 @@
     padding: 16px 20px;
     align-items: center;
     box-sizing: border-box;
-    overflow: hidden;
+    gap: 12px;
   }
 
   .ctaInput {
     height: 44px;
     line-height: 1;
+    min-width: 0;
+    flex: 1 1 auto;
   }
 
   .ctaButton {

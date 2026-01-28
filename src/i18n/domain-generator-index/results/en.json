@@ -23,8 +23,8 @@
       "priceLabel": "Estimated price",
       "footer": {
         "loadingMore": "Please wait...",
-        "generateMore": "Generate 8 new names",
-        "next": "Next"
+        "generateMore": "Generate 9 new names",
+        "next": "Check domain availability"
       },
       "categories": {
         "all": "All",

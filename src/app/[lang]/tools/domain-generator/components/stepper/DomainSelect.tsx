@@ -5,6 +5,7 @@ import { Skeleton } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Heart, Plus, ShoppingCart, Check } from "lucide-react";
 import { IoMdHeartEmpty, IoIosHeart } from "react-icons/io";
+import { IoSearch } from "react-icons/io5";
 import { IoPersonOutline, IoMusicalNotesOutline } from "react-icons/io5";
 import { FaRegStar } from "react-icons/fa";
 import { LuBriefcaseBusiness } from "react-icons/lu";
@@ -120,6 +121,8 @@ const SUGGESTIONS: DomainSuggestion[] = [
   },
 ];
 
+const LOAD_MORE_COUNT = 9;
+
 export default function DomainSelect({
   lang,
   names,
@@ -204,11 +207,11 @@ export default function DomainSelect({
 
   const [extraNames, setExtraNames] = useState<string[]>([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [visibleLimit, setVisibleLimit] = useState(9);
+  const [visibleLimit, setVisibleLimit] = useState(LOAD_MORE_COUNT);
 
   useEffect(() => {
     setExtraNames([]);
-    setVisibleLimit(9);
+    setVisibleLimit(LOAD_MORE_COUNT);
     setActiveCategoryId("all");
   }, [names]);
 
@@ -226,7 +229,11 @@ export default function DomainSelect({
       const collectedNames: string[] = [];
       let collectedAvailability: typeof availability = {};
 
-      for (let attempt = 0; attempt < 3 && collectedNames.length < 9; attempt += 1) {
+      for (
+        let attempt = 0;
+        attempt < 3 && collectedNames.length < LOAD_MORE_COUNT;
+        attempt += 1
+      ) {
         const res = await fetch("/api/generate-domain", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -255,7 +262,7 @@ export default function DomainSelect({
         });
 
         uniqueNames.forEach((name) => {
-          if (collectedNames.length < 9) {
+          if (collectedNames.length < LOAD_MORE_COUNT) {
             collectedNames.push(name);
           }
         });
@@ -268,7 +275,7 @@ export default function DomainSelect({
 
       if (collectedNames.length > 0) {
         setExtraNames((prev) => [...prev, ...collectedNames]);
-        setVisibleLimit((prev) => prev + collectedNames.length);
+    setVisibleLimit((prev) => prev + collectedNames.length);
       }
 
       if (Object.keys(collectedAvailability).length > 0) {
@@ -685,7 +692,7 @@ export default function DomainSelect({
             type="button"
             onClick={handleLoadMore}
             disabled={isLoadingMore}
-            className={styles.secondaryCta}
+            className={styles.primaryCta}
           >
             <Plus className={styles.secondaryCtaIcon} />
             <span>
@@ -695,7 +702,8 @@ export default function DomainSelect({
             </span>
           </button>
 
-          <button type="button" className={styles.primaryCta}>
+          <button type="button" className={styles.secondaryCta}>
+            <IoSearch className={styles.secondaryCtaIcon} />
             {messages.domainSelect.footer.next}
           </button>
         </footer>

@@ -1,8 +1,9 @@
 "use client";
 
 import { CheckCircle2 } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import type { Lang } from "@/config/i18n";
+import { getRegistrarUrl } from "@/lib/registrar";
 import styles from "./ExampleName.module.css";
 import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 
@@ -19,7 +20,6 @@ export default function ExampleName({
   const benefits = example.benefits;
   const params = useParams<{ lang?: string }>();
   const lang = (params?.lang ?? "en") as Lang;
-  const router = useRouter();
 
   return (
     <section className={styles.section}>
@@ -60,14 +60,8 @@ export default function ExampleName({
               type="button"
               className={styles.secondaryButton}
               onClick={() => {
-                const searchParams = new URLSearchParams({
-                  domain: example.name,
-                });
-                const checkerHref =
-                  lang === "nl"
-                    ? `/${lang}/tools/domeinnaam-checker`
-                    : `/${lang}/tools/domain-checker`;
-                router.push(`${checkerHref}?${searchParams.toString()}`);
+                const registrarUrl = getRegistrarUrl(example.name, lang);
+                window.open(registrarUrl, "_blank", "noopener,noreferrer");
               }}
             >
               {example.secondaryCta}

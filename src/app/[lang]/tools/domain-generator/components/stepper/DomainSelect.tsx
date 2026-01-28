@@ -694,17 +694,17 @@ export default function DomainSelect({
             disabled={isLoadingMore}
             className={styles.primaryCta}
           >
-            <Plus className={styles.secondaryCtaIcon} />
             <span>
               {isLoadingMore
                 ? messages.domainSelect.footer.loadingMore
                 : messages.domainSelect.footer.generateMore}
             </span>
+            <Plus className={styles.secondaryCtaIcon} />
           </button>
 
           <button type="button" className={styles.secondaryCta}>
-            <IoSearch className={styles.secondaryCtaIcon} />
             {messages.domainSelect.footer.next}
+            <IoSearch className={styles.secondaryCtaIcon} />
           </button>
         </footer>
       </div>

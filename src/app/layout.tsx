@@ -19,6 +19,9 @@ const urbanist = Urbanist({
 export const metadata: Metadata = {
   title: "Domifai",
   description: "AI powered domain generator",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -24,7 +24,7 @@ type NameLanguageValue = (typeof NAME_LANGUAGE_VALUES)[number];
 type SingleResult = {
   domain: string;
   tld: string;
-  status: "available" | "unavailable" | "unknown";
+  status: "available" | "unavailable" | "aftermarket" | "unknown";
 };
 
 function normalizeName(value: string) {
@@ -154,7 +154,9 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
     };
   }, [isNameLanguageOpen]);
 
-  const nameLanguageOptions = useMemo(
+  const nameLanguageOptions = useMemo<
+    { value: NameLanguageValue; label: string }[]
+  >(
     () => [
       {
         value: "international",
@@ -599,6 +601,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
               <div className={styles.singleList}>
                 {singleResults.map((result) => {
                   const isAvailable = result.status === "available";
+                  const isAftermarket = result.status === "aftermarket";
                   const nameKey = result.domain.split(".")[0] ?? result.domain;
                   const isLiked = likedDomains.has(result.domain);
                   return (
@@ -623,7 +626,8 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                           type="button"
                           className={[
                             styles.singleCta,
-                            !isAvailable ? styles.singleCtaDisabled : "",
+                            isAftermarket ? styles.singleCtaAftermarket : "",
+                            !isAvailable && !isAftermarket ? styles.singleCtaDisabled : "",
                           ]
                             .filter(Boolean)
                             .join(" ")}

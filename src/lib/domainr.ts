@@ -29,7 +29,19 @@ function getDomainrConfig() {
 const AVAILABILITY_CACHE_TTL_MS =
   (Number.parseInt(process.env.AVAILABILITY_CACHE_TTL_MS || "600000", 10) || 600000);
 
-type CacheEntry = { status: DomainAvailabilityStatus; raw?: unknown; expiresAt: number };
+type AftermarketOffer = {
+  vendor: string;
+  price?: number | string;
+  currency?: string;
+  raw: unknown;
+};
+
+type CacheEntry = {
+  status: DomainAvailabilityStatus;
+  raw?: unknown;
+  aftermarketOffer?: AftermarketOffer;
+  expiresAt: number;
+};
 const availabilityCache = new Map<string, CacheEntry>();
 
 function getCached(domain: string): CacheEntry | null {
@@ -42,10 +54,16 @@ function getCached(domain: string): CacheEntry | null {
   return entry;
 }
 
-function setCached(domain: string, status: DomainAvailabilityStatus, raw?: unknown) {
+function setCached(
+  domain: string,
+  status: DomainAvailabilityStatus,
+  raw?: unknown,
+  aftermarketOffer?: AftermarketOffer
+) {
   availabilityCache.set(domain, {
     status,
     raw,
+    aftermarketOffer,
     expiresAt: Date.now() + AVAILABILITY_CACHE_TTL_MS,
   });
 }
@@ -59,7 +77,11 @@ function makeAbortSignal(timeoutMs: number): AbortSignal {
 /**
  * Interne status die de rest van de app begrijpt.
  */
-export type DomainAvailabilityStatus = "available" | "unavailable" | "unknown";
+export type DomainAvailabilityStatus =
+  | "available"
+  | "unavailable"
+  | "aftermarket"
+  | "unknown";
 
 /**
  * Resultaat voor één volledig domein (bijv. "festivo.nl").
@@ -68,64 +90,88 @@ export type DomainCheckResult = {
   domain: string;
   status: DomainAvailabilityStatus;
   raw?: unknown;
+  aftermarketOffer?: AftermarketOffer;
 };
 
 /**
  * Normaliseer de ruwe `status` string van de Domainr Status API
  * naar onze eigen enum.
  *
- * Volgens de documentatie:
- * - Een status met "inactive" betekent dat het domein beschikbaar is
- *   voor registratie (voor de "estimate" use case).
- * - "unknown" betekent dat de API het niet zeker weet.
- * - Andere waarden zoals "active", "parked", "reserved", "premium", etc.
- *   duiden op een geregistreerd of niet-normaal-beschikbaar domein.
+ * Beschikbaarheid wordt bepaald op basis van de statusflags in vaste volgorde:
+ * - "inactive" => beschikbaar (ook als "premium" aanwezig is).
+ * - "active" + GoDaddy offer => aftermarket.
+ * - "active" of andere unavailable-markers => niet beschikbaar.
+ * - "unknown" of onherkend => onbekend.
  */
+function getGoDaddyAftermarketOffer(raw: any): AftermarketOffer | null {
+  const offers = Array.isArray(raw?.offers) ? raw.offers : [];
+  const offer = offers.find(
+    (entry: any) => typeof entry?.vendor === "string" && entry.vendor === "am.godaddy.com"
+  );
+
+  if (!offer) return null;
+
+  const price =
+    typeof offer?.price === "number" || typeof offer?.price === "string"
+      ? offer.price
+      : undefined;
+  const currency = typeof offer?.currency === "string" ? offer.currency : undefined;
+
+  return {
+    vendor: offer.vendor,
+    price,
+    currency,
+    raw: offer,
+  };
+}
+
 function normalizeStatusFromStatusString(
-  rawStatus: string | undefined
-): DomainAvailabilityStatus {
-  if (!rawStatus) return "unknown";
+  rawStatus: string | undefined,
+  rawResponse?: unknown
+): { status: DomainAvailabilityStatus; aftermarketOffer?: AftermarketOffer } {
+  if (!rawStatus) return { status: "unknown" };
 
-  const statusWords = rawStatus.toLowerCase().split(/\s+/);
+  const statusWords = rawStatus.toLowerCase().split(/\s+/).filter(Boolean);
 
-  // Beschikbaar voor registratie:
-  // - "inactive": expliciet volgens de docs
-  // - "undelegated": niet in DNS; in de praktijk nog niet geregistreerd en vaak vrij
-  if (statusWords.includes("inactive") || statusWords.includes("undelegated")) {
-    return "available";
+  // 1) AVAILABLE: only when "inactive" is present (even if "premium").
+  if (statusWords.includes("inactive")) {
+    return { status: "available" };
   }
 
-  // Onzeker / niet bepaald
-  if (statusWords.includes("unknown")) {
-    return "unknown";
+  // 2) AFTERMARKET: active + GoDaddy aftermarket offer.
+  const hasActive = statusWords.includes("active");
+  if (hasActive) {
+    const offer = getGoDaddyAftermarketOffer(rawResponse);
+    if (offer) {
+      return { status: "aftermarket", aftermarketOffer: offer };
+    }
   }
 
-  // Alles wat duidelijk wijst op een geregistreerd of aftermarket-domein
+  // 3) UNAVAILABLE: active or other unavailability markers.
   const unavailableMarkers = [
     "active",
     "parked",
     "reserved",
     "claimed",
-    "premium",
     "marketed",
-    "expiring",
-    "deleting",
     "priced",
-    "transferable",
     "dpml",
     "disallowed",
+    "deleting",
+    "expiring",
     "invalid",
-    "suffix",
-    "zone",
-    "tld",
   ];
 
   if (statusWords.some((word) => unavailableMarkers.includes(word))) {
-    return "unavailable";
+    return { status: "unavailable" };
   }
 
-  // Fallback als we niets herkennen
-  return "unknown";
+  // 4) UNKNOWN: explicitly unknown or unrecognized status.
+  if (statusWords.includes("unknown")) {
+    return { status: "unknown" };
+  }
+
+  return { status: "unknown" };
 }
 
 /**
@@ -168,7 +214,7 @@ export function buildDomainsFromNames(names: string[], tlds: string[]): string[]
  * - Endpoint: /domain-management/v1/tools/status
  * - Query params:
  *     - domain: de volledige domeinnaam
- *     - scope: "estimate" voor registratieniveau-beschikbaarheid
+ *     - scope: "precise" voor gedetailleerde beschikbaarheid
  * - Headers:
  *     - Fastly-Key: jouw API token
  *     - Accept: application/json
@@ -205,12 +251,17 @@ async function checkDomainAvailabilityWithDomainr(
       // Cache hit: return instantly.
       const cached = getCached(domain);
       if (cached) {
-        return { domain, status: cached.status, raw: cached.raw };
-      }
+      return {
+        domain,
+        status: cached.status,
+        raw: cached.raw,
+        aftermarketOffer: cached.aftermarketOffer,
+      };
+    }
 
       const url = new URL(baseUrl);
       url.searchParams.set("domain", domain);
-      url.searchParams.set("scope", "estimate");
+      url.searchParams.set("scope", "precise");
 
       const response = await fetch(url.toString(), {
         method: "GET",
@@ -236,13 +287,14 @@ async function checkDomainAvailabilityWithDomainr(
 
       const json = (await response.json()) as any;
       const rawStatus = typeof json?.status === "string" ? json.status : undefined;
-      const normalized = normalizeStatusFromStatusString(rawStatus);
+      const normalized = normalizeStatusFromStatusString(rawStatus, json);
 
-      setCached(domain, normalized, json);
+      setCached(domain, normalized.status, json, normalized.aftermarketOffer);
       return {
         domain,
-        status: normalized,
+        status: normalized.status,
         raw: json,
+        aftermarketOffer: normalized.aftermarketOffer,
       };
     } catch (err) {
       console.error("[domainr] Error checking", domain, err);

@@ -38,7 +38,7 @@ type Category = {
   icon?: React.ReactNode;
 };
 
-type ExtensionStatus = "available" | "unavailable" | "unknown";
+type ExtensionStatus = "available" | "unavailable" | "aftermarket" | "unknown";
 
 type Extension = {
   id: string;
@@ -193,7 +193,7 @@ export default function DomainSelect({
 
   function handleTldClick(name: string, ext: Extension) {
     // Alleen klikken als de extensie beschikbaar is
-    if (ext.status !== "available") return;
+    if (ext.status !== "available" && ext.status !== "aftermarket") return;
 
     const domain = `${name}${ext.tld}`;
     const registrarUrl = getRegistrarUrl(domain, lang);
@@ -452,6 +452,8 @@ export default function DomainSelect({
               const mappedStatus: ExtensionStatus =
                 statusFromApi === "available"
                   ? "available"
+                  : statusFromApi === "aftermarket"
+                  ? "aftermarket"
                   : statusFromApi === "unavailable"
                   ? "unavailable"
                   : "unknown";
@@ -643,20 +645,26 @@ export default function DomainSelect({
                         styles.extensionTag,
                         ext.status === "available"
                           ? styles.extensionTagAvailable
+                          : ext.status === "aftermarket"
+                          ? styles.extensionTagAftermarket
                           : styles.extensionTagUnavailable,
                       ]
                         .filter(Boolean)
                         .join(" ")}
                       onClick={() => handleTldClick(suggestion.name, ext)}
-                      role={ext.status === "available" ? "button" : undefined}
+                      role={
+                        ext.status === "available" || ext.status === "aftermarket"
+                          ? "button"
+                          : undefined
+                      }
                       style={
-                        ext.status === "available"
+                        ext.status === "available" || ext.status === "aftermarket"
                           ? { cursor: "pointer" }
                           : undefined
                       }
                     >
                       <span className={styles.extensionStatusIcon}>
-                        {ext.status === "available" ? (
+                        {ext.status === "available" || ext.status === "aftermarket" ? (
                           <LuExternalLink className={styles.extensionCheckIcon} />
                         ) : (
                           "×"

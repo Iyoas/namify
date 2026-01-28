@@ -5,6 +5,7 @@ const DEFAULT_SITE_URL = "https://domifai.com";
 
 const STATIC_PATHS = [
   "",
+  "/tools/domain-checker",
   "/tools/domain-generator",
   "/tools/domain-generator/generator",
   "/tools/domain-generator/liked-names",

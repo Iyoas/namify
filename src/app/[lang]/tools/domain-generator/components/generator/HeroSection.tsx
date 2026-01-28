@@ -5,7 +5,7 @@ import { ChevronDown, Megaphone, Sparkles, Wand2 } from "lucide-react";
 import { BsStars } from "react-icons/bs";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import styles from "./HeroSection.module.css";
 import { Box, Skeleton } from "@mui/material";
 import type { Lang } from "@/config/i18n";
@@ -85,6 +85,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const promptLength = prompt.length;
   const promptLimit = 250;
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const [mode, setMode] = useState<"ai" | "single">("ai");
   const [singleResults, setSingleResults] = useState<SingleResult[]>([]);
@@ -94,19 +95,31 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const [likedDomains, setLikedDomains] = useState<Set<string>>(new Set());
   const pendingSingleCheckRef = useRef<string | null>(null);
 
+  const generatorPath = `/${lang}/tools/domain-generator/generator`;
+  const checkerPath = `/${lang}/tools/domain-checker`;
+  const isCheckerPath = pathname?.endsWith("/tools/domain-checker");
+  const isGeneratorPath = pathname?.endsWith("/tools/domain-generator/generator");
+
   useEffect(() => {
     const modeParam = searchParams.get("mode");
     const domainParam = searchParams.get("domain");
 
-    if (modeParam === "single") {
+    if (isCheckerPath) {
       setMode("single");
-      if (domainParam && domainParam.trim()) {
-        const cleaned = domainParam.trim();
-        setPrompt(cleaned);
-        pendingSingleCheckRef.current = cleaned;
-      }
+    } else if (isGeneratorPath) {
+      setMode("ai");
+    } else if (modeParam === "single") {
+      setMode("single");
+    } else {
+      setMode("ai");
     }
-  }, [searchParams]);
+
+    if (domainParam && domainParam.trim()) {
+      const cleaned = domainParam.trim();
+      setPrompt(cleaned);
+      pendingSingleCheckRef.current = cleaned;
+    }
+  }, [searchParams, isCheckerPath, isGeneratorPath]);
 
   useEffect(() => {
     if (mode !== "single") return;
@@ -339,6 +352,12 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
     window.open(registrarUrl, "_blank", "noopener,noreferrer");
   }
 
+  function handleModeSwitch(nextMode: "ai" | "single") {
+    setMode(nextMode);
+    const target = nextMode === "single" ? checkerPath : generatorPath;
+    router.push(target);
+  }
+
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
@@ -352,7 +371,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
               ]
                 .filter(Boolean)
                 .join(" ")}
-              onClick={() => setMode("ai")}
+              onClick={() => handleModeSwitch("ai")}
               aria-pressed={mode === "ai"}
             >
               <BsStars className={styles.modeIcon} aria-hidden="true" />
@@ -366,7 +385,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
               ]
                 .filter(Boolean)
                 .join(" ")}
-              onClick={() => setMode("single")}
+              onClick={() => handleModeSwitch("single")}
               aria-pressed={mode === "single"}
             >
               {messages.hero.modeDomainChecker}
@@ -602,6 +621,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                 {singleResults.map((result) => {
                   const isAvailable = result.status === "available";
                   const isAftermarket = result.status === "aftermarket";
+                  const isClickable = isAvailable || isAftermarket;
                   const nameKey = result.domain.split(".")[0] ?? result.domain;
                   const isLiked = likedDomains.has(result.domain);
                   return (
@@ -627,16 +647,16 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                           className={[
                             styles.singleCta,
                             isAftermarket ? styles.singleCtaAftermarket : "",
-                            !isAvailable && !isAftermarket ? styles.singleCtaDisabled : "",
+                            !isClickable ? styles.singleCtaDisabled : "",
                           ]
                             .filter(Boolean)
                             .join(" ")}
-                          disabled={!isAvailable}
+                          disabled={!isClickable}
                           onClick={() =>
-                            isAvailable ? handleRegistrarClick(result.domain) : null
+                            isClickable ? handleRegistrarClick(result.domain) : null
                           }
                         >
-                          {isAvailable
+                          {isClickable
                             ? messages.hero.singleClaim
                             : messages.hero.singleUnavailable}
                         </button>

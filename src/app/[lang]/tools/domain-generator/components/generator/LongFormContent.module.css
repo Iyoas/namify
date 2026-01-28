@@ -265,4 +265,21 @@
   .highlightCard {
     margin-top: 20px;
   }
+
+  .ctaForm {
+    padding: 16px 20px;
+  }
+
+  .ctaInput {
+    height: 48px;
+    line-height: 1;
+  }
+
+  .ctaButton {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    border-radius: 999px;
+    line-height: 1;
+  }
 }

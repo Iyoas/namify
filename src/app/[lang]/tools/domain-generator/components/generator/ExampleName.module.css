@@ -249,4 +249,21 @@
   .currentPrice {
     font-size: 22px;
   }
+
+  .actions {
+    width: 100%;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .secondaryButton,
+  .primaryButton {
+    flex: 1;
+    min-height: 44px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+  }
 }

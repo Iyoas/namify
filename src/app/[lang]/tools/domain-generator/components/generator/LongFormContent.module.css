@@ -269,6 +269,8 @@
   .ctaForm {
     padding: 16px 20px;
     align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   .ctaInput {

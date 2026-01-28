@@ -61,7 +61,10 @@ type IndustryGeneratorsProps = {
 export default function IndustryGenerators({ messages }: IndustryGeneratorsProps) {
   const params = useParams();
   const lang = typeof params?.lang === "string" ? params.lang : "nl";
-  const generatorHref = `/${lang}/tools/domain-generator/generator`;
+  const generatorHref =
+    lang === "nl"
+      ? `/${lang}/tools/domeinnaam-generator`
+      : `/${lang}/tools/domain-generator`;
   const cards: IndustryCard[] =
     messages.industryGenerators.cards.map((card) => ({
       ...card,

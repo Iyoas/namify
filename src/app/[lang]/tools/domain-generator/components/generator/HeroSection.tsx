@@ -95,10 +95,21 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const [likedDomains, setLikedDomains] = useState<Set<string>>(new Set());
   const pendingSingleCheckRef = useRef<string | null>(null);
 
-  const generatorPath = `/${lang}/tools/domain-generator/generator`;
-  const checkerPath = `/${lang}/tools/domain-checker`;
-  const isCheckerPath = pathname?.endsWith("/tools/domain-checker");
-  const isGeneratorPath = pathname?.endsWith("/tools/domain-generator/generator");
+  const generatorPath =
+    lang === "nl"
+      ? `/${lang}/tools/domeinnaam-generator`
+      : `/${lang}/tools/domain-generator`;
+  const checkerPath =
+    lang === "nl"
+      ? `/${lang}/tools/domeinnaam-checker`
+      : `/${lang}/tools/domain-checker`;
+  const isCheckerPath =
+    pathname?.endsWith("/tools/domain-checker") ||
+    pathname?.endsWith("/tools/domeinnaam-checker");
+  const isGeneratorPath =
+    pathname?.endsWith("/tools/domain-generator") ||
+    pathname?.endsWith("/tools/domain-generator/generator") ||
+    pathname?.endsWith("/tools/domeinnaam-generator");
 
   useEffect(() => {
     const modeParam = searchParams.get("mode");

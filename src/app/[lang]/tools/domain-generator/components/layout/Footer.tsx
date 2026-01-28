@@ -20,6 +20,22 @@ export default function Footer() {
   const domainMessages = getDomainGeneratorIndexMessages(lang);
   const email = domainMessages.contact.details.emailValue;
   const homeHref = `/${lang}`;
+  const generatorHref =
+    lang === "nl"
+      ? `${homeHref}/tools/domeinnaam-generator`
+      : `${homeHref}/tools/domain-generator`;
+  const checkerHref =
+    lang === "nl"
+      ? `${homeHref}/tools/domeinnaam-checker`
+      : `${homeHref}/tools/domain-checker`;
+  const privacyHref =
+    lang === "nl"
+      ? `${homeHref}/privacybeleid`
+      : `${homeHref}/privacy-policy`;
+  const likedHref =
+    lang === "nl"
+      ? `${homeHref}/gelikete-namen`
+      : `${homeHref}/liked-names`;
   const queryString = searchParams.toString();
 
   if (pathname?.includes("/tools/domain-generator/results")) {
@@ -28,11 +44,39 @@ export default function Footer() {
 
   const buildLangHref = (targetLang: "en" | "nl") => {
     if (!pathname) return `/${targetLang}`;
-    const segments = pathname.split("/");
-    if (segments.length > 1) {
-      segments[1] = targetLang;
+    const segments = pathname.split("/").filter(Boolean);
+    const currentLang = segments[0];
+    const restPath = segments.length > 1 ? `/${segments.slice(1).join("/")}` : "";
+
+    const nlToEn: Record<string, string> = {
+      "/tools/domeinnaam-generator": "/tools/domain-generator",
+      "/tools/domeinnaam-checker": "/tools/domain-checker",
+      "/privacybeleid": "/privacy-policy",
+      "/gelikete-namen": "/liked-names",
+      "/tools/domain-generator": "/tools/domain-generator",
+      "/tools/domain-generator/generator": "/tools/domain-generator",
+      "/tools/domain-generator/privacy-policy": "/privacy-policy",
+      "/tools/domain-generator/liked-names": "/liked-names",
+    };
+
+    const enToNl: Record<string, string> = {
+      "/tools/domain-generator": "/tools/domeinnaam-generator",
+      "/tools/domain-generator/generator": "/tools/domeinnaam-generator",
+      "/tools/domain-checker": "/tools/domeinnaam-checker",
+      "/privacy-policy": "/privacybeleid",
+      "/liked-names": "/gelikete-namen",
+      "/tools/domain-generator/privacy-policy": "/privacybeleid",
+      "/tools/domain-generator/liked-names": "/gelikete-namen",
+    };
+
+    let mappedRest = restPath;
+    if (currentLang === "nl" && targetLang === "en") {
+      mappedRest = nlToEn[restPath] ?? restPath;
+    } else if (currentLang === "en" && targetLang === "nl") {
+      mappedRest = enToNl[restPath] ?? restPath;
     }
-    const basePath = segments.join("/") || `/${targetLang}`;
+
+    const basePath = `/${targetLang}${mappedRest}`;
     return queryString ? `${basePath}?${queryString}` : basePath;
   };
 
@@ -43,15 +87,15 @@ export default function Footer() {
       links: [
         {
           label: messages.columns.product.aiNameGenerator,
-          href: `${homeHref}/tools/domain-generator/generator`,
+          href: generatorHref,
         },
         {
           label: messages.columns.product.domainChecker,
-          href: `${homeHref}/tools/domain-generator/generator?mode=single`,
+          href: checkerHref,
         },
         {
           label: messages.columns.product.favorites,
-          href: `${homeHref}/tools/domain-generator/liked-names`,
+          href: likedHref,
         },
       ],
     },
@@ -83,7 +127,7 @@ export default function Footer() {
         },
         {
           label: messages.columns.resources.privacyPolicy,
-          href: `${homeHref}/tools/domain-generator/privacy-policy`,
+          href: privacyHref,
         },
       ],
     },

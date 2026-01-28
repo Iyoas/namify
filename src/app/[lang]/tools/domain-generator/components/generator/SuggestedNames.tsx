@@ -55,11 +55,11 @@ export default function SuggestedNames({ lang, messages }: SuggestedNamesProps) 
 
   function handleArrowClick(name: string) {
     const base = name.trim();
-    router.push(
-      `/${lang}/tools/domain-generator/generator?mode=single&domain=${encodeURIComponent(
-        base
-      )}`
-    );
+    const checkerHref =
+      lang === "nl"
+        ? `/${lang}/tools/domeinnaam-checker`
+        : `/${lang}/tools/domain-checker`;
+    router.push(`${checkerHref}?domain=${encodeURIComponent(base)}`);
   }
 
   return (
@@ -120,7 +120,11 @@ export default function SuggestedNames({ lang, messages }: SuggestedNamesProps) 
         {/* Load more */}
         <div className={styles.loadMoreWrapper}>
           <Link
-            href={`/${lang}/tools/domain-generator/generator`}
+            href={
+              lang === "nl"
+                ? `/${lang}/tools/domeinnaam-generator`
+                : `/${lang}/tools/domain-generator`
+            }
             className={styles.loadMore}
           >
             <span className={styles.loadMoreText}>{messages.suggestedNames.loadMore}</span>

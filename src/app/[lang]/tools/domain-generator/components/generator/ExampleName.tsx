@@ -61,13 +61,13 @@ export default function ExampleName({
               className={styles.secondaryButton}
               onClick={() => {
                 const searchParams = new URLSearchParams({
-                  mode: "single",
                   domain: example.name,
                 });
-                router.push(
-                  `/${lang}/tools/domain-generator/generator?` +
-                    searchParams.toString()
-                );
+                const checkerHref =
+                  lang === "nl"
+                    ? `/${lang}/tools/domeinnaam-checker`
+                    : `/${lang}/tools/domain-checker`;
+                router.push(`${checkerHref}?${searchParams.toString()}`);
               }}
             >
               {example.secondaryCta}

@@ -29,6 +29,16 @@ export default function Header() {
   const params = useParams<LangParams>();
   const lang = params?.lang ?? "en";
   const homeHref = `/${lang}`;
+  const generatorHref =
+    lang === "nl"
+      ? `${homeHref}/tools/domeinnaam-generator`
+      : `${homeHref}/tools/domain-generator`;
+  const checkerHref =
+    lang === "nl"
+      ? `${homeHref}/tools/domeinnaam-checker`
+      : `${homeHref}/tools/domain-checker`;
+  const likedHref =
+    lang === "nl" ? `${homeHref}/gelikete-namen` : `${homeHref}/liked-names`;
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,15 +54,18 @@ export default function Header() {
     const restPath = segments.length > 1 ? `/${segments.slice(1).join("/")}` : "";
 
     const nlToEn: Record<string, string> = {
-      "/tools/domeinnaam-generator": "/tools/domain-generator/generator",
+      "/tools/domeinnaam-generator": "/tools/domain-generator",
       "/tools/domeinnaam-checker": "/tools/domain-checker",
       "/privacybeleid": "/privacy-policy",
       "/gelikete-namen": "/liked-names",
+      "/tools/domain-generator": "/tools/domain-generator",
+      "/tools/domain-generator/generator": "/tools/domain-generator",
       "/tools/domain-generator/privacy-policy": "/privacy-policy",
       "/tools/domain-generator/liked-names": "/liked-names",
     };
 
     const enToNl: Record<string, string> = {
+      "/tools/domain-generator": "/tools/domeinnaam-generator",
       "/tools/domain-generator/generator": "/tools/domeinnaam-generator",
       "/tools/domain-checker": "/tools/domeinnaam-checker",
       "/privacy-policy": "/privacybeleid",
@@ -112,15 +125,15 @@ export default function Header() {
   const navItems = [
     { href: homeHref, label: messages.navMobile.home },
     {
-      href: `${homeHref}/tools/domain-generator/generator`,
+      href: generatorHref,
       label: messages.navMobile.businessNameGenerator,
     },
     {
-      href: `${homeHref}/tools/domain-generator/generator?mode=single`,
+      href: checkerHref,
       label: messages.navMobile.domainChecker,
     },
     {
-      href: `${homeHref}/tools/domain-generator/liked-names`,
+      href: likedHref,
       label: messages.navMobile.favorites,
     },
     { href: `${homeHref}#how-it-works`, label: messages.navMobile.howItWorks },
@@ -156,14 +169,14 @@ export default function Header() {
 
         <nav className={`${styles.nav} ${styles.desktopOnly}`} aria-label="Primary navigation">
           <Link
-            href={`${homeHref}/tools/domain-generator/generator`}
+            href={generatorHref}
             className={styles.navLink}
           >
             {messages.navDesktop.aiNameGenerator}
           </Link>
 
           <Link
-            href={`${homeHref}/tools/domain-generator/generator?mode=single`}
+            href={checkerHref}
             className={styles.navLink}
           >
             {messages.navDesktop.domainChecker}
@@ -206,7 +219,7 @@ export default function Header() {
           </div>
           <div>
             <Link
-              href={`${homeHref}/tools/domain-generator/liked-names`}
+              href={likedHref}
               className={styles.iconButton}
               aria-label={messages.actions.favoritesAria}
             >

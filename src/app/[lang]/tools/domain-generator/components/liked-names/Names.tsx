@@ -86,11 +86,11 @@ export default function FavoriteNamesSection({
   }
 
   function goToSingleCheck(label: string) {
-    router.push(
-      `/${activeLang}/tools/domain-generator/generator?mode=single&domain=${encodeURIComponent(
-        label
-      )}`
-    );
+    const checkerHref =
+      activeLang === "nl"
+        ? `/${activeLang}/tools/domeinnaam-checker`
+        : `/${activeLang}/tools/domain-checker`;
+    router.push(`${checkerHref}?domain=${encodeURIComponent(label)}`);
   }
 
   return (

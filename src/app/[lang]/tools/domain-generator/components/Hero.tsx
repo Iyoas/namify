@@ -13,6 +13,10 @@ type HeroProps = {
 
 export default function Hero({ lang, messages }: HeroProps) {
   const hero = messages.hero;
+  const generatorHref =
+    lang === "nl"
+      ? `/${lang}/tools/domeinnaam-generator`
+      : `/${lang}/tools/domain-generator`;
 
   return (
     <section className={styles.hero}>
@@ -30,7 +34,7 @@ export default function Hero({ lang, messages }: HeroProps) {
 
           <div className={styles.ctaRow}>
             <Link
-              href={`/${lang}/tools/domain-generator/generator`}
+              href={generatorHref}
               className={styles.primaryButton}
             >
               <Sparkles className={styles.primaryIcon} />

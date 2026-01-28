@@ -5,7 +5,7 @@ const nextConfig = {
       // NL: mooie slugs
       {
         source: "/nl/tools/domeinnaam-generator",
-        destination: "/nl/tools/domain-generator/generator",
+        destination: "/nl/tools/domain-generator",
       },
       {
         source: "/nl/tools/domeinnaam-checker",
@@ -43,6 +43,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // EN: generator without /generator
+      {
+        source: "/en/tools/domain-generator/generator",
+        destination: "/en/tools/domain-generator",
+        permanent: true,
+      },
       // NL: redirect oude Engelse slugs
       {
         source: "/nl/tools/domain-generator",

@@ -51,6 +51,10 @@ export async function generateMetadata({
   return {
     title: seo.title,
     description: seo.description,
+    alternates:
+      lang === "en"
+        ? { canonical: "https://www.domifai.com/en/tools/domain-generator" }
+        : undefined,
   };
 }
 

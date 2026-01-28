@@ -83,7 +83,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const [isEnhancing, setIsEnhancing] = useState(false);
   const hasPrompt = prompt.trim().length > 0;
   const promptLength = prompt.length;
-  const promptLimit = 250;
+  const promptLimit = 300;
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

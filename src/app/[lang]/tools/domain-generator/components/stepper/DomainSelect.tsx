@@ -3,11 +3,10 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { Skeleton } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Heart, Plus, ShoppingCart, Check } from "lucide-react";
+import { Heart, ShoppingCart, Check } from "lucide-react";
 import { IoMdHeartEmpty, IoIosHeart } from "react-icons/io";
-import { IoSearch } from "react-icons/io5";
 import { IoPersonOutline, IoMusicalNotesOutline } from "react-icons/io5";
-import { FaRegStar } from "react-icons/fa";
+import { FaRegStar, FaPlus, FaSearch } from "react-icons/fa";
 import { LuBriefcaseBusiness } from "react-icons/lu";
 import { LuExternalLink } from "react-icons/lu";
 import { RiGraduationCapLine } from "react-icons/ri";
@@ -699,12 +698,12 @@ export default function DomainSelect({
                 ? messages.domainSelect.footer.loadingMore
                 : messages.domainSelect.footer.generateMore}
             </span>
-            <Plus className={styles.secondaryCtaIcon} />
+            <FaPlus className={styles.secondaryCtaIcon} />
           </button>
 
           <button type="button" className={styles.secondaryCta}>
             {messages.domainSelect.footer.next}
-            <IoSearch className={styles.secondaryCtaIcon} />
+            <FaSearch className={styles.secondaryCtaIcon} />
           </button>
         </footer>
       </div>

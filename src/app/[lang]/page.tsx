@@ -22,6 +22,14 @@ export async function generateMetadata({
       title: "Domifai | AI tools voor bedrijfs- en domeinnamen",
       description:
         "Ontdek AI-tools om bedrijfsnamen te bedenken, domeinen te checken en merken op te bouwen. Snel, gratis en eenvoudig te gebruiken.",
+      alternates: {
+        canonical: "https://www.domifai.com/nl",
+        languages: {
+          nl: "https://www.domifai.com/nl",
+          en: "https://www.domifai.com/en",
+          "x-default": "https://www.domifai.com/en",
+        },
+      },
     };
   }
 
@@ -29,6 +37,14 @@ export async function generateMetadata({
     title: "Domifai | AI Tools for Business & Domain Names",
     description:
       "Discover AI tools to generate business names, check domains, and build your brand. Fast, free, and easy to use.",
+    alternates: {
+      canonical: "https://www.domifai.com/en",
+      languages: {
+        en: "https://www.domifai.com/en",
+        nl: "https://www.domifai.com/nl",
+        "x-default": "https://www.domifai.com/en",
+      },
+    },
   };
 }
 

@@ -40,6 +40,17 @@ export async function generateMetadata({
   return {
     title: seo.title,
     description: seo.description,
+    alternates: {
+      canonical:
+        lang === "nl"
+          ? "https://www.domifai.com/nl/tools/domeinnaam-checker"
+          : "https://www.domifai.com/en/tools/domain-checker",
+      languages: {
+        nl: "https://www.domifai.com/nl/tools/domeinnaam-checker",
+        en: "https://www.domifai.com/en/tools/domain-checker",
+        "x-default": "https://www.domifai.com/en/tools/domain-checker",
+      },
+    },
   };
 }
 

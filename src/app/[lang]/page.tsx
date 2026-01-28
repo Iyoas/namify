@@ -1,4 +1,5 @@
 // src/app/[lang]/tools/domain-generator/page.tsx
+import type { Metadata } from "next";
 import type { Lang } from "@/config/i18n";
 import { getDomainGeneratorIndexMessages } from "@/i18n/domain-generator-index";
 import Hero from "@/app/[lang]/tools/domain-generator/components/Hero";
@@ -10,6 +11,26 @@ import Contact from "@/app/[lang]/tools/domain-generator/components/Contact";
 type Props = {
   params: Promise<{ lang: Lang }>;
 };
+
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata> {
+  const { lang } = await params;
+
+  if (lang === "nl") {
+    return {
+      title: "Domifai | AI tools voor bedrijfs- en domeinnamen",
+      description:
+        "Ontdek AI-tools om bedrijfsnamen te bedenken, domeinen te checken en merken op te bouwen. Snel, gratis en eenvoudig te gebruiken.",
+    };
+  }
+
+  return {
+    title: "Domifai | AI Tools for Business & Domain Names",
+    description:
+      "Discover AI tools to generate business names, check domains, and build your brand. Fast, free, and easy to use.",
+  };
+}
 
 export default async function DomainGeneratorLanding({ params }: Props) {
   const { lang } = await params;

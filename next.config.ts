@@ -1,18 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          {
-            key: "X-Robots-Tag",
-            value: "noindex, nofollow, noarchive, nosnippet, noimageindex",
-          },
-        ],
-      },
-    ];
-  },
   async rewrites() {
     return [
       // NL: mooie slugs
@@ -44,6 +31,14 @@ const nextConfig = {
       },
 
       // EN: slugs = canoniek, geen rewrite nodig
+      {
+        source: "/en/privacy-policy",
+        destination: "/en/tools/domain-generator/privacy-policy",
+      },
+      {
+        source: "/en/liked-names",
+        destination: "/en/tools/domain-generator/liked-names",
+      },
     ];
   },
   async redirects() {

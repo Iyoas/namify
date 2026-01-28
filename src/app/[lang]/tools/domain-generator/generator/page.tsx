@@ -15,9 +15,9 @@ const generatorSeo: Record<
   { title: string; description: string; keywords: string[] }
 > = {
   nl: {
-    title: "Bedrijfsnaam generator – AI bedrijfs- en domeinnaam ideeën | Domifai",
+    title: "Bedrijfsnaam generator met AI | Bedrijfs- en domeinnaam ideeën",
     description:
-      "Genereer in seconden merkwaardige bedrijfsnamen en check direct de domeinbeschikbaarheid. AI-gedreven naamgenerator in het Nederlands.",
+      "Genereer in seconden merkbare bedrijfsnamen en controleer direct domeinbeschikbaarheid met AI.",
     keywords: [
       "bedrijfsnaam generator",
       "domeinnaam generator",
@@ -51,7 +51,6 @@ export async function generateMetadata({
   return {
     title: seo.title,
     description: seo.description,
-    keywords: seo.keywords,
   };
 }
 

@@ -5,9 +5,9 @@ import DomainGeneratorPage from "../domain-generator/generator/page";
 const checkerSeo: Record<Lang, { title: string; description: string; keywords: string[] }> =
   {
     nl: {
-      title: "Domeinnaam checker – controleer beschikbaarheid | Domifai",
+      title: "Domeinnaam checker | Controleer beschikbaarheid",
       description:
-        "Check direct of een domeinnaam vrij is en ontdek alternatieven met AI-suggesties.",
+        "Check direct of een domeinnaam beschikbaar is en ontdek slimme alternatieven met AI-suggesties.",
       keywords: [
         "domeinnaam checker",
         "domein beschikbaarheid",
@@ -40,7 +40,6 @@ export async function generateMetadata({
   return {
     title: seo.title,
     description: seo.description,
-    keywords: seo.keywords,
   };
 }
 

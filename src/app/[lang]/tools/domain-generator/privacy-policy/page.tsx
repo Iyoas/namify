@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import type { Lang } from "@/config/i18n";
 import { getPrivacyPolicyMessages } from "@/i18n/components/privacy-policy";
 import styles from "./PrivacyPolicy.module.css";
@@ -5,6 +6,21 @@ import styles from "./PrivacyPolicy.module.css";
 type PrivacyPolicyPageProps = {
   params: Promise<{ lang: Lang }>;
 };
+
+export async function generateMetadata({
+  params,
+}: PrivacyPolicyPageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const title = lang === "nl" ? "Privacybeleid | Domifai" : "Privacy Policy | Domifai";
+
+  return {
+    title,
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 export default async function PrivacyPolicyPage({
   params,

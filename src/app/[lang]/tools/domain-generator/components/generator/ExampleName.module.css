@@ -254,11 +254,13 @@
     width: 100%;
     align-items: stretch;
     gap: 12px;
+    flex-direction: column;
   }
 
   .secondaryButton,
   .primaryButton {
-    flex: 1;
+    flex: 0 0 auto;
+    width: 100%;
     min-height: 44px;
     line-height: 1;
     display: inline-flex;

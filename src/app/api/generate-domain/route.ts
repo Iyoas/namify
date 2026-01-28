@@ -231,24 +231,24 @@ ${languageHint}`,
     const fallback = [...bucketA, ...bucketB, ...bucketC]
       .map((n: unknown) => (typeof n === "string" ? n.trim() : ""))
       .filter(Boolean)
-      .filter((n) => !hasDotOrTld(n));
+      .filter((n: string) => !hasDotOrTld(n));
 
     const cleanedA = bucketA
       .map((n: unknown) => (typeof n === "string" ? n.trim() : ""))
       .filter(Boolean)
-      .filter((n) => !hasDotOrTld(n))
+      .filter((n: string) => !hasDotOrTld(n))
       .filter(isTwoWordName)
       .slice(0, 3);
     const cleanedB = bucketB
       .map((n: unknown) => (typeof n === "string" ? n.trim() : ""))
       .filter(Boolean)
-      .filter((n) => !hasDotOrTld(n))
+      .filter((n: string) => !hasDotOrTld(n))
       .filter(isOneWordName)
       .slice(0, 3);
     const cleanedC = bucketC
       .map((n: unknown) => (typeof n === "string" ? n.trim() : ""))
       .filter(Boolean)
-      .filter((n) => !hasDotOrTld(n))
+      .filter((n: string) => !hasDotOrTld(n))
       .filter(isOneWordName)
       .slice(0, 3);
 

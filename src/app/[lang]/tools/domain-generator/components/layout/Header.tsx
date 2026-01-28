@@ -39,11 +39,36 @@ export default function Header() {
   const queryString = searchParams.toString();
   const buildLangHref = (targetLang: "en" | "nl") => {
     if (!pathname) return `/${targetLang}`;
-    const segments = pathname.split("/");
-    if (segments.length > 1) {
-      segments[1] = targetLang;
+    const segments = pathname.split("/").filter(Boolean);
+    const currentLang = segments[0];
+    const restPath = segments.length > 1 ? `/${segments.slice(1).join("/")}` : "";
+
+    const nlToEn: Record<string, string> = {
+      "/tools/domeinnaam-generator": "/tools/domain-generator/generator",
+      "/tools/domeinnaam-checker": "/tools/domain-checker",
+      "/privacybeleid": "/privacy-policy",
+      "/gelikete-namen": "/liked-names",
+      "/tools/domain-generator/privacy-policy": "/privacy-policy",
+      "/tools/domain-generator/liked-names": "/liked-names",
+    };
+
+    const enToNl: Record<string, string> = {
+      "/tools/domain-generator/generator": "/tools/domeinnaam-generator",
+      "/tools/domain-checker": "/tools/domeinnaam-checker",
+      "/privacy-policy": "/privacybeleid",
+      "/liked-names": "/gelikete-namen",
+      "/tools/domain-generator/privacy-policy": "/privacybeleid",
+      "/tools/domain-generator/liked-names": "/gelikete-namen",
+    };
+
+    let mappedRest = restPath;
+    if (currentLang === "nl" && targetLang === "en") {
+      mappedRest = nlToEn[restPath] ?? restPath;
+    } else if (currentLang === "en" && targetLang === "nl") {
+      mappedRest = enToNl[restPath] ?? restPath;
     }
-    const basePath = segments.join("/") || `/${targetLang}`;
+
+    const basePath = `/${targetLang}${mappedRest}`;
     return queryString ? `${basePath}?${queryString}` : basePath;
   };
 

@@ -179,6 +179,16 @@
 
   .name {
     margin: 0 16px;
-    font-size: 15px;
+    font-size: 20px;
+  }
+
+  .arrowButton {
+    color: #000000;
+  }
+
+  .cardActive .arrowButton {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #000000;
   }
 }

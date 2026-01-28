@@ -19,11 +19,6 @@ const urbanist = Urbanist({
 export const metadata: Metadata = {
   title: "Domifai",
   description: "AI powered domain generator",
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

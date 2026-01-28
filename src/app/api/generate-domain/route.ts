@@ -176,14 +176,14 @@ CATEGORIE A — Brandable / Bedrijfsnaam (3 namen)
 - Verboden suffixen in categorie A: Co, Inc, LLC, Ltd, Corp (en ook BV/NV tenzij expliciet gewenst)
 - Forbidden: Shop, Store, Mart, Market, Winkel, Webshop
 
-CATEGORIE B — Semi-brandable (3 namen)
+CATEGORIE B — Semi-brandable (4 namen)
 - EXACT 1 woord
 - Gebaseerd op een herkenbare wortel
 - Niet letterlijk beschrijvend
 - Lichte vervorming of klankaanpassing toegestaan
 - Moet zelfstandig als merk kunnen werken
 
-CATEGORIE C — Creatief / Abstract (3 namen)
+CATEGORIE C — Creatief / Abstract (2 namen)
 - EXACT 1 woord
 - Geen duidelijke betekenis
 - Focus op klank en ritme
@@ -199,8 +199,8 @@ ${dutchSystemRules}
 OUTPUT FORMAT (verplicht):
 {
   "A": ["...", "...", "..."],
-  "B": ["...", "...", "..."],
-  "C": ["...", "...", "..."]
+  "B": ["...", "...", "...", "..."],
+  "C": ["...", "..."]
 }`,
         },
         {
@@ -244,15 +244,15 @@ ${languageHint}`,
       .filter(Boolean)
       .filter((n: string) => !hasDotOrTld(n))
       .filter(isOneWordName)
-      .slice(0, 3);
+      .slice(0, 4);
     const cleanedC = bucketC
       .map((n: unknown) => (typeof n === "string" ? n.trim() : ""))
       .filter(Boolean)
       .filter((n: string) => !hasDotOrTld(n))
       .filter(isOneWordName)
-      .slice(0, 3);
+      .slice(0, 2);
 
-    if (cleanedA.length === 3 && cleanedB.length === 3 && cleanedC.length === 3) {
+    if (cleanedA.length === 3 && cleanedB.length === 4 && cleanedC.length === 2) {
       return { strict: [...cleanedA, ...cleanedB, ...cleanedC], fallback };
     }
 

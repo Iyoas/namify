@@ -98,9 +98,9 @@ export default function SuggestedNames({ lang, messages }: SuggestedNamesProps) 
                 aria-label={`${messages.suggestedNames.ariaLike}: ${name}`}
               >
                 {likedNames.includes(name) ? (
-                  <IoIosHeart size={24} color="#FF4C4C" />
+                  <IoIosHeart size={28} color="#FF4C4C" />
                 ) : (
-                  <IoIosHeartEmpty size={24} color="#000000" />
+                  <IoIosHeartEmpty size={28} color="#000000" />
                 )}
               </button>
 
@@ -111,7 +111,7 @@ export default function SuggestedNames({ lang, messages }: SuggestedNamesProps) 
                 onClick={() => handleArrowClick(name)}
                 aria-label={`${messages.suggestedNames.ariaViewVariations}: ${name}`}
               >
-                <ArrowRight size={18} strokeWidth={2} />
+                <ArrowRight size={24} strokeWidth={2} />
               </button>
             </div>
           ))}

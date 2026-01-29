@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SUPPORTED_LANGS } from "@/config/i18n";
 
-const DEFAULT_SITE_URL = "https://domifai.com";
+const DEFAULT_SITE_URL = "https://www.domifai.com";
 
 const STATIC_PATHS = [
   "",

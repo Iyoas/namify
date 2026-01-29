@@ -43,6 +43,13 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Host canonical: domifai.com -> www.domifai.com
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "domifai.com" }],
+        destination: "https://www.domifai.com/:path*",
+        permanent: true,
+      },
       // EN: generator without /generator
       {
         source: "/en/tools/domain-generator/generator",

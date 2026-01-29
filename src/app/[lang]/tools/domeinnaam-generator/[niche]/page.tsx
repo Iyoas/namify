@@ -73,13 +73,14 @@ function normalizeNicheMessages(
   if (!Array.isArray(blocks)) return overrides;
 
   const normalizedBlocks = blocks.map((block) => {
-    const paragraphs =
+    const paragraphsSource =
       Array.isArray((block as { paragraphs?: string[] }).paragraphs) &&
       (block as { paragraphs?: string[] }).paragraphs?.length
         ? (block as { paragraphs?: string[] }).paragraphs
         : (block as { body?: string }).body
         ? [(block as { body?: string }).body as string]
         : [];
+    const paragraphs = paragraphsSource ?? [];
 
     const bullets =
       Array.isArray((block as { bullets?: Array<{ label: string; description?: string; text?: string }> }).bullets)

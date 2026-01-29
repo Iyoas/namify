@@ -67,6 +67,7 @@ function mergeMessages<T>(base: T, overrides: Partial<T>): T {
 }
 
 function normalizeNicheMessages(
+  base: GeneratorGeneralMessages,
   overrides: Partial<GeneratorGeneralMessages>
 ): Partial<GeneratorGeneralMessages> {
   const blocks = overrides?.sections?.longForm?.right?.blocks;
@@ -99,6 +100,9 @@ function normalizeNicheMessages(
     };
   });
 
+  const fallbackCta = base.sections.longForm.right.cta;
+  const overrideCta = overrides.sections?.longForm?.right?.cta;
+
   return {
     ...overrides,
     sections: {
@@ -108,6 +112,7 @@ function normalizeNicheMessages(
         right: {
           ...overrides.sections?.longForm?.right,
           blocks: normalizedBlocks,
+          cta: overrideCta ?? fallbackCta,
         },
       },
     },
@@ -136,7 +141,7 @@ export default async function NicheGeneratorPage({ params }: PageParams) {
   }
 
   const baseMessages = getGeneratorGeneralMessages(lang);
-  const normalizedOverrides = normalizeNicheMessages(entry.messages);
+  const normalizedOverrides = normalizeNicheMessages(baseMessages, entry.messages);
   const messages = mergeMessages(baseMessages, normalizedOverrides);
 
   return (

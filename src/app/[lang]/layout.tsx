@@ -1,6 +1,6 @@
 
 
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "./tools/domain-generator/components/layout/Header";
 import Footer from "./tools/domain-generator/components/layout/Footer";
 
@@ -11,9 +11,13 @@ export default function Layout({
 }) {
   return (
     <>
-      <Header />
+      <Suspense fallback={null}>
+        <Header />
+      </Suspense>
       <main>{children}</main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </>
   );
 }

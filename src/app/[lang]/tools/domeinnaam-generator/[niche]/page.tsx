@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import path from "node:path";
 import { readFile } from "node:fs/promises";
@@ -13,6 +14,8 @@ import LongFormContent from "../../domain-generator/components/generator/LongFor
 import DomainTipSection from "../../domain-generator/components/generator/DomainTipSection";
 import ExampleName from "../../domain-generator/components/generator/ExampleName";
 import { HeroSection } from "../../domain-generator/components/generator/HeroSection";
+
+export const runtime = "nodejs";
 
 type NicheEntry = {
   niche: string;
@@ -69,54 +72,84 @@ function mergeMessages<T>(base: T, overrides: Partial<T>): T {
 function normalizeNicheMessages(
   base: GeneratorGeneralMessages,
   overrides: Partial<GeneratorGeneralMessages>
-): Partial<GeneratorGeneralMessages> {
-  const blocks = overrides?.sections?.longForm?.right?.blocks;
-  if (!Array.isArray(blocks)) return overrides;
+): GeneratorGeneralMessages {
+  const overrideSections =
+    overrides.sections ?? ({} as GeneratorGeneralMessages["sections"]);
+  const overrideLongForm =
+    overrideSections.longForm ?? ({} as GeneratorGeneralMessages["sections"]["longForm"]);
+  const overrideRight =
+    overrideLongForm.right ?? ({} as GeneratorGeneralMessages["sections"]["longForm"]["right"]);
+  const overrideBlocks = overrideRight.blocks ?? [];
 
-  const normalizedBlocks = blocks.map((block) => {
-    const paragraphsSource =
-      Array.isArray((block as { paragraphs?: string[] }).paragraphs) &&
-      (block as { paragraphs?: string[] }).paragraphs?.length
-        ? (block as { paragraphs?: string[] }).paragraphs
-        : (block as { body?: string }).body
-        ? [(block as { body?: string }).body as string]
-        : [];
-    const paragraphs = paragraphsSource ?? [];
+  const normalizedBlocks = Array.isArray(overrideBlocks)
+    ? overrideBlocks.map((block) => {
+        const paragraphsSource =
+          Array.isArray((block as { paragraphs?: string[] }).paragraphs) &&
+          (block as { paragraphs?: string[] }).paragraphs?.length
+            ? (block as { paragraphs?: string[] }).paragraphs
+            : (block as { body?: string }).body
+            ? [(block as { body?: string }).body as string]
+            : [];
+        const paragraphs = paragraphsSource ?? [];
 
-    const bullets =
-      Array.isArray((block as { bullets?: Array<{ label: string; description?: string; text?: string }> }).bullets)
-        ? (block as { bullets?: Array<{ label: string; description?: string; text?: string }> }).bullets!.map(
-            (bullet) => ({
-              label: bullet.label,
-              description: bullet.description ?? bullet.text ?? "",
-            })
+        const bullets =
+          Array.isArray(
+            (block as { bullets?: Array<{ label: string; description?: string; text?: string }> })
+              .bullets
           )
-        : [];
+            ? (block as { bullets?: Array<{ label: string; description?: string; text?: string }> }).bullets!.map(
+                (bullet) => ({
+                  label: bullet.label,
+                  description: bullet.description ?? bullet.text ?? "",
+                })
+              )
+            : [];
 
-    return {
-      ...block,
-      paragraphs,
-      bullets,
-    };
-  });
+        return {
+          ...block,
+          paragraphs,
+          bullets,
+        };
+      })
+    : [];
 
-  const fallbackCta = base.sections.longForm.right.cta;
-  const overrideCta = overrides.sections?.longForm?.right?.cta;
-
-  return {
+  const merged: GeneratorGeneralMessages = {
+    ...base,
     ...overrides,
+    hero: {
+      ...base.hero,
+      ...overrides.hero,
+    },
+    examples: {
+      ...base.examples,
+      ...overrides.examples,
+    },
+    suggestedNames: {
+      ...base.suggestedNames,
+      ...overrides.suggestedNames,
+    },
     sections: {
-      ...overrides.sections,
+      ...base.sections,
+      ...overrideSections,
+      aiExplainer: overrideSections.aiExplainer ?? base.sections.aiExplainer,
+      domainTips: overrideSections.domainTips ?? base.sections.domainTips,
       longForm: {
-        ...overrides.sections?.longForm,
+        ...base.sections.longForm,
+        ...overrideLongForm,
+        left: overrideLongForm.left ?? base.sections.longForm.left,
         right: {
-          ...overrides.sections?.longForm?.right,
-          blocks: normalizedBlocks,
-          cta: overrideCta ?? fallbackCta,
+          ...base.sections.longForm.right,
+          ...overrideRight,
+          blocks: normalizedBlocks.length
+            ? normalizedBlocks
+            : base.sections.longForm.right.blocks,
+          cta: overrideRight.cta ?? base.sections.longForm.right.cta,
         },
       },
     },
   };
+
+  return merged;
 }
 
 export async function generateStaticParams() {
@@ -141,12 +174,13 @@ export default async function NicheGeneratorPage({ params }: PageParams) {
   }
 
   const baseMessages = getGeneratorGeneralMessages(lang);
-  const normalizedOverrides = normalizeNicheMessages(baseMessages, entry.messages);
-  const messages = mergeMessages(baseMessages, normalizedOverrides);
+  const messages = normalizeNicheMessages(baseMessages, entry.messages);
 
   return (
     <section>
-      <HeroSection lang={lang} messages={messages} />
+      <Suspense fallback={null}>
+        <HeroSection lang={lang} messages={messages} />
+      </Suspense>
       <Usp messages={messages} />
       <SuggestedNames lang={lang} messages={messages} />
       <AiExplainerSection messages={messages} />

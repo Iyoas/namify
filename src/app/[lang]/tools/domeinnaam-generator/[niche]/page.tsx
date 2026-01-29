@@ -136,7 +136,10 @@ function normalizeNicheMessages(
       longForm: {
         ...base.sections.longForm,
         ...overrideLongForm,
-        left: overrideLongForm.left ?? base.sections.longForm.left,
+        left: {
+          ...base.sections.longForm.left,
+          ...overrideLongForm.left,
+        },
         right: {
           ...base.sections.longForm.right,
           ...overrideRight,

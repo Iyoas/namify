@@ -1,0 +1,346 @@
+[
+  {
+    "id": 1,
+    "niche": "Shopify store",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Shopify store"
+      },
+      "examples": {
+        "prompts": [
+          "Trendy naam voor duurzame Shopify store",
+          "Unieke naam voor modewebshop",
+          "Korte naam voor tech-accessoires winkel",
+          "Frisse naam voor woondecoratie shop",
+          "Professionele naam voor beauty collecties",
+          "Betaalbare naam voor kinderspeelgoed store"
+        ],
+        "suggestions": [
+          "Bloxio",
+          "Shopnest",
+          "PixelWinkel",
+          "Vintara",
+          "Trendify",
+          "Glowdrop",
+          "Cartwise",
+          "NovaKado",
+          "KlikKraam",
+          "PureCollect",
+          "ModeMint",
+          "WinkelWerk",
+          "LushLoods",
+          "FabelShop",
+          "UrbanVista"
+        ],
+        "domainPatterns": [
+          "www.[winkelnaam].shopify.store",
+          "www.[winkelnaam + collectie].ecommerce",
+          "www.[winkelnaam + product].webshop"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede naam voor je Shopify store is het begin van sterke branding en herkenning. Of je nu kleding, gadgets of woonaccessoires verkoopt, de juiste naam maakt direct het verschil.",
+            "benefits": [
+              "Meer vertrouwen bij nieuwe bezoekers",
+              "Makkelijk te onthouden voor klanten",
+              "Helpt bij het opbouwen van een eigen merk",
+              "Past bij je assortiment en doelgroep",
+              "Maakt marketing en social media eenvoudiger",
+              "Stimuleert terugkerende aankopen"
+            ],
+            "highlightIntro": "Wat maakt een Shopify store naam krachtig en onderscheidend?",
+            "highlightList": [
+              "Past bij je niche en producten",
+              "Klinkt vriendelijk en uitnodigend",
+              "Is eenvoudig te schrijven en te onthouden"
+            ],
+            "highlightFooter": "Een sterke naam maakt je winkel vindbaar en herkenbaar, zowel online als via mond-tot-mondreclame."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Kies een naam die blijft hangen",
+                "body": "Een korte, aansprekende naam zorgt ervoor dat klanten je Shopify store makkelijk onthouden en terugvinden.",
+                "bullets": [
+                  {
+                    "label": "Herkenbaar",
+                    "text": "Sluit aan bij je producten en doelgroep."
+                  },
+                  {
+                    "label": "Uniek",
+                    "text": "Voorkom verwarring met andere webshops."
+                  }
+                ]
+              },
+              {
+                "title": "Sterke eerste indruk",
+                "body": "De naam van je winkel vertelt direct waar je voor staat. Dit helpt bij het opbouwen van vertrouwen en zorgt dat nieuwe bezoekers sneller iets bestellen.",
+                "bullets": [
+                  {
+                    "label": "Duidelijk",
+                    "text": "Laat direct zien wat je winkel aanbiedt."
+                  },
+                  {
+                    "label": "Aantrekkelijk",
+                    "text": "Nodigt uit om verder te kijken."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind jouw perfecte Shopify store naam",
+              "placeholder": "Bijvoorbeeld: duurzame gadgets, minimalistische woonwinkel"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Shopify store naam",
+          "intro": [
+            "Een geschikte naam voor je Shopify store is niet alleen creatief maar ook praktisch en direct bruikbaar als domeinnaam.",
+            "Dit zorgt ervoor dat klanten je makkelijk online terugvinden en je shop professioneel overkomt."
+          ],
+          "featureList": [
+            "Kies voor korte, simpele woorden",
+            "Vermijd moeilijke spelling en tekens",
+            "Laat de naam aansluiten bij je aanbod"
+          ],
+          "extensionsIntro": "Voor een Shopify store kun je kiezen uit moderne en herkenbare extensies. Denk aan .store, .shop of een creatieve variant passend bij je branche.",
+          "extensionsOutro": "Zorg dat de domeinnaam goed past bij de uitstraling van je shop en makkelijk te onthouden is.",
+          "examplesIntro": "Hier zijn enkele voorbeelden van domeinnamen voor Shopify stores:"
+        }
+      }
+    }
+  },
+  {
+    "id": 2,
+    "niche": "Affiliate marketing business",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Affiliate marketing business"
+      },
+      "examples": {
+        "prompts": [
+          "Naam voor platform met productvergelijkingen",
+          "Creatieve affiliate site voor woontrends",
+          "Korte naam voor reis affiliate netwerk",
+          "Merknaam voor tech gadgets review portal",
+          "Affiliate platform voor duurzame producten",
+          "Lifestyle blog voor affiliate marketing"
+        ],
+        "suggestions": [
+          "CommissieKracht",
+          "KlikVergelijk",
+          "PartnerLijn",
+          "ReviewRadar",
+          "NicheGids",
+          "VoordeelVinder",
+          "LinkLounge",
+          "PromoPlek",
+          "AffiliateAtlas",
+          "ContentConnect",
+          "AanbevelingNet",
+          "BonusBoek",
+          "VerdienVergelijk",
+          "SelectieSpot",
+          "Partnerspiegel"
+        ],
+        "domainPatterns": [
+          "www.[merknaam]affiliate.online",
+          "www.[merknaam + sector]vergelijk.store",
+          "www.[merknaam + regio]reviews.site"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een sterke naam is de basis van jouw affiliate marketing business. Het zorgt voor herkenning, vertrouwen en maakt het makkelijker om bezoekers aan te trekken die gericht op zoek zijn naar betrouwbare informatie en slimme vergelijkingen.",
+            "benefits": [
+              "Snel herkenbaar voor bezoekers en partners",
+              "Creëert vertrouwen binnen jouw niche",
+              "Past bij uiteenlopende onderwerpen en productgroepen",
+              "Makkelijk te onthouden voor terugkerend verkeer",
+              "Ondersteunt een professionele uitstraling",
+              "Maakt het eenvoudiger om te groeien via zoekmachines"
+            ],
+            "highlightIntro": "Waarom een goede naam het verschil maakt voor jouw affiliate marketing business:",
+            "highlightList": [
+              "Zorgt voor een professionele eerste indruk",
+              "Helpt bij het opbouwen van een sterke reputatie",
+              "Maakt promotie van je content eenvoudiger"
+            ],
+            "highlightFooter": "Met een pakkende naam zet je de toon voor succes in affiliate marketing en onderscheid je je van de concurrentie."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Begin met het juiste fundament",
+                "body": "Bij affiliate marketing draait het om vertrouwen en autoriteit. Kies daarom voor een naam die professionaliteit uitstraalt, aansluit bij jouw content en makkelijk blijft hangen.",
+                "bullets": [
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "Een duidelijk merk zorgt dat bezoekers sneller terugkomen."
+                  },
+                  {
+                    "label": "Breed inzetbaar",
+                    "text": "Met een flexibele naam kun je makkelijk uitbreiden naar nieuwe niches."
+                  }
+                ]
+              },
+              {
+                "title": "Houd rekening met zoekmachines",
+                "body": "Een sterke affiliate naam ondersteunt niet alleen branding, maar helpt ook om gevonden te worden via zoekopdrachten en partnernetwerken.",
+                "bullets": [
+                  {
+                    "label": "Zoekwoordvriendelijk",
+                    "text": "Integreer relevante termen zonder in te leveren op creativiteit."
+                  },
+                  {
+                    "label": "Korte URL",
+                    "text": "Een compacte naam is makkelijk te delen en te onthouden."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Bedenk jouw Affiliate marketing business naam",
+              "placeholder": "Waar draait jouw affiliate platform om?"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Affiliate marketing business naam",
+          "intro": [
+            "De naam van jouw affiliate marketing business is het eerste wat bezoekers en partners zien. Kies daarom voor een domeinnaam die direct duidelijk maakt welke waarde je biedt.",
+            "Een goede naam helpt om sneller vertrouwen te winnen en maakt het makkelijker om je te onderscheiden in een drukke markt."
+          ],
+          "featureList": [
+            "Kort en krachtig: makkelijk te onthouden en snel te typen",
+            "Relevante termen: gebruik woorden die jouw niche direct duidelijk maken",
+            "Uniek en herkenbaar: zorg dat jouw naam zich onderscheidt van andere affiliate platforms"
+          ],
+          "extensionsIntro": "Voor affiliate marketing sites zijn .nl, .com of .net vaak het meest herkenbaar, maar een creatieve extensie kan juist opvallen.",
+          "extensionsOutro": "Kies altijd voor een extensie die past bij je doelgroep en vertrouwen uitstraalt.",
+          "examplesIntro": "Hieronder een paar voorbeelden van domeinen die goed werken binnen affiliate marketing:"
+        }
+      }
+    }
+  },
+  {
+    "id": 3,
+    "niche": "Italiaans restaurant",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Italiaans restaurant"
+      },
+      "examples": {
+        "prompts": [
+          "Bedenk een warme naam voor een Italiaans restaurant",
+          "Een naam die huisgemaakte pasta uitstraalt",
+          "Suggesties voor een sfeervolle trattoria",
+          "Een moderne naam voor een Italiaans familierestaurant",
+          "Naamidee voor een pizza en wijn restaurant",
+          "Originele Italiaanse restaurantnaam met lokale invloed"
+        ],
+        "suggestions": [
+          "Casa Gusto",
+          "PastaVino",
+          "Tavola di Nonna",
+          "Viva Cucina",
+          "La Tavolata",
+          "Rosso e Bianco",
+          "Trattoria Allegra",
+          "Sapore Puro",
+          "Forno Amico",
+          "Pane e Passione",
+          "Oliveto",
+          "Piazza del Gusto",
+          "Bella Tavola",
+          "Pasta Piazza",
+          "Vino e Sole"
+        ],
+        "domainPatterns": [
+          "www.[merknaam].restaurant",
+          "www.[merknaam + italiaans].cafe",
+          "www.[merknaam + stad].italiaans"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede naam voor je Italiaans restaurant roept meteen de sfeer van Italië op en nodigt gasten uit om te genieten van authentieke smaken.",
+            "benefits": [
+              "Sfeervolle eerste indruk voor je gasten",
+              "Herkenbare link met Italiaanse keuken",
+              "Makkelijk te onthouden voor vaste klanten",
+              "Geschikt voor authentieke en moderne concepten",
+              "Versterkt de uitstraling van gastvrijheid",
+              "Past goed bij huisgemaakte gerechten",
+              "Maakt promotie op social media eenvoudiger",
+              "Helpt om je te onderscheiden van andere restaurants"
+            ],
+            "highlightIntro": "Wat maakt een naam voor een Italiaans restaurant sterk en uitnodigend?",
+            "highlightList": [
+              "Een naam die direct associaties oproept met Italië",
+              "Een warme, gastvrije klank die bij je concept past",
+              "Makkelijk te onthouden en uit te spreken"
+            ],
+            "highlightFooter": "Met de juiste naam zet je direct de toon voor een Italiaanse avond vol smaak, gezelligheid en passie."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Hoe vind je een pakkende Italiaanse restaurantnaam?",
+                "body": "Laat je inspireren door Italiaanse woorden, familiebanden of lokale ingrediënten. Combineer je specialiteit met sfeer of locatie voor een uniek resultaat.",
+                "bullets": [
+                  {
+                    "label": "Italiaanse sfeer",
+                    "text": "Gebruik woorden als cucina, tavola of vino"
+                  },
+                  {
+                    "label": "Unieke beleving",
+                    "text": "Kies namen die huisgemaakt, warm of authentiek uitstralen"
+                  }
+                ]
+              },
+              {
+                "title": "Waarom is de juiste naam zo belangrijk?",
+                "body": "Je naam is vaak de eerste kennismaking. Een goede naam zorgt dat gasten je onthouden en nieuwsgierig worden naar de Italiaanse gastvrijheid die je biedt.",
+                "bullets": [
+                  {
+                    "label": "Blijvende indruk",
+                    "text": "Gasten onthouden een uitnodigende naam sneller"
+                  },
+                  {
+                    "label": "Online vindbaarheid",
+                    "text": "Met een slimme naam ben je makkelijker te vinden op internet"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Probeer direct een Italiaanse restaurantnaam",
+              "placeholder": "Bijvoorbeeld: sfeervol, pasta, familie"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Italiaans restaurant naam",
+          "intro": [
+            "Een sterke domeinnaam voor je Italiaans restaurant versterkt je merk online en zorgt dat gasten je snel weten te vinden.",
+            "Ga voor een naam die past bij de sfeer van je restaurant en aansluit bij je Italiaanse specialiteiten."
+          ],
+          "featureList": [
+            "Kies een korte, duidelijke naam die makkelijk te onthouden is",
+            "Gebruik Italiaanse woorden voor een authentiek gevoel",
+            "Voeg waar mogelijk je locatie of een specialiteit toe"
+          ],
+          "extensionsIntro": "Voor restaurants zijn .restaurant, .cafe en .italiaans populaire keuzes die direct duidelijkheid geven.",
+          "extensionsOutro": "Let er altijd op dat je naam goed klinkt in combinatie met de extensie en makkelijk terug te vinden is.",
+          "examplesIntro": "Bekijk hoe andere Italiaanse restaurants hun domeinnaam slim combineren met hun merk of regio."
+        }
+      }
+    }
+  }
+]

@@ -19,6 +19,7 @@ import { HeroSection } from "../components/generator/HeroSection";
 export const runtime = "nodejs";
 
 type NicheEntry = {
+  id: string;
   niche: string;
   slug?: string;
   messages: Partial<GeneratorGeneralMessages>;

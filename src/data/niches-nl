@@ -505,7 +505,7 @@
   {
     "id": "cybersecurity-company",
     "slug": "cybersecurity-bedrijf",
-    "niche": "Cybersecuritybedrijf",
+    "niche": "Cybersecurity bedrijf",
     "messages": {
       "hero": {
         "titleHighlight": "Cybersecuritybedrijf"
@@ -1249,12 +1249,12 @@
     }
   },
   {
-    "id": "amazon-business",
-    "slug": "amazon business",
-    "niche": "Amazon business",
+    "id": "amazon fba business",
+    "slug": "amazon winkel",
+    "niche": "Amazon winkel",
     "messages": {
       "hero": {
-        "titleHighlight": "Amazon business"
+        "titleHighlight": "Amazon winkel"
       },
       "examples": {
         "prompts": [
@@ -1371,7 +1371,7 @@
     }
   },
   {
-    "id": "etsy shop",
+    "id": "etsy store",
     "slug": "etsy winkel",
     "niche": "Etsy winkel",
     "messages": {
@@ -1983,7 +1983,7 @@
   {
     "id": "cleaning business",
     "slug": "schoonmaak bedrijf",
-    "niche": "Schoonmaak bedrijf",
+    "niche": "Schoonmaakbedrijf",
     "messages": {
       "hero": {
         "titleHighlight": "Schoonmaak bedrijf"
@@ -2471,7 +2471,7 @@
   {
     "id": "education business",
     "slug": "opleidings bedrijf",
-    "niche": "Opleidings bedrijf",
+    "niche": "Opleidingsbedrijf",
     "messages": {
       "hero": {
         "titleHighlight": "Opleidings bedrijf"
@@ -2593,7 +2593,7 @@
   {
     "id": "media company",
     "slug": "media bedrijf",
-    "niche": "Media bedrijf",
+    "niche": "Mediabedrijf",
     "messages": {
       "hero": {
         "titleHighlight": "Media bedrijf"
@@ -2715,7 +2715,7 @@
   {
     "id": "photography business",
     "slug": "fotografie bedrijf",
-    "niche": "Fotografie bedrijf",
+    "niche": "Fotografiebedrijf",
     "messages": {
       "hero": {
         "titleHighlight": "Fotografie bedrijf"
@@ -3202,11 +3202,11 @@
   },
   {
     "id": "event organization",
-    "slug": "evenement organisatie",
-    "niche": "Evenement organisatie",
+    "slug": "eventt organisatie",
+    "niche": "Event organisatie",
     "messages": {
       "hero": {
-        "titleHighlight": "Evenement organisatie"
+        "titleHighlight": "Event organisatie"
       },
       "examples": {
         "prompts": [

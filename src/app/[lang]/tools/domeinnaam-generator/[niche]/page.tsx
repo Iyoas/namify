@@ -19,7 +19,9 @@ import { HeroSection } from "../../domain-generator/components/generator/HeroSec
 export const runtime = "nodejs";
 
 type NicheEntry = {
+  id: string;
   niche: string;
+  slug?: string;
   messages: Partial<GeneratorGeneralMessages>;
 };
 

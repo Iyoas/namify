@@ -50,7 +50,15 @@ export async function POST(req: NextRequest) {
 
     const enhancedPromptRaw =
       completion.choices[0]?.message?.content?.trim() || rawPrompt;
-    const enhancedPrompt = enhancedPromptRaw.slice(0, 250);
+    const MAX_LENGTH = 300;
+    const cutIndex = enhancedPromptRaw
+      .slice(0, MAX_LENGTH)
+      .search(/[.!?](?=[^.!?]*$)/);
+    const trimmed =
+      cutIndex >= 0
+        ? enhancedPromptRaw.slice(0, cutIndex + 1)
+        : enhancedPromptRaw.slice(0, MAX_LENGTH);
+    const enhancedPrompt = trimmed.trim();
 
     return NextResponse.json(
       {

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import path from "node:path";
 import { readFile } from "node:fs/promises";
 import type { Lang } from "@/config/i18n";
+import type { Metadata } from "next";
 import {
   getGeneratorGeneralMessages,
   type GeneratorGeneralMessages,
@@ -28,6 +29,8 @@ type PageParams = {
 };
 
 const NICHES_EN_PATH = path.join(process.cwd(), "src/data/niches-en");
+const NICHES_NL_PATH = path.join(process.cwd(), "src/data/niches-nl");
+const SITE_URL = "https://www.domifai.com";
 
 function slugify(value: string): string {
   return value
@@ -38,6 +41,12 @@ function slugify(value: string): string {
 
 async function loadEnNiches(): Promise<NicheEntry[]> {
   const raw = await readFile(NICHES_EN_PATH, "utf8");
+  const parsed = JSON.parse(raw) as NicheEntry[];
+  return Array.isArray(parsed) ? parsed : [];
+}
+
+async function loadNlNiches(): Promise<NicheEntry[]> {
+  const raw = await readFile(NICHES_NL_PATH, "utf8");
   const parsed = JSON.parse(raw) as NicheEntry[];
   return Array.isArray(parsed) ? parsed : [];
 }
@@ -169,6 +178,42 @@ export async function generateStaticParams() {
     lang: "en",
     niche: entry.slug ? entry.slug : slugify(entry.niche),
   }));
+}
+
+export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
+  const { lang, niche } = await params;
+
+  if (lang !== "en") {
+    return {};
+  }
+
+  const [enNiches, nlNiches] = await Promise.all([loadEnNiches(), loadNlNiches()]);
+  const entry = enNiches.find((item) => (item.slug ?? slugify(item.niche)) === niche);
+  if (!entry) {
+    return {};
+  }
+
+  const nlEntry = nlNiches.find((item) => item.id === entry.id);
+  const enSlug = entry.slug ? entry.slug : slugify(entry.niche);
+  const nlSlug = nlEntry ? slugify(nlEntry.niche) : enSlug;
+
+  const title = `${entry.niche} Name Generator`;
+  const description = `The ${entry.niche} Name Generator uses AI to generate unique name ideas and instantly shows which domains are available.`;
+  const canonical = `${SITE_URL}/en/tools/domain-generator/${enSlug}`;
+  const nlUrl = `${SITE_URL}/nl/tools/domeinnaam-generator/${nlSlug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: {
+        en: canonical,
+        nl: nlUrl,
+        "x-default": canonical,
+      },
+    },
+  };
 }
 
 export default async function NicheGeneratorPage({ params }: PageParams) {

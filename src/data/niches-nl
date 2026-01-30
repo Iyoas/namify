@@ -1,344 +1,3283 @@
 [
   {
-    "id": 1,
-    "niche": "Shopify store",
+    "id": "b2b company",
+    "slug": "b2b bedrijf",
+    "niche": "B2B bedrijf",
     "messages": {
       "hero": {
-        "titleHighlight": "Shopify store"
+        "titleHighlight": "B2B bedrijf"
       },
       "examples": {
         "prompts": [
-          "Trendy naam voor duurzame Shopify store",
-          "Unieke naam voor modewebshop",
-          "Korte naam voor tech-accessoires winkel",
-          "Frisse naam voor woondecoratie shop",
-          "Professionele naam voor beauty collecties",
-          "Betaalbare naam voor kinderspeelgoed store"
+          "Korte internationale B2B naam",
+          "Sterke naam voor zakelijke dienstverlener",
+          "Betrouwbare naam voor B2B platform",
+          "Innovatieve naam voor B2B consultancy"
         ],
         "suggestions": [
-          "Bloxio",
-          "Shopnest",
-          "PixelWinkel",
-          "Vintara",
-          "Trendify",
-          "Glowdrop",
-          "Cartwise",
-          "NovaKado",
-          "KlikKraam",
-          "PureCollect",
-          "ModeMint",
-          "WinkelWerk",
-          "LushLoods",
-          "FabelShop",
-          "UrbanVista"
+          "BizNexus",
+          "ProLinker",
+          "TradeFocus",
+          "CoreConnect",
+          "B2Bridge",
+          "FirmaWise",
+          "LinkSphere",
+          "SupplyNova",
+          "Zakelijker",
+          "DealStream",
+          "Segmento",
+          "Officio",
+          "B2BLogic",
+          "RelatieHub",
+          "PartnerProfs"
         ],
+        "exampleName": {
+          "tld": ".com",
+          "benefits": [
+            "Gemakkelijk te onthouden en uit te spreken",
+            "Internationaal herkenbaar voor zakelijke klanten"
+          ]
+        },
         "domainPatterns": [
-          "www.[winkelnaam].shopify.store",
-          "www.[winkelnaam + collectie].ecommerce",
-          "www.[winkelnaam + product].webshop"
+          "www.[merknaam].com",
+          "www.[merknaam + b2b].nl",
+          "www.[merknaam + solutions].io"
         ]
       },
       "sections": {
         "longForm": {
           "left": {
-            "intro": "Een goede naam voor je Shopify store is het begin van sterke branding en herkenning. Of je nu kleding, gadgets of woonaccessoires verkoopt, de juiste naam maakt direct het verschil.",
+            "intro": "De juiste naam voor je B2B bedrijf is het fundament voor herkenbaarheid en vertrouwen in de zakelijke markt. Goede namen helpen je profileren bij andere bedrijven en maken snelle indruk in professionele netwerken.",
             "benefits": [
-              "Meer vertrouwen bij nieuwe bezoekers",
-              "Makkelijk te onthouden voor klanten",
-              "Helpt bij het opbouwen van een eigen merk",
-              "Past bij je assortiment en doelgroep",
-              "Maakt marketing en social media eenvoudiger",
-              "Stimuleert terugkerende aankopen"
+              "Versterkt je zichtbaarheid bij zakelijke besluitvormers",
+              "Geeft direct duidelijkheid over je aanbod",
+              "Straalt professionaliteit en betrouwbaarheid uit",
+              "Maakt internationale groei eenvoudiger",
+              "Houdt je aanbod flexibel voor toekomstige diensten",
+              "Vergroot de kans om op te vallen bij partners"
             ],
-            "highlightIntro": "Wat maakt een Shopify store naam krachtig en onderscheidend?",
+            "highlightIntro": "Een sterke B2B naam ondersteunt je positie als zakelijke speler en helpt bedrijven je snel te vinden.",
             "highlightList": [
-              "Past bij je niche en producten",
-              "Klinkt vriendelijk en uitnodigend",
-              "Is eenvoudig te schrijven en te onthouden"
+              "Professionele uitstraling in iedere branche",
+              "Snel te onthouden voor zakelijke contacten",
+              "Makkelijk internationaal te gebruiken",
+              "Duidelijk voor partners en klanten"
             ],
-            "highlightFooter": "Een sterke naam maakt je winkel vindbaar en herkenbaar, zowel online als via mond-tot-mondreclame."
+            "highlightFooter": "Met een krachtige naam vergroot je het vertrouwen en trek je de juiste bedrijven aan."
           },
           "right": {
             "blocks": [
               {
-                "title": "Kies een naam die blijft hangen",
-                "body": "Een korte, aansprekende naam zorgt ervoor dat klanten je Shopify store makkelijk onthouden en terugvinden.",
+                "title": "Hoe kies je een B2B bedrijfsnaam",
+                "body": "Kies een naam die meteen laat zien dat je bedrijf professioneel en betrouwbaar is. B2B klanten zoeken partners die duidelijk zijn over hun toegevoegde waarde.",
                 "bullets": [
                   {
-                    "label": "Herkenbaar",
-                    "text": "Sluit aan bij je producten en doelgroep."
+                    "label": "Duidelijkheid",
+                    "text": "Laat direct zien wat je bedrijf doet"
                   },
                   {
-                    "label": "Uniek",
-                    "text": "Voorkom verwarring met andere webshops."
+                    "label": "Herkenbaarheid",
+                    "text": "Kies een naam die blijft hangen bij zakelijke contacten"
                   }
                 ]
               },
               {
-                "title": "Sterke eerste indruk",
-                "body": "De naam van je winkel vertelt direct waar je voor staat. Dit helpt bij het opbouwen van vertrouwen en zorgt dat nieuwe bezoekers sneller iets bestellen.",
+                "title": "Internationale of lokale naam",
+                "body": "Bedenk of je vooral in Nederland actief bent of juist in een internationale markt. De juiste extensie en naamkeuze helpen bij je positionering.",
                 "bullets": [
                   {
-                    "label": "Duidelijk",
-                    "text": "Laat direct zien wat je winkel aanbiedt."
+                    "label": "Internationaal",
+                    "text": "Gebruik .com of .io voor een brede uitstraling"
                   },
                   {
-                    "label": "Aantrekkelijk",
-                    "text": "Nodigt uit om verder te kijken."
+                    "label": "Lokaal",
+                    "text": "Een .nl domein geeft direct vertrouwen in Nederland"
+                  }
+                ]
+              },
+              {
+                "title": "Laat ruimte voor groei",
+                "body": "Kies een naam die breed genoeg is om ook in de toekomst nieuwe diensten of markten te ondersteunen.",
+                "bullets": [
+                  {
+                    "label": "Flexibiliteit",
+                    "text": "Voorkom te specifieke namen voor één niche"
+                  },
+                  {
+                    "label": "Toekomstgericht",
+                    "text": "Denk aan uitbreiden naar andere sectoren"
                   }
                 ]
               }
             ],
             "cta": {
-              "title": "Vind jouw perfecte Shopify store naam",
-              "placeholder": "Bijvoorbeeld: duurzame gadgets, minimalistische woonwinkel"
+              "title": "Vind jouw B2B bedrijfsnaam",
+              "placeholder": "Typ een zakelijk idee of kernwoord"
             }
           }
         },
         "domainTips": {
-          "title": "Wat maakt een sterke Shopify store naam",
+          "title": "Wat maakt een sterke B2B bedrijf naam",
           "intro": [
-            "Een geschikte naam voor je Shopify store is niet alleen creatief maar ook praktisch en direct bruikbaar als domeinnaam.",
-            "Dit zorgt ervoor dat klanten je makkelijk online terugvinden en je shop professioneel overkomt."
+            "Een goede B2B bedrijfsnaam straalt vertrouwen uit en is makkelijk te delen in het zakelijke netwerk.",
+            "Het helpt je opvallen tussen andere aanbieders en legt de basis voor langdurige samenwerkingen."
           ],
           "featureList": [
-            "Kies voor korte, simpele woorden",
-            "Vermijd moeilijke spelling en tekens",
-            "Laat de naam aansluiten bij je aanbod"
+            "Professioneel en betrouwbaar in klank",
+            "Herkenbaar voor zakelijke doelgroepen",
+            "Breed inzetbaar voor verschillende diensten"
           ],
-          "extensionsIntro": "Voor een Shopify store kun je kiezen uit moderne en herkenbare extensies. Denk aan .store, .shop of een creatieve variant passend bij je branche.",
-          "extensionsOutro": "Zorg dat de domeinnaam goed past bij de uitstraling van je shop en makkelijk te onthouden is.",
-          "examplesIntro": "Hier zijn enkele voorbeelden van domeinnamen voor Shopify stores:"
+          "extensionsIntro": "Voor een B2B bedrijf zijn vooral .com, .nl of .io geschikt omdat deze domeinen bekendstaan om hun professionele uitstraling.",
+          "extensionsOutro": "Zorg dat de domeinnaam makkelijk uit te spreken en te schrijven is voor zakelijke contacten.",
+          "examplesIntro": "Bekijk hieronder voorbeelden van sterke namen voor B2B bedrijven:"
         }
       }
     }
   },
   {
-    "id": 2,
-    "niche": "Affiliate marketing business",
+    "id": "startup",
+    "slug": "startup",
+    "niche": "Startup",
     "messages": {
       "hero": {
-        "titleHighlight": "Affiliate marketing business"
+        "titleHighlight": "Startup"
       },
       "examples": {
         "prompts": [
-          "Naam voor platform met productvergelijkingen",
-          "Creatieve affiliate site voor woontrends",
-          "Korte naam voor reis affiliate netwerk",
-          "Merknaam voor tech gadgets review portal",
-          "Affiliate platform voor duurzame producten",
-          "Lifestyle blog voor affiliate marketing"
+          "Korte energieke naam voor tech startup",
+          "Innovatieve naam voor duurzame startup",
+          "Internationaal klinkende naam voor groeiend bedrijf",
+          "Frisse naam voor jonge ondernemers"
         ],
         "suggestions": [
-          "CommissieKracht",
-          "KlikVergelijk",
-          "PartnerLijn",
-          "ReviewRadar",
-          "NicheGids",
-          "VoordeelVinder",
-          "LinkLounge",
-          "PromoPlek",
-          "AffiliateAtlas",
-          "ContentConnect",
-          "AanbevelingNet",
-          "BonusBoek",
-          "VerdienVergelijk",
-          "SelectieSpot",
-          "Partnerspiegel"
+          "PixelSprout",
+          "NovaScale",
+          "Brightify",
+          "BlueShift",
+          "Sparkwise",
+          "InnoLeap",
+          "Venturely",
+          "Fundra",
+          "SeedNest",
+          "PulseCore",
+          "Launchix",
+          "QuickPivot",
+          "Skyverge",
+          "LiftIQ",
+          "IdeaMint"
         ],
+        "exampleName": {
+          "tld": ".io",
+          "benefits": [
+            "Korte en moderne uitstraling die bij startups past",
+            "De .io extensie wordt vaak gebruikt in de techwereld"
+          ]
+        },
         "domainPatterns": [
-          "www.[merknaam]affiliate.online",
-          "www.[merknaam + sector]vergelijk.store",
-          "www.[merknaam + regio]reviews.site"
+          "www.[merknaam].io",
+          "www.[merknaam + tech].com",
+          "www.[merknaam + innovatie].nl"
         ]
       },
       "sections": {
         "longForm": {
           "left": {
-            "intro": "Een sterke naam is de basis van jouw affiliate marketing business. Het zorgt voor herkenning, vertrouwen en maakt het makkelijker om bezoekers aan te trekken die gericht op zoek zijn naar betrouwbare informatie en slimme vergelijkingen.",
+            "intro": "Als startup wil je dat je naam direct energie, innovatie en ambitie uitstraalt. Een sterke naam helpt je opvallen in een concurrerende markt en legt het fundament voor je groei.",
             "benefits": [
-              "Snel herkenbaar voor bezoekers en partners",
-              "Creëert vertrouwen binnen jouw niche",
-              "Past bij uiteenlopende onderwerpen en productgroepen",
-              "Makkelijk te onthouden voor terugkerend verkeer",
-              "Ondersteunt een professionele uitstraling",
-              "Maakt het eenvoudiger om te groeien via zoekmachines"
+              "Val direct op bij investeerders en klanten",
+              "Blijf hangen door een unieke klank en vlot karakter",
+              "Toon ambitie via een moderne uitstraling",
+              "Leg nadruk op innovatie en groei",
+              "Maak internationale introductie eenvoudiger",
+              "Onderstreep je visie met een eigentijdse naam"
             ],
-            "highlightIntro": "Waarom een goede naam het verschil maakt voor jouw affiliate marketing business:",
+            "highlightIntro": "Dit maakt een sterke startup naam krachtig:",
             "highlightList": [
-              "Zorgt voor een professionele eerste indruk",
-              "Helpt bij het opbouwen van een sterke reputatie",
-              "Maakt promotie van je content eenvoudiger"
+              "Klinkt fris en vernieuwend",
+              "Past bij je groeiplannen",
+              "Is eenvoudig te onthouden"
             ],
-            "highlightFooter": "Met een pakkende naam zet je de toon voor succes in affiliate marketing en onderscheid je je van de concurrentie."
+            "highlightFooter": "Met de juiste naam positioneer je je startup vanaf dag één sterk in de markt."
           },
           "right": {
             "blocks": [
               {
-                "title": "Begin met het juiste fundament",
-                "body": "Bij affiliate marketing draait het om vertrouwen en autoriteit. Kies daarom voor een naam die professionaliteit uitstraalt, aansluit bij jouw content en makkelijk blijft hangen.",
+                "title": "Waarom een goede naam belangrijk is",
+                "body": "Een goede naam geeft je startup een vliegende start. Het maakt indruk op potentiële klanten, investeerders en partners en zorgt dat je makkelijk wordt gevonden.",
+                "bullets": [
+                  {
+                    "label": "Eerste indruk",
+                    "text": "Je naam is het visitekaartje van je merk"
+                  },
+                  {
+                    "label": "Blijvend effect",
+                    "text": "Een sterke naam groeit mee met je bedrijf"
+                  }
+                ]
+              },
+              {
+                "title": "Waar let je op bij het kiezen",
+                "body": "Kies een naam die je ambitie weerspiegelt en klaar is voor internationale groei. Denk ook aan beschikbaarheid van domeinen en social media.",
+                "bullets": [
+                  {
+                    "label": "Uitspraak",
+                    "text": "De naam moet makkelijk uit te spreken zijn"
+                  },
+                  {
+                    "label": "Beschikbaarheid",
+                    "text": "Controleer of de domeinnaam nog vrij is"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind jouw unieke startupnaam",
+              "placeholder": "Beschrijf jouw startup, doelgroep of idee..."
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Startup naam",
+          "intro": [
+            "Een sterke startup naam laat direct zien waar je voor staat en groeit moeiteloos mee met je ambities.",
+            "Kies voor een naam die ook op de internationale markt goed werkt."
+          ],
+          "featureList": [
+            "Kort en krachtig zodat je snel wordt onthouden",
+            "Flexibel genoeg om met je bedrijf mee te groeien",
+            "Sluit aan bij innovatie en technologie"
+          ],
+          "extensionsIntro": "Voor startups zijn domeinextensies als .io, .com en .tech populair omdat ze innovatie uitstralen en makkelijk internationaal inzetbaar zijn.",
+          "extensionsOutro": "Bedenk goed welke extensie het beste past bij je positionering en doelgroep.",
+          "examplesIntro": "Enkele patronen voor startup domeinnamen:"
+        }
+      }
+    }
+  },
+  {
+    "id": "saas",
+    "slug": "saas",
+    "niche": "SaaS",
+    "messages": {
+      "hero": {
+        "titleHighlight": "SaaS"
+      },
+      "examples": {
+        "prompts": [
+          "Moderne SaaS naam voor HR platform",
+          "Korte naam voor B2B analyse software",
+          "Creatief merk voor cloud samenwerking",
+          "Toegankelijke SaaS naam voor startups"
+        ],
+        "suggestions": [
+          "Cloudwise",
+          "Softwize",
+          "FlowSaaS",
+          "Appify",
+          "FlexiSuite",
+          "Nimbusware",
+          "Blinkalytics",
+          "Upplify",
+          "SaaSphere",
+          "Protonix",
+          "Datashift",
+          "NimbleStack",
+          "Zenfuse",
+          "Platafy",
+          "Orbitera"
+        ],
+        "exampleName": {
+          "tld": ".io",
+          "benefits": [
+            "Korte naam die makkelijk blijft hangen",
+            "De .io extensie is populair bij tech startups"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].io",
+          "www.[merknaam + saas].tech",
+          "www.[merknaam + cloud].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede SaaS naam geeft direct een professionele indruk en maakt je softwareplatform herkenbaar voor gebruikers en bedrijven. Met de juiste naam onderscheid je je in een snelgroeiende en innovatieve markt.",
+            "benefits": [
+              "Een unieke naam blijft hangen bij je doelgroep",
+              "Slim gekozen namen stralen vertrouwen uit",
+              "Makkelijk uit te spreken en internationaal bruikbaar",
+              "Past bij de innovatieve SaaS branche",
+              "Vergroot de vindbaarheid online",
+              "Ondersteunt de merkidentiteit van je platform"
+            ],
+            "highlightIntro": "Bij SaaS draait het om herkenbaarheid en vertrouwen. Sterke namen voldoen vaak aan deze kenmerken:",
+            "highlightList": [
+              "Internationaal makkelijk uit te spreken",
+              "Past bij een digitaal en innovatief imago",
+              "Kort en helder voor snelle herkenning"
+            ],
+            "highlightFooter": "Een herkenbare naam ondersteunt de groei van je SaaS bedrijf vanaf dag één."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Waar let je op bij een SaaS naam?",
+                "body": "De beste SaaS namen zijn vaak kort, uniek en hebben een lichte technische uitstraling. Ze sluiten aan bij het platform en de doelgroep die je wilt bereiken.",
+                "bullets": [
+                  {
+                    "label": "Klinkt professioneel",
+                    "text": "Zorg dat de naam vertrouwen opwekt bij bedrijven en gebruikers."
+                  },
+                  {
+                    "label": "Internationaal bruikbaar",
+                    "text": "Denk aan eenvoudige spelling en makkelijke uitspraak."
+                  }
+                ]
+              },
+              {
+                "title": "Direct starten met jouw naam",
+                "body": "Een sterke naam geeft je SaaS platform een vliegende start. Kies iets dat past bij jouw visie en makkelijk te onthouden is.",
+                "bullets": [
+                  {
+                    "label": "Domein beschikbaarheid",
+                    "text": "Controleer of de gekozen naam ook als domein vrij is, liefst op techgerichte extensies."
+                  },
+                  {
+                    "label": "Merkbare kracht",
+                    "text": "Een pakkende naam maakt je platform direct herkenbaar."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind jouw SaaS naam",
+              "placeholder": "Voer een SaaS concept of kernwoord in"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke SaaS naam",
+          "intro": [
+            "Een goede SaaS naam wekt direct vertrouwen en is eenvoudig te onthouden.",
+            "Denk aan internationale bruikbaarheid en een uitstraling die past bij een modern softwarebedrijf."
+          ],
+          "featureList": [
+            "Korte en krachtige naam",
+            "Past bij een innovatieve sector",
+            "Ideaal op tech-domeinen zoals .io of .tech"
+          ],
+          "extensionsIntro": "Voor SaaS bedrijven zijn extensies als .io, .tech en .com erg populair. Ze ondersteunen het techprofiel van je merk.",
+          "extensionsOutro": "Kies altijd een domein dat makkelijk te delen is en professioneel oogt.",
+          "examplesIntro": "Bekijk voorbeelden van sterke SaaS domeinnamen en ontdek wat ze effectief maakt:"
+        }
+      }
+    }
+  },
+  {
+    "id": "software company",
+    "slug": "software bedrijf",
+    "niche": "Software bedrijf",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Software bedrijf"
+      },
+      "examples": {
+        "prompts": [
+          "Korte merknaam voor moderne software dienst",
+          "Naam idee voor cloudgebaseerde applicatie",
+          "Innovatieve naam voor SaaS bedrijf",
+          "Technische naam gericht op zakelijke gebruikers"
+        ],
+        "suggestions": [
+          "Softwize",
+          "CodeNest",
+          "AppSyncer",
+          "Logigeek",
+          "PixelSuite",
+          "DevPilot",
+          "Nexware",
+          "Brixbit",
+          "Cloudlance",
+          "Modulink",
+          "Flexenso",
+          "Appello",
+          "Synatech",
+          "Logixio",
+          "Progrify"
+        ],
+        "exampleName": {
+          "tld": ".io",
+          "benefits": [
+            "Makkelijk uitspreekbaar en modern",
+            "De .io extensie sluit aan bij tech bedrijven"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].io",
+          "www.[merknaam + software].nl",
+          "www.[merknaam + tech].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een sterke naam vormt de basis van elk succesvol software bedrijf. Klanten onthouden je sneller en je straalt direct de juiste expertise uit.",
+            "benefits": [
+              "Blijft hangen bij zowel zakelijke als particuliere klanten",
+              "Makkelijk op te bouwen tot een herkenbaar merk",
+              "Past bij innovatieve technologie en digitale oplossingen",
+              "Versterkt vertrouwen in kwaliteit en service",
+              "Eenvoudig terug te vinden online",
+              "Duidelijk voor internationale gebruikers"
+            ],
+            "highlightIntro": "Met de juiste naam voor je software bedrijf leg je direct verbinding met de doelgroep:",
+            "highlightList": [
+              "Modern en toekomstgericht karakter",
+              "Past bij de nieuwste IT ontwikkelingen",
+              "Herkenbaar in de software sector"
+            ],
+            "highlightFooter": "Jouw naam legt de basis voor het succes en de reputatie van jouw software bedrijf."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Waarom telt een goede naam?",
+                "body": "De juiste naam maakt het verschil tussen opvallen en opgaan in de massa. Voor software bedrijven is het extra belangrijk om technologie en betrouwbaarheid uit te stralen.",
+                "bullets": [
+                  {
+                    "label": "Eerste indruk",
+                    "text": "Klanten beoordelen je bedrijf vaak in een paar seconden op je naam."
+                  },
+                  {
+                    "label": "Merkopbouw",
+                    "text": "Een sterke naam maakt het makkelijker om een loyale klantenkring op te bouwen."
+                  }
+                ]
+              },
+              {
+                "title": "Domeinkeuze voor software bedrijven",
+                "body": "Domeinextensies als .io, .tech of .com zijn populair in de software sector en geven direct een professionele uitstraling.",
+                "bullets": [
+                  {
+                    "label": "Toekomstgericht",
+                    "text": "Met de juiste extensie laat je zien dat je bedrijf innovatief is."
+                  },
+                  {
+                    "label": "Internationaal",
+                    "text": "Een goede domeinnaam is herkenbaar en bruikbaar over de grens."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Probeer direct jouw software bedrijfsnaam",
+              "placeholder": "Typ een kernwoord of doelgroep"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Software bedrijf naam",
+          "intro": [
+            "Een krachtige naam helpt je software bedrijf onderscheiden van de concurrentie.",
+            "Denk aan herkenbaarheid, moderniteit en een professionele uitstraling."
+          ],
+          "featureList": [
+            "Kort en duidelijk voor snelle herkenning",
+            "Past bij de technologische sector",
+            "Eenvoudig te combineren met populaire domeinextensies"
+          ],
+          "extensionsIntro": "Populaire domeinen voor software bedrijven zijn .io, .tech, .com of .nl Deze extensies sluiten goed aan bij je doelgroep.",
+          "extensionsOutro": "Kies een extensie die past bij je ambities en klantenkring voor een sterke online aanwezigheid.",
+          "examplesIntro": "Voorbeelden van geslaagde software bedrijfsnamen:"
+        }
+      }
+    }
+  },
+  {
+    "id": "cybersecurity-company",
+    "slug": "cybersecurity-bedrijf",
+    "niche": "Cybersecuritybedrijf",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Cybersecuritybedrijf"
+      },
+      "examples": {
+        "prompts": [
+          "Korte krachtige naam voor cyberbeveiliging",
+          "Innovatieve security startup naam bedenken",
+          "Professionele naam voor IT beveiligingsbedrijf",
+          "Internationale merknaam voor cybersecurity consultancy"
+        ],
+        "suggestions": [
+          "Guardex",
+          "Cyberwize",
+          "Netvigil",
+          "Datasecure",
+          "Shieldbyte",
+          "Protectiq",
+          "Sentisafe",
+          "Hackblocker",
+          "SecuraNext",
+          "Bitdefend",
+          "Vigilion",
+          "Forticore",
+          "Trustedge",
+          "Defenstra",
+          "Secuvision"
+        ],
+        "exampleName": {
+          "tld": ".io",
+          "benefits": [
+            "Gemakkelijk te onthouden voor technologiebedrijven",
+            "De .io extensie sluit goed aan bij innovatieve bedrijven"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].tech",
+          "www.[merknaam + security].nl",
+          "www.[merknaam + global].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Als cybersecuritybedrijf is een betrouwbare naam het fundament voor vertrouwen en herkenning. Uw klanten kiezen voor zekerheid en bescherming van hun digitale omgeving, en een sterke naam straalt direct expertise en veiligheid uit.",
+            "benefits": [
+              "Wekt direct vertrouwen bij potentiële klanten",
+              "Straalt professionaliteit en betrouwbaarheid uit",
+              "Blijft hangen in de sector",
+              "Past bij internationale ambities door juiste extensie",
+              "Ondersteunt een heldere positionering in de markt",
+              "Maakt onderscheid met creatieve merkidentiteit"
+            ],
+            "highlightIntro": "De juiste naam maakt het verschil voor een cybersecuritybedrijf:",
+            "highlightList": [
+              "Geeft direct een gevoel van veiligheid",
+              "Is makkelijk uit te spreken en te onthouden",
+              "Past bij groei en schaalvergroting"
+            ],
+            "highlightFooter": "Een sterke naam helpt uw cybersecuritybedrijf groeien en vertrouwen op te bouwen in een snel veranderende digitale wereld."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Waarom een goede naam ertoe doet",
+                "body": "In de cybersecurity moeten klanten direct het gevoel krijgen dat hun data in veilige handen is. Een krachtige naam ondersteunt die eerste indruk en maakt het verschil in een concurrerende markt.",
                 "bullets": [
                   {
                     "label": "Herkenbaarheid",
-                    "text": "Een duidelijk merk zorgt dat bezoekers sneller terugkomen."
+                    "text": "Klanten onthouden uw naam sneller als deze uniek is"
                   },
                   {
-                    "label": "Breed inzetbaar",
-                    "text": "Met een flexibele naam kun je makkelijk uitbreiden naar nieuwe niches."
+                    "label": "Vertrouwen",
+                    "text": "Een professionele naam straalt betrouwbaarheid en expertise uit"
                   }
                 ]
               },
               {
-                "title": "Houd rekening met zoekmachines",
-                "body": "Een sterke affiliate naam ondersteunt niet alleen branding, maar helpt ook om gevonden te worden via zoekopdrachten en partnernetwerken.",
+                "title": "Tips voor het kiezen van uw bedrijfsnaam",
+                "body": "Kies woorden die veiligheid en innovatie oproepen. Vermijd te algemene termen en zorg dat de naam niet te veel lijkt op die van concurrenten.",
                 "bullets": [
                   {
-                    "label": "Zoekwoordvriendelijk",
-                    "text": "Integreer relevante termen zonder in te leveren op creativiteit."
+                    "label": "Kort en krachtig",
+                    "text": "Een eenvoudige naam blijft langer hangen"
                   },
                   {
-                    "label": "Korte URL",
-                    "text": "Een compacte naam is makkelijk te delen en te onthouden."
+                    "label": "Relevantie",
+                    "text": "Gebruik termen uit de cybersecuritywereld voor directe herkenning"
                   }
                 ]
               }
             ],
             "cta": {
-              "title": "Bedenk jouw Affiliate marketing business naam",
-              "placeholder": "Waar draait jouw affiliate platform om?"
+              "title": "Bedenk direct een sterke naam voor uw Cybersecuritybedrijf",
+              "placeholder": "Typ een beschrijving of kernwoord..."
             }
           }
         },
         "domainTips": {
-          "title": "Wat maakt een sterke Affiliate marketing business naam",
+          "title": "Wat maakt een sterke Cybersecuritybedrijf naam",
           "intro": [
-            "De naam van jouw affiliate marketing business is het eerste wat bezoekers en partners zien. Kies daarom voor een domeinnaam die direct duidelijk maakt welke waarde je biedt.",
-            "Een goede naam helpt om sneller vertrouwen te winnen en maakt het makkelijker om je te onderscheiden in een drukke markt."
+            "Voor cybersecuritybedrijven is het essentieel dat de naam veiligheid en betrouwbaarheid uitstraalt.",
+            "Een goede domeinnaam ondersteunt uw zichtbaarheid en helpt om online vertrouwen op te bouwen."
           ],
           "featureList": [
-            "Kort en krachtig: makkelijk te onthouden en snel te typen",
-            "Relevante termen: gebruik woorden die jouw niche direct duidelijk maken",
-            "Uniek en herkenbaar: zorg dat jouw naam zich onderscheidt van andere affiliate platforms"
+            "Kort en eenvoudig te onthouden",
+            "Duidelijke link met cybersecurity of IT",
+            "Past bij de internationale of nationale doelgroep"
           ],
-          "extensionsIntro": "Voor affiliate marketing sites zijn .nl, .com of .net vaak het meest herkenbaar, maar een creatieve extensie kan juist opvallen.",
-          "extensionsOutro": "Kies altijd voor een extensie die past bij je doelgroep en vertrouwen uitstraalt.",
-          "examplesIntro": "Hieronder een paar voorbeelden van domeinen die goed werken binnen affiliate marketing:"
+          "extensionsIntro": "Veel cybersecuritybedrijven kiezen voor een .nl, .com of .io extensie voor een moderne uitstraling.",
+          "extensionsOutro": "Let op dat uw domeinnaam nog vrij is en geen verwarring veroorzaakt met bestaande partijen.",
+          "examplesIntro": "Hieronder ziet u enkele voorbeelden van sterke domeinnamen voor cybersecuritybedrijven:"
         }
       }
     }
   },
   {
-    "id": 3,
-    "niche": "Italiaans restaurant",
+    "id": "app",
+    "slug": "app",
+    "niche": "App",
     "messages": {
       "hero": {
-        "titleHighlight": "Italiaans restaurant"
+        "titleHighlight": "App"
       },
       "examples": {
         "prompts": [
-          "Bedenk een warme naam voor een Italiaans restaurant",
-          "Een naam die huisgemaakte pasta uitstraalt",
-          "Suggesties voor een sfeervolle trattoria",
-          "Een moderne naam voor een Italiaans familierestaurant",
-          "Naamidee voor een pizza en wijn restaurant",
-          "Originele Italiaanse restaurantnaam met lokale invloed"
+          "Een korte pakkende naam voor een productiviteit app",
+          "Creatieve naam voor een sociale media applicatie",
+          "Naamidee voor een gezondheids app",
+          "Professionele naam voor een zakelijke app"
         ],
         "suggestions": [
-          "Casa Gusto",
-          "PastaVino",
-          "Tavola di Nonna",
-          "Viva Cucina",
-          "La Tavolata",
-          "Rosso e Bianco",
-          "Trattoria Allegra",
-          "Sapore Puro",
-          "Forno Amico",
-          "Pane e Passione",
-          "Oliveto",
-          "Piazza del Gusto",
-          "Bella Tavola",
-          "Pasta Piazza",
-          "Vino e Sole"
+          "Appwise",
+          "Mobiello",
+          "Pulsezy",
+          "Tasklyn",
+          "Chatio",
+          "Streamzy",
+          "Zappify",
+          "Nexapp",
+          "Uplinkr",
+          "Syncly",
+          "Flexabit",
+          "Notivio",
+          "Flowapp",
+          "Taply",
+          "Protask"
         ],
+        "exampleName": {
+          "tld": ".app",
+          "benefits": [
+            "De naam past perfect bij een digitale applicatie",
+            "De .app extensie straalt direct technologie uit"
+          ]
+        },
         "domainPatterns": [
-          "www.[merknaam].restaurant",
-          "www.[merknaam + italiaans].cafe",
-          "www.[merknaam + stad].italiaans"
+          "www.[merknaam].app",
+          "www.[merknaam + functie].io",
+          "www.[merknaam + mobiel].com"
         ]
       },
       "sections": {
         "longForm": {
           "left": {
-            "intro": "Een goede naam voor je Italiaans restaurant roept meteen de sfeer van Italië op en nodigt gasten uit om te genieten van authentieke smaken.",
+            "intro": "Het kiezen van een naam voor je app is een belangrijke stap. Een goede naam maakt je applicatie herkenbaar en aantrekkelijk voor gebruikers. Het bepaalt de eerste indruk en helpt je om op te vallen in een drukke markt.",
             "benefits": [
-              "Sfeervolle eerste indruk voor je gasten",
-              "Herkenbare link met Italiaanse keuken",
-              "Makkelijk te onthouden voor vaste klanten",
-              "Geschikt voor authentieke en moderne concepten",
-              "Versterkt de uitstraling van gastvrijheid",
-              "Past goed bij huisgemaakte gerechten",
-              "Maakt promotie op social media eenvoudiger",
-              "Helpt om je te onderscheiden van andere restaurants"
+              "Val op in app stores met een originele naam",
+              "Makkelijk te onthouden voor gebruikers",
+              "Geeft direct een indruk van de functionaliteit",
+              "Ondersteunt de branding van je app",
+              "Stimuleert mond-tot-mondreclame",
+              "Past bij het technologische karakter van apps"
             ],
-            "highlightIntro": "Wat maakt een naam voor een Italiaans restaurant sterk en uitnodigend?",
+            "highlightIntro": "Waar let je op bij het kiezen van een app naam?",
             "highlightList": [
-              "Een naam die direct associaties oproept met Italië",
-              "Een warme, gastvrije klank die bij je concept past",
-              "Makkelijk te onthouden en uit te spreken"
+              "De naam moet kort en duidelijk zijn",
+              "Kies iets wat makkelijk uit te spreken is",
+              "Sluit aan bij de doelgroep en het platform"
             ],
-            "highlightFooter": "Met de juiste naam zet je direct de toon voor een Italiaanse avond vol smaak, gezelligheid en passie."
+            "highlightFooter": "Een sterke naam helpt je app te groeien en een vaste plek te krijgen op de telefoon van je gebruiker."
           },
           "right": {
             "blocks": [
               {
-                "title": "Hoe vind je een pakkende Italiaanse restaurantnaam?",
-                "body": "Laat je inspireren door Italiaanse woorden, familiebanden of lokale ingrediënten. Combineer je specialiteit met sfeer of locatie voor een uniek resultaat.",
+                "title": "Waarom is een pakkende app naam zo belangrijk?",
+                "body": "De naam van je app bepaalt of gebruikers nieuwsgierig worden. Het helpt bij de vindbaarheid en zorgt voor een professionele uitstraling.",
                 "bullets": [
                   {
-                    "label": "Italiaanse sfeer",
-                    "text": "Gebruik woorden als cucina, tavola of vino"
+                    "label": "Herkenbaarheid",
+                    "text": "Een unieke naam onderscheidt jouw app van de rest."
                   },
                   {
-                    "label": "Unieke beleving",
-                    "text": "Kies namen die huisgemaakt, warm of authentiek uitstralen"
+                    "label": "Vertrouwen",
+                    "text": "Een professionele naam zorgt voor vertrouwen bij nieuwe gebruikers."
                   }
                 ]
               },
               {
-                "title": "Waarom is de juiste naam zo belangrijk?",
-                "body": "Je naam is vaak de eerste kennismaking. Een goede naam zorgt dat gasten je onthouden en nieuwsgierig worden naar de Italiaanse gastvrijheid die je biedt.",
+                "title": "Zo vind je de juiste app naam",
+                "body": "Denk na over de kern van je app. Welke functie staat centraal? Probeer verschillende korte combinaties uit en check of ze makkelijk te onthouden zijn.",
                 "bullets": [
                   {
-                    "label": "Blijvende indruk",
-                    "text": "Gasten onthouden een uitnodigende naam sneller"
+                    "label": "Focus",
+                    "text": "Laat de naam aansluiten bij het doel van je app."
                   },
                   {
-                    "label": "Online vindbaarheid",
-                    "text": "Met een slimme naam ben je makkelijker te vinden op internet"
+                    "label": "Toekomstbestendig",
+                    "text": "Kies een naam die mee kan groeien met nieuwe functies."
                   }
                 ]
               }
             ],
             "cta": {
-              "title": "Probeer direct een Italiaanse restaurantnaam",
-              "placeholder": "Bijvoorbeeld: sfeervol, pasta, familie"
+              "title": "Bedenk direct je nieuwe app naam",
+              "placeholder": "Typ een beschrijving van jouw app"
             }
           }
         },
         "domainTips": {
-          "title": "Wat maakt een sterke Italiaans restaurant naam",
+          "title": "Wat maakt een sterke App naam",
           "intro": [
-            "Een sterke domeinnaam voor je Italiaans restaurant versterkt je merk online en zorgt dat gasten je snel weten te vinden.",
-            "Ga voor een naam die past bij de sfeer van je restaurant en aansluit bij je Italiaanse specialiteiten."
+            "Een goede app naam is kort, krachtig en geeft direct duidelijkheid over de functie. Het helpt je om sneller gevonden te worden door je doelgroep.",
+            "App gebruikers onthouden namen die opvallen en makkelijk uit te spreken zijn."
           ],
           "featureList": [
-            "Kies een korte, duidelijke naam die makkelijk te onthouden is",
-            "Gebruik Italiaanse woorden voor een authentiek gevoel",
-            "Voeg waar mogelijk je locatie of een specialiteit toe"
+            "Kort en makkelijk te typen",
+            "Duidelijk voor internationaal gebruik",
+            "Past bij de technische uitstraling van apps"
           ],
-          "extensionsIntro": "Voor restaurants zijn .restaurant, .cafe en .italiaans populaire keuzes die direct duidelijkheid geven.",
-          "extensionsOutro": "Let er altijd op dat je naam goed klinkt in combinatie met de extensie en makkelijk terug te vinden is.",
-          "examplesIntro": "Bekijk hoe andere Italiaanse restaurants hun domeinnaam slim combineren met hun merk of regio."
+          "extensionsIntro": "De juiste domeinextensie ondersteunt het tech-imago van je app. Gebruik bijvoorbeeld .app, .io of .com voor een professionele uitstraling.",
+          "extensionsOutro": "Met deze extensies weet je zeker dat je app naam ook sterk online gepresenteerd wordt.",
+          "examplesIntro": "Voorbeelden van sterke domeinnaam combinaties voor apps:"
+        }
+      }
+    }
+  },
+  {
+    "id": "ai-startup",
+    "slug": "ai-startup",
+    "niche": "AI-startup",
+    "messages": {
+      "hero": {
+        "titleHighlight": "AI-startup"
+      },
+      "examples": {
+        "prompts": [
+          "Korte merknaam voor AI-platform",
+          "Innovatieve naam voor data-analyse startup",
+          "Unieke naam voor slimme automatisering",
+          "Frisse naam voor AI-consultancy"
+        ],
+        "suggestions": [
+          "NeuralNest",
+          "Aivance",
+          "DataPulse",
+          "Cognitech",
+          "SmartPilot",
+          "Intelliroot",
+          "Syntheo",
+          "Mindframe",
+          "AiGenius",
+          "Futuriv",
+          "CodeNova",
+          "VisionaryAI",
+          "LogiBotics",
+          "Incepti",
+          "Aithority"
+        ],
+        "exampleName": {
+          "tld": ".ai",
+          "benefits": [
+            "De naam past direct bij kunstmatige intelligentie",
+            "De .ai extensie versterkt de technologische uitstraling"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].ai",
+          "www.[merknaam]ai.com",
+          "www.[merknaam + tech].io"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een sterke naam is voor een AI-startup het fundament van een toekomstgerichte identiteit. Met de juiste domeinnaam straal je direct innovatie en technologie uit.",
+            "benefits": [
+              "Trek innovatieve klanten aan met een slimme naam",
+              "Laat je expertise in kunstmatige intelligentie zien",
+              "Blijf hangen door een korte merkbare domeinnaam",
+              "Versterk je geloofwaardigheid in de tech-sector",
+              "Maak indruk bij investeerders en partners",
+              "Wees vindbaar in een snelgroeiende markt"
+            ],
+            "highlightIntro": "Let bij het kiezen van een AI-startup naam op deze punten:",
+            "highlightList": [
+              "Origineel en modern",
+              "Makkelijk te onthouden",
+              "Snel uit te spreken"
+            ],
+            "highlightFooter": "Een krachtige AI-startup naam legt het fundament voor groei en vertrouwen."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Waarom de juiste naam ertoe doet",
+                "body": "In de dynamische wereld van AI is een heldere en herkenbare naam extra belangrijk. Je wilt direct een innovatieve indruk maken en aansluiten bij je doelgroep.",
+                "bullets": [
+                  {
+                    "label": "Innovatie uitstralen",
+                    "text": "Een moderne naam geeft je startup direct een voorsprong."
+                  },
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "Klanten onthouden een duidelijke naam sneller."
+                  }
+                ]
+              },
+              {
+                "title": "Tips voor het kiezen",
+                "body": "Kies een domeinnaam die kort is, aansluit bij je visie en makkelijk in gebruik is op digitale platforms.",
+                "bullets": [
+                  {
+                    "label": "Kort en krachtig",
+                    "text": "Korte namen zijn beter te merken en delen."
+                  },
+                  {
+                    "label": "Uitspraakvriendelijk",
+                    "text": "Namen die vloeiend klinken blijven sneller hangen."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind jouw AI-startup domeinnaam",
+              "placeholder": "Vul je idee of kernwoord in"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke AI-startup naam",
+          "intro": [
+            "Een goede AI-startup naam spreekt tot de verbeelding, wekt vertrouwen en past bij technologische innovatie.",
+            "Je naam is vaak de eerste kennismaking met klanten, partners en investeerders."
+          ],
+          "featureList": [
+            "Verwijst subtiel naar AI of technologie",
+            "Klinkt toekomstgericht en internationaal",
+            "Is onderscheidend in een competitieve markt"
+          ],
+          "extensionsIntro": "Populaire domeinextensies voor AI-startups zijn .ai, .io en .tech Deze laten direct de innovatieve focus zien.",
+          "extensionsOutro": "Past een merknaam goed bij jouw visie én een opvallende extensie, dan sta je al 1-0 voor.",
+          "examplesIntro": "Bekijk hieronder voorbeelden van domeinpatronen die bij AI-startups passen:"
+        }
+      }
+    }
+  },
+  {
+    "id": "webshop",
+    "slug": "webshop",
+    "niche": "Webshop",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Webshop"
+      },
+      "examples": {
+        "prompts": [
+          "Korte pakkende naam voor een duurzame webshop",
+          "Naamidee voor een trendy kleding webshop",
+          "Creatieve naam voor een huisdierproducten webshop",
+          "Betrouwbare naam voor een webshop gericht op babyartikelen"
+        ],
+        "suggestions": [
+          "Shopelier",
+          "KlikWinkel",
+          "Novasta",
+          "VlotBesteld",
+          "Cartify",
+          "WinkelMeester",
+          "FlexiShop",
+          "BlijOnline",
+          "Bestelheld",
+          "Trendsenzo",
+          "PakketPlezier",
+          "WensWinkel",
+          "VindiQ",
+          "Directly",
+          "NovaWinkel"
+        ],
+        "exampleName": {
+          "tld": ".store",
+          "benefits": [
+            "Makkelijk te onthouden en uit te spreken",
+            "De .store extensie sluit perfect aan bij het online winkelaanbod"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].store",
+          "www.[merknaam + webshop].shop",
+          "www.[merknaam + regio].nl"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede webshop naam zorgt voor herkenning en vertrouwen bij je klanten. Voor een succesvolle online winkel is een aansprekende en duidelijke naam onmisbaar.",
+            "benefits": [
+              "Maakt direct duidelijk waar je webshop voor staat",
+              "Blijft hangen in het hoofd van bezoekers",
+              "Draagt bij aan een professionele uitstraling",
+              "Verhoogt de kans op herhaalaankopen",
+              "Is makkelijk te delen en te vinden",
+              "Sluit aan bij jouw assortiment of doelgroep"
+            ],
+            "highlightIntro": "Een sterke webshop naam helpt je opvallen en groeien in een concurrerende markt. Dit zijn de belangrijkste voordelen:",
+            "highlightList": [
+              "Meer herkenning onder online shoppers",
+              "Eenvoudig te onthouden en uit te spreken",
+              "Maakt jouw aanbod direct duidelijk"
+            ],
+            "highlightFooter": "Met de juiste naam geef je jouw webshop een vliegende start."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Hoe bedenk je een goede webshop naam?",
+                "body": "Start met het in kaart brengen van wat jouw webshop uniek maakt. Denk aan je assortiment, doelgroep en uitstraling. Een goede naam is niet alleen creatief maar ook functioneel.",
+                "bullets": [
+                  {
+                    "label": "Wees duidelijk",
+                    "text": "Laat in de naam zien wat je webshop verkoopt of doet."
+                  },
+                  {
+                    "label": "Blijf persoonlijk",
+                    "text": "Kies woorden die passen bij jouw stijl en visie."
+                  }
+                ]
+              },
+              {
+                "title": "Let op vindbaarheid en beschikbaarheid",
+                "body": "Controleer altijd of de naam nog beschikbaar is als domein. Kies bij voorkeur een korte naam zonder ingewikkelde spelling.",
+                "bullets": [
+                  {
+                    "label": "Controleer domein",
+                    "text": "Kies voor een TLD die past bij jouw branche."
+                  },
+                  {
+                    "label": "Houd het simpel",
+                    "text": "Vermijd moeilijke woorden of afkortingen die klanten kunnen verwarren."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind direct jouw perfecte webshop naam",
+              "placeholder": "Typ jouw product, stijl of doelgroep"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Webshop naam",
+          "intro": [
+            "Een goede webshop naam is het startpunt van jouw online succes.",
+            "Het helpt klanten vertrouwen te krijgen en maakt je vindbaar in een grote markt."
+          ],
+          "featureList": [
+            "Krachtig en duidelijk voor je doelgroep",
+            "Snel herkenbaar en makkelijk te onthouden",
+            "Sluit goed aan bij het productaanbod of specialisme"
+          ],
+          "extensionsIntro": "Naast de populaire domeinen zoals .nl en .com zijn er ook andere extensies die goed passen bij webshops.",
+          "extensionsOutro": "Kies een extensie die past bij jouw uitstraling en doelgroep voor de beste eerste indruk.",
+          "examplesIntro": "Zie hieronder hoe jouw webshop naam eruit kan zien met verschillende domeinextensies:"
+        }
+      }
+    }
+  },
+  {
+    "id": "shopify-store",
+    "slug": "shopify winkel",
+    "niche": "Shopify winkel",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Shopify winkel"
+      },
+      "examples": {
+        "prompts": [
+          "Trendy sieradenwinkel voor jonge vrouwen",
+          "Shopify winkel voor duurzame woonaccessoires",
+          "Sportkleding speciaal voor hardlopers",
+          "Babyproducten met Scandinavisch design"
+        ],
+        "suggestions": [
+          "Glowify",
+          "NicheNest",
+          "PureCartel",
+          "NovaBags",
+          "DailyDwell",
+          "UrbanMondo",
+          "FreshFinds",
+          "WinkelWijs",
+          "SnelleShopper",
+          "Storify",
+          "Cartify",
+          "HippeDeals",
+          "EcoVerzamel",
+          "Shopwise Studio",
+          "TrendyToko"
+        ],
+        "exampleName": {
+          "tld": ".store",
+          "benefits": [
+            "Makkelijk te onthouden voor terugkerende klanten",
+            "De .store extensie benadrukt dat het om een echte winkel gaat"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].shop",
+          "www.[merknaam + niche].store",
+          "www.[merknaam + regio].nl"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede naam voor je Shopify winkel is het startpunt voor een sterke online aanwezigheid. Het vertelt direct wat je verkoopt en maakt je webshop herkenbaar voor jouw doelgroep.",
+            "benefits": [
+              "Geeft direct vertrouwen aan nieuwe klanten",
+              "Versterkt de branding en uitstraling",
+              "Blijft hangen dankzij eenvoud en klank",
+              "Maakt je vindbaar in zoekmachines",
+              "Sluit aan bij je assortiment en doelgroep",
+              "Maakt het makkelijk om door te vertellen"
+            ],
+            "highlightIntro": "Op zoek naar een naam die past bij jouw Shopify winkel?",
+            "highlightList": [
+              "Direct duidelijk en professioneel",
+              "Geschikt voor elk type collectie",
+              "Makkelijk in te voeren bij de checkout"
+            ],
+            "highlightFooter": "Een sterke naam helpt je om op te vallen tussen andere webshops en zorgt voor een blijvende indruk."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Waarom een unieke Shopify naam?",
+                "body": "Je webshopnaam is vaak het eerste wat bezoekers zien. Het bepaalt de eerste indruk en helpt klanten jouw winkel te onthouden.",
+                "bullets": [
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "Een pakkende naam onderscheidt je van concurrenten"
+                  },
+                  {
+                    "label": "Vertrouwen",
+                    "text": "Een professionele naam wekt direct vertrouwen op"
+                  }
+                ]
+              },
+              {
+                "title": "Denk aan je doelgroep",
+                "body": "Een goede naam sluit aan bij de wensen en verwachtingen van je ideale klant. Zo voelen zij zich meteen aangesproken.",
+                "bullets": [
+                  {
+                    "label": "Relevantie",
+                    "text": "Kies woorden die je aanbod en sfeer uitdragen"
+                  },
+                  {
+                    "label": "Taalgebruik",
+                    "text": "Gebruik eenvoudige en duidelijke taal die iedereen begrijpt"
+                  }
+                ]
+              },
+              {
+                "title": "Maak het niet te ingewikkeld",
+                "body": "Houd de naam kort en eenvoudig. Zo blijft deze makkelijk te onthouden en te delen.",
+                "bullets": [
+                  {
+                    "label": "Korte namen",
+                    "text": "Minder kans op fouten bij het intypen"
+                  },
+                  {
+                    "label": "Uitspraak",
+                    "text": "Makkelijk te zeggen en te onthouden voor iedereen"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Start met jouw unieke Shopify winkel naam",
+              "placeholder": "Typ je product of niche in"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Shopify winkel naam",
+          "intro": [
+            "Een sterke naam maakt je Shopify winkel herkenbaar en betrouwbaar. Het helpt klanten je makkelijker terug te vinden.",
+            "Kies woorden die passen bij jouw producten en de sfeer van je collectie. Zo spreek je direct de juiste doelgroep aan."
+          ],
+          "featureList": [
+            "Korte en heldere namen blijven sneller hangen",
+            "Gebruik een TLD zoals .store of .shop voor extra duidelijkheid",
+            "Vermijd moeilijke spelling of vreemde afkortingen"
+          ],
+          "extensionsIntro": "Populaire extensies voor een Shopify winkel zijn .store, .shop en .nl, maar je kunt ook kiezen voor internationaal gerichte TLDs als .com",
+          "extensionsOutro": "Let erop dat je domeinnaam goed klinkt en aansluit bij je merkidentiteit.",
+          "examplesIntro": "Voorbeelden van slimme domeinnamen voor een Shopify winkel:"
+        }
+      }
+    }
+  },
+  {
+    "id": "dropshipping",
+    "slug": "dropshipping bedrijf",
+    "niche": "Dropshipping bedrijf",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Dropshipping bedrijf"
+      },
+      "examples": {
+        "prompts": [
+          "Creatieve naam voor dropshipping fashion store",
+          "Internationaal klinkende dropshipping merknaam",
+          "Betrouwbare naam voor tech dropshipping",
+          "Korte pakkende naam voor dropship platform"
+        ],
+        "suggestions": [
+          "Pakketpilot",
+          "DirectDepot",
+          "FlexiSupply",
+          "Leverix",
+          "TrendVloot",
+          "FluentShops",
+          "SnelleSchakel",
+          "Flowful",
+          "Voorraadloos",
+          "SwitchCart",
+          "Boxero",
+          "BestelBlauw",
+          "SupplySprint",
+          "Shipster",
+          "WebCargo"
+        ],
+        "exampleName": {
+          "tld": ".store",
+          "benefits": [
+            "Deze naam is gemakkelijk te onthouden",
+            "De .store extensie sluit perfect aan bij online verkoop"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].store",
+          "www.[merknaam + dropshipping].shop",
+          "www.[merknaam + nederland].nl"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Wil je direct starten met een dropshipping bedrijf, maar zoek je nog een sterke naam die vertrouwen uitstraalt en blijft hangen? Een goede naam helpt je om op te vallen en klanten snel te overtuigen.",
+            "benefits": [
+              "Een originele naam maakt je webshop herkenbaar",
+              "Je trekt sneller de aandacht van potentiële klanten",
+              "Een goede naam geeft direct je niche of aanbod weer",
+              "Het juiste gevoel geeft vertrouwen bij bezoekers",
+              "Een passende naam vergroot je kans op succes",
+              "Sterke branding maakt marketing eenvoudiger"
+            ],
+            "highlightIntro": "Waar let je op bij een dropshipping naam?",
+            "highlightList": [
+              "Kort en krachtig werkt altijd het beste",
+              "Internationaal bruikbaar als je wilt groeien",
+              "Klinkt het professioneel en betrouwbaar"
+            ],
+            "highlightFooter": "De juiste domeinnaam versterkt je online uitstraling vanaf dag één."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Inspiratie voor jouw dropshipping naam",
+                "body": "Het bedenken van een naam voor je dropshipping bedrijf is soms lastig. Denk aan namen die eenvoudig uit te spreken zijn en die iets zeggen over je aanbod.",
+                "bullets": [
+                  {
+                    "label": "Internationaal",
+                    "text": "Kies een naam die ook buiten Nederland makkelijk werkt"
+                  },
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "Een pakkende naam blijft hangen en wordt sneller gedeeld"
+                  }
+                ]
+              },
+              {
+                "title": "Voordelen van een goede domeinnaam",
+                "body": "Een sterke domeinnaam maakt je bedrijf direct vindbaar en betrouwbaar. Klanten voelen zich sneller op hun gemak als je naam professioneel oogt.",
+                "bullets": [
+                  {
+                    "label": "Vindbaarheid",
+                    "text": "Met een unieke naam scoor je beter in zoekmachines"
+                  },
+                  {
+                    "label": "Professionaliteit",
+                    "text": "Een nette naam straalt vertrouwen uit richting leveranciers en klanten"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind direct een dropshipping naam",
+              "placeholder": "Bijvoorbeeld: TrendVloot, FlexiSupply"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Dropshipping bedrijf naam",
+          "intro": [
+            "Een goede dropshipping naam geeft direct een professionele indruk en blijft hangen.",
+            "Let op dat je naam makkelijk te spellen en uit te spreken is voor internationale klanten."
+          ],
+          "featureList": [
+            "Pakkend en kort is beter voor marketing",
+            "Een duidelijke link met je niche helpt bij vindbaarheid",
+            "Kies een TLD die het beste past bij jouw markt"
+          ],
+          "extensionsIntro": "Domeinextensies zoals .store, .shop en .nl zijn populair voor dropshipping bedrijven.",
+          "extensionsOutro": "Wil je internationaal gaan? Dan is .com vaak de beste keuze.",
+          "examplesIntro": "Bekijk voorbeelden van domeinnamen die passen bij een professioneel dropshipping bedrijf."
+        }
+      }
+    }
+  },
+  {
+    "id": "amazon-business",
+    "slug": "amazon business",
+    "niche": "Amazon business",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Amazon business"
+      },
+      "examples": {
+        "prompts": [
+          "Internationale merknaam voor Amazon winkels",
+          "Creatieve naam voor private label shop",
+          "Professionele naam voor FBA producten",
+          "Korte pakkende naam voor Amazon business"
+        ],
+        "suggestions": [
+          "Vastino",
+          "PrimeNest",
+          "Shopmigo",
+          "Scantrix",
+          "Amazello",
+          "TradeSprint",
+          "Aurimo",
+          "FbaGenius",
+          "Marketlume",
+          "Packora",
+          "Logistica",
+          "Bizonix",
+          "Verkoopster",
+          "WarePeak",
+          "Supplify"
+        ],
+        "exampleName": {
+          "tld": ".com",
+          "benefits": [
+            "Makkelijk herkenbaar en internationaal inzetbaar",
+            "Sluit aan bij het wereldwijde bereik van Amazon"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].store",
+          "www.[merknaam + amazon].shop",
+          "www.[merknaam + fba].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede naam voor je Amazon business is het fundament voor internationale groei. Je naam bepaalt hoe klanten je vinden en onthouden tussen duizenden aanbieders.",
+            "benefits": [
+              "Betere vindbaarheid op Amazon",
+              "Versterkt professionele uitstraling",
+              "Blijft hangen bij kopers",
+              "Makkelijk uit te spreken in meerdere talen",
+              "Sluit aan bij het assortiment",
+              "Geschikt voor schaal en uitbreiding"
+            ],
+            "highlightIntro": "Waarom investeren in een sterke Amazon business naam?",
+            "highlightList": [
+              "Je bent direct herkenbaar in de Amazon zoekresultaten",
+              "Een sterke naam bouwt vertrouwen op bij nieuwe klanten",
+              "Geschikt om te groeien naar meerdere productlijnen"
+            ],
+            "highlightFooter": "Je naam is je visitekaartje op Amazon. Zet de toon voor langdurig succes."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Wat maakt een Amazon naam uniek?",
+                "body": "Op Amazon concurreer je met duizenden verkopers. Een unieke naam helpt je om op te vallen en beter gevonden te worden.",
+                "bullets": [
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "Klanten zoeken naar namen die blijven hangen en snel te onthouden zijn"
+                  },
+                  {
+                    "label": "Uitspraak",
+                    "text": "Gemakkelijk te zeggen voor internationale kopers vergroot je bereik"
+                  }
+                ]
+              },
+              {
+                "title": "Past de naam bij je aanbod?",
+                "body": "Een goede Amazon business naam sluit aan bij je producten of niche. Klanten krijgen direct een idee wat jij biedt.",
+                "bullets": [
+                  {
+                    "label": "Relevantie",
+                    "text": "Laat het aanbod of de doelgroep doorschemeren"
+                  },
+                  {
+                    "label": "Vertrouwen",
+                    "text": "Een professionele naam wekt meer vertrouwen bij kopers"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Ontdek jouw Amazon business naam",
+              "placeholder": "Typ je idee of productcategorie"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Amazon business naam",
+          "intro": [
+            "Een sterke Amazon business naam zorgt dat jij opvalt in een concurrerende markt.",
+            "Goede namen zijn kort, duidelijk en passen bij je doelgroep."
+          ],
+          "featureList": [
+            "Korte namen zijn sneller te onthouden",
+            "Creativiteit verhoogt je vindbaarheid",
+            "Een naam die internationaal klinkt is handig voor wereldwijde groei"
+          ],
+          "extensionsIntro": "Voor je Amazon business kun je kiezen uit verschillende extensies. Denk aan .com voor internationale focus of .store voor een duidelijke e-commerce uitstraling.",
+          "extensionsOutro": "Kies altijd een domein dat past bij jouw ambities en producten. Een goede combinatie versterkt je merk.",
+          "examplesIntro": "Voorbeelden van sterke domeinen voor je Amazon business:"
+        }
+      }
+    }
+  },
+  {
+    "id": "etsy shop",
+    "slug": "etsy winkel",
+    "niche": "Etsy winkel",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Etsy winkel"
+      },
+      "examples": {
+        "prompts": [
+          "Sfeervolle naam voor vintage sieraden",
+          "Creatief merk voor handgemaakte kaarsen",
+          "Unieke naam voor een borduurshop",
+          "Frisse naam voor keramiek Etsy winkel"
+        ],
+        "suggestions": [
+          "LiefdevolGemaakt",
+          "AtelierWolk",
+          "KleinGelukStudio",
+          "VrolijkVilt",
+          "UniekHout",
+          "KunstigNest",
+          "RustiekRust",
+          "ZachtZilver",
+          "HandwerkHart",
+          "DromerigDoosje",
+          "StipStijl",
+          "SprankelWinkel",
+          "CreatiefCollectief",
+          "VerfijndVorm",
+          "WarmWeefsel"
+        ],
+        "exampleName": {
+          "tld": ".store",
+          "benefits": [
+            "De naam klinkt vriendelijk en blijft goed hangen",
+            "De .store TLD past perfect bij een Etsy winkel"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].store",
+          "www.[merknaam + etsy].shop",
+          "www.[merknaam + creatief].nl"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede naam voor je Etsy winkel helpt om je unieke aanbod te laten opvallen tussen duizenden creatieve ondernemers. Het is het eerste wat klanten zien en bepaalt vaak of ze nieuwsgierig genoeg zijn om door te klikken.",
+            "benefits": [
+              "Makkelijk te onthouden voor terugkerende klanten",
+              "Straalt creativiteit en eigenheid uit",
+              "Sluit aan bij jouw stijl en producten",
+              "Bouwt aan een herkenbare merkidentiteit",
+              "Maakt je Etsy winkel vindbaar en professioneel",
+              "Geeft een persoonlijke touch die klanten aanspreekt"
+            ],
+            "highlightIntro": "Een sterke Etsy winkel naam combineert creativiteit met duidelijkheid. Zo maak je meteen een goede eerste indruk:",
+            "highlightList": [
+              "Kies woorden die passen bij jouw handgemaakte producten",
+              "Gebruik originele combinaties voor een unieke uitstraling",
+              "Let op een vlotte uitspraak en heldere betekenis"
+            ],
+            "highlightFooter": "Met een treffende naam trek je de juiste klanten naar je Etsy winkel en groeit je merk op een natuurlijke manier."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Waar moet je op letten bij een Etsy winkel naam?",
+                "body": "De naam van je Etsy winkel vormt het hart van je merk. Denk na over wie je wilt bereiken en wat je wilt uitstralen. Een persoonlijke of creatieve twist maakt je winkel aantrekkelijker voor jouw doelgroep.",
+                "bullets": [
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "Een naam die blijft hangen zorgt dat klanten je onthouden."
+                  },
+                  {
+                    "label": "Uitspraak",
+                    "text": "Zorg dat de naam makkelijk uit te spreken is."
+                  }
+                ]
+              },
+              {
+                "title": "Praktische tips voor een creatieve winkelnaam",
+                "body": "Kies een naam die aansluit bij je producten en stijl. Ga voor woorden die de sfeer van jouw handgemaakte werk goed weergeven.",
+                "bullets": [
+                  {
+                    "label": "Korte namen",
+                    "text": "Korte namen zijn makkelijk te onthouden en te typen."
+                  },
+                  {
+                    "label": "Uniek",
+                    "text": "Een unieke naam zorgt ervoor dat je opvalt tussen andere Etsy winkels."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Probeer een Etsy winkel naam",
+              "placeholder": "Bijvoorbeeld: vrolijke kaarsen, natuur sieraden"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Etsy winkel naam",
+          "intro": [
+            "Een sterke Etsy winkel naam weerspiegelt jouw creativiteit én je producten.",
+            "Het helpt om vertrouwen te wekken en zorgt dat klanten je makkelijker onthouden."
+          ],
+          "featureList": [
+            "Creatief en toch duidelijk",
+            "Past bij je doelgroep en aanbod",
+            "Makkelijk te onthouden en uit te spreken"
+          ],
+          "extensionsIntro": "Voor een Etsy winkel zijn domeinextensies zoals .store of .shop ideaal. Ze geven meteen aan dat je een creatieve winkel runt.",
+          "extensionsOutro": "Kies een domeinnaam die echt bij je past en makkelijk te delen is met je klanten.",
+          "examplesIntro": "Voorbeelden van domeinnamen voor een Etsy winkel:"
+        }
+      }
+    }
+  },
+  {
+    "id": "marketing agency",
+    "slug": "marketingbureau",
+    "niche": "Marketingbureau",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Marketingbureau"
+      },
+      "examples": {
+        "prompts": [
+          "Krachtige naam voor modern marketingbureau",
+          "Creatieve bureaunaam gericht op groei",
+          "Merkwaardige marketingnaam voor startups",
+          "Professionele naam voor B2B marketingadvies"
+        ],
+        "suggestions": [
+          "GroeiNest",
+          "Strategiq",
+          "Campagnist",
+          "Brandelta",
+          "Zichtbaar",
+          "RaketMedia",
+          "Versneller",
+          "Impactify",
+          "Merksprong",
+          "Leadwise",
+          "BureauNova",
+          "FocusMakers",
+          "SpotOn",
+          "Prominext",
+          "Advieskracht"
+        ],
+        "exampleName": {
+          "tld": ".agency",
+          "benefits": [
+            "Herkenbaar als specialistisch marketingbureau",
+            "De extensie past bij advies en diensten"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].agency",
+          "www.[merknaam + marketing].nl",
+          "www.[merknaam + regio].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "De juiste naam voor je marketingbureau maakt direct duidelijk waar je voor staat. Een sterke naam valt op, blijft hangen en geeft vertrouwen aan nieuwe klanten.",
+            "benefits": [
+              "Een merknaam die makkelijk uit te spreken is",
+              "Direct herkenbaar als marketingbureau",
+              "Versterkt de professionele uitstraling",
+              "Blijft hangen bij potentiële klanten",
+              "Past bij je specialisme en aanpak",
+              "Werkt goed online en offline"
+            ],
+            "highlightIntro": "Waar moet je op letten bij de keuze van een marketingbureaunaam?",
+            "highlightList": [
+              "Kort en krachtig werkt het beste",
+              "Zorg voor een unieke uitstraling",
+              "Kies een naam die nog beschikbaar is"
+            ],
+            "highlightFooter": "Je naam is vaak de eerste indruk. Investeer dus in een naam die je bureau laat groeien en vertrouwen wekt."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Kies voor herkenbaarheid",
+                "body": "Een goede marketingbureaunaam is direct duidelijk en laat je doelgroep meteen weten wat je aanbiedt.",
+                "bullets": [
+                  {
+                    "label": "Duidelijk",
+                    "text": "Laat in je naam terugkomen dat je een marketingexpert bent."
+                  },
+                  {
+                    "label": "Aansprekend",
+                    "text": "Zorg dat de naam makkelijk blijft hangen bij potentiële klanten."
+                  }
+                ]
+              },
+              {
+                "title": "Zorg voor digitale vindbaarheid",
+                "body": "Je naam moet niet alleen goed klinken, maar ook goed vindbaar zijn op het internet en in zoekmachines.",
+                "bullets": [
+                  {
+                    "label": "Uniek domein",
+                    "text": "Controleer of de domeinnaam beschikbaar is."
+                  },
+                  {
+                    "label": "Zoekmachinevriendelijk",
+                    "text": "Gebruik woorden die aansluiten bij je diensten."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind jouw Marketingbureau naam",
+              "placeholder": "Vul jouw unieke idee of kernwoord in"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Marketingbureau naam",
+          "intro": [
+            "Een effectieve marketingbureaunaam is duidelijk, professioneel en blijft hangen.",
+            "Let op beschikbaarheid en zorg dat de naam past bij je doelgroep."
+          ],
+          "featureList": [
+            "Kort en goed uit te spreken werkt het sterkst",
+            "Beschikbare domeinnaam is belangrijk voor je online aanwezigheid",
+            "De naam moet aansluiten bij je merk en diensten"
+          ],
+          "extensionsIntro": "Voor marketingbureaus zijn .nl, .agency, .com en .studio populaire keuzes. Deze extensies ondersteunen een professionele uitstraling.",
+          "extensionsOutro": "Wil je internationaal werken, overweeg dan om ook een .com of .global variant vast te leggen.",
+          "examplesIntro": "Dit zijn voorbeelden van sterke domeinnamen voor een marketingbureau:"
+        }
+      }
+    }
+  },
+  {
+    "id": "web-design agency",
+    "slug": "webdesign bureau",
+    "niche": "Webdesign bureau",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Webdesign bureau"
+      },
+      "examples": {
+        "prompts": [
+          "Creatieve naam voor modern webdesign bureau",
+          "Korte pakkende naam voor een digitale studio",
+          "Innovatieve naam voor zakelijke webdesign dienst",
+          "Professioneel klinkende naam gericht op ondernemers"
+        ],
+        "suggestions": [
+          "Pixelvorm",
+          "Webnova",
+          "OntwerpStudio",
+          "BlauwRaam",
+          "SiteVormers",
+          "Digitide",
+          "KlikKracht",
+          "BureauPixel",
+          "Webloft",
+          "StudioWijs",
+          "OntwerpNest",
+          "FrameLab",
+          "WebWijs",
+          "DesignVast",
+          "Launchlab"
+        ],
+        "exampleName": {
+          "tld": ".studio",
+          "benefits": [
+            "Blijft hangen bij creatieve opdrachtgevers",
+            "De TLD studio past perfect bij webdesign"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].studio",
+          "www.[merknaam + webdesign].nl",
+          "www.[merknaam + digitaal].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een onderscheidende naam helpt je webdesign bureau opvallen in een competitieve markt. Kies een naam die creativiteit, betrouwbaarheid en digitale expertise uitstraalt.",
+            "benefits": [
+              "Maakt direct duidelijk waar je bureau voor staat",
+              "Spreekt opdrachtgevers aan die zoeken naar kwaliteit",
+              "Blijft makkelijk hangen bij potentiële klanten",
+              "Geeft een professionele eerste indruk online",
+              "Sluit aan bij moderne en digitale trends",
+              "Helpt je onderscheiden van andere bureaus"
+            ],
+            "highlightIntro": "Een sterke naam voor je webdesign bureau heeft veel impact:",
+            "highlightList": [
+              "Straalt vakmanschap en creativiteit uit",
+              "Wekt vertrouwen bij bedrijven en ondernemers",
+              "Is makkelijk te onthouden en te spellen"
+            ],
+            "highlightFooter": "Met de juiste naam positioneer je je bureau meteen als dé digitale partner voor jouw doelgroep."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Hoe kies je een goede naam voor je webdesign bureau?",
+                "body": "Begin met woorden die passen bij de digitale en creatieve wereld. Denk aan termen die design, ontwikkeling en vernieuwing oproepen. Combineer indien mogelijk eigennamen of unieke begrippen voor een herkenbare uitstraling.",
+                "bullets": [
+                  {
+                    "label": "Creativiteit",
+                    "text": "Een originele naam valt sneller op bij klanten"
+                  },
+                  {
+                    "label": "Duidelijkheid",
+                    "text": "Laat direct zien dat je bureau zich richt op webdesign"
+                  }
+                ]
+              },
+              {
+                "title": "Waar letten opdrachtgevers op?",
+                "body": "Bedrijven zoeken vaak professionaliteit en betrouwbaarheid in een webdesign bureau. Kies daarom woorden die vertrouwen geven en aansluiten bij jouw diensten.",
+                "bullets": [
+                  {
+                    "label": "Professionaliteit",
+                    "text": "Een sterke naam maakt direct indruk"
+                  },
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "Blijf in het geheugen bij potentiële klanten"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Probeer direct een naam voor jouw webdesign bureau",
+              "placeholder": "Voer een idee of kernwoord in"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Webdesign bureau naam",
+          "intro": [
+            "Een goede naam voor je webdesign bureau onderscheidt je van de concurrentie en spreekt je ideale klant aan.",
+            "Let op creativiteit, duidelijkheid en de juiste toon voor jouw doelgroep."
+          ],
+          "featureList": [
+            "Kort en makkelijk te onthouden",
+            "Vermijdt verwarring met bestaande bureaus",
+            "Past bij digitale diensten en uitstraling"
+          ],
+          "extensionsIntro": "Voor webdesign bureaus zijn domeinen als .studio, .design, .nl en .com populair door hun professionele uitstraling.",
+          "extensionsOutro": "Kies een TLD die aansluit bij jouw doelgroep en de uitstraling van je bureau.",
+          "examplesIntro": "Hier zie je voorbeelden van sterke domeinnamen voor webdesign bureaus:"
+        }
+      }
+    }
+  },
+  {
+    "id": "consultancy",
+    "slug": "consultancy",
+    "niche": "Consultancy",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Consultancy"
+      },
+      "examples": {
+        "prompts": [
+          "Krachtige naam voor strategisch adviesbureau",
+          "Innovatieve consultancy merknaam voor bedrijven",
+          "Frisse naam voor organisatiebegeleiding",
+          "Professionele naam voor bedrijfsadviesdienst"
+        ],
+        "suggestions": [
+          "Advista",
+          "Stratigo",
+          "Consultium",
+          "Begeleiders",
+          "Expertica",
+          "AdviesMeesters",
+          "NovaConsult",
+          "Strategion",
+          "Guidant",
+          "Insightwise",
+          "VisioMakers",
+          "DirectAdvies",
+          "BureauClever",
+          "Evolvant",
+          "FactorResult"
+        ],
+        "exampleName": {
+          "tld": ".consulting",
+          "benefits": [
+            "De naam sluit direct aan bij de adviesbranche",
+            "De extensie toont professionele expertise"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].consulting",
+          "www.[merknaam + advies].nl",
+          "www.[merknaam + strategie].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een sterke consultancy naam maakt direct duidelijk dat jouw organisatie staat voor vertrouwen, expertise en strategisch inzicht. Met de juiste naam onderscheid je je in de wereld van advies en begeleiding.",
+            "benefits": [
+              "Straalt deskundigheid en betrouwbaarheid uit",
+              "Maakt indruk bij zakelijke klanten",
+              "Helpt bij het opbouwen van een professioneel imago",
+              "Versterkt je positie als strategisch partner",
+              "Blijft gemakkelijk hangen bij opdrachtgevers",
+              "Ondersteunt herkenbaarheid in een concurrerende markt"
+            ],
+            "highlightIntro": "Een goede consultancy naam helpt jouw bedrijf uit te groeien tot een toonaangevende speler. Let op deze punten:",
+            "highlightList": [
+              "Kies woorden die vertrouwen en inzicht oproepen",
+              "Zorg voor een naam die professioneel klinkt",
+              "Maak het makkelijk te onthouden"
+            ],
+            "highlightFooter": "Met de juiste naam maak je direct een sterke eerste indruk binnen de advieswereld."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Hoe vind je de perfecte consultancy naam?",
+                "body": "Denk na over jouw doelgroep en het soort advies dat je biedt. Combineer herkenbare termen met een unieke twist om op te vallen in de markt.",
+                "bullets": [
+                  {
+                    "label": "Uniek en herkenbaar",
+                    "text": "Een originele naam helpt bij het onderscheiden van andere adviesbureaus."
+                  },
+                  {
+                    "label": "Professioneel",
+                    "text": "Een professionele uitstraling zorgt voor vertrouwen bij zakelijke opdrachtgevers."
+                  }
+                ]
+              },
+              {
+                "title": "Wat maakt een consultancy naam sterk?",
+                "body": "Een goede naam weerspiegelt jouw visie en expertise. Kies voor woorden die direct duidelijk maken wat jouw bedrijf doet.",
+                "bullets": [
+                  {
+                    "label": "Heldere boodschap",
+                    "text": "Laat zien waar je voor staat met duidelijke, krachtige woorden."
+                  },
+                  {
+                    "label": "Toekomstbestendig",
+                    "text": "Kies een naam die meegroeit met jouw aanbod."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind jouw ideale consultancy naam",
+              "placeholder": "Voer een kernwoord of thema in"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Consultancy naam",
+          "intro": [
+            "Een sterke consultancy naam straalt deskundigheid uit en maakt direct duidelijk wat je aanbiedt.",
+            "De juiste naam helpt om vertrouwen en professionaliteit te communiceren naar potentiële klanten."
+          ],
+          "featureList": [
+            "Kort en krachtig met duidelijke betekenis",
+            "Herkenbaar en makkelijk uit te spreken",
+            "Past bij het type advies en jouw doelgroep"
+          ],
+          "extensionsIntro": "Voor consultancynamen zijn er verschillende domeinextensies mogelijk die jouw expertise extra kracht geven.",
+          "extensionsOutro": "Kies een extensie die het beste past bij het karakter van jouw adviesbureau.",
+          "examplesIntro": "Hier zie je hoe slimme domeincombinaties je merk kunnen versterken:"
+        }
+      }
+    }
+  },
+  {
+    "id": "real-estate",
+    "slug": "vastgoed",
+    "niche": "Vastgoed",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Vastgoed"
+      },
+      "examples": {
+        "prompts": [
+          "Unieke naam voor een moderne vastgoedmakelaar",
+          "Naamidee voor verhuur van luxe appartementen",
+          "Sterke merknaam voor vastgoed investeringen",
+          "Creatieve bedrijfsnaam voor woningverkoop"
+        ],
+        "suggestions": [
+          "HuizenPartner",
+          "InvestEco",
+          "PandenPlan",
+          "Brickwise",
+          "Stadshuis",
+          "WoningWijs",
+          "Makelaarduo",
+          "NieuwDomein",
+          "EigenStek",
+          "HuisKompas",
+          "VastgoedNest",
+          "ProjectenPlus",
+          "WoonAdvies",
+          "PlekExpert",
+          "Acquisimo"
+        ],
+        "exampleName": {
+          "tld": ".nl",
+          "benefits": [
+            "Past perfect bij de Nederlandse vastgoedmarkt",
+            "De naam is direct herkenbaar voor woningzoekenden"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].nl",
+          "www.[merknaam + vastgoed].com",
+          "www.[merknaam + stad].agency"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Of je nu woningen verhuurt, investeert in panden of huizen verkoopt, een sterke naam helpt je vastgoedbedrijf opvallen. Met de juiste naam straal je betrouwbaarheid en lokale expertise uit.",
+            "benefits": [
+              "Meer vertrouwen bij kopers en huurders",
+              "Gemakkelijk te onthouden en uit te spreken",
+              "Professionele uitstraling in de markt",
+              "Past bij zowel verhuur als verkoop",
+              "Geschikt voor branding en marketing",
+              "Herkenbaar voor jouw doelgroep"
+            ],
+            "highlightIntro": "Een goede vastgoednaam maakt direct duidelijk waar je voor staat en helpt je onderscheiden.",
+            "highlightList": [
+              "Direct herkenbaar voor potentiële klanten",
+              "Versterkt je reputatie als makelaar of investeerder",
+              "Groeit mee met je aanbod en regio"
+            ],
+            "highlightFooter": "Kies een naam die jouw vastgoedbedrijf vooruit helpt en vertrouwen uitstraalt."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Hoe vind je een pakkende vastgoednaam?",
+                "body": "Denk aan woorden die passen bij huizen, investeringen of lokale bekendheid. Combineer deze met iets eigens voor een unieke naam.",
+                "bullets": [
+                  {
+                    "label": "Lokale focus",
+                    "text": "Neem eventueel een plaatsnaam of regio op voor herkenbaarheid."
+                  },
+                  {
+                    "label": "Vertrouwen",
+                    "text": "Gebruik woorden die stabiliteit en zekerheid uitstralen."
+                  }
+                ]
+              },
+              {
+                "title": "Let op de klank en lengte",
+                "body": "Korte en krachtige namen blijven beter hangen en zijn makkelijker te onthouden voor je doelgroep.",
+                "bullets": [
+                  {
+                    "label": "Uitspraak",
+                    "text": "Kies namen die vlot klinken en niet verwarrend zijn."
+                  },
+                  {
+                    "label": "Merkbaar",
+                    "text": "Een pakkende naam kan het verschil maken in een concurrerende markt."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Probeer direct je Vastgoed naam",
+              "placeholder": "Typ een idee voor je vastgoedbedrijf"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Vastgoed naam",
+          "intro": [
+            "Een goede vastgoednaam geeft direct vertrouwen en sluit aan bij de wensen van kopers, huurders of investeerders.",
+            "Kies een naam die zowel professioneel klinkt als blijft hangen. Denk aan herkenbaarheid en een passende domeinextensie."
+          ],
+          "featureList": [
+            "Korte, duidelijke klanken die makkelijk te onthouden zijn",
+            "Verwijzing naar vastgoed, wonen of de regio",
+            "Past bij online branding en visitekaartjes"
+          ],
+          "extensionsIntro": "Voor vastgoedbedrijven zijn .nl, .com en .agency populaire extensies. Deze stralen professionaliteit en lokale betrokkenheid uit.",
+          "extensionsOutro": "Wil je internationaal werken, overweeg dan .eu of .global als aanvulling op je naam.",
+          "examplesIntro": "Zo kan jouw unieke vastgoeddomein eruitzien:"
+        }
+      }
+    }
+  },
+  {
+    "id": "cleaning business",
+    "slug": "schoonmaak bedrijf",
+    "niche": "Schoonmaak bedrijf",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Schoonmaak bedrijf"
+      },
+      "examples": {
+        "prompts": [
+          "Frisse bedrijfsnaam voor schoonmaakdiensten",
+          "Professioneel klinkende naam voor schoonmaakspecialist",
+          "Creatieve naam voor glazenwassersbedrijf",
+          "Korte pakkende naam voor poetsbedrijf"
+        ],
+        "suggestions": [
+          "GlansPro",
+          "Schoonmeesters",
+          "FrisExpert",
+          "HygiServe",
+          "PoetsPunt",
+          "SchoneStart",
+          "Cleanique",
+          "SpicDirect",
+          "GlansGilde",
+          "BlinkPartners",
+          "NetWerkers",
+          "SchoonKracht",
+          "ZorgeloosSchoon",
+          "SupraClean",
+          "PureVast"
+        ],
+        "exampleName": {
+          "tld": ".nl",
+          "benefits": [
+            "Nederlandse uitstraling past bij lokale schoonmaakdiensten",
+            "De naam is eenvoudig te onthouden"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].services",
+          "www.[merknaam + schoonmaak].nl",
+          "www.[merknaam + regio].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede naam voor je schoonmaak bedrijf helpt je om direct vertrouwen te wekken en je onderscheidend te presenteren in een concurrerende markt. Met de juiste naam straal je professionaliteit en kwaliteit uit naar je klanten.",
+            "benefits": [
+              "Gemakkelijk herkenbaar voor klanten",
+              "Geeft direct duidelijkheid over je diensten",
+              "Ondersteunt een professionele uitstraling",
+              "Blijft goed hangen bij mond-tot-mondreclame",
+              "Werkt goed op bedrijfswagens en werkkleding",
+              "Sluit aan bij de waarden van hygiëne en vertrouwen"
+            ],
+            "highlightIntro": "Een sterke naam voor een schoonmaak bedrijf heeft vaak deze kenmerken:",
+            "highlightList": [
+              "Klinkt fris en vertrouwd",
+              "Is eenvoudig uit te spreken",
+              "Past bij zowel particuliere als zakelijke klanten"
+            ],
+            "highlightFooter": "Met een krachtige naam valt jouw schoonmaak bedrijf snel op en kiezen klanten eerder voor jouw diensten."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Waar let je op bij een naam?",
+                "body": "De juiste naam maakt direct duidelijk wat je aanbiedt en wie je helpt. Kies woorden die aansluiten bij schoon, fris en betrouwbaar.",
+                "bullets": [
+                  {
+                    "label": "Duidelijk",
+                    "text": "Klanten begrijpen meteen waar je voor staat"
+                  },
+                  {
+                    "label": "Klinkend",
+                    "text": "Een naam die prettig klinkt blijft hangen"
+                  }
+                ]
+              },
+              {
+                "title": "Inspiratie uit jouw specialisme",
+                "body": "Gebruik elementen uit jouw vak, zoals poetsen, glans of hygiëne, om een unieke naam te vormen die aansluit bij de branche.",
+                "bullets": [
+                  {
+                    "label": "Vakgericht",
+                    "text": "Verwijs gerust naar schoonmaak of onderhoud"
+                  },
+                  {
+                    "label": "Creatief",
+                    "text": "Combineer vertrouwde woorden met iets origineels"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Bedenk direct jouw schoonmaak bedrijfsnaam",
+              "placeholder": "Typ een trefwoord over jouw schoonmaakdiensten"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Schoonmaak bedrijf naam",
+          "intro": [
+            "Een doordachte bedrijfsnaam maakt jouw schoonmaak diensten zichtbaar en betrouwbaar.",
+            "Denk aan namen die makkelijk uit te spreken zijn en vertrouwen opwekken."
+          ],
+          "featureList": [
+            "Past bij een breed dienstenaanbod",
+            "Blijft hangen bij potentiële opdrachtgevers",
+            "Ondersteunt professionele uitstraling online en offline"
+          ],
+          "extensionsIntro": "Voor schoonmaak bedrijven zijn domeinextensies als .nl, .services en .com populair omdat ze professioneel ogen en goed aansluiten bij de branche.",
+          "extensionsOutro": "Een passende domeinnaam helpt je om online snel vindbaar te zijn en klanten duidelijk te maken wat je aanbiedt.",
+          "examplesIntro": "Hier zie je voorbeelden van hoe je jouw schoonmaak bedrijf online sterk kunt positioneren:"
+        }
+      }
+    }
+  },
+  {
+    "id": "construction company",
+    "slug": "bouwbedrijf",
+    "niche": "Bouwbedrijf",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Bouwbedrijf"
+      },
+      "examples": {
+        "prompts": [
+          "Moderne naam voor regionaal bouwbedrijf",
+          "Krachtige bedrijfsnaam voor renovatie",
+          "Creatieve naam gericht op duurzaamheid",
+          "Betrouwbare bouwpartner naam verzinnen"
+        ],
+        "suggestions": [
+          "Steenmeesters",
+          "BouwVast",
+          "Renovato",
+          "Constructiva",
+          "ProjectKracht",
+          "MetselPro",
+          "Vakschilders",
+          "BouwFront",
+          "NieuwStaete",
+          "Timberline",
+          "Fundamentaal",
+          "BouwNest",
+          "Solidus",
+          "Verbouwingers",
+          "Stadsbouwers"
+        ],
+        "exampleName": {
+          "tld": ".nl",
+          "benefits": [
+            "Makkelijk herkenbaar voor Nederlandse opdrachtgevers",
+            "Uitspraak en schrijfwijze blijven goed hangen"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].nl",
+          "www.[merknaam + bouw].com",
+          "www.[merknaam + regio].eu"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede naam is het fundament van ieder bouwbedrijf. Het geeft vertrouwen en zorgt dat je bedrijf opvalt tussen de concurrentie, of je nu actief bent in renovatie, nieuwbouw of onderhoud.",
+            "benefits": [
+              "Geeft direct een professionele uitstraling",
+              "Versterkt herkenning bij opdrachtgevers",
+              "Past bij de bouwsector en ambacht",
+              "Maakt mond-tot-mondreclame makkelijker",
+              "Sluit aan bij lokale of landelijke projecten",
+              "Helpt bij online vindbaarheid"
+            ],
+            "highlightIntro": "Waarom een sterke naam essentieel is voor jouw bouwbedrijf:",
+            "highlightList": [
+              "Bouwt vertrouwen bij nieuwe klanten",
+              "Laat direct zien waar je voor staat",
+              "Blijft makkelijk hangen in de markt"
+            ],
+            "highlightFooter": "Met een onderscheidende naam geef je jouw bouwbedrijf een stevige voorsprong."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Wat kenmerkt een goede bouwbedrijf naam?",
+                "body": "Een sterke naam voor een bouwbedrijf straalt betrouwbaarheid en vakmanschap uit. Kies woorden die passen bij jouw visie en doelgroep.",
+                "bullets": [
+                  {
+                    "label": "Herkenbaar",
+                    "text": "Klanten onthouden je naam sneller als deze direct duidelijk maakt wat je doet."
+                  },
+                  {
+                    "label": "Tijdloos",
+                    "text": "Een naam die niet snel uit de mode raakt en je jarenlang kunt gebruiken."
+                  }
+                ]
+              },
+              {
+                "title": "Inspiratie voor jouw branche",
+                "body": "Of je nu een specialist bent in renovatie, nieuwbouw of onderhoud, de juiste naam laat jouw expertise zien.",
+                "bullets": [
+                  {
+                    "label": "Duidelijk",
+                    "text": "Een naam die jouw diensten of aanpak weerspiegelt."
+                  },
+                  {
+                    "label": "Lokaal of landelijk",
+                    "text": "Voeg eventueel je regio toe voor extra herkenning."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Bedenk direct jouw bouwbedrijf naam",
+              "placeholder": "Vul een bouwstijl, regio of kernwoord in"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Bouwbedrijf naam",
+          "intro": [
+            "Een goede domeinnaam helpt jouw bouwbedrijf om online gevonden te worden en straalt professionaliteit uit.",
+            "Kies een naam die zowel vertrouwen opwekt als makkelijk te onthouden is voor klanten."
+          ],
+          "featureList": [
+            "Kort en krachtig, zodat de naam blijft hangen",
+            "Direct passend bij de bouwsector",
+            "Uniek binnen jouw regio of specialisatie"
+          ],
+          "extensionsIntro": "Voor bouwbedrijven zijn domeinextensies zoals .nl, .com en .eu populair. Ze passen goed bij bedrijven die lokaal of internationaal willen werken.",
+          "extensionsOutro": "Kies altijd een domeinextensie die jouw doelgroep aanspreekt en het beste past bij jouw bouwbedrijf.",
+          "examplesIntro": "Voorbeelden van domeinnamen voor bouwbedrijven:"
+        }
+      }
+    }
+  },
+  {
+    "id": "restaurant",
+    "slug": "restaurant",
+    "niche": "Restaurant",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Restaurant"
+      },
+      "examples": {
+        "prompts": [
+          "Italiaans familierestaurant in Amsterdam",
+          "Modern vegan restaurant met lokaal menu",
+          "Sfeervol tapasrestaurant voor groepen",
+          "Duurzaam lunchrestaurant in Rotterdam"
+        ],
+        "suggestions": [
+          "Smakenrijk",
+          "Tafeltijd",
+          "Proeflokaal",
+          "DinerDomein",
+          "KeukenKunst",
+          "Savoro",
+          "Eetbeleving",
+          "GastroVriend",
+          "Bordvol",
+          "Smulhuis",
+          "Culinova",
+          "LunchLounge",
+          "MenuMakers",
+          "EtenEnzo",
+          "Smaakzaak"
+        ],
+        "exampleName": {
+          "tld": ".nl",
+          "benefits": [
+            "Blijft hangen door Nederlandse uitstraling",
+            "Spreekt gasten direct aan binnen de horeca"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].nl",
+          "www.[merknaam + restaurant].com",
+          "www.[merknaam + stad].store"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede restaurantnaam zet direct de toon voor de culinaire beleving die je biedt. Of je nu een nieuw concept lanceert of je vaste stek wilt hernoemen, de juiste naam maakt het verschil.",
+            "benefits": [
+              "Maakt meteen duidelijk wat je gasten kunnen verwachten",
+              "Blijft eenvoudig hangen bij terugkerende bezoekers",
+              "Helpt jouw restaurant zich te onderscheiden",
+              "Geeft je menukaart een eigen gezicht",
+              "Werkt goed op sociale media en mond-tot-mondreclame",
+              "Sluit aan bij jouw keuken of specialiteit"
+            ],
+            "highlightIntro": "Een Restaurant naam kiezen vraagt om een goede balans tussen sfeer en herkenbaarheid. Kies voor:",
+            "highlightList": [
+              "Originele woorden met culinaire associaties",
+              "Namen die de ervaring van jouw keuken weerspiegelen",
+              "Een toon die past bij je doelgroep en locatie"
+            ],
+            "highlightFooter": "Jouw restaurant verdient een naam die gasten uitnodigt om aan tafel te schuiven."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Waarom een onderscheidende restaurantnaam belangrijk is",
+                "body": "Met een opvallende naam ben je zichtbaar op reserveringssites en Google. Het geeft direct een indruk van sfeer en keuken voor potentiële gasten.",
+                "bullets": [
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "Gasten onthouden en delen jouw naam sneller"
+                  },
+                  {
+                    "label": "Concurrentievoordeel",
+                    "text": "Val op tussen andere eetgelegenheden in de regio"
+                  }
+                ]
+              },
+              {
+                "title": "Kies een naam die past bij jouw concept",
+                "body": "Of je nu focust op fine dining, lunch of streetfood, de juiste naam ondersteunt jouw merk en trekt de juiste gasten.",
+                "bullets": [
+                  {
+                    "label": "Sfeervol",
+                    "text": "Een naam die de beleving versterkt"
+                  },
+                  {
+                    "label": "Toegankelijk",
+                    "text": "Duidelijk voor zowel lokale als nieuwe bezoekers"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind jouw perfecte restaurantnaam",
+              "placeholder": "Typ een keuken, sfeer of concept"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Restaurant naam",
+          "intro": [
+            "Een krachtige restaurantnaam zegt iets over je keuken en sfeer.",
+            "Kies iets dat gasten aanspreekt en makkelijk te onthouden is."
+          ],
+          "featureList": [
+            "Uitspreekbaar voor iedere gast",
+            "Herkenbaar in menukaarten en online",
+            "Sluit aan bij jouw gastronomisch concept"
+          ],
+          "extensionsIntro": "Domeinextensies zoals .nl, .com of .store passen goed bij restaurants. Ze maken het makkelijk voor gasten om je online te vinden.",
+          "extensionsOutro": "Een slimme keuze voor je domeinnaam ondersteunt zowel je online aanwezigheid als je uitstraling in de horeca.",
+          "examplesIntro": "Voorbeelden van effectieve restaurant domeinen zijn:"
+        }
+      }
+    }
+  },
+  {
+    "id": "fitness business",
+    "slug": "fitness bedrijf",
+    "niche": "Fitness bedrijf",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Fitness bedrijf"
+      },
+      "examples": {
+        "prompts": [
+          "Korte en krachtige fitness bedrijfsnaam",
+          "Originele naam voor personal training studio",
+          "Naam voor online fitness coaching platform",
+          "Motiverende bedrijfsnaam voor sportclub"
+        ],
+        "suggestions": [
+          "FitVibes",
+          "Sportiva",
+          "EnergieLab",
+          "PowerCrew",
+          "BodyFlow",
+          "Trainwise",
+          "MoveMakers",
+          "Vitalique",
+          "Gymspire",
+          "ActiefPlus",
+          "Flexion",
+          "PulsePoint",
+          "CoreNation",
+          "Fitment",
+          "Coachify"
+        ],
+        "exampleName": {
+          "tld": ".nl",
+          "benefits": [
+            "De naam FitVibes blijft makkelijk hangen",
+            "Past goed bij een Nederlands fitness bedrijf"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].store",
+          "www.[merknaam + fitness].nl",
+          "www.[merknaam + coaching].pro"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een pakkende naam voor je fitness bedrijf legt meteen de basis voor vertrouwen, energie en herkenbaarheid. Of je nu een sportschool opent, een online coachingdienst start of een boutique studio lanceert, de juiste naam zet je merk direct kracht bij.",
+            "benefits": [
+              "Versterkt de professionele uitstraling van je fitness diensten",
+              "Maakt je bedrijf direct herkenbaar voor sportliefhebbers",
+              "Geeft energie en motivatie aan je klanten",
+              "Helpt je te onderscheiden in een competitieve markt",
+              "Ondersteunt branding en marketing van je studio of gym",
+              "Groeipotentieel wanneer je diensten uitbreidt"
+            ],
+            "highlightIntro": "Een sterke fitness bedrijfsnaam doet meer dan alleen opvallen:",
+            "highlightList": [
+              "Slaat een brug naar jouw doelgroep",
+              "Blijft makkelijk in het hoofd hangen",
+              "Onderstreept jouw visie op gezondheid en beweging"
+            ],
+            "highlightFooter": "Met de juiste naam geef je jouw fitness bedrijf een vliegende start voor blijvende groei."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Laat je inspireren door fitness en lifestyle",
+                "body": "Kies woorden en klanken die passen bij dynamiek, kracht en beweging. Denk aan termen die sport, energie en vitaliteit uitstralen.",
+                "bullets": [
+                  {
+                    "label": "Actief",
+                    "text": "Gebruik actiegerichte namen voor een sportieve indruk"
+                  },
+                  {
+                    "label": "Motiverend",
+                    "text": "Een positieve naam inspireert klanten om te starten met trainen"
+                  }
+                ]
+              },
+              {
+                "title": "Bouw aan vertrouwen en professionaliteit",
+                "body": "Klanten kiezen graag voor een fitness bedrijf dat betrouwbaar klinkt. Kies daarom een naam die professioneel en toegankelijk is.",
+                "bullets": [
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "Een duidelijke naam onthouden klanten sneller"
+                  },
+                  {
+                    "label": "Breed inzetbaar",
+                    "text": "Geschikt voor uitbreiding of nieuwe diensten"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind jouw fitness bedrijfsnaam",
+              "placeholder": "Typ hier jouw fitness idee of doelgroep"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Fitness bedrijf naam",
+          "intro": [
+            "De naam van je fitness bedrijf is het startpunt van jouw merk. Het moet uitnodigen tot bewegen en vertrouwen uitstralen.",
+            "Of je nu focust op persoonlijke coaching of groepslessen, een unieke naam helpt je op te vallen."
+          ],
+          "featureList": [
+            "Korte krachttermen voor directe impact",
+            "Herkenbaar en makkelijk uit te spreken",
+            "Sluit aan bij moderne fitness trends"
+          ],
+          "extensionsIntro": "Voor een fitness bedrijf zijn domeinen als .nl, .store of .pro populair omdat ze zowel professioneel als sportief ogen.",
+          "extensionsOutro": "Kies een extensie die aansluit bij jouw diensten en doelgroep.",
+          "examplesIntro": "Zo kun je jouw fitness naam combineren met een passende domeinnaam:"
+        }
+      }
+    }
+  },
+  {
+    "id": "education business",
+    "slug": "opleidings bedrijf",
+    "niche": "Opleidings bedrijf",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Opleidings bedrijf"
+      },
+      "examples": {
+        "prompts": [
+          "Korte naam voor een trainingsinstituut",
+          "Creatieve naam voor digitale cursussen",
+          "Professionele naam voor certificeringstrajecten",
+          "Merknaam voor persoonlijke ontwikkelingstraining"
+        ],
+        "suggestions": [
+          "LerenCentrum",
+          "VaardigNu",
+          "ProTrain",
+          "SkillGroei",
+          "CertiPoint",
+          "Leermeesters",
+          "Academix",
+          "TalentHub",
+          "NextStep",
+          "EduProfs",
+          "OntwikkelWijzer",
+          "CursusDirect",
+          "KennisBoost",
+          "Trainwise",
+          "OpleidNet"
+        ],
+        "exampleName": {
+          "tld": ".academy",
+          "benefits": [
+            "De naam klinkt professioneel en is makkelijk te onthouden",
+            "De TLD academy geeft direct het opleidingskarakter aan"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].academy",
+          "www.[merknaam + training].nl",
+          "www.[merknaam + opleiding].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede naam voor jouw opleidings bedrijf is de eerste stap naar herkenbaarheid en vertrouwen. Of je nu trainingen aanbiedt voor bedrijven of consumenten begeleidt in hun leerproces, een passende naam maakt het verschil.",
+            "benefits": [
+              "Maakt direct duidelijk waar je voor staat",
+              "Slaat aan bij professionals en cursisten",
+              "Past bij verschillende soorten opleidingen",
+              "Geeft je bedrijf een professionele uitstraling",
+              "Blijft hangen bij toekomstige klanten",
+              "Ondersteunt online vindbaarheid"
+            ],
+            "highlightIntro": "Wat maakt een opleidings bedrijfsnaam sterk en passend?",
+            "highlightList": [
+              "Reflecteert het aanbod of specialisme",
+              "Wekt vertrouwen bij zowel bedrijven als particulieren",
+              "Is eenvoudig uit te spreken en te onthouden"
+            ],
+            "highlightFooter": "Met de juiste naam positioneer je jouw opleidings bedrijf vanaf het begin als een betrouwbare partner in groei en ontwikkeling."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Waarom is een goede naam zo belangrijk?",
+                "body": "Je naam is vaak het eerste wat klanten zien. In de wereld van opleidingen wil je met je naam direct herkenning, vertrouwen en nieuwsgierigheid opwekken.",
+                "bullets": [
+                  {
+                    "label": "Eerste indruk",
+                    "text": "Een sterke naam blijft hangen en nodigt uit tot contact."
+                  },
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "Klanten weten direct wat je aanbiedt."
+                  }
+                ]
+              },
+              {
+                "title": "Tips voor het kiezen van een naam",
+                "body": "Denk aan je doelgroep, het type opleiding en je specialisme. Een naam die aansluit bij je missie maakt je vindbaar en onderscheidend.",
+                "bullets": [
+                  {
+                    "label": "Duidelijkheid",
+                    "text": "Kies woorden die passen bij leren en groei."
+                  },
+                  {
+                    "label": "Toekomstbestendig",
+                    "text": "Zorg dat je naam meegroeit met je aanbod."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind een opleidings bedrijfsnaam die blijft hangen",
+              "placeholder": "Start met een kernwoord, specialisme of doelgroep"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Opleidings bedrijf naam",
+          "intro": [
+            "Een krachtige naam helpt je opleidings bedrijf om op te vallen in een concurrerende markt.",
+            "Kies een naam die helder, professioneel en makkelijk te onthouden is, zodat potentiële klanten je snel vinden."
+          ],
+          "featureList": [
+            "Toont je expertise en specialisatie",
+            "Is kort en pakkend",
+            "Past bij de branche en doelgroep"
+          ],
+          "extensionsIntro": "Domeinextensies zoals academy, training of nl laten direct zien waarmee je bedrijf zich onderscheidt.",
+          "extensionsOutro": "Kies een domeinnaam die je opleidings bedrijf moeiteloos verbindt aan je diensten.",
+          "examplesIntro": "Hier zijn een paar suggesties voor sterke domeinnamen binnen de opleidingswereld:"
+        }
+      }
+    }
+  },
+  {
+    "id": "media company",
+    "slug": "media bedrijf",
+    "niche": "Media bedrijf",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Media bedrijf"
+      },
+      "examples": {
+        "prompts": [
+          "Korte pakkende naam voor mediabedrijf",
+          "Innovatieve naam voor online videoplatform",
+          "Professionele naam voor contentbureau",
+          "Creatieve naam voor podcast studio"
+        ],
+        "suggestions": [
+          "Mediova",
+          "Contentster",
+          "VizionLab",
+          "StreamNova",
+          "Publixion",
+          "EchoMedia",
+          "StudioFuze",
+          "NexCast",
+          "FrameStory",
+          "Podiact",
+          "Clipwise",
+          "StoryGrid",
+          "Viewly",
+          "Narratech",
+          "PulseMedia"
+        ],
+        "exampleName": {
+          "tld": ".studio",
+          "benefits": [
+            "Blijft snel hangen en klinkt creatief",
+            "De .studio extensie past perfect bij mediaproductie"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].studio",
+          "www.[merknaam + media].nl",
+          "www.[merknaam + content].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een opvallende naam is het startpunt van elk sterk media bedrijf. Je naam bepaalt hoe mensen je vinden en onthouden, zowel online als offline.",
+            "benefits": [
+              "Zorgt voor directe herkenning bij je doelgroep",
+              "Makkelijk vindbaar op sociale media en platforms",
+              "Past bij de creatieve wereld van media en content",
+              "Helpt vertrouwen opbouwen met opdrachtgevers en partners",
+              "Laat zien waar je bedrijf voor staat",
+              "Maakt het eenvoudig om je bedrijf uit te breiden"
+            ],
+            "highlightIntro": "Waar moet een goede mediabedrijfsnaam aan voldoen?",
+            "highlightList": [
+              "Klinkt professioneel en creatief",
+              "Is makkelijk uit te spreken en te onthouden",
+              "Geeft duidelijk je focus of specialisatie aan"
+            ],
+            "highlightFooter": "Neem de tijd om een naam te kiezen die jouw mediabedrijf echt onderscheidt."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Waarom de juiste naam kiezen belangrijk is",
+                "body": "In de mediawereld draait alles om zichtbaarheid en communicatie. Je naam is het eerste dat mensen onthouden.",
+                "bullets": [
+                  {
+                    "label": "Eerste indruk",
+                    "text": "Een sterke naam wekt direct vertrouwen en nieuwsgierigheid."
+                  },
+                  {
+                    "label": "Online vindbaarheid",
+                    "text": "Creëer een naam die goed past bij een domein en sociale media."
+                  }
+                ]
+              },
+              {
+                "title": "Tips voor creatieve mediabedrijfnamen",
+                "body": "Combineer woorden uit media, content of techniek voor een originele naam. Denk ook aan korte namen die prettig klinken.",
+                "bullets": [
+                  {
+                    "label": "Combineer termen",
+                    "text": "Voeg bijvoorbeeld media of studio toe voor herkenbaarheid."
+                  },
+                  {
+                    "label": "Houd het eenvoudig",
+                    "text": "Een korte naam is makkelijker te onthouden en uit te spreken."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Probeer direct jouw mediabedrijfsnaam",
+              "placeholder": "Vul een idee of kernwoord in"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Media bedrijf naam",
+          "intro": [
+            "Een sterke mediabedrijfsnaam moet opvallen en makkelijk blijven hangen. Je naam ondersteunt je imago en maakt online vindbaar zijn eenvoudiger.",
+            "Kies een naam die zowel in het Nederlands als internationaal goed klinkt."
+          ],
+          "featureList": [
+            "Kort en krachtig, zodat deze goed klinkt op elk medium",
+            "Uniek binnen de mediawereld en makkelijk te vinden",
+            "Past bij jouw specialisatie zoals video, audio of publicaties"
+          ],
+          "extensionsIntro": "Voor mediabedrijven zijn domeinextensies als .studio, .tv, .nl en .com populair. Kies een extensie die je doelgroep herkent en die past bij je aanbod.",
+          "extensionsOutro": "Maak je keuze ook afhankelijk van je ambities: internationaal, creatief of juist lokaal.",
+          "examplesIntro": "Hier zijn voorbeelden hoe je merknaam met een passende domeinextensie een sterk geheel vormt:"
+        }
+      }
+    }
+  },
+  {
+    "id": "photography business",
+    "slug": "fotografie bedrijf",
+    "niche": "Fotografie bedrijf",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Fotografie bedrijf"
+      },
+      "examples": {
+        "prompts": [
+          "Frisse naam voor portretfotografie studio",
+          "Creatieve bedrijfsnaam voor eventfotograaf",
+          "Professionele merknaam voor bruidsfotografie",
+          "Unieke naam voor fotografiebedrijf met focus op merken"
+        ],
+        "suggestions": [
+          "BeeldSprong",
+          "PortretPunt",
+          "LensLokaal",
+          "KlikTijd",
+          "StudioMoment",
+          "FocalFrame",
+          "ZichtVerhaal",
+          "FotoGloed",
+          "KaderKunst",
+          "BlikVang",
+          "ShutterBureau",
+          "Lichtlijn",
+          "PixelPuur",
+          "BeeldBaken",
+          "FocusFactor"
+        ],
+        "exampleName": {
+          "tld": ".studio",
+          "benefits": [
+            "Blijft makkelijk hangen bij klanten",
+            "Geeft direct een creatieve uitstraling"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].studio",
+          "www.[merknaam + fotografie].nl",
+          "www.[merknaam + city].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een treffende naam voor jouw fotografie bedrijf maakt direct duidelijk waar je voor staat. Het helpt je opvallen in een creatieve markt en spreekt direct jouw ideale klanten aan.",
+            "benefits": [
+              "Trek meer klanten aan met een herkenbare naam",
+              "Blijf hangen in het hoofd van bezoekers",
+              "Laat direct jouw fotografiestijl zien",
+              "Bouw vertrouwen op met een professionele uitstraling",
+              "Val op in zoekresultaten en social media",
+              "Versterk jouw merkwaarde vanaf het eerste contact"
+            ],
+            "highlightIntro": "Waarom een goede naam zo belangrijk is voor een fotografie bedrijf:",
+            "highlightList": [
+              "Een pakkende naam blijft hangen",
+              "Duidelijke associatie met fotografie",
+              "Geeft jouw studio of stijl karakter"
+            ],
+            "highlightFooter": "Met de juiste naam maak je een blijvende indruk en trek je precies de klanten aan die passen bij jouw fotografiebedrijf."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Herkenbaarheid in elk beeld",
+                "body": "Een herkenbare bedrijfsnaam straalt meteen professionaliteit uit en maakt het makkelijk voor klanten om je te onthouden.",
+                "bullets": [
+                  {
+                    "label": "Eerste indruk",
+                    "text": "Klanten kiezen sneller voor een naam die vertrouwen schept"
+                  },
+                  {
+                    "label": "Verschil maken",
+                    "text": "Val op tussen andere fotografen en studios in jouw regio"
+                  }
+                ]
+              },
+              {
+                "title": "Kies een naam die bij jouw stijl past",
+                "body": "Of je nu portretfoto’s, bruiloften of bedrijfsbeelden maakt, de naam van je fotografiebedrijf moet direct jouw sfeer en doelgroep aanspreken.",
+                "bullets": [
+                  {
+                    "label": "Creatieve kracht",
+                    "text": "Een unieke naam ondersteunt jouw artistieke visie"
+                  },
+                  {
+                    "label": "Helderheid",
+                    "text": "Klanten weten direct wat ze van je kunnen verwachten"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Bedenk direct jouw fotografie bedrijfsnaam",
+              "placeholder": "Omschrijf jouw stijl, doelgroep of specialisatie"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Fotografie bedrijf naam",
+          "intro": [
+            "Een krachtige naam voor je fotografie bedrijf is duidelijk en blijft makkelijk hangen.",
+            "Het helpt je onderscheiden in een markt waar persoonlijkheid en stijl centraal staan."
+          ],
+          "featureList": [
+            "Kort en makkelijk uit te spreken",
+            "Duidelijke verwijzing naar fotografie of beeld",
+            "Uniek en goed te onthouden"
+          ],
+          "extensionsIntro": "Bij fotografiebedrijven zijn vooral creatieve en professionele domeinextensies populair. Denk aan een .studio of .nl voor lokale herkenbaarheid.",
+          "extensionsOutro": "Kies altijd voor een domein dat past bij jouw uitstraling en doelgroep. Daarmee zet je direct de toon.",
+          "examplesIntro": "Zo kunnen slimme domeinen voor fotografiebedrijven eruitzien:"
+        }
+      }
+    }
+  },
+  {
+    "id": "blog",
+    "slug": "blog",
+    "niche": "Blog",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Blog"
+      },
+      "examples": {
+        "prompts": [
+          "Frisse naam voor een reisblog",
+          "Creatieve foodblog naam voor gezinnen",
+          "Korte naam voor persoonlijke blog",
+          "SEO-vriendelijke techblog naam"
+        ],
+        "suggestions": [
+          "Tekstnest",
+          "Blogster",
+          "Nieuwslicht",
+          "InspireerMij",
+          "Trendverhaal",
+          "Penpunt",
+          "NicheNotities",
+          "Verhaalvinder",
+          "Woordenwereld",
+          "Blogwijs",
+          "Dailyniche",
+          "Vondstblog",
+          "Contentkroniek",
+          "Bladzijde",
+          "Schrijfpad"
+        ],
+        "exampleName": {
+          "tld": ".blog",
+          "benefits": [
+            "Blijft eenvoudig hangen bij lezers",
+            "De .blog extensie laat direct zien waar de site over gaat"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].blog",
+          "www.[merknaam + niche].com",
+          "www.[merknaam + regio].nl"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede Blog naam is de basis voor je online aanwezigheid. Het zorgt ervoor dat lezers jouw platform herkennen en onthouden, en het draagt bij aan vindbaarheid en groei.",
+            "benefits": [
+              "Maakt direct duidelijk waar je blog over gaat",
+              "Versterkt je merk en uitstraling",
+              "Biedt herkenning voor vaste en nieuwe lezers",
+              "Draagt bij aan betere vindbaarheid in zoekmachines",
+              "Geeft ruimte om te groeien binnen je niche",
+              "Motiveert je om consequent te schrijven"
+            ],
+            "highlightIntro": "Sterke Blog namen delen een aantal kenmerken:",
+            "highlightList": [
+              "Ze zijn makkelijk te onthouden",
+              "Ze passen bij het onderwerp van je blog",
+              "Ze zijn eenvoudig uit te spreken"
+            ],
+            "highlightFooter": "Laat je persoonlijkheid en stijl terugkomen in de naam van je blog."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Waar moet een goede Blog naam aan voldoen?",
+                "body": "De juiste naam sluit aan bij je doelgroep, is niet te lang en blijft in het hoofd hangen. Denk na over de toon die je wilt zetten met je blog.",
+                "bullets": [
+                  {
+                    "label": "Duidelijkheid",
+                    "text": "Laat direct zien waar je blog over gaat"
+                  },
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "Een unieke naam helpt je opvallen tussen andere blogs"
+                  }
+                ]
+              },
+              {
+                "title": "Kies een naam die ook op social media werkt",
+                "body": "Controleer of de naam ook beschikbaar is op sociale platformen. Een consistente naam zorgt voor een sterkere online identiteit.",
+                "bullets": [
+                  {
+                    "label": "Beschikbaarheid",
+                    "text": "Kijk of je naam vrij is op populaire kanalen"
+                  },
+                  {
+                    "label": "Uniformiteit",
+                    "text": "Houd alles eenvoudig en herkenbaar voor je publiek"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Probeer direct een unieke Blog naam",
+              "placeholder": "Bijvoorbeeld: MamaReist, TechTips, GezondGroen"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Blog naam",
+          "intro": [
+            "Een sterke Blog naam valt op en nodigt uit om te lezen.",
+            "Kies voor een naam die blijft hangen en makkelijk te delen is."
+          ],
+          "featureList": [
+            "Kort en krachtig, zonder ingewikkelde woorden",
+            "Gericht op het onderwerp van je blog",
+            "Past bij de toon en het karakter van jouw content"
+          ],
+          "extensionsIntro": "Voor blogs zijn extensies zoals .blog, .com of .nl duidelijk en vertrouwd.",
+          "extensionsOutro": "Kies een extensie die aansluit bij je doelgroep en bereik.",
+          "examplesIntro": "Voorbeelden van effectieve Blog domeinen:"
+        }
+      }
+    }
+  },
+  {
+    "id": "festival",
+    "slug": "festival",
+    "niche": "Festival",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Festival"
+      },
+      "examples": {
+        "prompts": [
+          "Festivalnaam gericht op elektronische muziek",
+          "Creatieve naam voor zomerse buitenfestivals",
+          "Unieke festivalnaam met internationale uitstraling",
+          "Suggestie voor familievriendelijk festival"
+        ],
+        "suggestions": [
+          "LineUpLovers",
+          "BeleefBuiten",
+          "GrooveGras",
+          "FestivalFlair",
+          "VibeValley",
+          "TicketTribe",
+          "OpenAirMagie",
+          "PulsePark",
+          "EventEcho",
+          "SpectraFest",
+          "RitmoRijk",
+          "SpotlightField",
+          "StageSphere",
+          "SoundScenery",
+          "FestiNova"
+        ],
+        "exampleName": {
+          "tld": ".nl",
+          "benefits": [
+            "Makkelijk te onthouden en uit te spreken",
+            "Past goed bij Nederlandse festivals"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].com",
+          "www.[merknaam + festival].nl",
+          "www.[merknaam + lineup].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede festivalnaam is het begin van een onvergetelijke festivalervaring. De juiste naam straalt sfeer uit, trekt de juiste bezoekers en blijft hangen dankzij originaliteit.",
+            "benefits": [
+              "Val direct op in een drukke festivalzomer",
+              "Laat je line-up en beleving spreken via de naam",
+              "Creëer een merk dat mensen willen delen",
+              "Stimuleer ticketverkoop met een aansprekende naam",
+              "Geef je festival een sterke uitstraling",
+              "Maak het vinden en onthouden makkelijker"
+            ],
+            "highlightIntro": "Een sterke festivalnaam maakt nieuwsgierig en geeft direct het gevoel van samen beleven. Zo vind je de juiste:",
+            "highlightList": [
+              "Laat de sfeer en muziekstijl terugkomen in de naam",
+              "Kies woorden die makkelijk over de tong rollen",
+              "Zorg voor herkenbaarheid en uniek karakter"
+            ],
+            "highlightFooter": "Verbind je festivalpubliek vanaf het allereerste moment met een naam die blijft boeien."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Wat maakt een festivalnaam krachtig",
+                "body": "Het draait om beleving, herkenning en het gevoel dat bezoekers direct krijgen bij het zien van je naam.",
+                "bullets": [
+                  {
+                    "label": "Sfeervol",
+                    "text": "Een goede festivalnaam roept beelden op van muziek, sfeer en samen zijn."
+                  },
+                  {
+                    "label": "Uniek",
+                    "text": "Je wilt een naam die niet verward wordt met andere festivals."
+                  }
+                ]
+              },
+              {
+                "title": "Denk aan je doelgroep",
+                "body": "Bepaal wat jouw bezoekers aanspreekt qua muziekstijl, locatie of thema en laat dit terugkomen in de naam.",
+                "bullets": [
+                  {
+                    "label": "Jong en creatief",
+                    "text": "Kies voor vrolijke, speelse of verrassende namen."
+                  },
+                  {
+                    "label": "Breed publiek",
+                    "text": "Houd de naam toegankelijk en makkelijk te onthouden."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Vind direct jouw festivalnaam",
+              "placeholder": "Bijvoorbeeld: ZomerGroove Fest"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Festival naam",
+          "intro": [
+            "Een goede festival domeinnaam zorgt ervoor dat bezoekers je makkelijk online vinden en onthouden.",
+            "Met de juiste combinatie van naam en domein maak je jouw evenement nog aantrekkelijker."
+          ],
+          "featureList": [
+            "Kies een naam die uitstraalt wat je festival uniek maakt",
+            "Gebruik korte en pakkende termen zonder ingewikkelde spelling",
+            "Laat locatie of genre subtiel terugkomen in de domeinnaam"
+          ],
+          "extensionsIntro": "Voor festivals zijn domeinen als .nl, .com en .store populair omdat ze direct herkenbaar zijn voor je doelgroep.",
+          "extensionsOutro": "Een creatieve domeinextensie kan zorgen voor extra originele uitstraling, zolang deze aansluit bij jouw concept.",
+          "examplesIntro": "Zo passen creatieve domeinen bij festivalnamen:"
+        }
+      }
+    }
+  },
+  {
+    "id": "nightclub",
+    "slug": "nachtclub",
+    "niche": "Nachtclub",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Nachtclub"
+      },
+      "examples": {
+        "prompts": [
+          "Creatieve naam voor een trendy nachtclub",
+          "Nachtclubnaam voor een locatie in Rotterdam",
+          "Nachtclub met elektronische muziek en dj’s",
+          "Unieke naam voor een exclusieve nachtclub"
+        ],
+        "suggestions": [
+          "PulseRoom",
+          "ClubNova",
+          "NoirNights",
+          "VibeLounge",
+          "Lumen",
+          "NeonDistrict",
+          "EchoClub",
+          "MidnightCity",
+          "Fuzion",
+          "Aura",
+          "AfterGlow",
+          "NightSphere",
+          "GroovePalace",
+          "Tempo",
+          "Bassline"
+        ],
+        "exampleName": {
+          "tld": ".com",
+          "benefits": [
+            "De naam PulseRoom blijft hangen en klinkt energiek",
+            "De TLD club geeft direct de juiste sfeer weer"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].com",
+          "www.[merknaam + nightlife].nl",
+          "www.[merknaam + city].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede nachtclubnaam maakt direct indruk en roept de juiste sfeer op. De naam is het beginpunt van jouw locatie’s beleving en trekt feestgangers binnen.",
+            "benefits": [
+              "Blijft hangen bij bezoekers",
+              "Onderstreept het unieke karakter van je club",
+              "Past bij de muziekstijl en doelgroep",
+              "Zorgt voor herkenning in de stad",
+              "Makkelijk te onthouden en uit te spreken",
+              "Geschikt voor promotie en socials"
+            ],
+            "highlightIntro": "Waarom een sterke naam belangrijk is voor jouw nachtclub:",
+            "highlightList": [
+              "Valt op in het nachtleven",
+              "Geeft direct sfeer en beleving mee",
+              "Maakt je club vindbaar en herkenbaar"
+            ],
+            "highlightFooter": "Met een slimme naam krijgt jouw nachtclub meteen karakter en aantrekkingskracht."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Hoe bedenk je een nachtclubnaam",
+                "body": "Denk aan de beleving die je wilt bieden, het muziekgenre en de uitstraling van je locatie. Combineer woorden die energie, sfeer en exclusiviteit oproepen.",
+                "bullets": [
+                  {
+                    "label": "Sfeervol",
+                    "text": "Kies woorden die direct het nachtleven oproepen"
+                  },
+                  {
+                    "label": "Kort en krachtig",
+                    "text": "Een korte naam blijft sneller in het geheugen hangen"
+                  }
+                ]
+              },
+              {
+                "title": "Niche en doelgroep bepalen",
+                "body": "Richt je naam op het soort bezoekers dat je wilt aanspreken. Is jouw club exclusief of juist toegankelijk, gericht op house of meer op urban beats?",
+                "bullets": [
+                  {
+                    "label": "Stijl",
+                    "text": "Sluit de naam aan bij het genre of thema"
+                  },
+                  {
+                    "label": "Regio",
+                    "text": "Verbind eventueel de club met de stad of wijk"
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Probeer direct een Nachtclub naam",
+              "placeholder": "Bijvoorbeeld: techno club in Amsterdam"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Nachtclub naam",
+          "intro": [
+            "De juiste naam zorgt dat jouw nachtclub direct opvalt in het nachtleven.",
+            "Een sterke naam ondersteunt marketing en blijft in het hoofd van feestgangers."
+          ],
+          "featureList": [
+            "Origineel, makkelijk uit te spreken en te onthouden",
+            "Past bij het karakter van jouw club",
+            "Werkt goed met een relevante domeinextensie"
+          ],
+          "extensionsIntro": "Voor nachtclubs zijn .com, .nl en .com populair, omdat ze direct herkenbaar zijn.",
+          "extensionsOutro": "Kies een domein dat past bij de uitstraling en doelgroep van jouw locatie.",
+          "examplesIntro": "Zo zou een unieke nachtclub domeinnaam eruit kunnen zien:"
+        }
+      }
+    }
+  },
+  {
+    "id": "event organization",
+    "slug": "evenement organisatie",
+    "niche": "Evenement organisatie",
+    "messages": {
+      "hero": {
+        "titleHighlight": "Evenement organisatie"
+      },
+      "examples": {
+        "prompts": [
+          "Creatieve naam voor zakelijke evenementen",
+          "Unieke naam voor event planning bureau",
+          "Professionele merknaam voor productie van events",
+          "Naam voor organisatie van publieksevenementen"
+        ],
+        "suggestions": [
+          "Eventique",
+          "MomentMakers",
+          "PlanMeesters",
+          "SparkEvents",
+          "Publika",
+          "StroomEvent",
+          "SamenKracht",
+          "BelevenisBureau",
+          "Festivoor",
+          "Organisa",
+          "NetwerkEvent",
+          "Collectief",
+          "LumenEvents",
+          "ImpactMoment",
+          "Eventure"
+        ],
+        "exampleName": {
+          "tld": "agency",
+          "benefits": [
+            "Klinkt direct als een professionele event partner",
+            "De extensie agency laat zien dat het om dienstverlening gaat"
+          ]
+        },
+        "domainPatterns": [
+          "www.[merknaam].agency",
+          "www.[merknaam + evenementen].nl",
+          "www.[merknaam + events].com"
+        ]
+      },
+      "sections": {
+        "longForm": {
+          "left": {
+            "intro": "Een goede naam voor je evenementenorganisatie is het begin van elk succesvol evenement. Je naam straalt uit hoe creatief, betrouwbaar en professioneel je werkt. Kies een naam die blijft hangen en vertrouwen wekt bij opdrachtgevers en deelnemers.",
+            "benefits": [
+              "Het trekt direct de juiste opdrachtgevers aan",
+              "Makkelijk te onthouden bij netwerken of mond-tot-mondreclame",
+              "Geeft een professioneel imago aan je organisatie",
+              "Laat je onderscheiden in een drukke markt",
+              "Ondersteunt je uitstraling tijdens promotie",
+              "Geeft meteen duidelijkheid over je branche"
+            ],
+            "highlightIntro": "Waar moet je op letten bij het kiezen van een naam voor je evenementenorganisatie?",
+            "highlightList": [
+              "Duidelijkheid voor zowel zakelijke als publieke opdrachtgevers",
+              "Creativiteit zodat je naam blijft hangen",
+              "Makkelijk uit te spreken en te spellen"
+            ],
+            "highlightFooter": "Met een sterke naam bouw je sneller vertrouwen op en groeit je klantenkring sneller door herkenning."
+          },
+          "right": {
+            "blocks": [
+              {
+                "title": "Kies een naam die straalt",
+                "body": "De beste namen voor evenementenorganisaties zijn kort, helder en makkelijk uit te spreken. Zo maak je direct indruk bij de eerste kennismaking.",
+                "bullets": [
+                  {
+                    "label": "Korte namen",
+                    "text": "Zijn makkelijker te onthouden en door te geven."
+                  },
+                  {
+                    "label": "Herkenbaarheid",
+                    "text": "De naam laat direct zien wat je doet."
+                  }
+                ]
+              },
+              {
+                "title": "Denk aan je doelgroep",
+                "body": "Of je nu zakelijke klanten of publieksevents organiseert, je naam moet aansluiten bij je doelgroep en hun verwachtingen.",
+                "bullets": [
+                  {
+                    "label": "Professioneel",
+                    "text": "Zakelijke events vragen om een betrouwbare uitstraling."
+                  },
+                  {
+                    "label": "Creatief",
+                    "text": "Voor festivals of publiek past een energieke naam beter."
+                  }
+                ]
+              },
+              {
+                "title": "Controleer je domeinnaam",
+                "body": "Een goede naam is pas echt sterk met een bijpassend domein. Controleer of jouw naam nog beschikbaar is in de juiste extensie.",
+                "bullets": [
+                  {
+                    "label": "Beschikbaarheid",
+                    "text": "Check altijd of het domein nog vrij is."
+                  },
+                  {
+                    "label": "Juiste extensie",
+                    "text": "Kies bijvoorbeeld .nl of .agency voor herkenbaarheid."
+                  }
+                ]
+              }
+            ],
+            "cta": {
+              "title": "Start met brainstormen voor jouw evenementenorganisatie",
+              "placeholder": "Bijvoorbeeld: vernieuwende naam voor netwerk events"
+            }
+          }
+        },
+        "domainTips": {
+          "title": "Wat maakt een sterke Evenement organisatie naam",
+          "intro": [
+            "Een onderscheidende naam zorgt dat jouw evenementenorganisatie meteen opvalt.",
+            "Kies namen die vertrouwen geven en makkelijk blijven hangen bij opdrachtgevers en bezoekers."
+          ],
+          "featureList": [
+            "Kort en krachtig zodat je naam makkelijk blijft hangen",
+            "Duidelijk over de dienstverlening die je aanbiedt",
+            "Uniek zodat je je onderscheidt van andere bureaus"
+          ],
+          "extensionsIntro": "Voor evenementenorganisaties zijn domeinextensies als .nl, .com en .agency vaak geschikt. Ze maken direct duidelijk dat je professioneel werkt en hulp biedt bij events.",
+          "extensionsOutro": "Een bijpassende domeinextensie maakt je naam nog geloofwaardiger, zeker richting zakelijke opdrachtgevers.",
+          "examplesIntro": "Zo kunnen namen voor jouw evenementenorganisatie eruitzien:"
         }
       }
     }

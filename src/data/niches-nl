@@ -36,7 +36,9 @@
           "benefits": [
             "Gemakkelijk te onthouden en uit te spreken",
             "Internationaal herkenbaar voor zakelijke klanten"
-          ]
+          ],
+          "name": "BizNexus",
+          "price": 27
         },
         "domainPatterns": [
           "www.[merknaam].com",
@@ -167,11 +169,13 @@
           "IdeaMint"
         ],
         "exampleName": {
-          "tld": ".io",
+          "tld": ".com",
           "benefits": [
             "Korte en moderne uitstraling die bij startups past",
             "De .io extensie wordt vaak gebruikt in de techwereld"
-          ]
+          ],
+          "name": "PixelSprout",
+          "price": 28
         },
         "domainPatterns": [
           "www.[merknaam].io",
@@ -291,7 +295,9 @@
           "benefits": [
             "Korte naam die makkelijk blijft hangen",
             "De .io extensie is populair bij tech startups"
-          ]
+          ],
+          "name": "Cloudwise",
+          "price": 26
         },
         "domainPatterns": [
           "www.[merknaam].io",
@@ -407,11 +413,13 @@
           "Progrify"
         ],
         "exampleName": {
-          "tld": ".io",
+          "tld": ".app",
           "benefits": [
             "Makkelijk uitspreekbaar en modern",
             "De .io extensie sluit aan bij tech bedrijven"
-          ]
+          ],
+          "name": "Softwize",
+          "price": 11
         },
         "domainPatterns": [
           "www.[merknaam].io",
@@ -527,11 +535,13 @@
           "Secuvision"
         ],
         "exampleName": {
-          "tld": ".io",
+          "tld": ".tech",
           "benefits": [
             "Gemakkelijk te onthouden voor technologiebedrijven",
             "De .io extensie sluit goed aan bij innovatieve bedrijven"
-          ]
+          ],
+          "name": "Guardex",
+          "price": 13
         },
         "domainPatterns": [
           "www.[merknaam].tech",
@@ -651,7 +661,9 @@
           "benefits": [
             "De naam past perfect bij een digitale applicatie",
             "De .app extensie straalt direct technologie uit"
-          ]
+          ],
+          "name": "Appwise",
+          "price": 22
         },
         "domainPatterns": [
           "www.[merknaam].app",
@@ -771,7 +783,9 @@
           "benefits": [
             "De naam past direct bij kunstmatige intelligentie",
             "De .ai extensie versterkt de technologische uitstraling"
-          ]
+          ],
+          "name": "NeuralNest",
+          "price": 24
         },
         "domainPatterns": [
           "www.[merknaam].ai",
@@ -887,11 +901,13 @@
           "NovaWinkel"
         ],
         "exampleName": {
-          "tld": ".store",
+          "tld": ".shop",
           "benefits": [
             "Makkelijk te onthouden en uit te spreken",
             "De .store extensie sluit perfect aan bij het online winkelaanbod"
-          ]
+          ],
+          "name": "Shopelier",
+          "price": 22
         },
         "domainPatterns": [
           "www.[merknaam].store",
@@ -1007,11 +1023,13 @@
           "TrendyToko"
         ],
         "exampleName": {
-          "tld": ".store",
+          "tld": ".shop",
           "benefits": [
             "Makkelijk te onthouden voor terugkerende klanten",
             "De .store extensie benadrukt dat het om een echte winkel gaat"
-          ]
+          ],
+          "name": "Glowify",
+          "price": 29
         },
         "domainPatterns": [
           "www.[merknaam].shop",
@@ -1141,11 +1159,13 @@
           "WebCargo"
         ],
         "exampleName": {
-          "tld": ".store",
+          "tld": ".shop",
           "benefits": [
             "Deze naam is gemakkelijk te onthouden",
             "De .store extensie sluit perfect aan bij online verkoop"
-          ]
+          ],
+          "name": "Pakketpilot",
+          "price": 28
         },
         "domainPatterns": [
           "www.[merknaam].store",
@@ -1261,11 +1281,13 @@
           "Supplify"
         ],
         "exampleName": {
-          "tld": ".com",
+          "tld": ".shop",
           "benefits": [
             "Makkelijk herkenbaar en internationaal inzetbaar",
             "Sluit aan bij het wereldwijde bereik van Amazon"
-          ]
+          ],
+          "name": "Vastino",
+          "price": 22
         },
         "domainPatterns": [
           "www.[merknaam].store",
@@ -1381,11 +1403,13 @@
           "WarmWeefsel"
         ],
         "exampleName": {
-          "tld": ".store",
+          "tld": ".shop",
           "benefits": [
             "De naam klinkt vriendelijk en blijft goed hangen",
             "De .store TLD past perfect bij een Etsy winkel"
-          ]
+          ],
+          "name": "LiefdevolGemaakt",
+          "price": 18
         },
         "domainPatterns": [
           "www.[merknaam].store",
@@ -1505,7 +1529,9 @@
           "benefits": [
             "Herkenbaar als specialistisch marketingbureau",
             "De extensie past bij advies en diensten"
-          ]
+          ],
+          "name": "GroeiNest",
+          "price": 18
         },
         "domainPatterns": [
           "www.[merknaam].agency",
@@ -1621,11 +1647,13 @@
           "Launchlab"
         ],
         "exampleName": {
-          "tld": ".studio",
+          "tld": ".agency",
           "benefits": [
             "Blijft hangen bij creatieve opdrachtgevers",
             "De TLD studio past perfect bij webdesign"
-          ]
+          ],
+          "name": "Pixelvorm",
+          "price": 16
         },
         "domainPatterns": [
           "www.[merknaam].studio",
@@ -1745,7 +1773,9 @@
           "benefits": [
             "De naam sluit direct aan bij de adviesbranche",
             "De extensie toont professionele expertise"
-          ]
+          ],
+          "name": "Advista",
+          "price": 30
         },
         "domainPatterns": [
           "www.[merknaam].consulting",
@@ -1861,11 +1891,13 @@
           "Acquisimo"
         ],
         "exampleName": {
-          "tld": ".nl",
+          "tld": ".com",
           "benefits": [
             "Past perfect bij de Nederlandse vastgoedmarkt",
             "De naam is direct herkenbaar voor woningzoekenden"
-          ]
+          ],
+          "name": "HuizenPartner",
+          "price": 19
         },
         "domainPatterns": [
           "www.[merknaam].nl",
@@ -1981,11 +2013,13 @@
           "PureVast"
         ],
         "exampleName": {
-          "tld": ".nl",
+          "tld": ".services",
           "benefits": [
             "Nederlandse uitstraling past bij lokale schoonmaakdiensten",
             "De naam is eenvoudig te onthouden"
-          ]
+          ],
+          "name": "GlansPro",
+          "price": 29
         },
         "domainPatterns": [
           "www.[merknaam].services",
@@ -2101,11 +2135,13 @@
           "Stadsbouwers"
         ],
         "exampleName": {
-          "tld": ".nl",
+          "tld": ".services",
           "benefits": [
             "Makkelijk herkenbaar voor Nederlandse opdrachtgevers",
             "Uitspraak en schrijfwijze blijven goed hangen"
-          ]
+          ],
+          "name": "Steenmeesters",
+          "price": 19
         },
         "domainPatterns": [
           "www.[merknaam].nl",
@@ -2225,7 +2261,9 @@
           "benefits": [
             "Blijft hangen door Nederlandse uitstraling",
             "Spreekt gasten direct aan binnen de horeca"
-          ]
+          ],
+          "name": "Smakenrijk",
+          "price": 16
         },
         "domainPatterns": [
           "www.[merknaam].nl",
@@ -2341,11 +2379,13 @@
           "Coachify"
         ],
         "exampleName": {
-          "tld": ".nl",
+          "tld": ".pro",
           "benefits": [
             "De naam FitVibes blijft makkelijk hangen",
             "Past goed bij een Nederlands fitness bedrijf"
-          ]
+          ],
+          "name": "FitVibes",
+          "price": 15
         },
         "domainPatterns": [
           "www.[merknaam].store",
@@ -2465,7 +2505,9 @@
           "benefits": [
             "De naam klinkt professioneel en is makkelijk te onthouden",
             "De TLD academy geeft direct het opleidingskarakter aan"
-          ]
+          ],
+          "name": "LerenCentrum",
+          "price": 21
         },
         "domainPatterns": [
           "www.[merknaam].academy",
@@ -2585,7 +2627,9 @@
           "benefits": [
             "Blijft snel hangen en klinkt creatief",
             "De .studio extensie past perfect bij mediaproductie"
-          ]
+          ],
+          "name": "Mediova",
+          "price": 14
         },
         "domainPatterns": [
           "www.[merknaam].studio",
@@ -2701,11 +2745,13 @@
           "FocusFactor"
         ],
         "exampleName": {
-          "tld": ".studio",
+          "tld": ".photo",
           "benefits": [
             "Blijft makkelijk hangen bij klanten",
             "Geeft direct een creatieve uitstraling"
-          ]
+          ],
+          "name": "BeeldSprong",
+          "price": 15
         },
         "domainPatterns": [
           "www.[merknaam].studio",
@@ -2825,7 +2871,9 @@
           "benefits": [
             "Blijft eenvoudig hangen bij lezers",
             "De .blog extensie laat direct zien waar de site over gaat"
-          ]
+          ],
+          "name": "Tekstnest",
+          "price": 25
         },
         "domainPatterns": [
           "www.[merknaam].blog",
@@ -2945,7 +2993,9 @@
           "benefits": [
             "Makkelijk te onthouden en uit te spreken",
             "Past goed bij Nederlandse festivals"
-          ]
+          ],
+          "name": "LineUpLovers",
+          "price": 14
         },
         "domainPatterns": [
           "www.[merknaam].com",
@@ -3061,11 +3111,13 @@
           "Bassline"
         ],
         "exampleName": {
-          "tld": ".com",
+          "tld": ".nl",
           "benefits": [
             "De naam PulseRoom blijft hangen en klinkt energiek",
             "De TLD club geeft direct de juiste sfeer weer"
-          ]
+          ],
+          "name": "PulseRoom",
+          "price": 29
         },
         "domainPatterns": [
           "www.[merknaam].com",
@@ -3181,11 +3233,13 @@
           "Eventure"
         ],
         "exampleName": {
-          "tld": "agency",
+          "tld": ".live",
           "benefits": [
             "Klinkt direct als een professionele event partner",
             "De extensie agency laat zien dat het om dienstverlening gaat"
-          ]
+          ],
+          "name": "Eventique",
+          "price": 27
         },
         "domainPatterns": [
           "www.[merknaam].agency",

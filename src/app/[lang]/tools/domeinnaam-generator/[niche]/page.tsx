@@ -75,6 +75,9 @@ function normalizeNicheMessages(
 ): GeneratorGeneralMessages {
   const overrideSections =
     overrides.sections ?? ({} as GeneratorGeneralMessages["sections"]);
+  const overrideExamples = overrides.examples ?? ({} as GeneratorGeneralMessages["examples"]);
+  const overrideExampleName =
+    overrideExamples.exampleName ?? ({} as GeneratorGeneralMessages["examples"]["exampleName"]);
   const overrideLongForm =
     overrideSections.longForm ?? ({} as GeneratorGeneralMessages["sections"]["longForm"]);
   const overrideRight =
@@ -122,7 +125,11 @@ function normalizeNicheMessages(
     },
     examples: {
       ...base.examples,
-      ...overrides.examples,
+      ...overrideExamples,
+      exampleName: {
+        ...base.examples.exampleName,
+        ...overrideExampleName,
+      },
     },
     suggestedNames: {
       ...base.suggestedNames,

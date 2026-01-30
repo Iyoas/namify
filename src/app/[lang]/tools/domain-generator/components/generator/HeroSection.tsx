@@ -409,12 +409,24 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
               messages.hero.singleTitle
             ) : (
               <>
-                {messages.hero.titlePrefix}{" "}
+                {messages.hero.titlePrefix ? (
+                  <>
+                    {messages.hero.titlePrefix}{" "}
+                  </>
+                ) : null}
                 <span className={styles.highlight}>
                   {messages.hero.titleHighlight}
                 </span>{" "}
-                {messages.hero.titleSuffix}
-                <br className={styles.titleBreak} /> {messages.hero.titleEnd}
+                {messages.hero.titleSuffix ? (
+                  <>
+                    {messages.hero.titleSuffix}
+                  </>
+                ) : null}
+                {messages.hero.titleEnd ? (
+                  <>
+                    <br className={styles.titleBreak} /> {messages.hero.titleEnd}
+                  </>
+                ) : null}
               </>
             )}
           </h1>

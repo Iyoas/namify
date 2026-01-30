@@ -185,18 +185,28 @@ export default async function NicheGeneratorPage({ params }: PageParams) {
 
   const baseMessages = getGeneratorGeneralMessages(lang);
   const messages = normalizeNicheMessages(baseMessages, entry.messages);
+  const pageMessages: GeneratorGeneralMessages = {
+    ...messages,
+    hero: {
+      ...messages.hero,
+      titlePrefix: "",
+      titleHighlight: entry.niche,
+      titleSuffix: "Naam Generator",
+      titleEnd: "",
+    },
+  };
 
   return (
     <section>
       <Suspense fallback={null}>
-        <HeroSection lang={lang} messages={messages} />
+        <HeroSection lang={lang} messages={pageMessages} />
       </Suspense>
-      <Usp messages={messages} />
-      <SuggestedNames lang={lang} messages={messages} />
-      <AiExplainerSection messages={messages} />
-      <LongFormContent lang={lang} messages={messages} />
-      <DomainTipSection messages={messages} />
-      <ExampleName messages={messages} />
+      <Usp messages={pageMessages} />
+      <SuggestedNames lang={lang} messages={pageMessages} />
+      <AiExplainerSection messages={pageMessages} />
+      <LongFormContent lang={lang} messages={pageMessages} />
+      <DomainTipSection messages={pageMessages} />
+      <ExampleName messages={pageMessages} />
     </section>
   );
 }

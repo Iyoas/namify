@@ -11,7 +11,7 @@ const FALLBACK_TLDS = [".com", ".nl", ".io", ".ai", ".co", ".shop"];
 
 type GenerateDomainResponse = {
   names: string[];
-  availability: Record<string, Record<string, DomainAvailabilityStatus>>;
+  availability?: Record<string, Record<string, DomainAvailabilityStatus>>;
   tlds: string[];
   count: number;
 };

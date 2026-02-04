@@ -332,19 +332,10 @@ export async function POST(req: NextRequest) {
       nameLang
     );
 
-    const availability = await checkAvailabilityForNames(names, tlds);
-
-    if (backgroundTlds.length > 0 && names.length > 0) {
-      void checkAvailabilityForNames(names, backgroundTlds).catch((err) => {
-        console.warn("[generate-domain] Background TLD check failed:", err);
-      });
-    }
-
     return NextResponse.json(
       {
         names,
         count: names.length,
-        availability,
         tlds,
       },
       { status: 200 }

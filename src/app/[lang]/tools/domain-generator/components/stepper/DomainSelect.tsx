@@ -51,6 +51,7 @@ type DomainSuggestion = {
   name: string;
   estimatedPrice: string;
   extensions: Extension[];
+  availabilityReady?: boolean;
 };
 
 const CATEGORY_CONFIG: Category[] = [
@@ -441,6 +442,7 @@ export default function DomainSelect({
                   ...base,
                   id: String(index + 1),
                   name,
+                  availabilityReady: false,
                   extensions: allowedTlds.map((tld) => ({
                     id: `${cleanKey}-${tld}`,
                     tld: tld.startsWith(".") ? tld : `.${tld}`,
@@ -449,6 +451,10 @@ export default function DomainSelect({
                 };
               }
             }
+
+            const isAvailabilityReady = allowedTlds.every(
+              (tld) => resolveStatus(tld) !== undefined
+            );
 
             const extensions: Extension[] = allowedTlds.map((tld) => {
               // Normaliseer TLD met punt
@@ -475,6 +481,7 @@ export default function DomainSelect({
               ...base,
               id: String(index + 1),
               name,
+              availabilityReady: isAvailabilityReady,
               extensions,
             };
           })
@@ -632,54 +639,56 @@ export default function DomainSelect({
               </div>
 
               {/* Rechter kant: extensies */}
-              <div className={styles.rowRight}>
-                {loading ? (
-                  Array.from({ length: 6 }).map((_, i) => (
-                    <div
-                      key={`skeleton-${suggestion.name}-${i}`}
-                      className={styles.extensionTag}
-                      aria-hidden="true"
-                    >
-                      <Skeleton variant="rounded" width={64} height={28} />
-                    </div>
-                  ))
-                ) : (
-                  suggestion.extensions.map((ext) => (
-                    <div
-                      key={ext.id}
-                      className={[
-                        styles.extensionTag,
-                        ext.status === "available"
-                          ? styles.extensionTagAvailable
-                          : ext.status === "aftermarket"
-                          ? styles.extensionTagAftermarket
-                          : styles.extensionTagUnavailable,
-                      ]
-                        .filter(Boolean)
-                        .join(" ")}
-                      onClick={() => handleTldClick(suggestion.name, ext)}
-                      role={
-                        ext.status === "available" || ext.status === "aftermarket"
-                          ? "button"
-                          : undefined
-                      }
-                      style={
-                        ext.status === "available" || ext.status === "aftermarket"
-                          ? { cursor: "pointer" }
-                          : undefined
-                      }
-                    >
-                      <span className={styles.extensionStatusIcon}>
-                        {ext.status === "available" || ext.status === "aftermarket" ? (
-                          <LuExternalLink className={styles.extensionCheckIcon} />
-                        ) : (
-                          "×"
-                        )}
-                      </span>
-                      <span className={styles.extensionTld}>{ext.tld}</span>
-                    </div>
-                  ))
-                )}
+              <div className={styles.rowRightScroll}>
+                <div className={styles.rowRight}>
+                  {loading || suggestion.availabilityReady === false ? (
+                    Array.from({ length: 6 }).map((_, i) => (
+                      <div
+                        key={`skeleton-${suggestion.name}-${i}`}
+                        className={styles.extensionTag}
+                        aria-hidden="true"
+                      >
+                        <Skeleton variant="rounded" width={64} height={28} />
+                      </div>
+                    ))
+                  ) : (
+                    suggestion.extensions.map((ext) => (
+                      <div
+                        key={ext.id}
+                        className={[
+                          styles.extensionTag,
+                          ext.status === "available"
+                            ? styles.extensionTagAvailable
+                            : ext.status === "aftermarket"
+                            ? styles.extensionTagAftermarket
+                            : styles.extensionTagUnavailable,
+                        ]
+                          .filter(Boolean)
+                          .join(" ")}
+                        onClick={() => handleTldClick(suggestion.name, ext)}
+                        role={
+                          ext.status === "available" || ext.status === "aftermarket"
+                            ? "button"
+                            : undefined
+                        }
+                        style={
+                          ext.status === "available" || ext.status === "aftermarket"
+                            ? { cursor: "pointer" }
+                            : undefined
+                        }
+                      >
+                        <span className={styles.extensionStatusIcon}>
+                          {ext.status === "available" || ext.status === "aftermarket" ? (
+                            <LuExternalLink className={styles.extensionCheckIcon} />
+                          ) : (
+                            "×"
+                          )}
+                        </span>
+                        <span className={styles.extensionTld}>{ext.tld}</span>
+                      </div>
+                    ))
+                  )}
+                </div>
               </div>
             </article>
           ))}

@@ -253,7 +253,9 @@ export default async function NicheGeneratorPage({ params }: PageParams) {
       <AiExplainerSection messages={pageMessages} />
       <LongFormContent lang={lang} messages={pageMessages} />
       <DomainTipSection messages={pageMessages} />
-      <ExampleName messages={pageMessages} />
+      <Suspense fallback={null}>
+        <ExampleName messages={pageMessages} />
+      </Suspense>
     </section>
   );
 }

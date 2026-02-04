@@ -210,6 +210,7 @@
       "exampleName": {
         "matchBadge": "Exact match",
         "name": "Domainain.ai",
+        "tld": ".ai",
         "discountBadge": "SAVE 20%",
         "benefits": [
           ".ai domains are perfect for AI tools and machine-learning projects",

@@ -15,6 +15,10 @@ export function trackEvent(name: string, params: AnalyticsParams = {}): void {
       ? params
       : { ...params, debug_mode: true };
 
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[analytics] event", name, payload);
+  }
+
   window.gtag("event", name, payload);
 }
 

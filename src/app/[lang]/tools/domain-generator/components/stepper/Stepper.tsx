@@ -187,7 +187,7 @@ export default function Stepper({
         ? Math.round(performance.now() - requestStartRef.current)
         : undefined;
 
-    trackEvent("generator_results_viewed", {
+    trackEvent("name_results_viewed", {
       tool: "generator",
       generator_slug: generatorSlug,
       lang,
@@ -220,7 +220,6 @@ export default function Stepper({
           availability={data?.availability ?? {}}
           tlds={data?.tlds?.length ? data.tlds : FALLBACK_TLDS}
           messages={messages}
-          requestId={requestIdRef.current ?? undefined}
           generatorSlug={generatorSlug}
           tone={normalizeTone(styleFromQuery)}
           nameLanguage={normalizeNameLanguage(nameLangFromQuery)}

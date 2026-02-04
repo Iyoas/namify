@@ -29,7 +29,6 @@ type DomainSelectProps = {
   tlds: string[];
   loading?: boolean;
   messages: GeneratorGeneralResultsMessages;
-  requestId?: string;
   generatorSlug: string;
   tone: string;
   nameLanguage: string;
@@ -136,7 +135,6 @@ export default function DomainSelect({
   tlds,
   loading = false,
   messages,
-  requestId,
   generatorSlug,
   tone,
   nameLanguage,
@@ -159,17 +157,10 @@ export default function DomainSelect({
     useState<typeof availability>(availability);
   const [isFetchingTlds, setIsFetchingTlds] = useState(false);
   const hasPrefetchedAllTldsRef = useRef(false);
-  const availabilityStartRef = useRef<number | null>(null);
-  const availabilityTrackedRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
     setAvailabilityMap(availability);
   }, [availability]);
-
-  useEffect(() => {
-    availabilityTrackedRef.current = new Set();
-    availabilityStartRef.current = null;
-  }, [requestId, names]);
 
   const [activeCategoryId, setActiveCategoryId] = useState<CategoryId>("all");
 
@@ -204,14 +195,6 @@ export default function DomainSelect({
         console.error("Error saving likedNames to localStorage:", err);
       }
 
-      trackEvent("generator_like_toggled", {
-        tool: "generator",
-        generator_slug: generatorSlug,
-        lang,
-        action: isCurrentlyLiked ? "unlike" : "like",
-        name_position: namePosition,
-      });
-
       return next;
     });
   }
@@ -228,7 +211,17 @@ export default function DomainSelect({
     const registrarUrl = getRegistrarUrl(domain, lang);
 
     if (ext.status === "available") {
-      trackEvent("tld_pill_clicked", {
+      trackEvent("normal_name_clicked", {
+        tool: "generator",
+        generator_slug: generatorSlug,
+        lang,
+        tone,
+        name_language: nameLanguage,
+        name_position: namePosition,
+        tld: ext.tld,
+      });
+    } else if (ext.status === "aftermarket") {
+      trackEvent("after_marked_name_clicked", {
         tool: "generator",
         generator_slug: generatorSlug,
         lang,
@@ -266,12 +259,6 @@ export default function DomainSelect({
 
   async function handleLoadMore() {
     setIsLoadingMore(true);
-    trackEvent("generator_load_more", {
-      tool: "generator",
-      generator_slug: generatorSlug,
-      lang,
-      batch_size: LOAD_MORE_COUNT,
-    });
 
     try {
       const promptFromUrl = searchParams.get("q") ?? "";
@@ -385,9 +372,6 @@ export default function DomainSelect({
 
     const tldsToFetch = Array.from(missingTlds);
     setIsFetchingTlds(true);
-    if (availabilityStartRef.current === null) {
-      availabilityStartRef.current = performance.now();
-    }
 
     fetch("/api/check-availability", {
       method: "POST",
@@ -464,48 +448,6 @@ export default function DomainSelect({
       });
   }, [loading, namesForChecks, availabilityMap]);
 
-  useEffect(() => {
-    if (loading || !requestId) return;
-    if (!namesForChecks.length) return;
-    if (availabilityTrackedRef.current.has(requestId)) return;
-
-    const allowedTlds = getTldsForCategory(activeCategoryId, lang);
-    const allReady = namesForChecks.every((name) => {
-      const key = name.toLowerCase().replace(/[^a-z0-9]/gi, "");
-      const availabilityForName = availabilityMap?.[key] ?? {};
-      return allowedTlds.every((tld) => {
-        const tldKey = tld.startsWith(".") ? tld : `.${tld}`;
-        return availabilityForName?.[tldKey] !== undefined;
-      });
-    });
-
-    if (!allReady) return;
-
-    const responseTime =
-      availabilityStartRef.current !== null
-        ? Math.round(performance.now() - availabilityStartRef.current)
-        : undefined;
-
-    trackEvent("availability_check_completed", {
-      tool: "generator",
-      generator_slug: generatorSlug,
-      lang,
-      names_count: namesForChecks.length,
-      tlds_count: allowedTlds.length,
-      response_time_ms: responseTime,
-      request_id: requestId,
-    });
-
-    availabilityTrackedRef.current.add(requestId);
-  }, [
-    activeCategoryId,
-    availabilityMap,
-    generatorSlug,
-    lang,
-    loading,
-    namesForChecks,
-    requestId,
-  ]);
 
   const suggestions: DomainSuggestion[] =
     mergedNames && mergedNames.length > 0
@@ -829,7 +771,7 @@ export default function DomainSelect({
             type="button"
             className={styles.secondaryCta}
             onClick={() =>
-              trackEvent("generator_check_availability_click", {
+              trackEvent("generator_check_availability_submitted", {
                 tool: "generator",
                 generator_slug: generatorSlug,
                 lang,

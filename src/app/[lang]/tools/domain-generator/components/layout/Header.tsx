@@ -9,7 +9,6 @@ import styles from "./Header.module.css";
 import Logo from "./Logo";
 import { getHeaderMessages } from "@/i18n/components/header";
 import type { Lang } from "@/config/i18n";
-import { trackEvent } from "@/lib/analytics";
 
 type LangParams = { lang?: string };
 
@@ -46,23 +45,6 @@ export default function Header() {
   const [likedCount, setLikedCount] = useState(0);
   const messages = getHeaderMessages((lang || "en") as Lang);
   const hideOnDesktop = pathname?.includes("/tools/domain-generator/results");
-  const sourcePage = pathname ?? "/";
-
-  const trackToolNav = (destination: string) => {
-    trackEvent("tool_nav_click", {
-      lang,
-      destination,
-    });
-  };
-
-  const trackLanguageSwitch = (toLang: "en" | "nl") => {
-    if (toLang === lang) return;
-    trackEvent("language_switch", {
-      from_lang: lang,
-      to_lang: toLang,
-      source_page: sourcePage,
-    });
-  };
 
   const queryString = searchParams.toString();
   const buildLangHref = (targetLang: "en" | "nl") => {
@@ -189,7 +171,6 @@ export default function Header() {
           <Link
             href={generatorHref}
             className={styles.navLink}
-            onClick={() => trackToolNav("generator")}
           >
             {messages.navDesktop.aiNameGenerator}
           </Link>
@@ -197,7 +178,6 @@ export default function Header() {
           <Link
             href={checkerHref}
             className={styles.navLink}
-            onClick={() => trackToolNav("domain_checker")}
           >
             {messages.navDesktop.domainChecker}
           </Link>
@@ -205,7 +185,6 @@ export default function Header() {
           <Link
             href={`${homeHref}#how-it-works`}
             className={styles.navLink}
-            onClick={() => trackToolNav("how_it_works")}
           >
             {messages.navDesktop.privacyPolicy}
           </Link>
@@ -222,7 +201,6 @@ export default function Header() {
                 .filter(Boolean)
                 .join(" ")}
               aria-current={lang === "en" ? "true" : undefined}
-              onClick={() => trackLanguageSwitch("en")}
             >
               EN
             </Link>
@@ -235,7 +213,6 @@ export default function Header() {
                 .filter(Boolean)
                 .join(" ")}
               aria-current={lang === "nl" ? "true" : undefined}
-              onClick={() => trackLanguageSwitch("nl")}
             >
               NL
             </Link>
@@ -245,7 +222,6 @@ export default function Header() {
               href={likedHref}
               className={styles.iconButton}
               aria-label={messages.actions.favoritesAria}
-              onClick={() => trackToolNav("favorites")}
             >
               {likedCount > 0 && (
                 <span className={styles.badge} aria-hidden="true">
@@ -292,20 +268,7 @@ export default function Header() {
                 .filter(Boolean)
                 .join(" ")}
               aria-current={pathname === item.href ? "page" : undefined}
-              onClick={() => {
-                setIsMenuOpen(false);
-                if (item.href === homeHref) {
-                  trackToolNav("home");
-                } else if (item.href === generatorHref) {
-                  trackToolNav("generator");
-                } else if (item.href === checkerHref) {
-                  trackToolNav("domain_checker");
-                } else if (item.href === likedHref) {
-                  trackToolNav("favorites");
-                } else {
-                  trackToolNav("how_it_works");
-                }
-              }}
+              onClick={() => setIsMenuOpen(false)}
             >
               {item.label}
             </Link>
@@ -321,10 +284,7 @@ export default function Header() {
                 .filter(Boolean)
                 .join(" ")}
             aria-current={lang === "en" ? "true" : undefined}
-            onClick={() => {
-              setIsMenuOpen(false);
-              trackLanguageSwitch("en");
-            }}
+            onClick={() => setIsMenuOpen(false)}
           >
             EN
           </Link>
@@ -337,10 +297,7 @@ export default function Header() {
                 .filter(Boolean)
                 .join(" ")}
             aria-current={lang === "nl" ? "true" : undefined}
-            onClick={() => {
-              setIsMenuOpen(false);
-              trackLanguageSwitch("nl");
-            }}
+            onClick={() => setIsMenuOpen(false)}
           >
             NL
           </Link>

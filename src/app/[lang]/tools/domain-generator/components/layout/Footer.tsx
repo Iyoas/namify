@@ -8,7 +8,6 @@ import styles from "./Footer.module.css";
 import { getFooterMessages } from "@/i18n/components/footer";
 import type { Lang } from "@/config/i18n";
 import { getDomainGeneratorIndexMessages } from "@/i18n/domain-generator-index";
-import { trackEvent } from "@/lib/analytics";
 
 type LangParams = { lang?: string };
 
@@ -38,28 +37,6 @@ export default function Footer() {
       ? `${homeHref}/gelikete-namen`
       : `${homeHref}/liked-names`;
   const queryString = searchParams.toString();
-  const sourcePage = pathname ?? "/";
-
-  const trackLanguageSwitch = (toLang: "en" | "nl") => {
-    if (toLang === lang) return;
-    trackEvent("language_switch", {
-      from_lang: lang,
-      to_lang: toLang,
-      source_page: sourcePage,
-    });
-  };
-
-  const trackToolNav = (href: string) => {
-    let destination: string | null = null;
-    if (href === homeHref) destination = "home";
-    else if (href === generatorHref) destination = "generator";
-    else if (href === checkerHref) destination = "domain_checker";
-    else if (href === likedHref) destination = "favorites";
-    else if (href.includes("#how-it-works")) destination = "how_it_works";
-    if (destination) {
-      trackEvent("tool_nav_click", { lang, destination });
-    }
-  };
 
   if (pathname?.includes("/tools/domain-generator/results")) {
     return null;
@@ -195,7 +172,6 @@ export default function Footer() {
                   .filter(Boolean)
                   .join(" ")}
                 aria-current={lang === "en" ? "true" : undefined}
-                onClick={() => trackLanguageSwitch("en")}
               >
                 EN
               </Link>
@@ -208,7 +184,6 @@ export default function Footer() {
                   .filter(Boolean)
                   .join(" ")}
                 aria-current={lang === "nl" ? "true" : undefined}
-                onClick={() => trackLanguageSwitch("nl")}
               >
                 NL
               </Link>
@@ -226,7 +201,6 @@ export default function Footer() {
                     <Link
                       href={link.href}
                       className={styles.link}
-                      onClick={() => trackToolNav(link.href)}
                     >
                       {link.label}
                     </Link>

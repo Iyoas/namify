@@ -94,9 +94,6 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const [singleError, setSingleError] = useState<string | null>(null);
   const [likedNames, setLikedNames] = useState<string[]>([]);
   const [likedDomains, setLikedDomains] = useState<Set<string>>(new Set());
-  const pendingSingleCheckRef = useRef<string | null>(null);
-  const singleCheckStartRef = useRef<number | null>(null);
-  const reportedSingleResultsRef = useRef<Set<string>>(new Set());
 
   const generatorPath =
     lang === "nl"
@@ -345,20 +342,6 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
         return;
       }
 
-      const requestId = createRequestId();
-      pendingSingleCheckRef.current = requestId;
-      singleCheckStartRef.current = performance.now();
-      const trimmedPrompt = prompt.trim();
-      const hasTld = /\.[a-z]{2,15}$/i.test(trimmedPrompt);
-
-      trackEvent("checker_input_submitted", {
-        tool: "domain_checker",
-        lang,
-        domain_length: trimmedPrompt.length,
-        has_tld: hasTld,
-        request_id: requestId,
-      });
-
       setSingleLoading(true);
       setSingleError(null);
 
@@ -398,7 +381,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
       // ignore storage errors
     }
 
-    trackEvent("generator_input_submitted", {
+    trackEvent("name_generator_input_submitted", {
       tool: "generator",
       generator_slug: generatorSlug,
       lang,
@@ -438,35 +421,6 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
     const target = nextMode === "single" ? checkerPath : generatorPath;
     router.push(target);
   }
-
-  useEffect(() => {
-    if (singleLoading || singleError || singleResults.length === 0) return;
-    const requestId = pendingSingleCheckRef.current;
-    if (!requestId || reportedSingleResultsRef.current.has(requestId)) return;
-
-    const responseTime =
-      singleCheckStartRef.current !== null
-        ? Math.round(performance.now() - singleCheckStartRef.current)
-        : undefined;
-
-    const hasAvailable = singleResults.some((result) => result.status === "available");
-    const hasUnknown = singleResults.some((result) => result.status === "unknown");
-    const availabilityStatus = hasAvailable
-      ? "available"
-      : hasUnknown
-      ? "unknown"
-      : "unavailable";
-
-    trackEvent("checker_results_viewed", {
-      tool: "domain_checker",
-      lang,
-      availability_status: availabilityStatus,
-      response_time_ms: responseTime,
-      request_id: requestId,
-    });
-
-    reportedSingleResultsRef.current.add(requestId);
-  }, [lang, singleError, singleLoading, singleResults]);
 
   return (
     <section className={styles.hero}>
@@ -777,14 +731,15 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                           onClick={() =>
                             isClickable
                               ? (() => {
-                                  trackEvent("checker_claim_clicked", {
+                                  trackEvent("checked_availability_name_clicked", {
                                     tool: "domain_checker",
                                     lang,
-                                    availability_status: result.status === "unknown"
-                                      ? "unknown"
-                                      : result.status === "available"
-                                      ? "available"
-                                      : "unavailable",
+                                    availability_status:
+                                      result.status === "unknown"
+                                        ? "unknown"
+                                        : result.status === "available"
+                                        ? "available"
+                                        : "unavailable",
                                     tld: result.tld,
                                   });
                                   trackEvent("registrar_click", {
@@ -810,7 +765,13 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                   <button
                     type="button"
                     className={styles.singleVariationsButton}
-                    onClick={() => handleArrowClick(singleResults[0]?.domain ?? "")}
+                    onClick={() => {
+                      trackEvent("name_variations_requested", {
+                        tool: "domain_checker",
+                        lang,
+                      });
+                      handleArrowClick(singleResults[0]?.domain ?? "");
+                    }}
                   >
                     <span className={styles.singleVariationsInner}>
                       <span className={styles.singleVariationsLabel}>

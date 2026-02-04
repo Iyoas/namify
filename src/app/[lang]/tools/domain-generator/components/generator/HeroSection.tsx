@@ -11,6 +11,7 @@ import { Box, Skeleton } from "@mui/material";
 import type { Lang } from "@/config/i18n";
 import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 import { getRegistrarUrl } from "@/lib/registrar";
+import { createRequestId, trackEvent } from "@/lib/analytics";
 
 type HeroSectionProps = {
   lang: Lang;
@@ -94,6 +95,8 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const [likedNames, setLikedNames] = useState<string[]>([]);
   const [likedDomains, setLikedDomains] = useState<Set<string>>(new Set());
   const pendingSingleCheckRef = useRef<string | null>(null);
+  const singleCheckStartRef = useRef<number | null>(null);
+  const reportedSingleResultsRef = useRef<Set<string>>(new Set());
 
   const generatorPath =
     lang === "nl"
@@ -110,6 +113,38 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
     pathname?.endsWith("/tools/domain-generator") ||
     pathname?.endsWith("/tools/domain-generator/generator") ||
     pathname?.endsWith("/tools/domeinnaam-generator");
+
+  const generatorSlug = useMemo(() => {
+    if (!pathname) return "generic";
+    const segments = pathname.split("/").filter(Boolean);
+    const generatorSegment =
+      lang === "nl" ? "domeinnaam-generator" : "domain-generator";
+    if (segments[1] !== "tools" || segments[2] !== generatorSegment) {
+      return "generic";
+    }
+    const slug = segments[3];
+    if (!slug || slug === "results" || slug === "generator") {
+      return "generic";
+    }
+    return slug;
+  }, [lang, pathname]);
+
+  const normalizeTone = (value: string) => {
+    const normalized = value.trim().toLowerCase();
+    if (["creative", "creatief"].includes(normalized)) return "creative";
+    if (["professional", "professioneel"].includes(normalized)) return "professional";
+    if (["unique", "uniek"].includes(normalized)) return "unique";
+    if (normalized.includes("tech")) return "tech";
+    if (normalized.includes("casual")) return "casual";
+    return "creative";
+  };
+
+  const normalizeNameLanguage = (value: string) => {
+    const normalized = value.trim().toLowerCase();
+    if (normalized === "en" || normalized === "english") return "en";
+    if (normalized === "nl" || normalized === "dutch") return "nl";
+    return "international";
+  };
 
   useEffect(() => {
     const modeParam = searchParams.get("mode");
@@ -310,6 +345,20 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
         return;
       }
 
+      const requestId = createRequestId();
+      pendingSingleCheckRef.current = requestId;
+      singleCheckStartRef.current = performance.now();
+      const trimmedPrompt = prompt.trim();
+      const hasTld = /\.[a-z]{2,15}$/i.test(trimmedPrompt);
+
+      trackEvent("checker_input_submitted", {
+        tool: "domain_checker",
+        lang,
+        domain_length: trimmedPrompt.length,
+        has_tld: hasTld,
+        request_id: requestId,
+      });
+
       setSingleLoading(true);
       setSingleError(null);
 
@@ -339,10 +388,31 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
       return;
     }
 
+    const requestId = createRequestId();
+    try {
+      window.sessionStorage.setItem(
+        `ga_request_start_${requestId}`,
+        String(performance.now())
+      );
+    } catch {
+      // ignore storage errors
+    }
+
+    trackEvent("generator_input_submitted", {
+      tool: "generator",
+      generator_slug: generatorSlug,
+      lang,
+      tone: normalizeTone(selectedStyle),
+      name_language: normalizeNameLanguage(selectedNameLanguage),
+      prompt_length: prompt.trim().length,
+      request_id: requestId,
+    });
+
     const searchParams = new URLSearchParams({
       q: prompt,
       style: selectedStyle,
       nameLang: selectedNameLanguage,
+      rid: requestId,
     });
 
     router.push(
@@ -368,6 +438,35 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
     const target = nextMode === "single" ? checkerPath : generatorPath;
     router.push(target);
   }
+
+  useEffect(() => {
+    if (singleLoading || singleError || singleResults.length === 0) return;
+    const requestId = pendingSingleCheckRef.current;
+    if (!requestId || reportedSingleResultsRef.current.has(requestId)) return;
+
+    const responseTime =
+      singleCheckStartRef.current !== null
+        ? Math.round(performance.now() - singleCheckStartRef.current)
+        : undefined;
+
+    const hasAvailable = singleResults.some((result) => result.status === "available");
+    const hasUnknown = singleResults.some((result) => result.status === "unknown");
+    const availabilityStatus = hasAvailable
+      ? "available"
+      : hasUnknown
+      ? "unknown"
+      : "unavailable";
+
+    trackEvent("checker_results_viewed", {
+      tool: "domain_checker",
+      lang,
+      availability_status: availabilityStatus,
+      response_time_ms: responseTime,
+      request_id: requestId,
+    });
+
+    reportedSingleResultsRef.current.add(requestId);
+  }, [lang, singleError, singleLoading, singleResults]);
 
   return (
     <section className={styles.hero}>
@@ -676,7 +775,27 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                             .join(" ")}
                           disabled={!isClickable}
                           onClick={() =>
-                            isClickable ? handleRegistrarClick(result.domain) : null
+                            isClickable
+                              ? (() => {
+                                  trackEvent("checker_claim_clicked", {
+                                    tool: "domain_checker",
+                                    lang,
+                                    availability_status: result.status === "unknown"
+                                      ? "unknown"
+                                      : result.status === "available"
+                                      ? "available"
+                                      : "unavailable",
+                                    tld: result.tld,
+                                  });
+                                  trackEvent("registrar_click", {
+                                    tool: "domain_checker",
+                                    lang,
+                                    source: "claim_button",
+                                    tld: result.tld,
+                                  });
+                                  handleRegistrarClick(result.domain);
+                                })()
+                              : null
                           }
                         >
                           {isClickable

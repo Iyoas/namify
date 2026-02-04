@@ -1,11 +1,12 @@
 "use client";
 
 import { CheckCircle2 } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import type { Lang } from "@/config/i18n";
 import { getRegistrarUrl } from "@/lib/registrar";
 import styles from "./ExampleName.module.css";
 import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
+import { trackEvent } from "@/lib/analytics";
 
 /**
  * Statische voorbeeldkaart voor een gegenereerde domeinnaam.
@@ -20,6 +21,39 @@ export default function ExampleName({
   const benefits = example.benefits;
   const params = useParams<{ lang?: string }>();
   const lang = (params?.lang ?? "en") as Lang;
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const generatorSlug = (() => {
+    if (!pathname) return "generic";
+    const segments = pathname.split("/").filter(Boolean);
+    const generatorSegment =
+      lang === "nl" ? "domeinnaam-generator" : "domain-generator";
+    if (segments[1] !== "tools" || segments[2] !== generatorSegment) {
+      return "generic";
+    }
+    const slug = segments[3];
+    if (!slug || slug === "results" || slug === "generator") {
+      return "generic";
+    }
+    return slug;
+  })();
+  const nameLanguage = (() => {
+    const value = searchParams.get("nameLang") ?? "international";
+    const normalized = value.trim().toLowerCase();
+    if (normalized === "en" || normalized === "english") return "en";
+    if (normalized === "nl" || normalized === "dutch") return "nl";
+    return "international";
+  })();
+  const tone = (() => {
+    const value = searchParams.get("style") ?? "creative";
+    const normalized = value.trim().toLowerCase();
+    if (["creative", "creatief"].includes(normalized)) return "creative";
+    if (["professional", "professioneel"].includes(normalized)) return "professional";
+    if (["unique", "uniek"].includes(normalized)) return "unique";
+    if (normalized.includes("tech")) return "tech";
+    if (normalized.includes("casual")) return "casual";
+    return "creative";
+  })();
 
   return (
     <section className={styles.section}>
@@ -61,6 +95,15 @@ export default function ExampleName({
               className={styles.secondaryButton}
               onClick={() => {
                 const registrarUrl = getRegistrarUrl(example.name, lang);
+                trackEvent("registrar_click", {
+                  tool: "generator",
+                  generator_slug: generatorSlug,
+                  lang,
+                  tone,
+                  name_language: nameLanguage,
+                  source: "claim_button",
+                  tld: example.tld,
+                });
                 window.open(registrarUrl, "_blank", "noopener,noreferrer");
               }}
             >

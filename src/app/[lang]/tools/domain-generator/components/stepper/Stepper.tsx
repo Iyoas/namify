@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import type { DomainAvailabilityStatus } from "@/lib/domainr";
 import type { Lang } from "@/config/i18n";
 import type { GeneratorGeneralResultsMessages } from "@/i18n/domain-generator-index/generator-general";
 import DomainSelect from "./DomainSelect";
+import { createRequestId, trackEvent } from "@/lib/analytics";
 
 const FALLBACK_TLDS = [".com", ".nl", ".io", ".ai", ".co", ".shop"];
 
@@ -28,15 +29,52 @@ export default function Stepper({
   messages,
 }: StepperProps) {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const baseFromQuery = searchParams.get("base");
   const baseNameFromUrl = baseFromQuery ? baseFromQuery.trim() : undefined;
   const styleFromQuery = searchParams.get("style") ?? "Creative";
   const nameLangFromQuery = searchParams.get("nameLang") ?? "international";
   const prompt = initialPrompt ?? "";
+  const requestIdFromQuery = searchParams.get("rid");
 
   const [data, setData] = useState<GenerateDomainResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const requestIdRef = useRef<string | null>(null);
+  const requestStartRef = useRef<number | null>(null);
+  const reportedResultsRef = useRef<Set<string>>(new Set());
+
+  const generatorSlug = useMemo(() => {
+    if (!pathname) return "generic";
+    const segments = pathname.split("/").filter(Boolean);
+    const generatorSegment =
+      lang === "nl" ? "domeinnaam-generator" : "domain-generator";
+    if (segments[1] !== "tools" || segments[2] !== generatorSegment) {
+      return "generic";
+    }
+    const slug = segments[3];
+    if (!slug || slug === "results" || slug === "generator") {
+      return "generic";
+    }
+    return slug;
+  }, [lang, pathname]);
+
+  const normalizeTone = (value: string) => {
+    const normalized = value.trim().toLowerCase();
+    if (["creative", "creatief"].includes(normalized)) return "creative";
+    if (["professional", "professioneel"].includes(normalized)) return "professional";
+    if (["unique", "uniek"].includes(normalized)) return "unique";
+    if (normalized.includes("tech")) return "tech";
+    if (normalized.includes("casual")) return "casual";
+    return "creative";
+  };
+
+  const normalizeNameLanguage = (value: string) => {
+    const normalized = value.trim().toLowerCase();
+    if (normalized === "en" || normalized === "english") return "en";
+    if (normalized === "nl" || normalized === "dutch") return "nl";
+    return "international";
+  };
 
   useEffect(() => {
     // Bepaal modus:
@@ -55,6 +93,15 @@ export default function Stepper({
         setIsLoading(true);
         setError(null);
         setData(null);
+
+        const requestId = requestIdFromQuery ?? createRequestId();
+        requestIdRef.current = requestId;
+        const storedStart = requestIdFromQuery
+          ? window.sessionStorage.getItem(`ga_request_start_${requestIdFromQuery}`)
+          : null;
+        requestStartRef.current = storedStart
+          ? Number.parseFloat(storedStart)
+          : performance.now();
 
         let json: GenerateDomainResponse;
 
@@ -128,7 +175,31 @@ export default function Stepper({
     return () => {
       cancelled = true;
     };
-  }, [prompt, baseNameFromUrl, lang, styleFromQuery]);
+  }, [prompt, baseNameFromUrl, lang, styleFromQuery, nameLangFromQuery, requestIdFromQuery]);
+
+  useEffect(() => {
+    if (!data?.names?.length) return;
+    const requestId = requestIdRef.current;
+    if (!requestId || reportedResultsRef.current.has(requestId)) return;
+
+    const responseTime =
+      requestStartRef.current !== null
+        ? Math.round(performance.now() - requestStartRef.current)
+        : undefined;
+
+    trackEvent("generator_results_viewed", {
+      tool: "generator",
+      generator_slug: generatorSlug,
+      lang,
+      tone: normalizeTone(styleFromQuery),
+      name_language: normalizeNameLanguage(nameLangFromQuery),
+      names_count: data.names.length,
+      response_time_ms: responseTime,
+      request_id: requestId,
+    });
+
+    reportedResultsRef.current.add(requestId);
+  }, [data, generatorSlug, lang, nameLangFromQuery, styleFromQuery]);
 
   return (
     <section className="w-full">
@@ -149,6 +220,10 @@ export default function Stepper({
           availability={data?.availability ?? {}}
           tlds={data?.tlds?.length ? data.tlds : FALLBACK_TLDS}
           messages={messages}
+          requestId={requestIdRef.current ?? undefined}
+          generatorSlug={generatorSlug}
+          tone={normalizeTone(styleFromQuery)}
+          nameLanguage={normalizeNameLanguage(nameLangFromQuery)}
         />
       )}
     </section>

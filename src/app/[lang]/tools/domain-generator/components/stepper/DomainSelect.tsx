@@ -21,7 +21,6 @@ import type { Lang } from "@/config/i18n";
 import { getRegistrarUrl } from "@/lib/registrar";
 import { getTldsForCategory, ALL_TLDS_SUPERSET } from "@/lib/tlds";
 import { trackEvent } from "@/lib/analytics";
-import { openAffiliateLink } from "@/lib/affiliate/openAffiliateLink";
 
 type DomainSelectProps = {
   lang: Lang;
@@ -245,7 +244,7 @@ export default function DomainSelect({
     });
 
     // Open in een nieuw tabblad zodat de gebruiker je site niet verlaat
-    openAffiliateLink(registrarUrl);
+    window.open(registrarUrl, "_blank", "noopener,noreferrer");
   }
 
   const [extraNames, setExtraNames] = useState<string[]>([]);

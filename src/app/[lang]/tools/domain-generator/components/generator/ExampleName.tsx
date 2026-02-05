@@ -7,7 +7,6 @@ import { getRegistrarUrl } from "@/lib/registrar";
 import styles from "./ExampleName.module.css";
 import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 import { trackEvent } from "@/lib/analytics";
-import { openAffiliateLink } from "@/lib/affiliate/openAffiliateLink";
 
 /**
  * Statische voorbeeldkaart voor een gegenereerde domeinnaam.
@@ -105,7 +104,7 @@ export default function ExampleName({
                   source: "claim_button",
                   tld: example.tld,
                 });
-                openAffiliateLink(registrarUrl);
+                window.open(registrarUrl, "_blank", "noopener,noreferrer");
               }}
             >
               {example.secondaryCta}

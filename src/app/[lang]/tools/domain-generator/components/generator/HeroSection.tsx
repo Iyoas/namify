@@ -12,6 +12,7 @@ import type { Lang } from "@/config/i18n";
 import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 import { getRegistrarUrl } from "@/lib/registrar";
 import { createRequestId, trackEvent } from "@/lib/analytics";
+import { openAffiliateLink } from "@/lib/affiliate/openAffiliateLink";
 
 type HeroSectionProps = {
   lang: Lang;
@@ -414,7 +415,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
 
   function handleRegistrarClick(domain: string) {
     const registrarUrl = getRegistrarUrl(domain, lang);
-    window.open(registrarUrl, "_blank", "noopener,noreferrer");
+    openAffiliateLink(registrarUrl);
   }
 
   function handleModeSwitch(nextMode: "ai" | "single") {

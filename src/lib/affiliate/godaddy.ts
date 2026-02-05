@@ -6,5 +6,12 @@ const GODADDY_ELB_DAYS_PARAM = "&cjelbDays=45";
 export function buildGoDaddySearchUrl(domain?: string): string {
   const godaddyUrl = `${GODADDY_SEARCH_BASE_URL}${domain ?? ""}`;
   const encoded = encodeURIComponent(godaddyUrl);
-  return `${GODADDY_AFFILIATE_BASE_URL}${encoded}${GODADDY_ELB_DAYS_PARAM}`;
+  const affiliateUrl = `${GODADDY_AFFILIATE_BASE_URL}${encoded}${GODADDY_ELB_DAYS_PARAM}`;
+  console.log("[CJ] buildGoDaddySearchUrl()", {
+    domain,
+    godaddyUrl,
+    encoded,
+    affiliateUrl,
+  });
+  return affiliateUrl;
 }

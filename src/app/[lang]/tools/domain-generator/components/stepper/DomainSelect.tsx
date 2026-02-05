@@ -210,6 +210,12 @@ export default function DomainSelect({
 
     const domain = `${name}${ext.tld}`;
     const registrarUrl = getRegistrarUrl(domain, lang);
+    console.log("[CJ] registrar_click handler fired", {
+      domain,
+      tld: ext.tld,
+      lang,
+      registrarUrl,
+    });
 
     if (ext.status === "available") {
       trackEvent("normal_name_clicked", {

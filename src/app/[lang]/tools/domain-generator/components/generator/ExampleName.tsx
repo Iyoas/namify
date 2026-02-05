@@ -96,6 +96,12 @@ export default function ExampleName({
               className={styles.secondaryButton}
               onClick={() => {
                 const registrarUrl = getRegistrarUrl(example.name, lang);
+                console.log("[CJ] registrar_click handler fired", {
+                  domain: example.name,
+                  tld: example.tld,
+                  lang,
+                  registrarUrl,
+                });
                 trackEvent("registrar_click", {
                   tool: "generator",
                   generator_slug: generatorSlug,

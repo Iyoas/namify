@@ -415,6 +415,11 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
 
   function handleRegistrarClick(domain: string) {
     const registrarUrl = getRegistrarUrl(domain, lang);
+    console.log("[CJ] registrar_click handler fired", {
+      domain,
+      lang,
+      registrarUrl,
+    });
     openAffiliateLink(registrarUrl);
   }
 

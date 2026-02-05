@@ -94,6 +94,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const [singleError, setSingleError] = useState<string | null>(null);
   const [likedNames, setLikedNames] = useState<string[]>([]);
   const [likedDomains, setLikedDomains] = useState<Set<string>>(new Set());
+  const pendingSingleCheckRef = useRef<string | null>(null);
 
   const generatorPath =
     lang === "nl"

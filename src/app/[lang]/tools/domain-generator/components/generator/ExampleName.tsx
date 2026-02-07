@@ -91,31 +91,21 @@ export default function ExampleName({
           </div>
 
           <div className={styles.actions}>
-            <button
-              type="button"
+            <a
               className={styles.secondaryButton}
-              onClick={() => {
-                const registrarUrl = getRegistrarUrl(example.name, lang);
-                console.log("[CJ] registrar_click handler fired", {
-                  domain: example.name,
-                  tld: example.tld,
-                  lang,
-                  registrarUrl,
-                });
+              href={getRegistrarUrl(example.name, lang)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
                 trackEvent("registrar_click", {
                   tool: "generator",
-                  generator_slug: generatorSlug,
-                  lang,
-                  tone,
-                  name_language: nameLanguage,
-                  source: "claim_button",
-                  tld: example.tld,
-                });
-                openAffiliateLink(registrarUrl);
-              }}
+                  source: "example_cta",
+                  tld: ".ai",
+                })
+              }
             >
               {example.secondaryCta}
-            </button>
+            </a>
             <button
               type="button"
               className={styles.primaryButton}

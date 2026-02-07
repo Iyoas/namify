@@ -19,7 +19,6 @@ type HeroSectionProps = {
   messages: GeneratorGeneralMessages;
 };
 
-const SINGLE_TLDS = [".com", ".io", ".ai", ".net", ".co"] as const;
 const NAME_LANGUAGE_VALUES = ["international", "en", "nl"] as const;
 type NameLanguageValue = (typeof NAME_LANGUAGE_VALUES)[number];
 
@@ -33,32 +32,22 @@ function normalizeName(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]/gi, "");
 }
 
-function buildSingleTlds(input: string) {
+function getSingleBase(input: string) {
   const trimmed = input.trim().toLowerCase();
   if (!trimmed) return null;
 
-  const parts = trimmed.split(".").filter(Boolean);
-  const hasDot = parts.length > 1;
-  const tldCandidate = hasDot ? parts[parts.length - 1] : "";
-  const isPlausibleTld = /^[a-z]{2,15}$/.test(tldCandidate);
-
-  if (hasDot && isPlausibleTld) {
-    const base = normalizeName(parts.slice(0, -1).join(""));
-    if (!base) return null;
-    const primaryTld = `.${tldCandidate}`;
-    const extraTlds = SINGLE_TLDS.filter((tld) => tld !== primaryTld);
-    return {
-      base,
-      tlds: [primaryTld, ...extraTlds].slice(0, 5),
-    };
+  const lastDot = trimmed.lastIndexOf(".");
+  if (lastDot > 0 && lastDot < trimmed.length - 1) {
+    const tldCandidate = trimmed.slice(lastDot + 1);
+    const isPlausibleTld = /^[a-z]{2,15}$/.test(tldCandidate);
+    if (isPlausibleTld) {
+      const base = normalizeName(trimmed.slice(0, lastDot));
+      return base || null;
+    }
   }
 
   const base = normalizeName(trimmed);
-  if (!base) return null;
-  return {
-    base,
-    tlds: [...SINGLE_TLDS],
-  };
+  return base || null;
 }
 
 export function HeroSection({ lang, messages }: HeroSectionProps) {
@@ -337,8 +326,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
     if (!prompt.trim()) return;
 
     if (mode === "single") {
-      const parsed = buildSingleTlds(prompt);
-      if (!parsed) {
+      if (!getSingleBase(prompt)) {
         setSingleError(messages.hero.singleError);
         setSingleResults([]);
         return;
@@ -352,8 +340,7 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            name: parsed.base,
-            tlds: parsed.tlds,
+            name: prompt.trim(),
           }),
         });
 

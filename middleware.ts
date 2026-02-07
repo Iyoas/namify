@@ -7,7 +7,7 @@ const NL_COUNTRY_CODE = "NL";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const country = request.geo?.country;
+  const country = (request as { geo?: { country?: string } }).geo?.country;
   const preferredLang =
     country && country.toUpperCase() === NL_COUNTRY_CODE ? "nl" : DEFAULT_LANG;
 

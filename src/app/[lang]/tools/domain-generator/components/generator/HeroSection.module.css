@@ -437,7 +437,7 @@
 
 .singleCta {
   border: none;
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 10px 16px;
   background: linear-gradient(to top right, #0013e0, #b55aff);
   color: #ffffff;
@@ -448,10 +448,12 @@
 }
 
 .singleCtaDisabled {
-  background: #e5e7eb;
-  color: #6b7280;
+  background: rgba(255, 76, 76, 0.10);
+  color: rgba(255, 76, 76, 0.8);
+  border: 1px solid rgba(255, 76, 76, 0.35);
   cursor: not-allowed;
   box-shadow: none;
+  opacity: 0.65;
 }
 
 .singleCtaAftermarket {
@@ -633,14 +635,25 @@
   }
 
   .singleCard {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
     gap: 12px;
   }
 
   .singleRight {
-    width: 100%;
-    justify-content: space-between;
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  .singleLeft {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .singleDomain {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 

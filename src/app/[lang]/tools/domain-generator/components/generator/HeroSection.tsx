@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown, Megaphone, Sparkles, Wand2 } from "lucide-react";
 import { BsStars } from "react-icons/bs";
-import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeart, IoIosHeartEmpty, IoMdInformationCircleOutline } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import styles from "./HeroSection.module.css";
@@ -697,26 +697,36 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                   return (
                     <div key={result.domain} className={styles.singleCard}>
                       <div className={styles.singleLeft}>
-                        <button
-                          type="button"
-                          className={styles.singleHeartButton}
-                          aria-label={`${messages.suggestedNames.ariaLike}: ${result.domain}`}
-                          onClick={() => toggleDomainLike(result.domain, nameKey)}
-                        >
-                          {isLiked ? (
-                            <IoIosHeart size={24} color="#FF4C4C" />
-                          ) : (
-                            <IoIosHeartEmpty size={24} color="#000000" />
-                          )}
-                        </button>
-                        <span className={styles.singleDomain}>{result.domain}</span>
+                        <div className={styles.singleNameRow}>
+                          <button
+                            type="button"
+                            className={styles.singleHeartButton}
+                            aria-label={`${messages.suggestedNames.ariaLike}: ${result.domain}`}
+                            onClick={() => toggleDomainLike(result.domain, nameKey)}
+                          >
+                            {isLiked ? (
+                              <IoIosHeart size={24} color="#FF4C4C" />
+                            ) : (
+                              <IoIosHeartEmpty size={24} color="#000000" />
+                            )}
+                          </button>
+                          <span className={styles.singleDomain}>{result.domain}</span>
+                        </div>
+                        {isAftermarket ? (
+                          <span className={styles.singleAftermarketTag}>
+                            {messages.hero.aftermarketTag}
+                            <IoMdInformationCircleOutline
+                              aria-hidden
+                              className={styles.singleAftermarketIcon}
+                            />
+                          </span>
+                        ) : null}
                       </div>
                       <div className={styles.singleRight}>
                         <button
                           type="button"
                           className={[
                             styles.singleCta,
-                            isAftermarket ? styles.singleCtaAftermarket : "",
                             !isClickable ? styles.singleCtaDisabled : "",
                           ]
                             .filter(Boolean)

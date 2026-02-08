@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { Skeleton } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Heart, ShoppingCart, Check } from "lucide-react";
-import { IoMdHeartEmpty, IoIosHeart } from "react-icons/io";
+import { IoMdHeartEmpty, IoIosHeart, IoMdInformationCircleOutline } from "react-icons/io";
 import { IoPersonOutline, IoMusicalNotesOutline } from "react-icons/io5";
 import { FaRegStar, FaPlus, FaSearch } from "react-icons/fa";
 import { LuBriefcaseBusiness } from "react-icons/lu";
@@ -696,6 +696,17 @@ export default function DomainSelect({
                         suggestion.name
                       )}
                     </span>
+                    {!loading &&
+                    suggestion.availabilityReady !== false &&
+                    suggestion.extensions.some((ext) => ext.status === "aftermarket") ? (
+                      <span className={styles.aftermarketTag}>
+                        {messages.domainSelect.aftermarketTag}
+                        <IoMdInformationCircleOutline
+                          aria-hidden
+                          className={styles.aftermarketIcon}
+                        />
+                      </span>
+                    ) : null}
                   </div>
                 </div>
               </div>

@@ -389,10 +389,20 @@
 
 .singleLeft {
   display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 12px;
   font-weight: 600;
   color: #111827;
+  min-width: 0;
+  flex: 1;
+}
+
+.singleNameRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
 }
 
 .singleDot {
@@ -423,6 +433,23 @@
   font-size: 20px;
 }
 
+.singleAftermarketTag {
+  background: rgba(37, 99, 235, 0.15);
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.singleAftermarketIcon {
+  font-size: 16px;
+}
+
 .singleRight {
   display: inline-flex;
   align-items: center;
@@ -450,7 +477,6 @@
 .singleCtaDisabled {
   background: rgba(255, 76, 76, 0.10);
   color: rgba(255, 76, 76, 0.8);
-  border: 1px solid rgba(255, 76, 76, 0.35);
   cursor: not-allowed;
   box-shadow: none;
   opacity: 0.65;
@@ -465,13 +491,25 @@
 
 @media (min-width: 641px) {
   .singleCard {
-    height: 50px;
+    align-items: flex-start;
   }
 
   .singleCta {
     border-radius: 12px;
     padding: 12px;
     font-size: 14px;
+  }
+
+  .singleRight {
+    align-self: flex-start;
+  }
+
+  .singleAftermarketTag {
+    font-size: 14px;
+  }
+
+  .singleAftermarketIcon {
+    font-size: 18px;
   }
 }
 
@@ -648,6 +686,7 @@
   .singleLeft {
     flex: 1;
     min-width: 0;
+    align-items: flex-start;
   }
 
   .singleDomain {

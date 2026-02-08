@@ -1,0 +1,162 @@
+.section {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+  background: #ffffff;
+}
+
+.gradientDefs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.inner {
+  max-width: var(--container-content);
+  margin: 0 auto;
+  padding-left: var(--gutter-desktop);
+  padding-right: var(--gutter-desktop);
+}
+
+.header {
+  margin-bottom: var(--space-10);
+}
+
+.title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--section-title-font-size-desktop);
+  line-height: 1.1;
+  font-weight: var(--section-title-font-weight);
+  color: var(--section-title-color);
+  letter-spacing: -0.02em;
+}
+
+.intro {
+  margin: 0;
+  max-width: 640px;
+  font-size: var(--section-subtitle-font-size);
+  line-height: 1.7;
+  color: var(--section-subtitle-color);
+  font-weight: var(--section-subtitle-font-weight);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-7);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: var(--space-6);
+  gap: 0;
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 28px;
+  transition: opacity 0.2s ease;
+}
+
+.postTitle {
+  margin: 0 0 var(--space-2);
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #334155;
+}
+
+.excerpt {
+  margin: 0 0 var(--space-2);
+  color: #646464;
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.date {
+  margin: 0;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.cta {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ctaText {
+  color: #6366f1;
+}
+
+.cta svg {
+  color: #6366f1;
+}
+
+@media (hover: hover) {
+  .card:hover .image {
+    opacity: 0.95;
+  }
+
+  .cta:hover .ctaText {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .cta:hover svg {
+    fill: url(#domifai-gradient) !important;
+    stroke: url(#domifai-gradient) !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .inner {
+    padding-left: var(--gutter-mobile);
+    padding-right: var(--gutter-mobile);
+  }
+
+  .title {
+    font-size: var(--section-title-font-size-mobile);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}

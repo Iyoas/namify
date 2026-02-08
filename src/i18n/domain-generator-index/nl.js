@@ -99,7 +99,7 @@ const messages = {
           id: 2,
           question: "Is Domifai gratis te gebruiken?",
           answer:
-            "Je kunt de generator gratis proberen voor een beperkt aantal queries per dag. Voor intensiever gebruik, extra filters, het opslaan van favorieten en exportmogelijkheden kun je upgraden naar een betaalde bundel. Zo betaal je alleen voor wat je echt nodig hebt.",
+            "Ja, Domifai is volledig gratis te gebruiken. Je kunt onbeperkt namen genereren, domeinen checken en favorieten opslaan zonder kosten.",
         },
         {
           id: 3,
@@ -115,7 +115,7 @@ const messages = {
         },
         {
           id: 5,
-          question: "Ondersteunen jullie ook andere talen dan Nederlands?",
+          question: "Ondersteunen jullie ook andere talen dan Engels?",
           answer:
             "Ja, Domifai is gebouwd met meertaligheid in gedachten. We starten met Nederlands en Engels, maar voegen stapsgewijs meer talen toe. Zo kun je straks eenvoudig namen genereren voor internationale merken of projecten.",
         },

@@ -99,7 +99,7 @@ const messages = {
           id: 2,
           question: "Is Domifai free to use?",
           answer:
-            "You can try the generator for free for a limited number of queries per day. For heavier use, extra filters, saving favorites, and export options, you can upgrade to a paid bundle. That way you only pay for what you need.",
+            "Yes, Domifai is completely free to use. You can generate unlimited names, check domains, and save favorites at no cost.",
         },
         {
           id: 3,
@@ -115,7 +115,7 @@ const messages = {
         },
         {
           id: 5,
-          question: "Do you support languages other than Dutch?",
+          question: "Do you support languages other than English?",
           answer:
             "Yes, Domifai is built with multilingual support in mind. We start with Dutch and English and will add more languages over time. That way you can easily generate names for international brands or projects.",
         },

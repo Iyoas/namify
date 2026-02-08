@@ -50,10 +50,17 @@
 .card {
   display: flex;
   flex-direction: column;
-  background: #f8fafc;
+  background: transparent;
   border-radius: 16px;
   padding: var(--space-6);
   gap: 0;
+  position: relative;
+}
+
+.beam {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
 }
 
 .image {
@@ -68,7 +75,7 @@
 }
 
 .postTitle {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-3);
   font-size: 20px;
   line-height: 1.4;
   font-weight: 600;
@@ -76,7 +83,7 @@
 }
 
 .excerpt {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-3);
   color: #646464;
   line-height: 1.65;
   font-size: 15px;
@@ -117,18 +124,26 @@
 }
 
 @media (hover: hover) {
-  .card:hover .image {
-    opacity: 0.95;
+  .card:hover .beam {
+    opacity: 1;
   }
 
-  .cta:hover .ctaText {
+  .card:hover .image {
+    opacity: 0.85;
+  }
+
+  .card:hover .postTitle {
+    opacity: 0.85;
+  }
+
+  .card:hover .ctaText {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  .cta:hover svg {
+  .card:hover svg {
     fill: url(#domifai-gradient) !important;
     stroke: url(#domifai-gradient) !important;
   }
@@ -158,5 +173,30 @@
   .grid {
     grid-template-columns: 1fr;
     gap: var(--space-6);
+  }
+
+  .card {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .card:active .beam {
+    opacity: 1;
+  }
+
+  .card:active .image {
+    opacity: 0.95;
+  }
+
+  .card:active .ctaText {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .card:active svg {
+    fill: url(#domifai-gradient) !important;
+    stroke: url(#domifai-gradient) !important;
   }
 }

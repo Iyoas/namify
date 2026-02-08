@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { Lang } from "@/config/i18n";
-import { FaArrowRight } from "react-icons/fa";
-import styles from "./Blog.module.css";
+import BlogClient from "./BlogClient";
 
 type BlogPost = {
   id: string;
@@ -10,6 +9,10 @@ type BlogPost = {
   excerpt: string;
   date: string;
   image: string;
+};
+
+type BlogPostView = BlogPost & {
+  formattedDate: string;
 };
 
 type BlogPageProps = {
@@ -118,6 +121,10 @@ export async function generateMetadata({
       title: "Domifai Blog",
       description:
         "Korte en praktische inzichten over merknamen, domeinen en branding.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
@@ -125,13 +132,22 @@ export async function generateMetadata({
     title: "Domifai Blog",
     description:
       "Short and practical insights on naming, domains, and brand building.",
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }
 
 export default async function BlogPage({ params }: BlogPageProps) {
   const { lang } = await params;
   const resolvedLang: "en" | "nl" = lang === "nl" ? "nl" : "en";
-  const posts = MOCK_POSTS.filter((post) => post.lang === resolvedLang);
+  const posts: BlogPostView[] = MOCK_POSTS.filter(
+    (post) => post.lang === resolvedLang
+  ).map((post) => ({
+    ...post,
+    formattedDate: formatDate(post.date, resolvedLang),
+  }));
   const copy =
     resolvedLang === "nl"
       ? {
@@ -148,49 +164,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
         };
 
   return (
-    <section className={styles.section}>
-      <svg className={styles.gradientDefs} aria-hidden="true" focusable="false">
-        <defs>
-          <linearGradient
-            id="domifai-gradient"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="100%"
-          >
-            <stop offset="0%" stopColor="#0013E0" />
-            <stop offset="100%" stopColor="#B55AFF" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <div className={styles.inner}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>{copy.title}</h1>
-          <p className={styles.intro}>{copy.intro}</p>
-        </header>
-
-        <div className={styles.grid}>
-          {posts.map((post) => (
-            <article key={post.id} className={styles.card}>
-              <img
-                className={styles.image}
-                src={post.image}
-                alt={post.title}
-                loading="lazy"
-              />
-              <h2 className={styles.postTitle}>{post.title}</h2>
-              <p className={styles.excerpt}>{post.excerpt}</p>
-              <div className={styles.footer}>
-                <p className={styles.date}>{formatDate(post.date, resolvedLang)}</p>
-                <button type="button" className={styles.cta}>
-                  <span className={styles.ctaText}>{copy.cta}</span>
-                  <FaArrowRight aria-hidden />
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+    <BlogClient copy={copy} lang={resolvedLang} posts={posts} />
   );
 }

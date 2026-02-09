@@ -7,7 +7,7 @@ import { IoIosHeart, IoIosHeartEmpty, IoMdInformationCircleOutline } from "react
 import { IoSearch } from "react-icons/io5";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import styles from "./HeroSection.module.css";
-import { Box, Skeleton } from "@mui/material";
+import { Box, ClickAwayListener, Skeleton, Tooltip, useMediaQuery } from "@mui/material";
 import type { Lang } from "@/config/i18n";
 import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/generator-general";
 import { getRegistrarUrl } from "@/lib/registrar";
@@ -51,6 +51,7 @@ function getSingleBase(input: string) {
 }
 
 export function HeroSection({ lang, messages }: HeroSectionProps) {
+  const isHoverDevice = useMediaQuery("(hover: hover)");
   const styleOptions = messages.hero.styleOptions;
   const samplePrompts = messages.examples.prompts;
 
@@ -82,6 +83,9 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const [singleResults, setSingleResults] = useState<SingleResult[]>([]);
   const [singleLoading, setSingleLoading] = useState(false);
   const [singleError, setSingleError] = useState<string | null>(null);
+  const [openAftermarketDomain, setOpenAftermarketDomain] = useState<string | null>(
+    null
+  );
   const [likedNames, setLikedNames] = useState<string[]>([]);
   const [likedDomains, setLikedDomains] = useState<Set<string>>(new Set());
   const pendingSingleCheckRef = useRef<string | null>(null);
@@ -694,6 +698,8 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                   const isClickable = isAvailable || isAftermarket;
                   const nameKey = result.domain.split(".")[0] ?? result.domain;
                   const isLiked = likedDomains.has(result.domain);
+                  const isAftermarketOpen = openAftermarketDomain === result.domain;
+                  const aftermarketTooltip = messages.hero.aftermarketTooltip;
                   return (
                     <div key={result.domain} className={styles.singleCard}>
                       <div className={styles.singleLeft}>
@@ -713,13 +719,53 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                           <span className={styles.singleDomain}>{result.domain}</span>
                         </div>
                         {isAftermarket ? (
-                          <span className={styles.singleAftermarketTag}>
-                            {messages.hero.aftermarketTag}
-                            <IoMdInformationCircleOutline
-                              aria-hidden
-                              className={styles.singleAftermarketIcon}
-                            />
-                          </span>
+                          isHoverDevice ? (
+                            <Tooltip
+                              title={aftermarketTooltip}
+                              disableFocusListener
+                              disableTouchListener
+                              componentsProps={{
+                                tooltip: {
+                                  sx: { fontSize: 14, padding: "8px 10px" },
+                                },
+                              }}
+                            >
+                              <span className={styles.singleAftermarketTag}>
+                                {messages.hero.aftermarketTag}
+                                <IoMdInformationCircleOutline
+                                  aria-hidden
+                                  className={styles.singleAftermarketIcon}
+                                />
+                              </span>
+                            </Tooltip>
+                          ) : (
+                            <ClickAwayListener
+                              onClickAway={() => setOpenAftermarketDomain(null)}
+                            >
+                              <Tooltip
+                                title={aftermarketTooltip}
+                                open={isAftermarketOpen}
+                                disableHoverListener
+                                disableFocusListener
+                                disableTouchListener
+                              >
+                                <span
+                                  className={styles.singleAftermarketTag}
+                                  onClick={() =>
+                                    setOpenAftermarketDomain((prev) =>
+                                      prev === result.domain ? null : result.domain
+                                    )
+                                  }
+                                >
+                                  {messages.hero.aftermarketTag}
+                                  <IoMdInformationCircleOutline
+                                    aria-hidden
+                                    className={styles.singleAftermarketIcon}
+                                  />
+                                </span>
+                              </Tooltip>
+                            </ClickAwayListener>
+                          )
                         ) : null}
                       </div>
                       <div className={styles.singleRight}>

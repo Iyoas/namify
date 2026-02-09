@@ -13,6 +13,7 @@
       },
       "subtitle": "Based on your input we crafted creative suggestions 🎉",
       "aftermarketTag": "Aftermarket",
+      "aftermarketTooltip": "This domain is already registered and may be priced higher.",
       "filters": {
         "moreOptions": "More options",
         "favourites": "Your favorites",

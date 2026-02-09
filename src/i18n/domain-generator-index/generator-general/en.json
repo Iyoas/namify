@@ -29,6 +29,7 @@
       "ctaSingle": "Check domain",
       "singleClaim": "Claim now!",
       "aftermarketTag": "Aftermarket",
+      "aftermarketTooltip": "This domain is already registered and may be priced higher.",
       "singleUnavailable": "Unavailable",
       "singlePrice": "€234,99",
       "singleChecking": "Checking...",

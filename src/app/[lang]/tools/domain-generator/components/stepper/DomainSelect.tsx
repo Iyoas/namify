@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect, useMemo, useRef } from "react";
-import { ClickAwayListener, Skeleton, Tooltip, useMediaQuery } from "@mui/material";
+import { Skeleton } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Heart, ShoppingCart, Check } from "lucide-react";
-import { IoMdHeartEmpty, IoIosHeart, IoMdInformationCircleOutline } from "react-icons/io";
+import { IoMdHeartEmpty, IoIosHeart } from "react-icons/io";
 import { IoPersonOutline, IoMusicalNotesOutline } from "react-icons/io5";
 import { FaRegStar, FaPlus, FaSearch } from "react-icons/fa";
 import { LuBriefcaseBusiness } from "react-icons/lu";
@@ -140,7 +140,6 @@ export default function DomainSelect({
   tone,
   nameLanguage,
 }: DomainSelectProps) {
-  const isHoverDevice = useMediaQuery("(hover: hover)");
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -158,7 +157,6 @@ export default function DomainSelect({
   const [availabilityMap, setAvailabilityMap] =
     useState<typeof availability>(availability);
   const [isFetchingTlds, setIsFetchingTlds] = useState(false);
-  const [openAftermarketName, setOpenAftermarketName] = useState<string | null>(null);
   const hasPrefetchedAllTldsRef = useRef(false);
 
   useEffect(() => {
@@ -698,57 +696,6 @@ export default function DomainSelect({
                         suggestion.name
                       )}
                     </span>
-                    {!loading &&
-                    suggestion.availabilityReady !== false &&
-                    suggestion.extensions.some((ext) => ext.status === "aftermarket") ? (
-                      isHoverDevice ? (
-                        <Tooltip
-                          title={messages.domainSelect.aftermarketTooltip}
-                          disableFocusListener
-                          disableTouchListener
-                          componentsProps={{
-                            tooltip: {
-                              sx: { fontSize: 14, padding: "8px 10px" },
-                            },
-                          }}
-                        >
-                          <span className={styles.aftermarketTag}>
-                            {messages.domainSelect.aftermarketTag}
-                            <IoMdInformationCircleOutline
-                              aria-hidden
-                              className={styles.aftermarketIcon}
-                            />
-                          </span>
-                        </Tooltip>
-                      ) : (
-                        <ClickAwayListener
-                          onClickAway={() => setOpenAftermarketName(null)}
-                        >
-                          <Tooltip
-                            title={messages.domainSelect.aftermarketTooltip}
-                            open={openAftermarketName === suggestion.id}
-                            disableHoverListener
-                            disableFocusListener
-                            disableTouchListener
-                          >
-                            <span
-                              className={styles.aftermarketTag}
-                              onClick={() =>
-                                setOpenAftermarketName((prev) =>
-                                  prev === suggestion.id ? null : suggestion.id
-                                )
-                              }
-                            >
-                              {messages.domainSelect.aftermarketTag}
-                              <IoMdInformationCircleOutline
-                                aria-hidden
-                                className={styles.aftermarketIcon}
-                              />
-                            </span>
-                          </Tooltip>
-                        </ClickAwayListener>
-                      )
-                    ) : null}
                   </div>
                 </div>
               </div>

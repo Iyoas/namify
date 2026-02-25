@@ -21,7 +21,6 @@ import type { Lang } from "@/config/i18n";
 import { getRegistrarUrl } from "@/lib/registrar";
 import { getTldsForCategory, ALL_TLDS_SUPERSET } from "@/lib/tlds";
 import { trackEvent } from "@/lib/analytics";
-import { openAffiliateLink } from "@/lib/affiliate/openAffiliateLink";
 
 type DomainSelectProps = {
   lang: Lang;
@@ -250,8 +249,6 @@ export default function DomainSelect({
       tld: ext.tld,
     });
 
-    // Open in een nieuw tabblad zodat de gebruiker je site niet verlaat
-    openAffiliateLink(registrarUrl);
   }
 
   const [extraNames, setExtraNames] = useState<string[]>([]);
@@ -714,43 +711,50 @@ export default function DomainSelect({
                       </div>
                     ))
                   ) : (
-                    suggestion.extensions.map((ext) => (
-                      <div
-                        key={ext.id}
-                        className={[
-                          styles.extensionTag,
-                          ext.status === "available"
-                            ? styles.extensionTagAvailable
-                            : ext.status === "aftermarket"
-                            ? styles.extensionTagAftermarket
-                            : styles.extensionTagUnavailable,
-                        ]
-                          .filter(Boolean)
-                          .join(" ")}
-                        onClick={() =>
-                          handleTldClick(suggestion.name, ext, suggestion.namePosition)
-                        }
-                        role={
-                          ext.status === "available" || ext.status === "aftermarket"
-                            ? "button"
-                            : undefined
-                        }
-                        style={
-                          ext.status === "available" || ext.status === "aftermarket"
-                            ? { cursor: "pointer" }
-                            : undefined
-                        }
-                      >
-                        <span className={styles.extensionStatusIcon}>
-                          {ext.status === "available" || ext.status === "aftermarket" ? (
+                    suggestion.extensions.map((ext) => {
+                      const isClickable =
+                        ext.status === "available" || ext.status === "aftermarket";
+                      const pillClassName = [
+                        styles.extensionTag,
+                        ext.status === "available"
+                          ? styles.extensionTagAvailable
+                          : ext.status === "aftermarket"
+                          ? styles.extensionTagAftermarket
+                          : styles.extensionTagUnavailable,
+                      ]
+                        .filter(Boolean)
+                        .join(" ");
+
+                      if (!isClickable) {
+                        return (
+                          <div key={ext.id} className={pillClassName}>
+                            <span className={styles.extensionStatusIcon}>×</span>
+                            <span className={styles.extensionTld}>{ext.tld}</span>
+                          </div>
+                        );
+                      }
+
+                      const domain = `${suggestion.name}${ext.tld}`;
+                      const registrarUrl = getRegistrarUrl(domain, lang);
+
+                      return (
+                        <a
+                          key={ext.id}
+                          href={registrarUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={pillClassName}
+                          onClick={() =>
+                            handleTldClick(suggestion.name, ext, suggestion.namePosition)
+                          }
+                        >
+                          <span className={styles.extensionStatusIcon}>
                             <LuExternalLink className={styles.extensionCheckIcon} />
-                          ) : (
-                            "×"
-                          )}
-                        </span>
-                        <span className={styles.extensionTld}>{ext.tld}</span>
-                      </div>
-                    ))
+                          </span>
+                          <span className={styles.extensionTld}>{ext.tld}</span>
+                        </a>
+                      );
+                    })
                   )}
                 </div>
               </div>

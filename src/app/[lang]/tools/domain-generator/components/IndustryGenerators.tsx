@@ -1,58 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import styles from "./IndustryGenerators.module.css";
-import { JSX } from "react";
 import type { DomainGeneratorIndexMessages } from "@/i18n/domain-generator-index";
-
-function EcommerceIcon() {
-  return (
-    <img
-      src="/icons/ecommerce.svg"
-      alt=""
-      aria-hidden="true"
-      className={styles.icon}
-    />
-  );
-}
-
-function StartupIcon() {
-  return <img src="/icons/startup.svg" alt="" aria-hidden="true" className={styles.icon} />;
-}
-
-function MarketingIcon() {
-  return <img src="/icons/marketing.svg" alt="" aria-hidden="true" className={styles.icon} />;
-}
-
-function RestaurantsIcon() {
-  return <img src="/icons/restaunt.svg" alt="" aria-hidden="true" className={styles.icon} />;
-}
-
-function AppsIcon() {
-  return <img src="/icons/apps.svg" alt="" aria-hidden="true" className={styles.icon} />;
-}
-
-function StudioIcon() {
-  return <img src="/icons/studio.svg" alt="" aria-hidden="true" className={styles.icon} />;
-}
-
-type IndustryCard = {
-  id: string;
-  title: string;
-  description: string;
-  icon: JSX.Element;
-};
-
-const ICON_BY_ID: Record<string, JSX.Element> = {
-  ecommerce: <EcommerceIcon />,
-  startup: <StartupIcon />,
-  marketing: <MarketingIcon />,
-  creativeStudios: <StudioIcon />,
-  saasApps: <AppsIcon />,
-  restaurants: <RestaurantsIcon />,
-};
+import GeneratorCardsGrid, { type GeneratorCardIconId } from "./GeneratorCardsGrid";
 
 type IndustryGeneratorsProps = {
   messages: DomainGeneratorIndexMessages;
@@ -65,10 +16,13 @@ export default function IndustryGenerators({ messages }: IndustryGeneratorsProps
     lang === "nl"
       ? `/${lang}/tools/domeinnaam-generator`
       : `/${lang}/tools/domain-generator`;
-  const cards: IndustryCard[] =
+  const cards =
     messages.industryGenerators.cards.map((card) => ({
-      ...card,
-      icon: ICON_BY_ID[card.id] ?? <EcommerceIcon />,
+      id: card.id,
+      title: card.title,
+      description: card.description,
+      href: generatorHref,
+      iconId: card.id as GeneratorCardIconId,
     })) ?? [];
 
   return (
@@ -82,27 +36,7 @@ export default function IndustryGenerators({ messages }: IndustryGeneratorsProps
           <p className={styles.intro}>{messages.industryGenerators.intro}</p>
         </header>
 
-        <div className={styles.grid}>
-          {cards.map((industry) => (
-            <article key={industry.id} className={styles.card}>
-              <div className={styles.cardHeader}>
-                <div className={styles.iconWrapper}>{industry.icon}</div>
-                <h3 className={styles.cardTitle}>{industry.title}</h3>
-              </div>
-
-              <p className={styles.cardDescription}>{industry.description}</p>
-
-              <div className={styles.cardFooter}>
-                <Link href={generatorHref} className={styles.cardButton}>
-                  <span className={styles.cardButtonLabel}>
-                    {messages.industryGenerators.cardCta}
-                  </span>
-                  <ArrowRightIcon aria-hidden="true" className={styles.cardButtonIcon} />
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
+        <GeneratorCardsGrid items={cards} ctaLabel={messages.industryGenerators.cardCta} />
       </div>
     </section>
   );

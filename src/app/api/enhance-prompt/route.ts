@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
 
     const enhancedPromptRaw =
       completion.choices[0]?.message?.content?.trim() || rawPrompt;
-    const MAX_LENGTH = 300;
+    const MAX_LENGTH = 500;
     const cutIndex = enhancedPromptRaw
       .slice(0, MAX_LENGTH)
       .search(/[.!?](?=[^.!?]*$)/);

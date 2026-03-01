@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { Lang } from "@/config/i18n";
 import BlogClient from "./BlogClient";
+import { getSanityBlogPosts } from "@/lib/sanity/blog";
 
 type BlogPost = {
   id: string;
@@ -9,6 +10,7 @@ type BlogPost = {
   excerpt: string;
   date: string;
   image: string;
+  slug?: string;
 };
 
 type BlogPostView = BlogPost & {
@@ -142,12 +144,33 @@ export async function generateMetadata({
 export default async function BlogPage({ params }: BlogPageProps) {
   const { lang } = await params;
   const resolvedLang: "en" | "nl" = lang === "nl" ? "nl" : "en";
-  const posts: BlogPostView[] = MOCK_POSTS.filter(
-    (post) => post.lang === resolvedLang
-  ).map((post) => ({
-    ...post,
-    formattedDate: formatDate(post.date, resolvedLang),
-  }));
+
+  let posts: BlogPostView[] = [];
+  try {
+    const sanityPosts = await getSanityBlogPosts(resolvedLang);
+    posts = sanityPosts.map((post) => ({
+      id: post.id,
+      lang: resolvedLang,
+      title: post.title,
+      excerpt: post.excerpt,
+      date: post.date,
+      image:
+        post.image ||
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+      slug: post.slug,
+      formattedDate: formatDate(post.date, resolvedLang),
+    }));
+  } catch (error) {
+    console.error("[blog] failed to load posts from Sanity", error);
+  }
+
+  if (posts.length === 0) {
+    posts = MOCK_POSTS.filter((post) => post.lang === resolvedLang).map((post) => ({
+      ...post,
+      formattedDate: formatDate(post.date, resolvedLang),
+    }));
+  }
+
   const copy =
     resolvedLang === "nl"
       ? {

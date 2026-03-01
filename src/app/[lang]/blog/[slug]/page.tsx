@@ -52,13 +52,16 @@ const portableTextComponents = {
 
       return <h2 className={className}>{children}</h2>;
     },
+    h3: ({ children }: { children?: ReactNode }) => {
+      return <h3 className={styles.h3}>{children}</h3>;
+    },
   },
   list: {
     bullet: ({ children }: { children?: ReactNode }) => {
       const itemCount = Children.count(children);
       const listClassName =
         itemCount > 8
-          ? `${styles.list} ${styles.nameList}`
+          ? `${styles.list} ${styles.twoColumnList}`
           : `${styles.list} ${styles.basicList}`;
 
       return <ul className={listClassName}>{children}</ul>;

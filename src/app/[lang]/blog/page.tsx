@@ -113,6 +113,13 @@ function formatDate(date: string, lang: "en" | "nl") {
   }).format(new Date(date));
 }
 
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
 export async function generateMetadata({
   params,
 }: BlogPageProps): Promise<Metadata> {
@@ -167,6 +174,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
   if (posts.length === 0) {
     posts = MOCK_POSTS.filter((post) => post.lang === resolvedLang).map((post) => ({
       ...post,
+      slug: post.slug ?? slugify(post.title),
       formattedDate: formatDate(post.date, resolvedLang),
     }));
   }

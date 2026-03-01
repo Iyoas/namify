@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import { BorderBeam } from "@stianlarsen/border-beam";
 import "@stianlarsen/border-beam/css";
@@ -13,6 +14,7 @@ type BlogPost = {
   date: string;
   formattedDate: string;
   image: string;
+  slug?: string;
 };
 
 type BlogCopy = {
@@ -70,13 +72,13 @@ export default function BlogClient({
                 duration={10}
               />
               <h2 className={styles.postTitle}>{post.title}</h2>
-              <p className={styles.excerpt}>{post.excerpt}</p>
+                <p className={styles.excerpt}>{post.excerpt}</p>
               <div className={styles.footer}>
                 <p className={styles.date}>{post.formattedDate}</p>
-                <button type="button" className={styles.cta}>
+                <Link href={`/${post.lang}/blog/${post.slug ?? ""}`} className={styles.cta}>
                   <span className={styles.ctaText}>{copy.cta}</span>
                   <FaArrowRight aria-hidden />
-                </button>
+                </Link>
               </div>
             </article>
           ))}

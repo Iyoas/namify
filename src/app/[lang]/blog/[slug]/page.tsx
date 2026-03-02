@@ -132,7 +132,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     height={36}
                     className={styles.promoBrandLogo}
                   />
-                  <span className={styles.promoBrandText}>Domifai</span>
+                  <span className={styles.promoBrandName}>Domifai</span>
                 </div>
                 <p className={styles.promoText}>{copy.promoText}</p>
                 <Link href={generatorHref} className={styles.promoButton}>

@@ -45,6 +45,8 @@ export default function Header() {
   const [likedCount, setLikedCount] = useState(0);
   const messages = getHeaderMessages((lang || "en") as Lang);
   const hideOnDesktop = pathname?.includes("/tools/domain-generator/results");
+  const pathSegments = pathname?.split("/").filter(Boolean) ?? [];
+  const isBlogPostPage = pathSegments[1] === "blog" && Boolean(pathSegments[2]);
 
   const queryString = searchParams.toString();
   const buildLangHref = (targetLang: "en" | "nl") => {
@@ -144,6 +146,7 @@ export default function Header() {
       className={[
         styles.header,
         hideOnDesktop ? styles.headerHideDesktop : "",
+        isBlogPostPage ? styles.headerMinimal : "",
       ]
         .filter(Boolean)
         .join(" ")}
@@ -155,7 +158,7 @@ export default function Header() {
           aria-hidden="true"
         />
       )}
-      <div className={styles.inner}>
+      <div className={`${styles.inner} ${isBlogPostPage ? styles.innerMinimal : ""}`}>
         <button
           type="button"
           className={styles.mobileMenuButton}
@@ -167,73 +170,79 @@ export default function Header() {
 
         <Logo />
 
-        <nav className={`${styles.nav} ${styles.desktopOnly}`} aria-label="Primary navigation">
-          <Link
-            href={generatorHref}
-            className={styles.navLink}
-          >
-            {messages.navDesktop.aiNameGenerator}
-          </Link>
+        {!isBlogPostPage ? (
+          <>
+            <nav className={`${styles.nav} ${styles.desktopOnly}`} aria-label="Primary navigation">
+              <Link
+                href={generatorHref}
+                className={styles.navLink}
+              >
+                {messages.navDesktop.aiNameGenerator}
+              </Link>
 
-          <Link
-            href={checkerHref}
-            className={styles.navLink}
-          >
-            {messages.navDesktop.domainChecker}
-          </Link>
+              <Link
+                href={checkerHref}
+                className={styles.navLink}
+              >
+                {messages.navDesktop.domainChecker}
+              </Link>
 
-          <Link
-            href={`${homeHref}#how-it-works`}
-            className={styles.navLink}
-          >
-            {messages.navDesktop.privacyPolicy}
-          </Link>
-        </nav>
+              <Link
+                href={`${homeHref}#how-it-works`}
+                className={styles.navLink}
+              >
+                {messages.navDesktop.privacyPolicy}
+              </Link>
+            </nav>
 
-        <div className={styles.actions} aria-label="Header actions">
-          <div className={styles.langSwitcher}>
-            <Link
-              href={buildLangHref("en")}
-              className={[
-                styles.langButton,
-                lang === "en" ? styles.langButtonActive : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-              aria-current={lang === "en" ? "true" : undefined}
-            >
-              EN
-            </Link>
-            <Link
-              href={buildLangHref("nl")}
-              className={[
-                styles.langButton,
-                lang === "nl" ? styles.langButtonActive : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-              aria-current={lang === "nl" ? "true" : undefined}
-            >
-              NL
-            </Link>
-          </div>
-          <div>
-            <Link
-              href={likedHref}
-              className={styles.iconButton}
-              aria-label={messages.actions.favoritesAria}
-            >
-              {likedCount > 0 && (
-                <span className={styles.badge} aria-hidden="true">
-                  {likedCount}
-                </span>
-              )}
-              <span className={styles.icon}>
-                <IoHeartOutline className={styles.iconSvg} />
-              </span>
-            </Link>
-          </div>
-        </div>
+            <div className={styles.actions} aria-label="Header actions">
+              <div className={styles.langSwitcher}>
+                <Link
+                  href={buildLangHref("en")}
+                  className={[
+                    styles.langButton,
+                    lang === "en" ? styles.langButtonActive : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                  aria-current={lang === "en" ? "true" : undefined}
+                >
+                  EN
+                </Link>
+                <Link
+                  href={buildLangHref("nl")}
+                  className={[
+                    styles.langButton,
+                    lang === "nl" ? styles.langButtonActive : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                  aria-current={lang === "nl" ? "true" : undefined}
+                >
+                  NL
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href={likedHref}
+                  className={styles.iconButton}
+                  aria-label={messages.actions.favoritesAria}
+                >
+                  {likedCount > 0 && (
+                    <span className={styles.badge} aria-hidden="true">
+                      {likedCount}
+                    </span>
+                  )}
+                  <span className={styles.icon}>
+                    <IoHeartOutline className={styles.iconSvg} />
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </>
+        ) : (
+          <span className={styles.blogMobileLikeSpacer} aria-hidden="true" />
+        )}
       </div>
 
       <aside

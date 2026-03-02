@@ -4,6 +4,10 @@
   overflow-x: hidden;
 }
 
+.headerMinimal {
+  background: #f8fafc;
+}
+
 @media (min-width: 641px) {
   .headerHideDesktop {
     display: none;
@@ -20,6 +24,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+}
+
+.innerMinimal {}
+
+.blogMobileLikeSpacer {
+  display: none;
 }
 
 .logoLink {
@@ -199,6 +209,13 @@
     grid-template-columns: auto 1fr auto;
     align-items: center;
     justify-content: initial;
+  }
+
+  .blogMobileLikeSpacer {
+    display: block;
+    width: 46px;
+    height: 46px;
+    visibility: hidden;
   }
 
   /* Hide desktop-only blocks on mobile */

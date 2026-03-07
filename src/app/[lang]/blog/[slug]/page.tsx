@@ -4,7 +4,6 @@ import Image from "next/image";
 import { cache, Children, type ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
-import { IoIosArrowBack } from "react-icons/io";
 import type { Lang } from "@/config/i18n";
 import { getSanityBlogPostBySlug } from "@/lib/sanity/blog";
 import styles from "./BlogPost.module.css";
@@ -94,12 +93,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const copy =
     resolvedLang === "nl"
       ? {
-          back: "Blog overview",
           promoText: "Vind vandaag de perfecte bedrijfsnaam!",
           promoCta: "Nu genereren",
         }
       : {
-          back: "Blog overview",
           promoText: "Find the perfect business name today!",
           promoCta: "Generate now",
         };
@@ -167,10 +164,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <>
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <Link href={`/${resolvedLang}/blog`} className={styles.backLink}>
-            <IoIosArrowBack aria-hidden="true" className={styles.backIcon} />
-            {copy.back}
-          </Link>
+          <img className={styles.coverImage} src={image} alt={post.title} loading="eager" />
 
           <header className={styles.header}>
             <h1 className={styles.title}>{post.title}</h1>
@@ -182,8 +176,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       <section className={styles.content}>
         <div className={styles.inner}>
-          <img className={styles.coverImage} src={image} alt={post.title} loading="eager" />
-
           {post.body && Array.isArray(post.body) && post.body.length > 0 ? (
             <div className={styles.articleContent}>
               <PortableText value={post.body} components={portableTextComponents} />

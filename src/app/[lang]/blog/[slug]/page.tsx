@@ -16,6 +16,11 @@ type BlogPostPageProps = {
   params: Promise<{ lang: Lang; slug: string }>;
 };
 
+type ChecklistTextParts = {
+  label: string;
+  description: string;
+};
+
 function safeDecodeSlug(value: string): string {
   try {
     return decodeURIComponent(value);
@@ -31,6 +36,35 @@ function formatDate(date: string, lang: "en" | "nl") {
     month: "short",
     day: "numeric",
   }).format(new Date(date));
+}
+
+function getChecklistTextParts(children?: ReactNode): ChecklistTextParts | null {
+  const text = Children.toArray(children).join("").trim();
+  const colonIndex = text.indexOf(":");
+
+  if (colonIndex <= 0 || colonIndex === text.length - 1) {
+    return null;
+  }
+
+  return {
+    label: text.slice(0, colonIndex).trim(),
+    description: text.slice(colonIndex + 1).trim(),
+  };
+}
+
+function ChecklistListItem({ children }: { children?: ReactNode }) {
+  const parts = getChecklistTextParts(children);
+
+  if (!parts) {
+    return <>{children}</>;
+  }
+
+  return (
+    <>
+      <span className={styles.checklistLabel}>{parts.label}:</span>{" "}
+      <span>{parts.description}</span>
+    </>
+  );
 }
 
 const getPostCached = cache(async (lang: Lang, slug: string) => {
@@ -104,7 +138,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     resolvedLang === "nl"
       ? `/${resolvedLang}/tools/domeinnaam-generator`
       : `/${resolvedLang}/tools/domain-generator`;
-  let hasRenderedPromoCard = false;
   const portableTextComponents = {
     block: {
       h2: ({ children }: { children?: ReactNode }) => {
@@ -113,11 +146,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           ? styles.sectionHeading
           : styles.subHeading;
         const shouldRenderPromo =
-          !hasRenderedPromoCard &&
           text === "Mistakes to Avoid While Name Pizzeria Business";
 
         if (shouldRenderPromo) {
-          hasRenderedPromoCard = true;
           return (
             <>
               <section className={styles.promoCard} aria-label="Domifai generator call to action">
@@ -156,6 +187,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             : `${styles.list} ${styles.basicList}`;
 
         return <ul className={listClassName}>{children}</ul>;
+      },
+    },
+    listItem: {
+      bullet: ({ children }: { children?: ReactNode }) => {
+        return (
+          <li>
+            <ChecklistListItem>{children}</ChecklistListItem>
+          </li>
+        );
       },
     },
   };

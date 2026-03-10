@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { cache, Children, type ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
+import { FaRegLightbulb } from "react-icons/fa";
 import type { Lang } from "@/config/i18n";
 import { countWords, estimateReadingTimeMinutes, extractPlainTextFromPortableText } from "@/lib/blogMeta";
 import { getSanityBlogPostBySlug } from "@/lib/sanity/blog";
+import BlogFaq from "./BlogFaq";
 import BlogGeneratorCta from "./BlogGeneratorCta";
 import BlogMetaRow from "./BlogMetaRow";
 import InArticleDomainChecker from "./InArticleDomainChecker";
@@ -28,11 +30,18 @@ type PortableTextChild = {
   text?: string;
 };
 
+type PortableTextLinkMark = {
+  _type?: string;
+  href?: string;
+};
+
 type PortableTextBlock = {
   _type?: string;
+  _key?: string;
   style?: string;
   listItem?: string;
   children?: PortableTextChild[];
+  isClickableName?: boolean;
 };
 
 type DomainCheckerInsertId =
@@ -49,6 +58,12 @@ type GeneratorCtaBlock = {
   _type: "generatorCta";
   _key: string;
   insertId: "after-domain-section";
+};
+
+type ListTipBlock = {
+  _type: "listTip";
+  _key: string;
+  text: string;
 };
 
 function safeDecodeSlug(value: string): string {
@@ -80,45 +95,92 @@ function getPortableTextBlockText(block: unknown): string {
     .trim();
 }
 
-function createDomainCheckerBlock(insertId: DomainCheckerInsertId): DomainCheckerBlock {
+function createDomainCheckerBlock(
+  insertId: DomainCheckerInsertId,
+  keySuffix: string
+): DomainCheckerBlock {
   return {
     _type: "domainChecker",
-    _key: `domain-checker-${insertId}`,
+    _key: `domain-checker-${insertId}-${keySuffix}`,
     insertId,
   };
 }
 
-function createGeneratorCtaBlock(): GeneratorCtaBlock {
+function createGeneratorCtaBlock(keySuffix: string): GeneratorCtaBlock {
   return {
     _type: "generatorCta",
-    _key: "generator-cta-after-domain-section",
+    _key: `generator-cta-after-domain-section-${keySuffix}`,
     insertId: "after-domain-section",
   };
+}
+
+function createListTipBlock(keySuffix: string): ListTipBlock {
+  return {
+    _type: "listTip",
+    _key: `list-tip-click-domain-check-${keySuffix}`,
+    text: "Tip: Click any name below to check domain availability instantly.",
+  };
+}
+
+function normalizeNameForDomainCheck(value: string): string {
+  return value.trim();
 }
 
 function injectAiAppDomainCheckers(
   body: unknown[] | undefined,
   slug: string
-): Array<unknown | DomainCheckerBlock | GeneratorCtaBlock> {
+): Array<unknown | DomainCheckerBlock | GeneratorCtaBlock | ListTipBlock> {
   if (!Array.isArray(body) || slug !== "100-ai-app-name-ideas") {
     return body ?? [];
   }
 
-  const result: Array<unknown | DomainCheckerBlock | GeneratorCtaBlock> = [];
+  const result: Array<
+    unknown | DomainCheckerBlock | GeneratorCtaBlock | ListTipBlock
+  > = [];
   let insertedAfterIntro = false;
   let insideModernNamesSection = false;
   let insertedAfterModernNames = false;
   let insideDomainSection = false;
   let insertedAfterDomainSection = false;
+  let insideClickableNameSection = false;
+  let insideUniqueIdeasSection = false;
+  let uniqueIdeasParagraphCount = 0;
 
-  for (const block of body) {
+  const clickableNameSectionHeadings = new Set([
+    "Modern AI App Name Ideas",
+    "AI Agent App Name Ideas",
+    "AI Writing App Name Ideas",
+    "AI Productivity App Name Ideas",
+    "AI Chatbot App Name Ideas",
+    "AI Automation Tool Name Ideas",
+    "One Word AI App Name Ideas",
+  ]);
+
+  for (const [index, block] of body.entries()) {
     const text = getPortableTextBlockText(block);
     const value = block as PortableTextBlock;
     const isH2 = value?._type === "block" && value.style === "h2";
     const isH3 = value?._type === "block" && value.style === "h3";
+    const isBullet = value?._type === "block" && value.listItem === "bullet";
+    const keySuffix = value?._key ?? String(index);
+
+    if (isH2 || isH3) {
+      if (isH2 && text === "Unique AI App Name Ideas") {
+        insideUniqueIdeasSection = true;
+        uniqueIdeasParagraphCount = 0;
+      } else if (isH2 || isH3) {
+        insideUniqueIdeasSection = false;
+      }
+
+      if (isH3 && clickableNameSectionHeadings.has(text)) {
+        insideClickableNameSection = true;
+      } else {
+        insideClickableNameSection = false;
+      }
+    }
 
     if (!insertedAfterIntro && text === "Why Naming Matters for AI Apps") {
-      result.push(createDomainCheckerBlock("after-intro"));
+      result.push(createDomainCheckerBlock("after-intro", keySuffix));
       insertedAfterIntro = true;
     }
 
@@ -127,7 +189,7 @@ function injectAiAppDomainCheckers(
       "Check whether one of these AI app names is available before someone else registers it."
     ) {
       if (!insertedAfterModernNames) {
-        result.push(createDomainCheckerBlock("after-modern-names"));
+        result.push(createDomainCheckerBlock("after-modern-names", keySuffix));
         insertedAfterModernNames = true;
       }
       continue;
@@ -139,7 +201,7 @@ function injectAiAppDomainCheckers(
       isH3 &&
       text === "AI Agent App Name Ideas"
     ) {
-      result.push(createDomainCheckerBlock("after-modern-names"));
+      result.push(createDomainCheckerBlock("after-modern-names", keySuffix));
       insertedAfterModernNames = true;
       insideModernNamesSection = false;
     }
@@ -150,9 +212,31 @@ function injectAiAppDomainCheckers(
       isH2 &&
       text !== "Choosing the Right Domain for Your AI App"
     ) {
-        result.push(createGeneratorCtaBlock());
+        result.push(createGeneratorCtaBlock(keySuffix));
         insertedAfterDomainSection = true;
         insideDomainSection = false;
+    }
+
+    if (
+      insideUniqueIdeasSection &&
+      value?._type === "block" &&
+      value.style === "normal" &&
+      !value.listItem
+    ) {
+      uniqueIdeasParagraphCount += 1;
+
+      if (uniqueIdeasParagraphCount === 2) {
+        result.push(createListTipBlock(keySuffix));
+        continue;
+      }
+    }
+
+    if (insideClickableNameSection && isBullet) {
+      result.push({
+        ...value,
+        isClickableName: true,
+      });
+      continue;
     }
 
     result.push(block);
@@ -167,7 +251,7 @@ function injectAiAppDomainCheckers(
   }
 
   if (insideDomainSection && !insertedAfterDomainSection) {
-    result.push(createGeneratorCtaBlock());
+    result.push(createGeneratorCtaBlock("end"));
   }
 
   return result;
@@ -199,6 +283,25 @@ function ChecklistListItem({ children }: { children?: ReactNode }) {
       <span className={styles.checklistLabel}>{parts.label}:</span>{" "}
       <span>{parts.description}</span>
     </>
+  );
+}
+
+function NameListItem({
+  children,
+  href,
+}: {
+  children?: ReactNode;
+  href: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styles.nameListLink}
+    >
+      {children}
+    </a>
   );
 }
 
@@ -278,6 +381,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           share: "Share",
           copied: "Copied",
         };
+  const checkerPath =
+    resolvedLang === "nl"
+      ? `/${resolvedLang}/tools/domeinnaam-checker`
+      : `/${resolvedLang}/tools/domain-checker`;
+  const faqCopy =
+    resolvedLang === "nl"
+      ? {
+          title: "Veelgestelde vragen",
+          subtitle: "Alles wat je moet weten, helder uitgelegd.",
+        }
+      : {
+          title: "Frequently Asked Questions",
+          subtitle: "Everything you need to know, clearly explained.",
+        };
   const portableTextComponents = {
     block: {
       h2: ({ children }: { children?: ReactNode }) => {
@@ -315,7 +432,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       },
     },
     listItem: {
-      bullet: ({ children }: { children?: ReactNode }) => {
+      bullet: ({
+        children,
+        value,
+      }: {
+        children?: ReactNode;
+        value?: PortableTextBlock;
+      }) => {
+        if (value?.isClickableName) {
+          const name = getPortableTextBlockText(value);
+          const href =
+            `${checkerPath}?domain=` +
+            encodeURIComponent(normalizeNameForDomainCheck(name));
+
+          return (
+            <li>
+              <NameListItem href={href}>{children}</NameListItem>
+            </li>
+          );
+        }
+
         return (
           <li>
             <ChecklistListItem>{children}</ChecklistListItem>
@@ -323,9 +459,35 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         );
       },
     },
+    marks: {
+      link: ({
+        children,
+        value,
+      }: {
+        children?: ReactNode;
+        value?: PortableTextLinkMark;
+      }) => (
+        <a
+          href={value?.href}
+          className={styles.inlineGradientLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      ),
+    },
     types: {
       domainChecker: () => <InArticleDomainChecker lang={resolvedLang} />,
       generatorCta: () => <BlogGeneratorCta lang={resolvedLang} />,
+      listTip: ({ value }: { value?: ListTipBlock }) => (
+        <p className={styles.listTip}>
+          <span className={styles.listTipIcon} aria-hidden="true">
+            <FaRegLightbulb />
+          </span>
+          <span>{value?.text}</span>
+        </p>
+      ),
     },
   };
 
@@ -357,6 +519,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className={styles.articleContent}>
               <PortableText value={articleBody} components={portableTextComponents} />
             </div>
+          ) : null}
+          {Array.isArray(post.faq) && post.faq.length > 0 ? (
+            <BlogFaq
+              items={post.faq}
+              title={faqCopy.title}
+              subtitle={faqCopy.subtitle}
+            />
           ) : null}
         </div>
       </section>

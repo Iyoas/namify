@@ -7,7 +7,11 @@ export type SanityBlogPost = {
   date: string;
   image: string;
   slug: string;
-  body?: any;
+  body?: unknown[];
+  faq?: Array<{
+    question: string;
+    answer: string;
+  }>;
 };
 
 const SANITY_API_VERSION = "2024-10-01";
@@ -44,7 +48,11 @@ export async function getSanityBlogPosts(lang: Lang): Promise<SanityBlogPost[]> 
     "date": coalesce(string(publishedAt), string(_createdAt)),
     "image": coalesce(coverImage.asset->url, mainImage.asset->url, image.asset->url, imageUrl, ""),
     "slug": coalesce(slug.current, ""),
-    "body": coalesce(body, [])
+    "body": coalesce(body, []),
+    "faq": coalesce(faq[]{
+      "question": coalesce(question, ""),
+      "answer": coalesce(answer, "")
+    }, [])
   }`;
 
   const searchParams = new URLSearchParams({
@@ -76,6 +84,7 @@ export async function getSanityBlogPosts(lang: Lang): Promise<SanityBlogPost[]> 
       image: post.image ?? "",
       slug: post.slug ?? "",
       body: post.body ?? [],
+      faq: Array.isArray(post.faq) ? post.faq : [],
     }))
     .filter((post) => post.id && post.title && post.date);
 }
@@ -101,7 +110,11 @@ export async function getSanityBlogPostBySlug(
     "date": coalesce(string(publishedAt), string(_createdAt)),
     "image": coalesce(coverImage.asset->url, mainImage.asset->url, image.asset->url, imageUrl, ""),
     "slug": coalesce(slug.current, ""),
-    "body": coalesce(body, [])
+    "body": coalesce(body, []),
+    "faq": coalesce(faq[]{
+      "question": coalesce(question, ""),
+      "answer": coalesce(answer, "")
+    }, [])
   }`;
 
   const searchParams = new URLSearchParams({
@@ -133,6 +146,7 @@ export async function getSanityBlogPostBySlug(
     image: post.image ?? "",
     slug: post.slug ?? "",
     body: post.body ?? [],
+    faq: Array.isArray(post.faq) ? post.faq : [],
   };
 
   if (!mapped.id || !mapped.title || !mapped.date) {

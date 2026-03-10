@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import { Sparkles } from "lucide-react";
 import type { Lang } from "@/config/i18n";
 import styles from "./BlogPost.module.css";
 
@@ -11,18 +11,16 @@ export default function BlogGeneratorCta({ lang }: BlogGeneratorCtaProps) {
   const copy =
     lang === "nl"
       ? {
-          promoText: "Vind vandaag de perfecte bedrijfsnaam!",
           promoCta: "Nu genereren",
         }
       : {
-          promoText: "Find the perfect business name today!",
           promoCta: "Generate now",
         };
 
-  const generatorHref =
+  const generatorResultsHref =
     lang === "nl"
-      ? `/${lang}/tools/domeinnaam-generator`
-      : `/${lang}/tools/domain-generator`;
+      ? `/${lang}/tools/domain-generator/results`
+      : `/${lang}/tools/domain-generator/results`;
 
   return (
     <section className={styles.promoCard} aria-label="Domifai generator call to action">
@@ -36,10 +34,22 @@ export default function BlogGeneratorCta({ lang }: BlogGeneratorCtaProps) {
         />
         <span className={styles.promoBrandName}>Domifai</span>
       </div>
-      <p className={styles.promoText}>{copy.promoText}</p>
-      <Link href={generatorHref} className={styles.promoButton}>
-        {copy.promoCta}
-      </Link>
+      <form action={generatorResultsHref} method="get" className={styles.promoForm}>
+        <div className={styles.promoInputShell}>
+          <input
+            type="text"
+            name="q"
+            className={styles.promoInput}
+            placeholder="Describe your business idea"
+            aria-label="Describe your business idea"
+            required
+          />
+          <button type="submit" className={styles.promoInlineButton}>
+            <Sparkles className={styles.promoInlineButtonIcon} aria-hidden="true" />
+            <span>{copy.promoCta}</span>
+          </button>
+        </div>
+      </form>
     </section>
   );
 }

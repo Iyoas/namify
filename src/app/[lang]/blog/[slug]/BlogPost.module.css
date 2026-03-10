@@ -143,7 +143,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 18px;
   border-radius: 16px;
   background: #f8fafc;
   padding: 24px;
@@ -171,31 +171,76 @@
   letter-spacing: -0.01em;
 }
 
-.promoText {
-  margin: 0;
-  color: #475569;
-  font-size: 14px;
-  line-height: 1.4;
-  font-weight: 300;
-  letter-spacing: 0;
-  min-width: 0;
+.promoForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
 }
 
-.promoButton {
+.promoInputShell {
+  width: min(100%, 720px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.promoInput {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 44px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #0f172a;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1;
+  outline: none;
+}
+
+.promoInput::placeholder {
+  color: #94a3b8;
+}
+
+.promoInlineButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: none;
-  background: var(--gradient-primary);
+  gap: 8px;
+  flex: 0 0 auto;
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 0.5px solid #3b16c1;
+  background: linear-gradient(to top right, #0013e0, #b55aff);
   color: #ffffff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.2),
+    inset 0 4px 13px rgba(255, 255, 255, 0.15);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.promoInlineButton:hover {
+  transform: translateY(1px);
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.25),
+    inset 0 4px 13px rgba(255, 255, 255, 0.2);
+}
+
+.promoInlineButtonIcon {
+  width: 16px;
+  height: 16px;
 }
 
 .sectionHeading {
@@ -232,12 +277,6 @@
   font-size: 18px;
 }
 
-.articleContent .promoText {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
 .list {
   margin-top: 24px;
   margin-bottom: 24px;
@@ -262,6 +301,80 @@
   color: #334155;
 }
 
+.listTip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 24px;
+  padding: 14px 14px;
+  border-radius: 8px;
+  background: rgba(248, 250, 252, 0.95);
+  font-size: 12px;
+  line-height: 1.6;
+  color: #000000;
+  overflow: hidden;
+}
+
+.listTipIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--gradient-primary);
+  color: #ffffff;
+}
+
+.listTipIcon :global(svg) {
+  width: 12px;
+  height: 12px;
+  line-height: 1;
+}
+
+.listTip::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--gradient-primary);
+}
+
+.nameListLink {
+  color: #475569;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform 120ms ease, color 120ms ease, background 120ms ease;
+}
+
+.nameListLink:visited {
+  color: #475569;
+}
+
+.nameListLink:hover {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.05);
+  text-decoration: none;
+}
+
+.nameListLink:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.3);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 .list li::before {
   counter-increment: item;
   content: counter(item) ".";
@@ -281,7 +394,7 @@
   column-count: 1;
 }
 
-.articleContent :global(a) {
+.inlineGradientLink {
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   background-clip: text;
@@ -291,7 +404,7 @@
   font-weight: 600;
 }
 
-.articleContent :global(a:hover) {
+.inlineGradientLink:hover {
   text-decoration: underline;
 }
 
@@ -308,17 +421,150 @@
   text-decoration: none;
 }
 
+.articleContent .promoInlineButton {
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  text-decoration: none;
+}
+
+.faqSection {
+  margin-top: 64px;
+}
+
+.faqHeader {
+  margin-bottom: 24px;
+}
+
+.faqTitle {
+  margin: 0 0 8px;
+  font-size: 28px;
+  line-height: 1.2;
+  color: #334155;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.faqSubtitle {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+.faqCard {
+  background: transparent;
+}
+
+.faqList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faqItem {
+  margin: 0;
+}
+
+.faqItemSurface {
+  border: 0;
+  border-radius: 24px;
+  background: #f8fafc;
+  transition:
+    border-color 140ms ease,
+    background 140ms ease,
+    transform 140ms ease;
+}
+
+.faqItemOpen .faqItemSurface {
+  border-color: rgba(181, 90, 255, 0.18);
+  background: #f8fafc;
+}
+
+.faqQuestionButton {
+  width: 100%;
+  padding: 20px 22px;
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faqQuestionText {
+  flex: 1;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #334155;
+  font-weight: 600;
+}
+
+.faqToggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 28px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(203, 213, 225, 0.95);
+  color: #475569;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  transition:
+    background 120ms ease,
+    color 120ms ease,
+    border-color 120ms ease,
+    transform 120ms ease;
+}
+
+.faqItemOpen .faqToggle {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.faqItemSurface:hover,
+.faqItem:focus-within .faqItemSurface {
+  border-color: rgba(181, 90, 255, 0.18);
+}
+
+.faqQuestionButton:hover .faqToggle,
+.faqQuestionButton:focus-visible .faqToggle {
+  transform: scale(1.04);
+  border-color: rgba(181, 90, 255, 0.2);
+}
+
+.faqQuestionButton:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.18);
+  outline-offset: 2px;
+  border-radius: 20px;
+}
+
+.faqAnswerWrap {
+  padding: 0 22px 20px;
+}
+
+.faqAnswer {
+  margin: 0;
+  max-width: 700px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #64748b;
+}
+
 @media (min-width: 768px) {
   .promoCard {
-    flex-direction: row;
-    align-items: center;
     padding: 28px 32px;
-    gap: 24px;
-  }
-
-  .promoText {
-    flex: 1 1 auto;
-    text-align: center;
   }
 }
 
@@ -327,9 +573,9 @@
     font-size: 16px;
   }
 
-  .promoButton {
-    padding: 14px 24px;
-    font-size: 16px;
+  .promoInlineButton {
+    padding: 16px 24px;
+    font-size: 15px;
   }
 }
 
@@ -378,8 +624,24 @@
     margin-bottom: 24px;
   }
 
-  .promoButton {
-    padding: 12px 16px;
+  .promoForm {
+    gap: 12px;
+  }
+
+  .promoInputShell {
+    width: 100%;
+    padding: 16px 20px;
+    gap: 12px;
+  }
+
+  .promoInput {
+    font-size: 16px;
+    height: 44px;
+  }
+
+  .promoInlineButton {
+    padding: 14px 18px;
+    font-size: 14px;
   }
 
   .sectionHeading {
@@ -407,6 +669,63 @@
 
   .list li {
     font-size: 16px;
+  }
+
+  .articleContent .listTip {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .listTipIcon {
+    align-self: center;
+  }
+
+  .faqSection {
+    margin-top: 48px;
+  }
+
+  .faqTitle {
+    font-size: 24px;
+  }
+
+  .faqSubtitle {
+    font-size: 14px;
+  }
+
+  .faqCard {
+    border-radius: 0;
+  }
+
+  .faqQuestionButton {
+    padding: 18px 18px;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .faqQuestionText {
+    font-size: 16px;
+  }
+
+  .faqItemSurface {
+    border-radius: 24px;
+  }
+
+  .faqToggle {
+    width: 26px;
+    height: 26px;
+    flex-basis: 26px;
+    font-size: 15px;
+  }
+
+  .faqAnswerWrap {
+    padding: 0 18px 18px;
+  }
+
+  .faqAnswer {
+    font-size: 15px;
   }
 
   .twoColumnList {

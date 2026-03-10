@@ -154,6 +154,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
 }
 
 .promoBrandLogo {
@@ -169,6 +170,15 @@
   line-height: 1;
   font-weight: 500;
   letter-spacing: -0.01em;
+}
+
+.promoTitle {
+  margin: 0;
+  max-width: 420px;
+  color: #334155;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 400;
 }
 
 .promoForm {
@@ -190,6 +200,11 @@
   box-sizing: border-box;
 }
 
+.promoInputWrap {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .promoInput {
   flex: 1 1 auto;
   min-width: 0;
@@ -206,6 +221,13 @@
 
 .promoInput::placeholder {
   color: #94a3b8;
+}
+
+.promoInputOverlay {
+  color: #94a3b8;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1;
 }
 
 .promoInlineButton {
@@ -630,8 +652,9 @@
 
   .promoInputShell {
     width: 100%;
+    gap: 0;
     padding: 16px 20px;
-    gap: 12px;
+    display: block;
   }
 
   .promoInput {
@@ -639,7 +662,12 @@
     height: 44px;
   }
 
+  .promoInputOverlay {
+    font-size: 16px;
+  }
+
   .promoInlineButton {
+    margin-top: 14px;
     padding: 14px 18px;
     font-size: 14px;
   }

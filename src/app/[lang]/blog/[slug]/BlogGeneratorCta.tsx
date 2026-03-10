@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Sparkles } from "lucide-react";
+import AnimatedPlaceholderInput from "@/components/ui/AnimatedPlaceholderInput";
 import type { Lang } from "@/config/i18n";
 import styles from "./BlogPost.module.css";
 
@@ -8,6 +10,13 @@ type BlogGeneratorCtaProps = {
 };
 
 export default function BlogGeneratorCta({ lang }: BlogGeneratorCtaProps) {
+  const businessIdeaExamples = [
+    "AI marketing tool",
+    "AI meeting assistant",
+    "AI productivity app",
+    "AI research agent",
+    "AI writing tool",
+  ];
   const copy =
     lang === "nl"
       ? {
@@ -21,10 +30,14 @@ export default function BlogGeneratorCta({ lang }: BlogGeneratorCtaProps) {
     lang === "nl"
       ? `/${lang}/tools/domain-generator/results`
       : `/${lang}/tools/domain-generator/results`;
+  const generatorPageHref =
+    lang === "nl"
+      ? `/${lang}/tools/domeinnaam-generator`
+      : `/${lang}/tools/domain-generator`;
 
   return (
     <section className={styles.promoCard} aria-label="Domifai generator call to action">
-      <div className={styles.promoBrand}>
+      <Link href={generatorPageHref} className={styles.promoBrand}>
         <Image
           src="/images/domifai-logo.png"
           alt="Domifai"
@@ -33,15 +46,24 @@ export default function BlogGeneratorCta({ lang }: BlogGeneratorCtaProps) {
           className={styles.promoBrandLogo}
         />
         <span className={styles.promoBrandName}>Domifai</span>
-      </div>
-      <form action={generatorResultsHref} method="get" className={styles.promoForm}>
+      </Link>
+      <h2 className={styles.promoTitle}>Generate business name ideas</h2>
+      <form
+        action={generatorResultsHref}
+        method="get"
+        target="_blank"
+        className={styles.promoForm}
+      >
         <div className={styles.promoInputShell}>
-          <input
+          <AnimatedPlaceholderInput
             type="text"
             name="q"
             className={styles.promoInput}
-            placeholder="Describe your business idea"
+            wrapperClassName={styles.promoInputWrap}
+            overlayClassName={styles.promoInputOverlay}
+            phrases={businessIdeaExamples}
             aria-label="Describe your business idea"
+            autoComplete="off"
             required
           />
           <button type="submit" className={styles.promoInlineButton}>

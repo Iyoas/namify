@@ -13,6 +13,7 @@ import type { GeneratorGeneralMessages } from "@/i18n/domain-generator-index/gen
 import { getRegistrarUrl } from "@/lib/registrar";
 import { createRequestId, trackEvent } from "@/lib/analytics";
 import { openAffiliateLink } from "@/lib/affiliate/openAffiliateLink";
+import AnimatedPlaceholderInput from "@/components/ui/AnimatedPlaceholderInput";
 
 type HeroSectionProps = {
   lang: Lang;
@@ -54,6 +55,13 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
   const isHoverDevice = useMediaQuery("(hover: hover)");
   const styleOptions = messages.hero.styleOptions;
   const samplePrompts = messages.examples.prompts;
+  const singleModeExamples = [
+    "nexora.ai",
+    "agentra.ai",
+    "vectra.ai",
+    "flowmind.ai",
+    "syntra.ai",
+  ];
 
   const [selectedStyle, setSelectedStyle] = useState<string>(() => {
     const preferred = ["Creative", "Creatief"];
@@ -501,54 +509,70 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
         >
           
 
-          <div
-            className={[
-              styles.descriptionBox,
-              mode === "single" ? styles.descriptionBoxSingle : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-          >
-            <div className={styles.descriptionTop}>
-              {isEnhancing ? (
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    gap: 1.2,
-                    px: "24px",
-                  }}
-                >
-                  <Skeleton variant="rounded" height={12} animation="wave" />
-                  <Skeleton variant="rounded" height={12} animation="wave" />
-                  <Skeleton
-                    variant="rounded"
-                    height={12}
-                    animation="wave"
-                    sx={{ width: "70%" }}
-                  />
-                </Box>
-              ) : (
-                <textarea
-                  className={styles.textarea}
-                  id="generator-prompt"
-                  placeholder={
-                    mode === "single"
-                      ? messages.hero.singlePlaceholder
-                      : messages.hero.placeholder
-                  }
-                  value={prompt}
-                  onChange={(e) => setPrompt(e.target.value)}
-                  maxLength={promptLimit}
-                />
-              )}
+          {mode === "single" ? (
+            <div className={styles.singlePromptShell}>
+              <AnimatedPlaceholderInput
+                type="text"
+                id="generator-prompt"
+                className={styles.singlePromptInput}
+                wrapperClassName={styles.singlePromptInputWrap}
+                overlayClassName={styles.singlePromptOverlay}
+                phrases={singleModeExamples}
+                value={prompt}
+                onChange={(event) => setPrompt(event.target.value)}
+                aria-label={messages.hero.singlePlaceholder}
+                autoComplete="off"
+                maxLength={promptLimit}
+              />
+              <button
+                type="button"
+                className={styles.generateButton}
+                onClick={handleGenerateClick}
+                disabled={!prompt.trim()}
+              >
+                <IoSearch className={styles.generateIcon} />
+                <span>{messages.hero.ctaSingle}</span>
+              </button>
             </div>
+          ) : (
+            <div className={styles.descriptionBox}>
+              <>
+                <div className={styles.descriptionTop}>
+                  {isEnhancing ? (
+                    <Box
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        gap: 1.2,
+                        px: "24px",
+                      }}
+                    >
+                      <Skeleton variant="rounded" height={12} animation="wave" />
+                      <Skeleton variant="rounded" height={12} animation="wave" />
+                      <Skeleton
+                        variant="rounded"
+                        height={12}
+                        animation="wave"
+                        sx={{ width: "70%" }}
+                      />
+                    </Box>
+                  ) : (
+                    <textarea
+                      className={styles.textarea}
+                      id="generator-prompt"
+                      placeholder={messages.hero.placeholder}
+                      value={prompt}
+                      onChange={(e) => setPrompt(e.target.value)}
+                      maxLength={promptLimit}
+                    />
+                  )}
+                </div>
 
-            <div className={styles.bottomRow}>
-              {mode === "ai" && (
+                <div className={styles.bottomRow}>
+                  {mode === "ai" && (
                 <div className={styles.optionsRow}>
                   <div className={styles.styleSelect} ref={styleSelectRef}>
                     <button
@@ -639,32 +663,24 @@ export function HeroSection({ lang, messages }: HeroSectionProps) {
                 </div>
               )}
 
-              <div className={styles.generateRow}>
-                {mode === "ai" && (
-                  <span className={styles.charCount}>
-                    {promptLength}/{promptLimit}
-                  </span>
-                )}
-                <button
-                  type="button"
-                  className={styles.generateButton}
-                  onClick={handleGenerateClick}
-                  disabled={!prompt.trim()}
-                >
-                  {mode === "single" ? (
-                    <IoSearch className={styles.generateIcon} />
-                  ) : (
-                    <Sparkles className={styles.generateIcon} />
-                  )}
-                  <span>
-                    {mode === "single"
-                      ? messages.hero.ctaSingle
-                      : messages.hero.ctaGenerate}
-                  </span>
-                </button>
-              </div>
+                  <div className={styles.generateRow}>
+                    <span className={styles.charCount}>
+                      {promptLength}/{promptLimit}
+                    </span>
+                    <button
+                      type="button"
+                      className={styles.generateButton}
+                      onClick={handleGenerateClick}
+                      disabled={!prompt.trim()}
+                    >
+                      <Sparkles className={styles.generateIcon} />
+                      <span>{messages.hero.ctaGenerate}</span>
+                    </button>
+                  </div>
+                </div>
+              </>
             </div>
-          </div>
+          )}
         </div>
 
         {mode === "single" && (

@@ -117,6 +117,20 @@
   max-width: 1040px;
 }
 
+.singlePromptShell {
+  margin-top: 16px;
+  width: 100%;
+  min-height: 80px;
+  max-height: 80px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
 .descriptionBox {
   margin-top: 16px;
   padding: 24px;
@@ -137,10 +151,39 @@
 .descriptionBoxSingle {
   min-height: 80px;
   max-height: 80px;
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   align-items: center;
-  column-gap: 20px;
+  gap: 16px;
+  padding: 18px 24px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.singlePromptInputWrap {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.singlePromptInput {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #0f172a;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1;
+  outline: none;
+}
+
+.singlePromptOverlay {
+  color: #94a3b8;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1;
 }
 
 .descriptionTop {
@@ -158,19 +201,17 @@
 }
 
 .descriptionBoxSingle .descriptionTop {
+  flex: 1 1 auto;
+  min-width: 0;
   padding: 0;
   align-items: center;
 }
 
-.descriptionBoxSingle .bottomRow {
-  width: auto;
-  justify-content: flex-end;
-  align-items: center;
-  margin: 0;
-}
-
 .descriptionBoxSingle .generateRow {
   margin: 0;
+  width: auto;
+  justify-content: flex-end;
+  flex: 0 0 auto;
 }
 
 .optionsRow {
@@ -206,6 +247,24 @@
   flex-shrink: 0;
   font-size: 16px;
   color: #646464;
+}
+
+.descriptionBoxSingle .descriptionText,
+.descriptionBoxSingle .textarea,
+.descriptionBoxSingle .textarea::placeholder {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.descriptionBoxSingle .textarea {
+  height: 44px;
+  min-height: 44px;
+  display: block;
+  color: #0f172a;
+}
+
+.descriptionBoxSingle .textarea::placeholder {
+  color: #94a3b8;
 }
 
 .optionButton {
@@ -256,6 +315,7 @@
   color: #ffffff;
   font-size: 15px;
   font-weight: 600;
+  white-space: nowrap;
   cursor: pointer;
 
   /* Outer shadow: y=4, blur=14, 20% black */
@@ -575,6 +635,13 @@
     padding-bottom: 16px;
   }
 
+  .singlePromptShell {
+    min-height: 140px;
+    max-height: 200px;
+    display: block;
+    padding: 24px;
+  }
+
   .descriptionBox {
     width: 100%;
     max-width: 100%;
@@ -591,6 +658,20 @@
     min-height: 140px;
     max-height: 200px;
     display: block;
+    padding: 24px;
+  }
+
+  .singlePromptInputWrap {
+    display: block;
+    width: 100%;
+  }
+
+  .singlePromptInput {
+    height: 44px;
+  }
+
+  .singlePromptOverlay {
+    font-size: 16px;
   }
 
   /* Reserve space so textarea/placeholder never sits behind the absolute CTA */
@@ -625,9 +706,8 @@
     position: static;
   }
 
-  .generateButton {
-    width: auto;
-    min-width: 0;
+  .singlePromptShell .generateButton {
+    margin-top: 24px;
   }
 
   /* Controls (tone + extension) below the box, then Enhance full-width */

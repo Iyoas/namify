@@ -1,0 +1,129 @@
+.wrapper {
+  margin-top: 8px;
+}
+
+.card {
+  padding: 24px;
+  border-radius: 24px;
+  background: #f8fafc;
+  box-sizing: border-box;
+  width:75%;
+}
+
+.title {
+  margin: 0 0 16px;
+  max-width: 420px;
+  color: #334155;
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.form {
+  margin: 0;
+  width: 100%;
+}
+
+.fieldInner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  height: 44px;
+  min-width: 0;
+  padding: 0;
+  color: #0f172a;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1;
+  outline: none;
+}
+
+.input::placeholder {
+  color: #94a3b8;
+}
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border: 0;
+  border-radius: 16px;
+  background-image: var(--gradient-primary);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.submitButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 22px 44px rgba(15, 23, 42, 0.12);
+}
+
+.submitButton:focus-visible,
+.input:focus-visible {
+  outline: none;
+}
+
+.submitButton:focus-visible {
+  box-shadow:
+    0 0 0 4px rgba(181, 90, 255, 0.22),
+    0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.submitIcon {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 640px) {
+  .form {
+    width: 100%;
+  }
+
+  .card {
+    padding: 24px 20px;
+    border-radius: 24px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .fieldInner {
+    padding: 16px 20px;
+    gap: 10px;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .input {
+    font-size: 16px;
+    height: 44px;
+    line-height: 1;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .submitButton {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    border-radius: 16px;
+    line-height: 1;
+  }
+}

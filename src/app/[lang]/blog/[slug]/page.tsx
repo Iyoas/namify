@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import { cache, Children, type ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 import type { Lang } from "@/config/i18n";
+import { countWords, estimateReadingTimeMinutes, extractPlainTextFromPortableText } from "@/lib/blogMeta";
 import { getSanityBlogPostBySlug } from "@/lib/sanity/blog";
+import BlogGeneratorCta from "./BlogGeneratorCta";
+import BlogMetaRow from "./BlogMetaRow";
+import InArticleDomainChecker from "./InArticleDomainChecker";
 import styles from "./BlogPost.module.css";
 
 const SITE_URL = "https://www.domifai.com";
@@ -19,6 +21,34 @@ type BlogPostPageProps = {
 type ChecklistTextParts = {
   label: string;
   description: string;
+};
+
+type PortableTextChild = {
+  _type?: string;
+  text?: string;
+};
+
+type PortableTextBlock = {
+  _type?: string;
+  style?: string;
+  listItem?: string;
+  children?: PortableTextChild[];
+};
+
+type DomainCheckerInsertId =
+  | "after-intro"
+  | "after-modern-names";
+
+type DomainCheckerBlock = {
+  _type: "domainChecker";
+  _key: string;
+  insertId: DomainCheckerInsertId;
+};
+
+type GeneratorCtaBlock = {
+  _type: "generatorCta";
+  _key: string;
+  insertId: "after-domain-section";
 };
 
 function safeDecodeSlug(value: string): string {
@@ -36,6 +66,111 @@ function formatDate(date: string, lang: "en" | "nl") {
     month: "short",
     day: "numeric",
   }).format(new Date(date));
+}
+
+function getPortableTextBlockText(block: unknown): string {
+  if (!block || typeof block !== "object") return "";
+
+  const value = block as PortableTextBlock;
+  if (!Array.isArray(value.children)) return "";
+
+  return value.children
+    .map((child) => (child?._type === "span" ? child.text ?? "" : ""))
+    .join("")
+    .trim();
+}
+
+function createDomainCheckerBlock(insertId: DomainCheckerInsertId): DomainCheckerBlock {
+  return {
+    _type: "domainChecker",
+    _key: `domain-checker-${insertId}`,
+    insertId,
+  };
+}
+
+function createGeneratorCtaBlock(): GeneratorCtaBlock {
+  return {
+    _type: "generatorCta",
+    _key: "generator-cta-after-domain-section",
+    insertId: "after-domain-section",
+  };
+}
+
+function injectAiAppDomainCheckers(
+  body: unknown[] | undefined,
+  slug: string
+): Array<unknown | DomainCheckerBlock | GeneratorCtaBlock> {
+  if (!Array.isArray(body) || slug !== "100-ai-app-name-ideas") {
+    return body ?? [];
+  }
+
+  const result: Array<unknown | DomainCheckerBlock | GeneratorCtaBlock> = [];
+  let insertedAfterIntro = false;
+  let insideModernNamesSection = false;
+  let insertedAfterModernNames = false;
+  let insideDomainSection = false;
+  let insertedAfterDomainSection = false;
+
+  for (const block of body) {
+    const text = getPortableTextBlockText(block);
+    const value = block as PortableTextBlock;
+    const isH2 = value?._type === "block" && value.style === "h2";
+    const isH3 = value?._type === "block" && value.style === "h3";
+
+    if (!insertedAfterIntro && text === "Why Naming Matters for AI Apps") {
+      result.push(createDomainCheckerBlock("after-intro"));
+      insertedAfterIntro = true;
+    }
+
+    if (
+      text ===
+      "Check whether one of these AI app names is available before someone else registers it."
+    ) {
+      if (!insertedAfterModernNames) {
+        result.push(createDomainCheckerBlock("after-modern-names"));
+        insertedAfterModernNames = true;
+      }
+      continue;
+    }
+
+    if (
+      insideModernNamesSection &&
+      !insertedAfterModernNames &&
+      isH3 &&
+      text === "AI Agent App Name Ideas"
+    ) {
+      result.push(createDomainCheckerBlock("after-modern-names"));
+      insertedAfterModernNames = true;
+      insideModernNamesSection = false;
+    }
+
+    if (
+      insideDomainSection &&
+      !insertedAfterDomainSection &&
+      isH2 &&
+      text !== "Choosing the Right Domain for Your AI App"
+    ) {
+        result.push(createGeneratorCtaBlock());
+        insertedAfterDomainSection = true;
+        insideDomainSection = false;
+    }
+
+    result.push(block);
+
+    if (isH3 && text === "Modern AI App Name Ideas") {
+      insideModernNamesSection = true;
+    }
+
+    if (isH2 && text === "Choosing the Right Domain for Your AI App") {
+      insideDomainSection = true;
+    }
+  }
+
+  if (insideDomainSection && !insertedAfterDomainSection) {
+    result.push(createGeneratorCtaBlock());
+  }
+
+  return result;
 }
 
 function getChecklistTextParts(children?: ReactNode): ChecklistTextParts | null {
@@ -124,20 +259,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const image = post.image || DEFAULT_BLOG_IMAGE;
-  const copy =
+  const articleBody = injectAiAppDomainCheckers(post.body, post.slug || decodedSlug);
+  const plainTextBody = extractPlainTextFromPortableText(post.body);
+  const wordCount = countWords(plainTextBody);
+  const readingTimeMinutes = estimateReadingTimeMinutes(wordCount);
+  const shareUrl = `${SITE_URL}/${resolvedLang}/blog/${post.slug || decodedSlug}`;
+  const metaCopy =
     resolvedLang === "nl"
       ? {
-          promoText: "Vind vandaag de perfecte bedrijfsnaam!",
-          promoCta: "Nu genereren",
+          readingTime: `${readingTimeMinutes} min leestijd`,
+          wordCount: `${wordCount.toLocaleString("nl-NL")} woorden`,
+          share: "Delen",
+          copied: "Gekopieerd",
         }
       : {
-          promoText: "Find the perfect business name today!",
-          promoCta: "Generate now",
+          readingTime: `${readingTimeMinutes} min read`,
+          wordCount: `${wordCount.toLocaleString("en-US")} words`,
+          share: "Share",
+          copied: "Copied",
         };
-  const generatorHref =
-    resolvedLang === "nl"
-      ? `/${resolvedLang}/tools/domeinnaam-generator`
-      : `/${resolvedLang}/tools/domain-generator`;
   const portableTextComponents = {
     block: {
       h2: ({ children }: { children?: ReactNode }) => {
@@ -151,22 +291,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         if (shouldRenderPromo) {
           return (
             <>
-              <section className={styles.promoCard} aria-label="Domifai generator call to action">
-                <div className={styles.promoBrand}>
-                  <Image
-                    src="/images/domifai-logo.png"
-                    alt="Domifai"
-                    width={36}
-                    height={36}
-                    className={styles.promoBrandLogo}
-                  />
-                  <span className={styles.promoBrandName}>Domifai</span>
-                </div>
-                <p className={styles.promoText}>{copy.promoText}</p>
-                <Link href={generatorHref} className={styles.promoButton}>
-                  {copy.promoCta}
-                </Link>
-              </section>
+              <BlogGeneratorCta lang={resolvedLang} />
               <h2 className={className}>{children}</h2>
             </>
           );
@@ -198,6 +323,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         );
       },
     },
+    types: {
+      domainChecker: () => <InArticleDomainChecker lang={resolvedLang} />,
+      generatorCta: () => <BlogGeneratorCta lang={resolvedLang} />,
+    },
   };
 
   return (
@@ -209,16 +338,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <header className={styles.header}>
             <h1 className={styles.title}>{post.title}</h1>
             {post.excerpt ? <p className={styles.excerpt}>{post.excerpt}</p> : null}
-            <p className={styles.date}>{formatDate(post.date, resolvedLang)}</p>
+            <div className={styles.metaDivider} aria-hidden="true" />
+            <BlogMetaRow
+              dateLabel={formatDate(post.date, resolvedLang)}
+              readingTimeLabel={metaCopy.readingTime}
+              wordCountLabel={metaCopy.wordCount}
+              shareLabel={metaCopy.share}
+              shareUrl={shareUrl}
+              copiedLabel={metaCopy.copied}
+            />
           </header>
         </div>
       </section>
 
       <section className={styles.content}>
         <div className={styles.inner}>
-          {post.body && Array.isArray(post.body) && post.body.length > 0 ? (
+          {articleBody.length > 0 ? (
             <div className={styles.articleContent}>
-              <PortableText value={post.body} components={portableTextComponents} />
+              <PortableText value={articleBody} components={portableTextComponents} />
             </div>
           ) : null}
         </div>
